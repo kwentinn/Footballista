@@ -1,9 +1,0 @@
-C:\Users\Quentin\Source\Repos\Footballista\Footballista.Players\bin\Debug\netstandard2.0\Footballista.Players.deps.json
-C:\Users\Quentin\Source\Repos\Footballista\Footballista.Players\bin\Debug\netstandard2.0\Footballista.Players.dll
-C:\Users\Quentin\Source\Repos\Footballista\Footballista.Players\obj\Debug\netstandard2.0\Footballista.Players.AssemblyInfoInputs.cache
-C:\Users\Quentin\Source\Repos\Footballista\Footballista.Players\obj\Debug\netstandard2.0\Footballista.Players.AssemblyInfo.cs
-C:\Users\Quentin\Source\Repos\Footballista\Footballista.Players\obj\Debug\netstandard2.0\Footballista.Players.csprojAssemblyReference.cache
-C:\Users\Quentin\Source\Repos\Footballista\Footballista.Players\obj\Debug\netstandard2.0\Footballista.Players.csproj.CoreCompileInputs.cache
-C:\Users\Quentin\Source\Repos\Footballista\Footballista.Players\bin\Debug\netstandard2.0\Footballista.Players.pdb
-C:\Users\Quentin\Source\Repos\Footballista\Footballista.Players\obj\Debug\netstandard2.0\Footballista.Players.dll
-C:\Users\Quentin\Source\Repos\Footballista\Footballista.Players\obj\Debug\netstandard2.0\Footballista.Players.pdb
