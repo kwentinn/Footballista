@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace Footballista.Players
 {
@@ -10,40 +11,47 @@ namespace Footballista.Players
 		public Guid Id { get; }
 		public string Firstname { get; }
 		public string Lastname { get; }
+		public Gender Gender { get; }
 		public Date DateOfBirth { get; }
 		public Location BirthLocation { get; }
 
-		private List<Nationality> _nationalities = new List<Nationality>();
-		public ReadOnlyCollection<Nationality> Nationalities => _nationalities.AsReadOnly();
+		private List<RegionInfo> _nationalities = new List<RegionInfo>();
+		public ReadOnlyCollection<RegionInfo> Nationalities => _nationalities.AsReadOnly();
 
 		internal Person
 		(
-			Guid id, 
-			string firstname, 
+			Guid id,
+			string firstname,
 			string lastname, 
-			Date dob, 
-			Location birthLocation, 
-			params Nationality[] nationalities
+			Gender gender,
+			Date dob,
+			Location birthLocation,
+			params RegionInfo[] nationalities
 		)
 		{
 			Id = id;
 			Firstname = firstname;
 			Lastname = lastname;
+			Gender = gender;
 			DateOfBirth = dob;
 			BirthLocation = birthLocation;
 			_nationalities.AddRange(nationalities);
 		}
-		internal Person(string firstname, string lastname, Date dob, Location birthLocation, params Nationality[] nationalities)
-			: this(Guid.NewGuid(), firstname, lastname, dob, birthLocation, nationalities) { }
+
+		internal Person(string firstname, string lastname, Gender gender, Date dob, Location birthLocation, params RegionInfo[] nationalities)
+			: this(Guid.NewGuid(), firstname, lastname, gender, dob, birthLocation, nationalities) { }
 
 		public static Person CreatePerson
 		(
-			string firstname, 
-			string lastname, 
-			Date dob, 
-			Location location, 
-			params Nationality[] nationalities
+			string firstname,
+			string lastname,
+			Gender gender,
+			Date dob,
+			Location birthLocation,
+			params RegionInfo[] nationalities
 		)
-		=> new Person(firstname, lastname, dob, location, nationalities);
+		{
+			return new Person(firstname, lastname, gender, dob, birthLocation, nationalities);
+		}
 	}
 }
