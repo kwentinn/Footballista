@@ -1,7 +1,7 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using System;
 
-namespace Footballista.Players
+namespace Footballista.Players.Persons
 {
 	public class PersonId : TypedIdValueBase
 	{

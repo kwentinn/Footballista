@@ -1,4 +1,4 @@
-﻿namespace Footballista.Players
+﻿namespace Footballista.Players.Persons
 {
 	public class Gender
 	{

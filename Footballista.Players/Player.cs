@@ -1,4 +1,5 @@
-﻿using Footballista.Players.Positions;
+﻿using Footballista.Players.Persons;
+using Footballista.Players.Positions;
 using Itenso.TimePeriod;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

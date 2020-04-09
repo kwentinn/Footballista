@@ -1,10 +1,9 @@
 ﻿using Itenso.TimePeriod;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 
-namespace Footballista.Players
+namespace Footballista.Players.Persons
 {
 	public class Person
 	{
