@@ -8,7 +8,7 @@ namespace Footballista.Players
 {
 	public class Person
 	{
-		public Guid Id { get; }
+		public PersonId Id { get; }
 		public string Firstname { get; }
 		public string Lastname { get; }
 		public Gender Gender { get; }
@@ -20,7 +20,7 @@ namespace Footballista.Players
 
 		internal Person
 		(
-			Guid id,
+			PersonId id,
 			string firstname,
 			string lastname, 
 			Gender gender,
@@ -39,9 +39,9 @@ namespace Footballista.Players
 		}
 
 		internal Person(string firstname, string lastname, Gender gender, Date dob, Location birthLocation, params RegionInfo[] nationalities)
-			: this(Guid.NewGuid(), firstname, lastname, gender, dob, birthLocation, nationalities) { }
+			: this(PersonId.CreateNew(), firstname, lastname, gender, dob, birthLocation, nationalities) { }
 
-		public static Person CreatePerson
+		public static Person CreateNew
 		(
 			string firstname,
 			string lastname,

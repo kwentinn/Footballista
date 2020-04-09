@@ -11,7 +11,7 @@ namespace Footballista.PlayersUnitTests
 		[TestMethod]
 		public void CreateNewPerson()
 		{
-			Person someone = Person.CreatePerson
+			Person someone = Person.CreateNew
 			(
 				firstname: "Michael",
 				lastname: "Monroe",

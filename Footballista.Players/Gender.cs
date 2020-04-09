@@ -2,14 +2,16 @@
 {
 	public class Gender
 	{
-		private bool _isFemale = false;
+		private readonly bool _isFemale;
+		private readonly string _value;
 
-		private Gender(bool isFemale)
+		private Gender(bool isFemale, string value)
 		{
 			_isFemale = isFemale;
+			_value = value;
 		}
 
-		public static Gender Male => new Gender(false);
-		public static Gender Female => new Gender(true);
+		public static Gender Male => new Gender(false, nameof(Male));
+		public static Gender Female => new Gender(true, nameof(Female));
 	}
 }
