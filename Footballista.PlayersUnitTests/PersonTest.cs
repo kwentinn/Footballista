@@ -18,8 +18,8 @@ namespace Footballista.PlayersUnitTests
 				lastname: "Monroe",
 				gender: Gender.Male,
 				dob: new Date(1990, 5, 11),
-				birthLocation: new Location("Montpellier", "FR"),
-				nationalities: new RegionInfo("FR")
+				birthLocation: new Location(new City("Montpellier"), "FR"),
+				nationalities: new Country("FR")
 			);
 
 			Assert.IsNotNull(someone);

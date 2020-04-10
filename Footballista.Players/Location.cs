@@ -1,24 +1,22 @@
-﻿using System.Globalization;
-
-namespace Footballista.Players
+﻿namespace Footballista.Players
 {
 	public class Location
 	{
-		public string City { get; }
-		public string ZipCode { get; }
-		public RegionInfo Country { get; }
+		public City City { get; }
+		public ZipCode ZipCode { get; }
+		public Country Country { get; }
 
 
-		public Location(string city, string countryCode)
+		public Location(City city, string countryCode)
 		{
 			City = city;
-			Country = new RegionInfo(countryCode);
+			Country = new Country(countryCode);
 		}
-		public Location(string city, string zipCode, string countryCode)
+		public Location(City city, ZipCode zipCode, string countryCode)
 		{
 			City = city;
 			ZipCode = zipCode;
-			Country = new RegionInfo(countryCode);
+			Country = new Country(countryCode);
 		}
 	}
 }

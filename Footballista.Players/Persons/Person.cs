@@ -14,8 +14,8 @@ namespace Footballista.Players.Persons
 		public Date DateOfBirth { get; }
 		public Location BirthLocation { get; }
 
-		private List<RegionInfo> _nationalities = new List<RegionInfo>();
-		public ReadOnlyCollection<RegionInfo> Nationalities => _nationalities.AsReadOnly();
+		private List<Country> _nationalities = new List<Country>();
+		public ReadOnlyCollection<Country> Nationalities => _nationalities.AsReadOnly();
 
 		internal Person
 		(
@@ -25,7 +25,7 @@ namespace Footballista.Players.Persons
 			Gender gender,
 			Date dob,
 			Location birthLocation,
-			params RegionInfo[] nationalities
+			params Country[] nationalities
 		)
 		{
 			Id = id;
@@ -37,7 +37,7 @@ namespace Footballista.Players.Persons
 			_nationalities.AddRange(nationalities);
 		}
 
-		internal Person(string firstname, string lastname, Gender gender, Date dob, Location birthLocation, params RegionInfo[] nationalities)
+		internal Person(string firstname, string lastname, Gender gender, Date dob, Location birthLocation, params Country[] nationalities)
 			: this(PersonId.CreateNew(), firstname, lastname, gender, dob, birthLocation, nationalities) { }
 
 		public static Person CreateNew
@@ -47,7 +47,7 @@ namespace Footballista.Players.Persons
 			Gender gender,
 			Date dob,
 			Location birthLocation,
-			params RegionInfo[] nationalities
+			params Country[] nationalities
 		)
 		{
 			return new Person(firstname, lastname, gender, dob, birthLocation, nationalities);
