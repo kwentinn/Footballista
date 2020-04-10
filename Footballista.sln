@@ -14,11 +14,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{59C215F7-051E-4AD0-8AAD-8863E7F2BDD6}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{EDB7D2DA-9158-4138-B67C-F591D28C69C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.BuildingBlocks.Domain", "Footballista.BuildingBlocks.Domain\Footballista.BuildingBlocks.Domain.csproj", "{FAF0BA18-4E53-4278-AA5B-35F38C7D43CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.BuildingBlocks.Domain", "Footballista.BuildingBlocks.Domain\Footballista.BuildingBlocks.Domain.csproj", "{FAF0BA18-4E53-4278-AA5B-35F38C7D43CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
