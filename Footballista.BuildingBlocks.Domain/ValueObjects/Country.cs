@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace Footballista.BuildingBlocks.Domain.ValueObjects
 {
+	[DebuggerDisplay("{RegionInfo}")]
 	public class Country : ValueObject
 	{
 		public RegionInfo RegionInfo { get; }

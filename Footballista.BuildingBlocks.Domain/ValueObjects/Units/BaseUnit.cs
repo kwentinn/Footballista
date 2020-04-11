@@ -1,6 +1,9 @@
-﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects.Units
+﻿using System.Diagnostics;
+
+namespace Footballista.BuildingBlocks.Domain.ValueObjects.Units
 {
-	public abstract class BaseUnit : ValueObject
+	[DebuggerDisplay("{Value}{Abbreviation} ({BaseUnitType}, {SystemOfUnitsType})")]
+	public abstract class BaseUnit : ValueObject, IUnit
 	{
 		public double Value { get; internal set; }
 

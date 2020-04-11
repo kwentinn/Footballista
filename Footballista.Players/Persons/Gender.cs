@@ -1,5 +1,8 @@
-﻿namespace Footballista.Players.Persons
+﻿using System.Diagnostics;
+
+namespace Footballista.Players.Persons
 {
+	[DebuggerDisplay("{_value}")]
 	public class Gender
 	{
 		private readonly bool _isFemale;

@@ -3,7 +3,7 @@ using Footballista.Players.Persons;
 using Itenso.TimePeriod;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Footballista.PlayersUnitTests
+namespace Footballista.PlayersUnitTests.Domain
 {
 	[TestClass]
 	public class PlayerTest

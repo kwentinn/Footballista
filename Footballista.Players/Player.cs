@@ -1,10 +1,10 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
+using Footballista.Players.Evolutions;
 using Footballista.Players.Persons;
 using Footballista.Players.Positions;
 using Itenso.TimePeriod;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 
 namespace Footballista.Players
 {
@@ -12,6 +12,8 @@ namespace Footballista.Players
 	{
 		public ReadOnlyCollection<PlayerPosition> PlayerPositions => playerPositions.AsReadOnly();
 		private List<PlayerPosition> playerPositions = new List<PlayerPosition>();
+
+
 
 		internal Player(string firstname, string lastname, Gender gender, Date dob, Location birthLocation, params Country[] nationalities)
 			: base(firstname, lastname, gender, dob, birthLocation, nationalities)

@@ -1,4 +1,6 @@
-﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects.Units.Length
+﻿using System.Diagnostics;
+
+namespace Footballista.BuildingBlocks.Domain.ValueObjects.Units.Length
 {
 	public class Foot : LengthUnit
 	{

@@ -4,7 +4,7 @@ using Itenso.TimePeriod;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Globalization;
 
-namespace Footballista.PlayersUnitTests
+namespace Footballista.PlayersUnitTests.Domain
 {
 	[TestClass]
 	public class PersonTest

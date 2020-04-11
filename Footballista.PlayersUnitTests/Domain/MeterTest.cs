@@ -1,7 +1,7 @@
 using Footballista.BuildingBlocks.Domain.ValueObjects.Units.Length;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Footballista.PlayersUnitTests
+namespace Footballista.PlayersUnitTests.Domain
 {
 	[TestClass]
 	public class MeterTest

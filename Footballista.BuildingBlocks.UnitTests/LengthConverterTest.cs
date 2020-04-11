@@ -3,7 +3,7 @@ using Footballista.BuildingBlocks.ValueObjects.Units.Converters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Footballista.PlayersUnitTests
+namespace Footballista.BuildingBlocks.UnitTests.PlayersUnitTests
 {
 	[TestClass]
 	public class LengthConverterTest

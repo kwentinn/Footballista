@@ -1,11 +1,12 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
-using Footballista.BuildingBlocks.Domain.ValueObjects.Units.Mass;
+using System.Diagnostics;
 
 namespace Footballista.Players.Evolutions
 {
+	[DebuggerDisplay("{Age} {Value}")]
 	public abstract class Growth<T> : ValueObject
-		where T : BaseUnit
+		where T : IUnit
 	{
 		public AgeInYear Age { get; }
 		public T Value { get; }
@@ -14,13 +15,6 @@ namespace Footballista.Players.Evolutions
 		{
 			Age = age;
 			Value = value;
-		}
-	}
-
-	public class KilogramGrowth : Growth<Kilogram>
-	{
-		public KilogramGrowth(AgeInYear age, Kilogram value) : base(age, value)
-		{
 		}
 	}
 }

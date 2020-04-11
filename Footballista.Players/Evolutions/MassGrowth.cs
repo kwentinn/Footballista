@@ -2,8 +2,9 @@
 
 namespace Footballista.Players.Evolutions
 {
-	public class MassGrowth : Growth<MassUnit>
+	public class MassGrowth : Growth<IMassUnit>
 	{
-		public MassGrowth(AgeInYear age, MassUnit mass) : base(age, mass) { }
+		public MassGrowth(int ageInYear, IMassUnit mass) : this(new AgeInYear(ageInYear), mass) { }
+		public MassGrowth(AgeInYear age, IMassUnit mass) : base(age, mass) { }
 	}
 }
