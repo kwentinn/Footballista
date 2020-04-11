@@ -1,4 +1,4 @@
-﻿using Footballista.Players;
+﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Persons;
 using Itenso.TimePeriod;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

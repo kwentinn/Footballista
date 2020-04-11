@@ -1,4 +1,4 @@
-﻿namespace Footballista.Players.Units.Length
+﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects.Units.Length
 {
 	public class Meter : LengthUnit
 	{

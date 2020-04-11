@@ -1,5 +1,4 @@
-using Footballista.Players.Units;
-using Footballista.Players.Units.Length;
+using Footballista.BuildingBlocks.Domain.ValueObjects.Units.Length;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Footballista.PlayersUnitTests

@@ -1,4 +1,6 @@
-﻿namespace Footballista.Players.Units.Converters
+﻿using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
+
+namespace Footballista.BuildingBlocks.ValueObjects.Units.Converters
 {
 	public interface IConverter<TBaseUnitFrom, TBaseUnitTo>
 		where TBaseUnitFrom : BaseUnit, new()

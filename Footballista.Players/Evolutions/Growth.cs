@@ -1,6 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.Players.Units;
-using Footballista.Players.Units.Mass;
+using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
+using Footballista.BuildingBlocks.Domain.ValueObjects.Units.Mass;
 
 namespace Footballista.Players.Evolutions
 {

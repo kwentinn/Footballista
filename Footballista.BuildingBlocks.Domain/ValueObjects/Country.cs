@@ -1,8 +1,7 @@
-﻿using Footballista.BuildingBlocks.Domain;
-using System;
+﻿using System;
 using System.Globalization;
 
-namespace Footballista.Players
+namespace Footballista.BuildingBlocks.Domain.ValueObjects
 {
 	public class Country : ValueObject
 	{

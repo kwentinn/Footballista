@@ -1,4 +1,4 @@
-﻿using Footballista.Players.Units.Mass;
+﻿using Footballista.BuildingBlocks.Domain.ValueObjects.Units.Mass;
 
 namespace Footballista.Players.Evolutions
 {

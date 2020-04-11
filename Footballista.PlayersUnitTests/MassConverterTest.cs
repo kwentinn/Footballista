@@ -1,5 +1,5 @@
-﻿using Footballista.Players.Units.Converters;
-using Footballista.Players.Units.Mass;
+﻿using Footballista.BuildingBlocks.Domain.ValueObjects.Units.Mass;
+using Footballista.BuildingBlocks.ValueObjects.Units.Converters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -32,6 +32,15 @@ namespace Footballista.PlayersUnitTests
 
 			Assert.IsNotNull(result);
 			Assert.IsTrue(Math.Abs(0.4535923 - result.Value) < 0.01);
+		}
+
+		[TestMethod]
+		public void ConvertBack_220lb_ShouldReturn_99kg()
+		{
+			Kilogram result = _converter.ConvertBack(new Pound(220));
+
+			Assert.IsNotNull(result);
+			Assert.IsTrue(Math.Abs(99.7903 - result.Value) < 0.01);
 		}
 	}
 }

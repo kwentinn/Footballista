@@ -1,8 +1,6 @@
-﻿using Footballista.Players.Units.Exceptions;
-
-namespace Footballista.Players.Units
+﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects.Units
 {
-	public abstract class BaseUnit
+	public abstract class BaseUnit : ValueObject
 	{
 		public double Value { get; internal set; }
 
@@ -24,6 +22,4 @@ namespace Footballista.Players.Units
 			return $"{Value:D2} {Abbreviation}";
 		}
 	}
-
-
 }

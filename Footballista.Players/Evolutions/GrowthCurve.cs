@@ -1,4 +1,5 @@
-﻿using Footballista.Players.Persons;
+﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
+using Footballista.Players.Persons;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

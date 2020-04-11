@@ -1,6 +1,4 @@
-﻿using Footballista.BuildingBlocks.Domain;
-
-namespace Footballista.Players
+﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects
 {
 	public class City : ValueObject
 	{

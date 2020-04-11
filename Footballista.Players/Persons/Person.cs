@@ -1,4 +1,5 @@
-﻿using Itenso.TimePeriod;
+﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
+using Itenso.TimePeriod;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;

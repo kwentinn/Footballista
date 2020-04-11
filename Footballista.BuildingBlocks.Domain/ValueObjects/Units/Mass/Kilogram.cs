@@ -1,4 +1,4 @@
-﻿namespace Footballista.Players.Units.Mass
+﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects.Units.Mass
 {
 	public class Kilogram : MassUnit
 	{

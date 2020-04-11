@@ -1,5 +1,5 @@
 ﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.Players.Units;
+using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
 using Itenso.TimePeriod;
 
 namespace Footballista.Players

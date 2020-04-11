@@ -1,4 +1,4 @@
-﻿namespace Footballista.Players.Units.Length
+﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects.Units.Length
 {
 	public abstract class LengthUnit : BaseUnit
 	{
@@ -7,6 +7,4 @@
 		{
 		}
 	}
-
-
 }
