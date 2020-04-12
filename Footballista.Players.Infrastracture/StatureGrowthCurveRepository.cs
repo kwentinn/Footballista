@@ -1,98 +1,82 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration;
-using Footballista.BuildingBlocks.Domain.ValueObjects;
+﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
 using Footballista.BuildingBlocks.Domain.ValueObjects.Units.Length;
+using Footballista.BuildingBlocks.ValueObjects.Units.Converters;
 using Footballista.Players.Evolutions;
+using Footballista.Players.Infrastracture.Records;
 using Footballista.Players.Persons;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Footballista.Players.Infrastracture
 {
-	internal sealed class StatureGrowthRecord
-	{
-		public int Age { get; set; }
-		public double ThirdPercentile { get; set; }
-		public double FifthPercentile { get; set; }
-		public double TenthPercentile { get; set; }
-		public double TwentyFifthPercentile { get; set; }
-		public double FiftiethPercentile { get; set; }
-		public double SeventyFifthPercentile { get; set; }
-		public double NinetiethPercentile { get; set; }
-		public double NinetyFifthPercentile { get; set; }
-		public double NinetySeventhPercentile { get; set; }
-	}
-	internal sealed class AgeValue
-	{
-		public int Age { get; }
-		public double Value { get; }
-		public AgeValue(int age, double value)
-		{
-			Age = age;
-			Value = value;
-		}
-	}
 	public class StatureGrowthCurveRepository : IStatureGrowthCurveRepository
 	{
-		private readonly string _filePath = @"C:\Users\Quentin\Source\Repos\Footballista\data\growth-charts\stature\Stature-for-age-Male-2-to-20-years.csv";
-		public async Task<List<StatureGrowthCurve>> GetAllAsync(SystemOfUnitsType systemOfUnitsType)
+		private readonly IStatureGrowthRecordLoader _statureGrothRecordLoader;
+		private readonly IConverter<Meter, Foot> _unitConverter;
+
+		public StatureGrowthCurveRepository(IStatureGrowthRecordLoader statureGrothRecordLoader, IConverter<Meter, Foot> unitConverter)
+		{
+			_statureGrothRecordLoader = statureGrothRecordLoader;
+			_unitConverter = unitConverter;
+		}
+
+		public List<StatureGrowthCurve> GetAll(SystemOfUnitsType systemOfUnitsType)
 		{
 			var result = new List<StatureGrowthCurve>();
 
-			var config = new CsvConfiguration(new CultureInfo("fr-FR"));
+			List<StatureGrowthRecord> list = _statureGrothRecordLoader.GetRecords(Gender.Male);
 
-			using (var reader = new StreamReader(_filePath))
-			using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-			{
-				List<StatureGrowthRecord> list = csv.GetRecords<StatureGrowthRecord>().ToList();
+			// males
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 3, Gender.Male, list.Select(r => new AgeValue(r.Age, r.ThirdPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 5, Gender.Male, list.Select(r => new AgeValue(r.Age, r.FifthPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 10, Gender.Male, list.Select(r => new AgeValue(r.Age, r.TenthPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 25, Gender.Male, list.Select(r => new AgeValue(r.Age, r.TwentyFifthPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 50, Gender.Male, list.Select(r => new AgeValue(r.Age, r.FiftiethPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 75, Gender.Male, list.Select(r => new AgeValue(r.Age, r.SeventyFifthPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 90, Gender.Male, list.Select(r => new AgeValue(r.Age, r.NinetiethPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 95, Gender.Male, list.Select(r => new AgeValue(r.Age, r.NinetyFifthPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 97, Gender.Male, list.Select(r => new AgeValue(r.Age, r.NinetySeventhPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 98, Gender.Male, list.Select(r => new AgeValue(r.Age, r.NinetyEigthPercentile)).ToList()));
 
-				result.Add(new StatureGrowthCurve
-				(
-					new Percentile(3),
-					new Country("US"),
-					Gender.Male,
-					SystemOfUnitsType.SI,
-					list.Select(r => new LengthGrowth(r.Age, new Meter(Math.Round(r.ThirdPercentile / 100d, 2))))
-						.ToList()
-				));
-				result.Add(new StatureGrowthCurve
-				(
-					new Percentile(5),
-					new Country("US"),
-					Gender.Male,
-					SystemOfUnitsType.SI,
-					list.Select(r => new LengthGrowth(r.Age, new Meter(Math.Round(r.FifthPercentile / 100d, 2))))
-						.ToList()
-				));
 
-				result.Add(CreateStatureGrowthCurveFromRecords(3, list.Select(r => new AgeValue(r.Age, r.ThirdPercentile)).ToList()));
-				result.Add(CreateStatureGrowthCurveFromRecords(10, list.Select(r => new AgeValue(r.Age, r.TenthPercentile)).ToList()));
-				result.Add(CreateStatureGrowthCurveFromRecords(25, list.Select(r => new AgeValue(r.Age, r.TwentyFifthPercentile)).ToList()));
-				result.Add(CreateStatureGrowthCurveFromRecords(50, list.Select(r => new AgeValue(r.Age, r.FiftiethPercentile)).ToList()));
-				result.Add(CreateStatureGrowthCurveFromRecords(75, list.Select(r => new AgeValue(r.Age, r.SeventyFifthPercentile)).ToList()));
-				result.Add(CreateStatureGrowthCurveFromRecords(90, list.Select(r => new AgeValue(r.Age, r.NinetiethPercentile)).ToList()));
-				result.Add(CreateStatureGrowthCurveFromRecords(95, list.Select(r => new AgeValue(r.Age, r.NinetyFifthPercentile)).ToList()));
-				result.Add(CreateStatureGrowthCurveFromRecords(97, list.Select(r => new AgeValue(r.Age, r.NinetySeventhPercentile)).ToList()));
-			}
+			// females
+			list = _statureGrothRecordLoader.GetRecords(Gender.Female);
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 3, Gender.Female, list.Select(r => new AgeValue(r.Age, r.ThirdPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 5, Gender.Female, list.Select(r => new AgeValue(r.Age, r.FifthPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 10, Gender.Female, list.Select(r => new AgeValue(r.Age, r.TenthPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 25, Gender.Female, list.Select(r => new AgeValue(r.Age, r.TwentyFifthPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 50, Gender.Female, list.Select(r => new AgeValue(r.Age, r.FiftiethPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 75, Gender.Female, list.Select(r => new AgeValue(r.Age, r.SeventyFifthPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 90, Gender.Female, list.Select(r => new AgeValue(r.Age, r.NinetiethPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 95, Gender.Female, list.Select(r => new AgeValue(r.Age, r.NinetyFifthPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 97, Gender.Female, list.Select(r => new AgeValue(r.Age, r.NinetySeventhPercentile)).ToList()));
+			result.Add(CreateStatureGrowthCurveFromRecords(systemOfUnitsType, 98, Gender.Female, list.Select(r => new AgeValue(r.Age, r.NinetyEigthPercentile)).ToList()));
+
 			return result;
 		}
 
-		private StatureGrowthCurve CreateStatureGrowthCurveFromRecords(int percentile, List<AgeValue> list)
+		private StatureGrowthCurve CreateStatureGrowthCurveFromRecords(SystemOfUnitsType sout, int percentile, Gender gender, List<AgeValue> list)
 		{
 			return new StatureGrowthCurve
 			(
 				new Percentile(percentile),
 				new Country("US"),
-				Gender.Male,
-				SystemOfUnitsType.SI,
-				list.Select(r => new LengthGrowth(r.Age, new Meter(Math.Round(r.Value / 100d, 2))))
+				gender,
+				sout,
+				list.Select(r => new LengthGrowth(r.Age, ConvertToUnit(sout, r.Value)))
 					.ToList()
 			);
+		}
+		private ILengthUnit ConvertToUnit(SystemOfUnitsType sout, double valueInCm)
+		{
+			Meter m = new Meter(Math.Round(valueInCm / 100d, 2));
+			if (sout == SystemOfUnitsType.Imperial)
+			{
+				return _unitConverter.Convert(m);
+			}
+			return m;
 		}
 	}
 }
