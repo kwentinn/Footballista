@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista", "Footballista\Footballista.csproj", "{7F94EA0A-59B7-4BA9-BCCC-24846383024E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Identity", "Footballista.Identity\Footballista.Identity.csproj", "{10697F6C-7966-48DC-A44F-DF0FCEECEE24}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Players", "Footballista.Players\Footballista.Players.csproj", "{B3A2A0A7-5848-447D-A6B7-5746BC18BDCF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.PlayersUnitTests", "Footballista.PlayersUnitTests\Footballista.PlayersUnitTests.csproj", "{767D360D-AA4C-47D3-A330-6148340AE91C}"
@@ -15,17 +13,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solutio
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		README.md = README.md
+		data\growth-charts\stature\Stature-for-age-Male-2-to-20-years.csv = data\growth-charts\stature\Stature-for-age-Male-2-to-20-years.csv
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{EDB7D2DA-9158-4138-B67C-F591D28C69C4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.BuildingBlocks.Domain", "Footballista.BuildingBlocks.Domain\Footballista.BuildingBlocks.Domain.csproj", "{FAF0BA18-4E53-4278-AA5B-35F38C7D43CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.BuildingBlocks.UnitTests", "Footballista.BuildingBlocks.UnitTests\Footballista.BuildingBlocks.UnitTests.csproj", "{C7D67691-0CA7-469C-8639-164F38C5B15A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.BuildingBlocks.UnitTests", "Footballista.BuildingBlocks.UnitTests\Footballista.BuildingBlocks.UnitTests.csproj", "{C7D67691-0CA7-469C-8639-164F38C5B15A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Players", "Players", "{C8FD54AF-2A45-464F-9927-B1D2DC5E71B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.Players.Infrastracture", "Footballista.Players.Infrastracture\Footballista.Players.Infrastracture.csproj", "{51440947-BE75-4E48-9E96-953E4A8FC8B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Players.Infrastracture", "Footballista.Players.Infrastracture\Footballista.Players.Infrastracture.csproj", "{51440947-BE75-4E48-9E96-953E4A8FC8B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{5C734F04-49ED-4047-9B76-D612AE13BBF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserAccess", "UserAccess", "{41A8E362-9CB3-4408-A197-EFA5EB537427}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +40,6 @@ Global
 		{7F94EA0A-59B7-4BA9-BCCC-24846383024E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F94EA0A-59B7-4BA9-BCCC-24846383024E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F94EA0A-59B7-4BA9-BCCC-24846383024E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10697F6C-7966-48DC-A44F-DF0FCEECEE24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10697F6C-7966-48DC-A44F-DF0FCEECEE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10697F6C-7966-48DC-A44F-DF0FCEECEE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10697F6C-7966-48DC-A44F-DF0FCEECEE24}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B3A2A0A7-5848-447D-A6B7-5746BC18BDCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B3A2A0A7-5848-447D-A6B7-5746BC18BDCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3A2A0A7-5848-447D-A6B7-5746BC18BDCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -66,6 +65,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{7F94EA0A-59B7-4BA9-BCCC-24846383024E} = {5C734F04-49ED-4047-9B76-D612AE13BBF0}
 		{B3A2A0A7-5848-447D-A6B7-5746BC18BDCF} = {C8FD54AF-2A45-464F-9927-B1D2DC5E71B6}
 		{767D360D-AA4C-47D3-A330-6148340AE91C} = {C8FD54AF-2A45-464F-9927-B1D2DC5E71B6}
 		{FAF0BA18-4E53-4278-AA5B-35F38C7D43CA} = {EDB7D2DA-9158-4138-B67C-F591D28C69C4}
