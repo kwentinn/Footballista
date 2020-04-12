@@ -3,14 +3,14 @@ using System;
 
 namespace Footballista.BuildingBlocks.ValueObjects.Units.Converters
 {
-	public class AbstractConverter<TFrom, TTo> : IConverter<TFrom, TTo>
+	public abstract class AbstractConverter<TFrom, TTo> : IConverter<TFrom, TTo>
 		where TFrom : BaseUnit, new()
 		where TTo : BaseUnit, new()
 	{
 		private double _convertCoefficient;
 		private double _convertBackCoefficient;
 
-		public AbstractConverter(double coefficientFrom, double coefficientTo)
+		protected AbstractConverter(double coefficientFrom, double coefficientTo)
 		{
 			_convertCoefficient = coefficientFrom;
 			_convertBackCoefficient = coefficientTo;
