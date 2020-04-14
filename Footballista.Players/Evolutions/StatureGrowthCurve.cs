@@ -1,7 +1,7 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
-using Footballista.BuildingBlocks.Domain.ValueObjects.Units.Length;
 using Footballista.Players.Persons;
+using Footballista.Units;
+using Footballista.Units.Lengths;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,9 +28,9 @@ namespace Footballista.Players.Evolutions
 			_items.AddRange(items);
 		}
 
-		public ILengthUnit GetLengthForAge(int ageInYears)
+		public ILength GetLengthForAge(int ageInYears)
 		{
-			return _items.FirstOrDefault(lg => lg.Age == new AgeInYear(ageInYears))?.Value;
+			return _items.FirstOrDefault(lg => lg.Age == Age.FromYears(ageInYears))?.Value;
 		}
 	}
 }

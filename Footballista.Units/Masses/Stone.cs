@@ -1,6 +1,6 @@
-﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects.Units.Mass
+﻿namespace Footballista.Units.Masses
 {
-	public class Stone : MassUnit
+	public class Stone : Mass
 	{
 		public Stone() : this(0) { }
 		public Stone(double value) : base(value, SystemOfUnitsType.Imperial, "st")
@@ -9,7 +9,7 @@
 
 		public Pound ToPound() => new Pound(Value * 14);
 	}
-	public class Ounce : MassUnit
+	public class Ounce : Mass
 	{
 		public Ounce() : this(0) { }
 		public Ounce(double value) : base(value, SystemOfUnitsType.Imperial, "oz")

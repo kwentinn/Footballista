@@ -1,6 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
 using Footballista.Players.Persons;
+using Footballista.Units;
 using System;
 using System.Diagnostics;
 
@@ -13,6 +13,7 @@ namespace Footballista.Players.Evolutions
 		public Country Country { get; }
 		public Gender Gender { get; }
 		public SystemOfUnitsType SystemOfUnitsType { get; }
+
 		protected GrowthCurve(Percentile percentile, Country country, Gender gender, SystemOfUnitsType systemOfUnitsType)
 		{
 			Percentile = percentile ?? throw new ArgumentNullException(nameof(percentile));

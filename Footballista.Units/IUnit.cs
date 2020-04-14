@@ -1,4 +1,4 @@
-﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects.Units
+﻿namespace Footballista.Units
 {
 	public interface IUnit
 	{

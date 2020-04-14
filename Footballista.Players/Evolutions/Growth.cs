@@ -1,5 +1,5 @@
 ﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
+using Footballista.Units;
 using System.Diagnostics;
 
 namespace Footballista.Players.Evolutions
@@ -8,10 +8,10 @@ namespace Footballista.Players.Evolutions
 	public abstract class Growth<T> : ValueObject
 		where T : IUnit
 	{
-		public AgeInYear Age { get; }
+		public Age Age { get; }
 		public T Value { get; }
 
-		public Growth(AgeInYear age, T value)
+		public Growth(Age age, T value)
 		{
 			Age = age;
 			Value = value;

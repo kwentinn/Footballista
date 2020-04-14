@@ -1,6 +1,6 @@
-﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects.Units.Mass
+﻿namespace Footballista.Units.Masses
 {
-	public class Pound : MassUnit
+	public class Pound : Mass
 	{
 		public Pound() : this(0) { }
 		public Pound(double value) : base(value, SystemOfUnitsType.Imperial, "lb")

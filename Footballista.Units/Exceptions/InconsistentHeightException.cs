@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Footballista.BuildingBlocks.ValueObjects.Units.Exceptions
+namespace Footballista.Units.Exceptions
 {
 	public class InconsistentHeightException : ApplicationException
 	{

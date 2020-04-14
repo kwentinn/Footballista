@@ -1,7 +1,7 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
-using Footballista.BuildingBlocks.Domain.ValueObjects.Units.Mass;
 using Footballista.Players.Persons;
+using Footballista.Units;
+using Footballista.Units.Masses;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,18 +18,19 @@ namespace Footballista.Players.Evolutions
 		(
 			Percentile percentile,
 			Country country,
-			Gender gender, SystemOfUnitsType systemOfUnitsType,
+			Gender gender,
+			SystemOfUnitsType systemOfUnitsType,
 			List<MassGrowth> items
-		): base(percentile, country, gender, systemOfUnitsType)
+		) : base(percentile, country, gender, systemOfUnitsType)
 		{
 			if (items is null) throw new ArgumentNullException(nameof(items));
 
 			_items.AddRange(items);
 		}
 
-		public IMassUnit GetWeightForAge(int ageInYears)
+		public IMass GetWeightForAge(int ageInYears)
 		{
-			return _items.FirstOrDefault(lg => lg.Age == new AgeInYear(ageInYears))?.Value;
+			return _items.FirstOrDefault(lg => lg.Age == Age.FromYears(ageInYears))?.Value;
 		}
 	}
 }

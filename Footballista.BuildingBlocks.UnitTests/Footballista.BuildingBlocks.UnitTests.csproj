@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Footballista.BuildingBlocks.Domain\Footballista.BuildingBlocks.Domain.csproj" />
+    <ProjectReference Include="..\Footballista.Units\Footballista.Units.csproj" />
   </ItemGroup>
 
 </Project>

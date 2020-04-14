@@ -1,11 +1,11 @@
-﻿using Footballista.BuildingBlocks.Domain.ValueObjects.Units.Length;
+﻿using Footballista.Units.Lengths;
 
 namespace Footballista.Players.Evolutions
 {
 
-	public class LengthGrowth : Growth<ILengthUnit>
+	public class LengthGrowth : Growth<ILength>
 	{
-		public LengthGrowth(int ageInYear, ILengthUnit length) : this(new AgeInYear(ageInYear), length) { }
-		public LengthGrowth(AgeInYear age, ILengthUnit length) : base(age, length) { }
+		public LengthGrowth(int ageInYear, ILength length) : this(Age.FromYears(ageInYear), length) { }
+		public LengthGrowth(Age age, ILength length) : base(age, length) { }
 	}
 }

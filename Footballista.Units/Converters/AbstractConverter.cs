@@ -1,7 +1,6 @@
-﻿using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
-using System;
+﻿using System;
 
-namespace Footballista.BuildingBlocks.ValueObjects.Units.Converters
+namespace Footballista.Units.Converters
 {
 	public abstract class AbstractConverter<TFrom, TTo> : IConverter<TFrom, TTo>
 		where TFrom : BaseUnit, new()

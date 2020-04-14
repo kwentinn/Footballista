@@ -1,8 +1,8 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
-using Footballista.BuildingBlocks.Domain.ValueObjects.Units.Mass;
 using Footballista.Players.Evolutions;
 using Footballista.Players.Persons;
+using Footballista.Units;
+using Footballista.Units.Masses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 

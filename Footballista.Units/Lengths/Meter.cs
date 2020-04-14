@@ -1,6 +1,6 @@
-﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects.Units.Length
+﻿namespace Footballista.Units.Lengths
 {
-	public class Meter : LengthUnit
+	public class Meter : Length
 	{
 		public Meter() : this(0d) { }
 		public Meter(double value) : base(value, SystemOfUnitsType.SI, "m") { }

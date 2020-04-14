@@ -14,6 +14,5 @@ namespace Footballista.Players.Positions
 		public static PositionCategory Defender => new PositionCategory(nameof(Defender));
 		public static PositionCategory Midfielder => new PositionCategory(nameof(Midfielder));
 		public static PositionCategory Forward => new PositionCategory(nameof(Forward));
-
 	}
 }

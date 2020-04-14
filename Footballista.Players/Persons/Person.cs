@@ -2,7 +2,6 @@
 using Itenso.TimePeriod;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 
 namespace Footballista.Players.Persons
 {

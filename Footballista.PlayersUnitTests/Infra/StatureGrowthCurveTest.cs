@@ -1,10 +1,9 @@
-﻿using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
-using Footballista.BuildingBlocks.Domain.ValueObjects.Units.Length;
-using Footballista.BuildingBlocks.ValueObjects.Units.Converters;
-using Footballista.Players.Infrastracture;
+﻿using Footballista.Players.Infrastracture;
 using Footballista.Players.Infrastracture.Records;
 using Footballista.Players.Persons;
-using Microsoft.Extensions.Hosting;
+using Footballista.Units;
+using Footballista.Units.Converters;
+using Footballista.Units.Lengths;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;

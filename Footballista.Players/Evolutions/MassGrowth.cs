@@ -1,10 +1,15 @@
-﻿using Footballista.BuildingBlocks.Domain.ValueObjects.Units.Mass;
+﻿using Footballista.Units.Masses;
 
 namespace Footballista.Players.Evolutions
 {
-	public class MassGrowth : Growth<IMassUnit>
+	public class MassGrowth : Growth<IMass>
 	{
-		public MassGrowth(int ageInYear, IMassUnit mass) : this(new AgeInYear(ageInYear), mass) { }
-		public MassGrowth(AgeInYear age, IMassUnit mass) : base(age, mass) { }
+		public MassGrowth(int ageInYear, IMass mass) : this(Age.FromYears(ageInYear), mass) { }
+		public MassGrowth(Age age, IMass mass) : base(age, mass) { }
+
+		public Growth<IMass> Cast()
+		{
+			return this;
+		}
 	}
 }

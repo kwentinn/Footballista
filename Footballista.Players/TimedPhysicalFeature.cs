@@ -1,5 +1,5 @@
 ﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
+using Footballista.Units;
 using Itenso.TimePeriod;
 
 namespace Footballista.Players
@@ -16,6 +16,4 @@ namespace Footballista.Players
 			Date = date;
 		}
 	}
-
-	//public class 
 }

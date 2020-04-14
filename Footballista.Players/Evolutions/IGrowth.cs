@@ -1,10 +1,10 @@
-﻿using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
+﻿using Footballista.Units;
 
 namespace Footballista.Players.Evolutions
 {
 	public interface IGrowth
 	{
-		AgeInYear Age { get; }
+		Age Age { get; }
 		IUnit Value { get; }
 	}
 }

@@ -1,10 +1,10 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.BuildingBlocks.Domain.ValueObjects.Units;
-using Footballista.BuildingBlocks.Domain.ValueObjects.Units.Length;
-using Footballista.BuildingBlocks.ValueObjects.Units.Converters;
 using Footballista.Players.Evolutions;
 using Footballista.Players.Infrastracture.Records;
 using Footballista.Players.Persons;
+using Footballista.Units;
+using Footballista.Units.Converters;
+using Footballista.Units.Lengths;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,7 +69,7 @@ namespace Footballista.Players.Infrastracture
 					.ToList()
 			);
 		}
-		private ILengthUnit ConvertToUnit(SystemOfUnitsType sout, double valueInCm)
+		private ILength ConvertToUnit(SystemOfUnitsType sout, double valueInCm)
 		{
 			Meter m = new Meter(Math.Round(valueInCm / 100d, 2));
 			if (sout == SystemOfUnitsType.Imperial)

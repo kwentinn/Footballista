@@ -6,10 +6,12 @@
 
   <ItemGroup>
     <PackageReference Include="TimePeriodLibrary.NET" Version="2.1.1" />
+    <PackageReference Include="UnitsNet" Version="4.58.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Footballista.BuildingBlocks.Domain\Footballista.BuildingBlocks.Domain.csproj" />
+    <ProjectReference Include="..\Footballista.Units\Footballista.Units.csproj" />
   </ItemGroup>
 
   <ItemGroup>
