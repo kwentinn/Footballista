@@ -1,11 +1,10 @@
 ﻿using Footballista.Players.Infrastracture;
-using Footballista.Players.Infrastracture.Records;
+using Footballista.Players.Infrastracture.Loaders.Growths;
+using Footballista.Players.Infrastracture.Loaders.Growths.Records;
 using Footballista.Players.Persons;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Footballista.PlayersUnitTests.Infra
 {

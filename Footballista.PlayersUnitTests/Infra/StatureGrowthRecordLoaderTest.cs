@@ -1,5 +1,5 @@
-﻿using Footballista.Players.Infrastracture;
-using Footballista.Players.Infrastracture.Records;
+﻿using Footballista.Players.Infrastracture.Loaders.Growths;
+using Footballista.Players.Infrastracture.Loaders.Growths.Records;
 using Footballista.Players.Persons;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

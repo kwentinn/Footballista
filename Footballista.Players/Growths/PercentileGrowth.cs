@@ -1,5 +1,4 @@
-﻿using Footballista.Players.Evolutions;
-using Footballista.Players.Persons;
+﻿using Footballista.Players.Persons;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

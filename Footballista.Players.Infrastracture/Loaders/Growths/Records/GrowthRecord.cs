@@ -1,4 +1,4 @@
-﻿namespace Footballista.Players.Infrastracture.Records
+﻿namespace Footballista.Players.Infrastracture.Loaders.Growths.Records
 {
 	public sealed class GrowthRecord
 	{
