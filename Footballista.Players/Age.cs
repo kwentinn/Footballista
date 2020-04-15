@@ -1,25 +1,39 @@
 ﻿using Footballista.BuildingBlocks.Domain;
+using System;
 using System.Diagnostics;
 
 namespace Footballista.Players
 {
-	[DebuggerDisplay("{Year} y.o.")]
+	[DebuggerDisplay("{Years} yrs.")]
 	public class Age : ValueObject
 	{
+		private static float _monthsInYear = 12f;
+		private static float _weeksInYear = 52f;
+		private static float _daysInYear = 365f;
+
 		public float Years { get; }
 
 		[IgnoreMember]
-		public float Months => Years * 12f;
+		public float Months => Years * _monthsInYear;
 
 		[IgnoreMember]
-		public float Days => Years * 365f;
+		public float Weeks => Years * _weeksInYear;
 
-		private Age(int year)
+		[IgnoreMember]
+		public float Days => Years * _daysInYear;
+
+		private Age(int years)
 		{
-			Years = year;
+			Years = years;
+		}
+		private Age(float years)
+		{
+			Years = years;
 		}
 
 		public static Age FromYears(int years) => new Age(years);
-		public static Age FromMonths(int month) => new Age(month / 12);
+		public static Age FromMonths(int month) => new Age(Convert.ToSingle(month) / _monthsInYear);
+		public static Age FromWeeks(int weeks) => new Age(Convert.ToSingle(weeks) / _weeksInYear);
+		public static Age FromDays(int days) => new Age(Convert.ToSingle(days) / _daysInYear);
 	}
 }

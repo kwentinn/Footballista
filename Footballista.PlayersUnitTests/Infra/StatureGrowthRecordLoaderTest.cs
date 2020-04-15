@@ -23,7 +23,7 @@ namespace Footballista.PlayersUnitTests.Infra
 			StatureGrowthRecordLoader loader = new StatureGrowthRecordLoader(hostEnvMock.Object);
 
 			// act
-			List<StatureGrowthRecord> data = loader.GetRecords(Gender.Male);
+			List<GrowthRecord> data = loader.GetRecords(Gender.Male);
 
 			// assert
 			Assert.IsNotNull(data);

@@ -1,6 +1,6 @@
 ﻿namespace Footballista.Players.Infrastracture.Records
 {
-	public sealed class StatureGrowthRecord
+	public sealed class GrowthRecord
 	{
 		public int Age { get; set; }
 		public double ThirdPercentile { get; set; }

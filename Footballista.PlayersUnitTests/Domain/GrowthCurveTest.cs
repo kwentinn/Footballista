@@ -1,11 +1,13 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Evolutions;
+using Footballista.Players.Growths;
 using Footballista.Players.Persons;
 using Footballista.Units;
 using Footballista.Units.Lengths;
 using Footballista.Units.Masses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using UnitsNet.Units;
 
 namespace Footballista.PlayersUnitTests.Domain
 {
@@ -32,10 +34,10 @@ namespace Footballista.PlayersUnitTests.Domain
 				new Country("US"),
 				Gender.Female,
 				SystemOfUnitsType.Imperial,
-				new List<LengthGrowth>()
+				new List<StatureForAge>()
 				{
-					new LengthGrowth(1, new Meter(0.2)),
-					new LengthGrowth(2, new Meter(0.3)),
+					new StatureForAge(1, new UnitsNet.Length(60, LengthUnit.Centimeter)),
+					new StatureForAge(2, new UnitsNet.Length(70, LengthUnit.Centimeter)),
 				}
 			);
 		}

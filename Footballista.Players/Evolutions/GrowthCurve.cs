@@ -18,7 +18,7 @@ namespace Footballista.Players.Evolutions
 		{
 			Percentile = percentile ?? throw new ArgumentNullException(nameof(percentile));
 			Country = country ?? throw new ArgumentNullException(nameof(country));
-			Gender = gender ?? throw new ArgumentNullException(nameof(gender));
+			Gender = gender;
 			SystemOfUnitsType = systemOfUnitsType;
 		}
 	}

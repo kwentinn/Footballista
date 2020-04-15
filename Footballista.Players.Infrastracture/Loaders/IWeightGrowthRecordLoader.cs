@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 namespace Footballista.Players.Infrastracture
 {
-	public interface IStatureGrowthRecordLoader
+	public interface IWeightGrowthRecordLoader
 	{
-		List<StatureGrowthRecord> GetRecords(Gender gender);
+		List<GrowthRecord> GetRecords(Gender gender);
 	}
 }

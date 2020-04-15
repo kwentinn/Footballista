@@ -1,3 +1,5 @@
+using Footballista.Players.Growths;
+using Footballista.Players.Infrastracture;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +28,13 @@ namespace Footballista
 			{
 				configuration.RootPath = "ClientApp/dist";
 			});
+
+
+			services
+				.AddScoped<IPercentileGrowthSetRepository, PercentileGrowthSetRepository>()
+				.AddScoped<IStatureGrowthRecordLoader, StatureGrowthRecordLoader>()
+				.AddScoped<IWeightGrowthRecordLoader, WeightGrowthRecordLoader>()
+			;
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
