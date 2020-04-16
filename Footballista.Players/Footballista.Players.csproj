@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\OutfieldPlayers\**" />
+    <EmbeddedResource Remove="Features\OutfieldPlayers\**" />
+    <None Remove="Features\OutfieldPlayers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="TimePeriodLibrary.NET" Version="2.1.1" />
     <PackageReference Include="UnitsNet" Version="4.58.0" />
   </ItemGroup>
@@ -15,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\OutfieldPlayers\" />
     <Folder Include="Commands\" />
   </ItemGroup>
 

@@ -1,18 +1,18 @@
-﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
+﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Itenso.TimePeriod;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Footballista.Players.Persons
 {
-	public class Person
+	public class Person : Entity
 	{
 		public PersonId Id { get; }
 		public string Firstname { get; }
 		public string Lastname { get; }
 		public Gender Gender { get; }
-		public Date DateOfBirth { get; }
-		public Location BirthLocation { get; }
+		public Birth BirthInfo { get; }
 
 		private List<Country> _nationalities = new List<Country>();
 		public ReadOnlyCollection<Country> Nationalities => _nationalities.AsReadOnly();
@@ -21,19 +21,20 @@ namespace Footballista.Players.Persons
 		(
 			PersonId id,
 			string firstname,
-			string lastname, 
+			string lastname,
 			Gender gender,
 			Date dob,
 			Location birthLocation,
 			params Country[] nationalities
 		)
 		{
+			CheckRule(new BusinessRules.PersonCanHaveMultipleNationalitiesRule(nationalities));
+
 			Id = id;
 			Firstname = firstname;
 			Lastname = lastname;
 			Gender = gender;
-			DateOfBirth = dob;
-			BirthLocation = birthLocation;
+			BirthInfo = new Birth(dob, birthLocation);
 			_nationalities.AddRange(nationalities);
 		}
 

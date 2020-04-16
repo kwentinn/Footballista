@@ -1,4 +1,5 @@
-﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
+﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Persons;
 using Itenso.TimePeriod;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -24,6 +25,23 @@ namespace Footballista.PlayersUnitTests.Domain
 
 			Assert.IsNotNull(someone);
 
+		}
+		[TestMethod]
+		public void CreateNewPerson_Pass3Nationalities_ShouldThrowBusinessRuleValidationException()
+		{
+
+			Assert.ThrowsException<BusinessRuleValidationException>(() =>
+			{
+				Person someone = Person.CreateNew
+				(
+					"Michael",
+					"Monroe",
+					Gender.Male,
+					new Date(1990, 5, 11),
+					new Location(new City("Montpellier"), "FR"),
+					new Country("FR"), new Country("de"), new Country("it")
+				);
+			});
 		}
 	}
 }

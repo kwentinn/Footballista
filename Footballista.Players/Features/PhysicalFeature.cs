@@ -3,19 +3,19 @@
 	public class PhysicalFeature
 	{
 		public FeatureName Name { get; }
-		public FeatureValue Value { get; protected set; }
+		public FeatureRating Value { get; protected set; }
 
 		public PhysicalFeature(FeatureName name)
 		{
 			Name = name;
 		}
-		public PhysicalFeature(FeatureName name, FeatureValue value)
+		public PhysicalFeature(FeatureName name, FeatureRating value)
 		{
 			Name = name;
 			Value = value;
 		}
 
-		public void ChangeValue(FeatureValue value)
+		public void ChangeValue(FeatureRating value)
 		{
 			Value = value;
 		}
