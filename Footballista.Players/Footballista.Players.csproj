@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Folder Include="Features\OutfieldPlayers\" />
+    <Folder Include="Commands\" />
   </ItemGroup>
 
 </Project>

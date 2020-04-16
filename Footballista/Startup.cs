@@ -1,6 +1,7 @@
+using Autofac;
+using Footballista.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +27,13 @@ namespace Footballista
 			{
 				configuration.RootPath = "ClientApp/dist";
 			});
+
+
+			//services
+			//	.AddScoped<IPercentileGrowthSetRepository, PercentileGrowthSetRepository>()
+			//	.AddScoped<IStatureGrowthRecordLoader, StatureGrowthRecordLoader>()
+			//	.AddScoped<IWeightGrowthRecordLoader, WeightGrowthRecordLoader>()
+			//;
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +78,11 @@ namespace Footballista
 					spa.UseAngularCliServer(npmScript: "start");
 				}
 			});
+		}
+
+		public void ConfigureContainer(ContainerBuilder builder)
+		{
+			builder.RegisterModule(new PlayersModule());
 		}
 	}
 }
