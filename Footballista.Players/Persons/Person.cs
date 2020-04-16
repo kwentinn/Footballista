@@ -1,5 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
+using Footballista.Players.PlayerNames;
 using Itenso.TimePeriod;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,8 +10,8 @@ namespace Footballista.Players.Persons
 	public class Person : Entity
 	{
 		public PersonId Id { get; }
-		public string Firstname { get; }
-		public string Lastname { get; }
+		public Firstname Firstname { get; }
+		public Lastname Lastname { get; }
 		public Gender Gender { get; }
 		public Birth BirthInfo { get; }
 
@@ -20,8 +21,8 @@ namespace Footballista.Players.Persons
 		internal Person
 		(
 			PersonId id,
-			string firstname,
-			string lastname,
+			Firstname firstname,
+			Lastname lastname,
 			Gender gender,
 			Date dob,
 			Location birthLocation,
@@ -38,13 +39,13 @@ namespace Footballista.Players.Persons
 			_nationalities.AddRange(nationalities);
 		}
 
-		internal Person(string firstname, string lastname, Gender gender, Date dob, Location birthLocation, params Country[] nationalities)
+		internal Person(Firstname firstname, Lastname lastname, Gender gender, Date dob, Location birthLocation, params Country[] nationalities)
 			: this(PersonId.CreateNew(), firstname, lastname, gender, dob, birthLocation, nationalities) { }
 
 		public static Person CreateNew
 		(
-			string firstname,
-			string lastname,
+			Firstname firstname,
+			Lastname lastname,
 			Gender gender,
 			Date dob,
 			Location birthLocation,

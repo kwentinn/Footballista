@@ -1,11 +1,12 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Features;
 using Footballista.Players.Persons;
+using Footballista.Players.PlayerNames;
 using Footballista.Players.Positions;
 using Itenso.TimePeriod;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
+using UnitsNet;
 
 namespace Footballista.Players
 {
@@ -16,34 +17,57 @@ namespace Footballista.Players
 
 		public PhysicalFeatureSet PhysicalFeatureSet { get; }
 
-		public UnitsNet.Length Height { get; }
-		public UnitsNet.Mass Weight { get; }
+		public Length Height { get; }
+		public Mass Weight { get; }
+
+		public Foot FavouriteFoot { get; }
 
 		internal Player
 		(
 			PersonId id,
-			string firstname,
-			string lastname,
+			Firstname firstname,
+			Lastname lastname,
 			Gender gender,
 			Date dob,
 			Location birthLocation,
+			Foot favouriteFoot,
+			Length height,
+			Mass weight,
+			PhysicalFeatureSet physicalFeatureSet,
 			params Country[] nationalities
-		)
-			: base(id, firstname, lastname, gender, dob, birthLocation, nationalities)
+		) : base(id, firstname, lastname, gender, dob, birthLocation, nationalities)
 		{
+			FavouriteFoot = favouriteFoot;
+			Height = height;
+			Weight = weight;
+			PhysicalFeatureSet = physicalFeatureSet;
 		}
 
-		internal Player(Person person) :
-			base(person.Id, person.Firstname, person.Lastname, person.Gender, person.BirthInfo.DateOfBirth, person.BirthInfo.BirthLocation, person.Nationalities.ToArray())
-		{
-		}
-
-		/// <summary>
-		/// Handle player growth.
-		/// </summary>
-		public void Grow()
-		{
-
-		}
+		public static Player CreatePlayer
+		(
+			Firstname firstname,
+			Lastname lastname,
+			Gender gender,
+			Date dob,
+			Location birthLocation,
+			Foot favouriteFoot,
+			Length height,
+			Mass weight,
+			PhysicalFeatureSet physicalFeatureSet,
+			params Country[] nationalities
+		) => new Player
+		(
+			PersonId.CreateNew(),
+			firstname,
+			lastname,
+			gender,
+			dob,
+			birthLocation,
+			favouriteFoot,
+			height,
+			weight,
+			physicalFeatureSet,
+			nationalities
+		);
 	}
 }

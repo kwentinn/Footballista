@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Footballista.Players.Growths;
+using Footballista.Players.Infrastracture.Loaders.Cities;
 using Footballista.Players.Infrastracture.Loaders.Firstnames;
 using Footballista.Players.Infrastracture.Loaders.Growths;
 using Footballista.Players.Infrastracture.Loaders.Lastnames;
@@ -19,12 +20,13 @@ namespace Footballista.Modules
 
 			//builder
 			//	.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(FirstnameRecordsLoader)))
-			//	.AsImplementedInterfaces();
+			//	.AsImplementedInterfaces(); 
 			builder.RegisterType<WeightGrowthRecordLoader>().As<IWeightGrowthRecordLoader>();
 			builder.RegisterType<StatureGrowthRecordLoader>().As<IStatureGrowthRecordLoader>();
 			builder.RegisterType<PercentileGrowthSetRepository>().As<IPercentileGrowthSetRepository>();
 			builder.RegisterType<FirstnameRecordsLoader>().As<IFirstnameRecordsLoader>();
 			builder.RegisterType<LastnameRecordsLoader>().As<ILastnameRecordsLoader>();
+			builder.RegisterType<WorldCitiesLoader>().As<IWorldCitiesLoader>();
 
 			builder.RegisterDecorator<PercentileGrowthSetRepositoryCacheDecorator, IPercentileGrowthSetRepository>();
 			builder.RegisterDecorator<FirstnameRecordsLoaderCacheDecorator, IFirstnameRecordsLoader>();

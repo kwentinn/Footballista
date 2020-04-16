@@ -7,5 +7,4 @@ namespace Footballista.Players.Builders
 	{
 		Player Build(Country country = null, PlayerPosition playerPosition = null);
 	}
-
 }

@@ -25,6 +25,7 @@ namespace Footballista.BuildingBlocks.Domain.ValueObjects
 		public static Country Scotland => new Country("gb-sct");
 		public static Country Wales => new Country("gb-wls");
 		public static Country NorthernIreland => new Country("gb-nir");
+		public static Country USA => new Country("us");
 
 
 		public RegionInfo RegionInfo { get; }

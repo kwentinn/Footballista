@@ -1,9 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using Footballista.Players.Features;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Footballista.PlayersUnitTests.Domain
 {

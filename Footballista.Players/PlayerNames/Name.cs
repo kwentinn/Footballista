@@ -2,10 +2,10 @@
 {
 	public class Name
 	{
-		public string Firstname { get; }
-		public string Lastname { get; }
+		public Firstname Firstname { get; }
+		public Lastname Lastname { get; }
 
-		public Name(string firstname, string lastname)
+		public Name(Firstname firstname, Lastname lastname)
 		{
 			Firstname = firstname;
 			Lastname = lastname;

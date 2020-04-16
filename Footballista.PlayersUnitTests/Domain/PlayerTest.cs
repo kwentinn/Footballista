@@ -1,5 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Persons;
+using Footballista.Players.PlayerNames;
 using Itenso.TimePeriod;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,7 +14,7 @@ namespace Footballista.PlayersUnitTests.Domain
 		{
 			var p = Person.CreateNew
 			(
-				"José", "Pelé", 
+				new Firstname("José"), new Lastname("Pelé"), 
 				Gender.Male, 
 				new Date(2000, 1, 1), 
 				new Location(new City("Carnon"), "FR"),
