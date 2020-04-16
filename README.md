@@ -15,8 +15,14 @@ Young players, like normal human beings, have the ability to grow in weight and 
 
 #### a. Mass growth
 
-#### b. Height
+#### b. Height growth
 
 
 ### Units
 Based on the locale of the game, SI or in Imperial units will be used.
+
+
+# References
+
+* [WordCities database](https://simplemaps.com/data/world-cities) contains an awful lot of world cities, thanks!
+* [Name databases](https://github.com/smashew/NameDatabases) laods of last names for different languages, great!
