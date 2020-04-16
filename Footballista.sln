@@ -13,7 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solutio
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		README.md = README.md
-		data\growth-charts\stature\Stature-for-age-Male-2-to-20-years.csv = data\growth-charts\stature\Stature-for-age-Male-2-to-20-years.csv
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{EDB7D2DA-9158-4138-B67C-F591D28C69C4}"
@@ -30,7 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{5C734F04-49E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserAccess", "UserAccess", "{41A8E362-9CB3-4408-A197-EFA5EB537427}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.Units", "Footballista.Units\Footballista.Units.csproj", "{36B23CD6-3415-4416-B995-DF2A2A6C7C76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Units", "Footballista.Units\Footballista.Units.csproj", "{36B23CD6-3415-4416-B995-DF2A2A6C7C76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
