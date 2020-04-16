@@ -7,7 +7,7 @@ using System.Linq;
 using UnitsNet;
 using UnitsNet.Units;
 
-namespace Footballista.Players.Infrastracture
+namespace Footballista.Players.Infrastracture.Repositories
 {
 	public class PercentileGrowthSetRepository : IPercentileGrowthSetRepository
 	{
@@ -24,17 +24,17 @@ namespace Footballista.Players.Infrastracture
 			_weightGrowthRecordLoader = weightGrowthRecordLoader;
 		}
 
-		public FemalePercentileGrowthSet GetFemalePercentileGrowthSet() => 
+		public FemalePercentileGrowthSet GetFemalePercentileGrowthSet() =>
 			new FemalePercentileGrowthSet(GetPercentileGrowth(Gender.Female));
 		public MalePercentileGrowthSet GetMalePercentileGrowthSet() =>
 			new MalePercentileGrowthSet(GetPercentileGrowth(Gender.Male));
 
 		private List<PercentileGrowth> GetPercentileGrowth(Gender gender)
 		{
-			WeightForAge CreateWfA(int age, double massInKg) => 
+			WeightForAge CreateWfA(int age, double massInKg) =>
 				new WeightForAge(age, new Mass(massInKg, MassUnit.Kilogram));
 
-			StatureForAge CreateSfA(int age, double heightInCm) => 
+			StatureForAge CreateSfA(int age, double heightInCm) =>
 				new StatureForAge(age, new Length(heightInCm, LengthUnit.Centimeter));
 
 			List<GrowthRecord> statureRecords = _statureGrowthRecordLoader.GetRecords(gender);
