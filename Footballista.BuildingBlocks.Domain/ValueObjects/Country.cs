@@ -12,11 +12,11 @@ namespace Footballista.BuildingBlocks.Domain.ValueObjects
 		public static Country CzechRepublic => new Country("cz");
 		public static Country Denmark => new Country("de");
 		public static Country Spain => new Country("es");
-		public static Country Greece => new Country("gk");
+		public static Country Greece => new Country("gr");
 		public static Country India => new Country("in");
 		public static Country Ireland => new Country("ie");
 		public static Country Italy => new Country("it");
-		public static Country Korea => new Country("ko");
+		public static Country Korea => new Country("ko-KR");
 		public static Country Netherlands => new Country("nl");
 		public static Country Poland => new Country("pl");
 		public static Country Portugal => new Country("pt");

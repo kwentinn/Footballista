@@ -1,4 +1,5 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
+using Footballista.Players.Builders.Generators;
 using Footballista.Players.Growths;
 using Footballista.Players.Infrastracture.Loaders.Cities;
 using Footballista.Players.Infrastracture.Loaders.Firstnames;
@@ -15,19 +16,22 @@ namespace Footballista.Controllers
 		private readonly IFirstnameRecordsLoader _firstnameRecordsLoader;
 		private readonly ILastnameRecordsLoader _lastnameRecordsLoader;
 		private readonly IWorldCitiesLoader _worldCitiesLoader;
+		private readonly IBirthLocationGenerator _birthLocationGenerator;
 
 		public TestController
 		(
 			IPercentileGrowthSetRepository percentileGrowthSetRepository,
 			IFirstnameRecordsLoader firstnameRecordsLoader,
 			ILastnameRecordsLoader lastnameRecordsLoader,
-			IWorldCitiesLoader worldCitiesLoader
+			IWorldCitiesLoader worldCitiesLoader,
+			IBirthLocationGenerator birthLocationGenerator
 		)
 		{
 			_percentileGrowthSetRepository = percentileGrowthSetRepository;
 			_firstnameRecordsLoader = firstnameRecordsLoader;
 			_lastnameRecordsLoader = lastnameRecordsLoader;
 			this._worldCitiesLoader = worldCitiesLoader;
+			this._birthLocationGenerator = birthLocationGenerator;
 		}
 
 		[HttpGet]
@@ -57,6 +61,13 @@ namespace Footballista.Controllers
 		{
 			var data = _worldCitiesLoader.GetRecords();
 			return Ok();
+		}
+		[HttpGet]
+		[Route("generatebirthlocation")]
+		public IActionResult GenerateBirthLocation()
+		{
+			Location data = _birthLocationGenerator.Generate(new Country("fr"));
+			return Ok(data);
 		}
 	}
 }

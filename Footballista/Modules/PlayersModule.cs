@@ -1,12 +1,13 @@
 ﻿using Autofac;
+using Footballista.Players.Builders.Generators;
 using Footballista.Players.Growths;
+using Footballista.Players.Infrastracture.Generators;
 using Footballista.Players.Infrastracture.Loaders.Cities;
 using Footballista.Players.Infrastracture.Loaders.Firstnames;
 using Footballista.Players.Infrastracture.Loaders.Growths;
 using Footballista.Players.Infrastracture.Loaders.Lastnames;
 using Footballista.Players.Infrastracture.Repositories;
 using Footballista.Players.Infrastracture.Repositories.Decorators;
-using System.Reflection;
 
 namespace Footballista.Modules
 {
@@ -27,9 +28,12 @@ namespace Footballista.Modules
 			builder.RegisterType<FirstnameRecordsLoader>().As<IFirstnameRecordsLoader>();
 			builder.RegisterType<LastnameRecordsLoader>().As<ILastnameRecordsLoader>();
 			builder.RegisterType<WorldCitiesLoader>().As<IWorldCitiesLoader>();
+			builder.RegisterType<BirthLocationGenerator>().As<IBirthLocationGenerator>();
 
+			// decorators
 			builder.RegisterDecorator<PercentileGrowthSetRepositoryCacheDecorator, IPercentileGrowthSetRepository>();
 			builder.RegisterDecorator<FirstnameRecordsLoaderCacheDecorator, IFirstnameRecordsLoader>();
+			builder.RegisterDecorator<WorldCitiesLoaderCacheDecorator, IWorldCitiesLoader>();
 		}
 	}
 }
