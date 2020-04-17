@@ -1,6 +1,4 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
 
 namespace Footballista.Players.Builders.Generators
 {
@@ -8,5 +6,4 @@ namespace Footballista.Players.Builders.Generators
 	{
 		Location Generate(Country country);
 	}
-	
 }

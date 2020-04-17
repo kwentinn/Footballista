@@ -45,10 +45,11 @@ namespace Footballista.Players.Builders
 			_countriesGenerator = countriesGenerator;
 		}
 
-		public Player Build(Country country = null, PlayerPosition playerPosition = null)
+		public Player Build(Gender? playerGender = null, Country country = null, PlayerPosition playerPosition = null)
 		{
-			Name playerName = _nameGenerator.Generate(country);
-			Gender playerGender = _genderGenerator.Generate();
+			if (playerGender == null) playerGender = _genderGenerator.Generate();
+
+			Name playerName = _nameGenerator.Generate(playerGender.Value, country);
 			Date dob = _dobGenerator.Generate();
 			Location birthLocation = _birthLocationGenerator.Generate(country);
 			Foot playerFoot = _favouriteFootGenerator.Generate();
@@ -62,7 +63,7 @@ namespace Footballista.Players.Builders
 			(
 				playerName.Firstname, 
 				playerName.Lastname, 
-				playerGender, 
+				playerGender.Value, 
 				dob,
 				birthLocation,
 				playerFoot,

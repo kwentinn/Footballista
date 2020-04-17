@@ -1,7 +1,6 @@
 ﻿using CsvHelper;
 using Footballista.Players.Infrastracture.Loaders.Firstnames.ClassMaps;
 using Footballista.Players.Infrastracture.Loaders.Firstnames.Records;
-using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -10,28 +9,25 @@ using System.Text;
 
 namespace Footballista.Players.Infrastracture.Loaders.Firstnames
 {
-
 	public class FirstnameRecordsLoader : IFirstnameRecordsLoader
 	{
-		private readonly IHostEnvironment _hostEnvironment;
 		private readonly string _folderPath = @"..\data\firstnames";
 		private readonly string _filename = "firstnames-2014.csv";
-		private string FullPath => Path.GetFullPath(string.Concat
-		(
-			_hostEnvironment.ContentRootPath,
-			_hostEnvironment.ContentRootPath.EndsWith(@"\") ? "" : @"\",
-			_folderPath, @"\",
-			_filename
-		));
+		
+		private readonly IDataPathHelper _dataPathHelper;
 
-		public FirstnameRecordsLoader(IHostEnvironment hostEnvironment)
+		public FirstnameRecordsLoader(IDataPathHelper dataPathHelper)
 		{
-			_hostEnvironment = hostEnvironment;
+			_dataPathHelper = dataPathHelper;
 		}
+
 		public List<FirstnameRecord> GetRecords()
 		{
 			List<FirstnameRecord> result;
-			using (var reader = new StreamReader(FullPath))
+
+			string fullPath = _dataPathHelper.GetFullPath(_folderPath, _filename);
+
+			using (var reader = new StreamReader(fullPath))
 			using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
 			{
 				csv.Configuration.RegisterClassMap<FirstnameRecordClassMap>();

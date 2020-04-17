@@ -5,6 +5,7 @@ using Footballista.Players.Infrastracture.Loaders.Cities;
 using Footballista.Players.Infrastracture.Loaders.Firstnames;
 using Footballista.Players.Infrastracture.Loaders.Lastnames;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Footballista.Controllers
 {
@@ -17,6 +18,7 @@ namespace Footballista.Controllers
 		private readonly ILastnameRecordsLoader _lastnameRecordsLoader;
 		private readonly IWorldCitiesLoader _worldCitiesLoader;
 		private readonly IBirthLocationGenerator _birthLocationGenerator;
+		private readonly INameGenerator _nameGenerator;
 
 		public TestController
 		(
@@ -24,7 +26,8 @@ namespace Footballista.Controllers
 			IFirstnameRecordsLoader firstnameRecordsLoader,
 			ILastnameRecordsLoader lastnameRecordsLoader,
 			IWorldCitiesLoader worldCitiesLoader,
-			IBirthLocationGenerator birthLocationGenerator
+			IBirthLocationGenerator birthLocationGenerator,
+			INameGenerator nameGenerator
 		)
 		{
 			_percentileGrowthSetRepository = percentileGrowthSetRepository;
@@ -32,6 +35,7 @@ namespace Footballista.Controllers
 			_lastnameRecordsLoader = lastnameRecordsLoader;
 			this._worldCitiesLoader = worldCitiesLoader;
 			this._birthLocationGenerator = birthLocationGenerator;
+			_nameGenerator = nameGenerator;
 		}
 
 		[HttpGet]
@@ -68,6 +72,24 @@ namespace Footballista.Controllers
 		{
 			Location data = _birthLocationGenerator.Generate(new Country("fr"));
 			return Ok(data);
+		}
+		[HttpGet]
+		[Route("generatebirthlocation/1000")]
+		public IActionResult Generate1000BirthLocation()
+		{
+			List<Location> list = new List<Location>();
+			for (int i = 0; i < 1000; i++)
+			{
+				list.Add(_birthLocationGenerator.Generate(new Country("fr")));
+			}
+			return Ok(list);
+		}
+		[HttpGet]
+		[Route("generatename")]
+		public IActionResult GenerateName()
+		{
+			var name = _nameGenerator.Generate(Players.Persons.Gender.Male, Country.France);
+			return Ok(name);
 		}
 	}
 }

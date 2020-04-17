@@ -1,7 +1,6 @@
 ﻿using CsvHelper;
 using Footballista.Players.Infrastracture.Loaders.Cities.ClassMaps;
 using Footballista.Players.Infrastracture.Loaders.Cities.Records;
-using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -12,26 +11,20 @@ namespace Footballista.Players.Infrastracture.Loaders.Cities
 {
 	public class WorldCitiesLoader : IWorldCitiesLoader
 	{
-		private readonly IHostEnvironment _hostEnvironment;
 		private readonly string _folderPath = @"..\data\cities";
 		private readonly string _filename = "worldcities.csv";
-		private string FullPath => Path.GetFullPath(string.Concat
-		(
-			_hostEnvironment.ContentRootPath,
-			_hostEnvironment.ContentRootPath.EndsWith(@"\") ? "" : @"\",
-			_folderPath, @"\",
-			_filename
-		));
+		private readonly IDataPathHelper _dataPathHelper;
 
-		public WorldCitiesLoader(IHostEnvironment hostEnvironment)
+		public WorldCitiesLoader(IDataPathHelper dataPathHelper)
 		{
-			_hostEnvironment = hostEnvironment;
+			_dataPathHelper = dataPathHelper;
 		}
 
 		public List<WorldCityRecord> GetRecords()
 		{
 			List<WorldCityRecord> result;
-			using (var reader = new StreamReader(FullPath))
+			string fullPath = _dataPathHelper.GetFullPath(_folderPath, _filename);
+			using (var reader = new StreamReader(fullPath))
 			using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
 			{
 				csv.Configuration.RegisterClassMap<WorldCityRecordClassMap>();
