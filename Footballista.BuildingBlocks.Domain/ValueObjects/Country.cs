@@ -36,23 +36,23 @@ namespace Footballista.BuildingBlocks.Domain.ValueObjects
 		}
 
 		public static Country France => new Country("fr", Language.French);
-		public static Country China => new Country("cn");
-		public static Country CzechRepublic => new Country("cz");
+		public static Country China => new Country("cn", Language.Chinese);
+		public static Country CzechRepublic => new Country("cz", Language.Czech);
 		public static Country Denmark => new Country("de", Language.Danish);
 		public static Country Spain => new Country("es", Language.Spanish);
 		public static Country Greece => new Country("gr", Language.Greek);
-		public static Country India => new Country("in");
-		public static Country Ireland => new Country("ie", Language.Irish);
+		public static Country India => new Country("in", Language.Hindi);
+		public static Country Ireland => new Country("ie", Language.English, Language.Irish);
 		public static Country Italy => new Country("it", Language.Italian);
-		public static Country Korea => new Country("ko-KR");
+		public static Country Korea => new Country("ko-KR", Language.Korean);
 		public static Country Netherlands => new Country("nl", Language.Dutch);
-		public static Country Poland => new Country("pl");
-		public static Country Portugal => new Country("pt");
-		public static Country Russia => new Country("ru");
-		public static Country England => new Country("gb-eng");
-		public static Country Scotland => new Country("gb-sct");
-		public static Country Wales => new Country("gb-wls");
-		public static Country NorthernIreland => new Country("gb-nir");
-		public static Country USA => new Country("us");
+		public static Country Poland => new Country("pl", Language.Polish);
+		public static Country Portugal => new Country("pt", Language.Portuguese);
+		public static Country Russia => new Country("ru", Language.Russian);
+		public static Country England => new Country("gb-eng", Language.English);
+		public static Country Scotland => new Country("gb-sct", Language.English, Language.ScottishGaelic);
+		public static Country Wales => new Country("gb-wls", Language.English, Language.Welsh);
+		public static Country NorthernIreland => new Country("gb-nir", Language.English, Language.Irish);
+		public static Country USA => new Country("us", Language.English);
 	}
 }

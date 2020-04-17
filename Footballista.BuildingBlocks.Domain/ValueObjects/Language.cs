@@ -33,5 +33,10 @@
 		public static Language Portuguese => new Language(nameof(Portuguese), "pt");
 		public static Language Norwegian => new Language(nameof(Norwegian), "no");
 		public static Language NorwegianNynorsk => new Language(nameof(NorwegianNynorsk), "nn");
+		public static Language Chinese => new Language(nameof(Chinese), "zh");
+		public static Language Hindi => new Language(nameof(Hindi), "hi");
+		public static Language Korean => new Language(nameof(Korean), "ko");
+		public static Language Czech => new Language(nameof(Czech), "cs");
+		public static Language Welsh => new Language(nameof(Welsh), "cy");
 	}
 }
