@@ -7,33 +7,33 @@ namespace Footballista.Players
 	[DebuggerDisplay("{Years} yrs.")]
 	public class Age : ValueObject
 	{
-		private static float _monthsInYear = 12f;
-		private static float _weeksInYear = 52f;
-		private static float _daysInYear = 365f;
+		private static double _monthsInYear = 12d;
+		private static double _weeksInYear = 52d;
+		private static double _daysInYear = 365d;
 
-		public float Years { get; }
-
-		[IgnoreMember]
-		public float Months => Years * _monthsInYear;
+		public double Years { get; }
 
 		[IgnoreMember]
-		public float Weeks => Years * _weeksInYear;
+		public double Months => Years * _monthsInYear;
 
 		[IgnoreMember]
-		public float Days => Years * _daysInYear;
+		public double Weeks => Years * _weeksInYear;
+
+		[IgnoreMember]
+		public double Days => Years * _daysInYear;
 
 		private Age(int years)
 		{
 			Years = years;
 		}
-		private Age(float years)
+		private Age(double years)
 		{
 			Years = years;
 		}
 
 		public static Age FromYears(int years) => new Age(years);
-		public static Age FromMonths(int month) => new Age(Convert.ToSingle(month) / _monthsInYear);
-		public static Age FromWeeks(int weeks) => new Age(Convert.ToSingle(weeks) / _weeksInYear);
-		public static Age FromDays(int days) => new Age(Convert.ToSingle(days) / _daysInYear);
+		public static Age FromMonths(int month) => new Age(Convert.ToDouble(month) / _monthsInYear);
+		public static Age FromWeeks(int weeks) => new Age(Convert.ToDouble(weeks) / _weeksInYear);
+		public static Age FromDays(int days) => new Age(Convert.ToDouble(days) / _daysInYear);
 	}
 }
