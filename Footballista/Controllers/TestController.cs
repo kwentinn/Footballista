@@ -98,8 +98,8 @@ namespace Footballista.Controllers
 		[Route("generatedob")]
 		public IActionResult GenerateDoB()
 		{
-			var name = _dateOfBirthGenerator.Generate();
-			return Ok(name);
+			var dob = _dateOfBirthGenerator.Generate();
+			return Ok(dob);
 		}
 	}
 }

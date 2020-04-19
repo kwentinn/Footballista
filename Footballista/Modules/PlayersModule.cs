@@ -2,6 +2,7 @@
 using Footballista.BuildingBlocks.Domain.Game;
 using Footballista.Game.Domain;
 using Footballista.Players.Builders.Generators;
+using Footballista.Players.Builders.Randomisers;
 using Footballista.Players.Growths;
 using Footballista.Players.Infrastracture.Generators;
 using Footballista.Players.Infrastracture.Loaders;
@@ -30,6 +31,7 @@ namespace Footballista.Modules
 			builder.RegisterType<DataPathHelper>().As<IDataPathHelper>();
 			builder.RegisterType<NameGenerator>().As<INameGenerator>();
 			builder.RegisterType<DateOfBirthGenerator>().As<IDateOfBirthGenerator>();
+			builder.RegisterType<ListRandomiser>().As<IListRandomiser>();
 
 			// decorators
 			builder.RegisterDecorator<PercentileGrowthSetRepositoryCacheDecorator, IPercentileGrowthSetRepository>();
