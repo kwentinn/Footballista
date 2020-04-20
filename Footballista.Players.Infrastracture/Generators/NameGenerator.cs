@@ -1,5 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Builders.Generators;
+using Footballista.Players.Builders.Randomisers;
 using Footballista.Players.Infrastracture.Loaders.Firstnames;
 using Footballista.Players.Infrastracture.Loaders.Firstnames.Records;
 using Footballista.Players.Infrastracture.Loaders.Lastnames;
@@ -16,43 +17,49 @@ namespace Footballista.Players.Infrastracture.Generators
 	{
 		private readonly IFirstnameRecordsLoader _firstnameRecordsLoader;
 		private readonly ILastnameRecordsLoader _lastnameRecordsLoader;
-		private readonly Random _random = new Random();
+		private readonly IListRandomiser _listRandomiser;
+
 		public NameGenerator
 		(
 			IFirstnameRecordsLoader firstnameRecordsLoader,
-			ILastnameRecordsLoader lastnameRecordsLoader
+			ILastnameRecordsLoader lastnameRecordsLoader,
+			IListRandomiser listRandomiser
 		)
 		{
 			_firstnameRecordsLoader = firstnameRecordsLoader;
 			_lastnameRecordsLoader = lastnameRecordsLoader;
+			_listRandomiser = listRandomiser;
 		}
 
 		public Name Generate(Gender gender, Country country)
 		{
-			FirstnameRecord firstnameRecord = GetFirstnameRecord(gender, country);
+			FirstnameRecord firstnameRecord = GetRandomFirstnameRecord(gender, country);
 
-			LastnameRecord lastnameRecord = GetLastnameRecord(gender, country);
+			LastnameRecord lastnameRecord = GetRandomLastnameRecord(country);
 
 			return new Name(new Firstname(firstnameRecord.Firstname), new Lastname(lastnameRecord.Lastname));
 		}
 
-		private FirstnameRecord GetFirstnameRecord(Gender gender, Country country)
+		private FirstnameRecord GetRandomFirstnameRecord(Gender gender, Country country)
 		{
-			List<FirstnameRecord> firstnamesRecords = _firstnameRecordsLoader.GetRecords();
+			List<string> languages = country.Languages
+				.Select(l => l.Value.ToLower())
+				.ToList();
 
-			int firstnamesCount = firstnamesRecords
-				.Count(fnr => fnr.Genders.Contains(gender)); // && fnr.Languages.Contains(country.Languages.)
-			int firstnamesIndex = _random.Next(firstnamesCount);
+			List<FirstnameRecord> firstnamesRecords = _firstnameRecordsLoader.GetRecords()
+				.Where(r => r.Genders.Contains(gender) && r.Frequency > 0d && languages.Any(l => r.Languages.Contains(l)))
+				.ToList();
+			if (firstnamesRecords == null) throw new ApplicationException("Cannot find any firstname record.");
 
-			return firstnamesRecords.ElementAt(firstnamesIndex);
+			return _listRandomiser.GetRandomisedItemFromList(firstnamesRecords);
 		}
 
-		private LastnameRecord GetLastnameRecord(Gender gender, Country country)
+		private LastnameRecord GetRandomLastnameRecord(Country country)
 		{
 			List<LastnameRecord> lastnameRecords = _lastnameRecordsLoader.GetRecords(country);
-			int lastnamesCount = lastnameRecords.Count;
-			int lastnamesIndex = _random.Next(lastnamesCount);
-			return lastnameRecords.ElementAt(lastnamesIndex);
+			if (lastnameRecords == null) throw new ApplicationException("Cannot find any lastname record.");
+
+			return _listRandomiser.GetRandomisedItemFromList(lastnameRecords);
 		}
 	}
 }
