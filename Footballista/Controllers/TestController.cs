@@ -20,6 +20,7 @@ namespace Footballista.Controllers
 		private readonly IBirthLocationGenerator _birthLocationGenerator;
 		private readonly INameGenerator _nameGenerator;
 		private readonly IDateOfBirthGenerator _dateOfBirthGenerator;
+		private readonly ICountriesGenerator _countriesGenerator;
 
 		public TestController
 		(
@@ -29,16 +30,18 @@ namespace Footballista.Controllers
 			IWorldCitiesLoader worldCitiesLoader,
 			IBirthLocationGenerator birthLocationGenerator,
 			INameGenerator nameGenerator,
-			IDateOfBirthGenerator dateOfBirthGenerator
+			IDateOfBirthGenerator dateOfBirthGenerator,
+			ICountriesGenerator countriesGenerator
 		)
 		{
 			_percentileGrowthSetRepository = percentileGrowthSetRepository;
 			_firstnameRecordsLoader = firstnameRecordsLoader;
 			_lastnameRecordsLoader = lastnameRecordsLoader;
-			this._worldCitiesLoader = worldCitiesLoader;
-			this._birthLocationGenerator = birthLocationGenerator;
+			_worldCitiesLoader = worldCitiesLoader;
+			_birthLocationGenerator = birthLocationGenerator;
 			_nameGenerator = nameGenerator;
-			this._dateOfBirthGenerator = dateOfBirthGenerator;
+			_dateOfBirthGenerator = dateOfBirthGenerator;
+			_countriesGenerator = countriesGenerator;
 		}
 
 		[HttpGet]
@@ -100,6 +103,13 @@ namespace Footballista.Controllers
 		{
 			var dob = _dateOfBirthGenerator.Generate();
 			return Ok(dob);
+		}
+		[HttpGet]
+		[Route("generatecountry")]
+		public IActionResult GenerateCountries()
+		{
+			var country = _countriesGenerator.Generate();
+			return Ok(country);
 		}
 	}
 }

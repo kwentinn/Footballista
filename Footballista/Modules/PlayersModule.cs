@@ -32,6 +32,8 @@ namespace Footballista.Modules
 			builder.RegisterType<NameGenerator>().As<INameGenerator>();
 			builder.RegisterType<DateOfBirthGenerator>().As<IDateOfBirthGenerator>();
 			builder.RegisterType<ListRandomiser>().As<IListRandomiser>();
+			builder.RegisterType<CountriesGenerator>().As<ICountriesGenerator>();
+			builder.RegisterType<FavouriteFootGenerator>().As<IFavouriteFootGenerator>();
 
 			// decorators
 			builder.RegisterDecorator<PercentileGrowthSetRepositoryCacheDecorator, IPercentileGrowthSetRepository>();

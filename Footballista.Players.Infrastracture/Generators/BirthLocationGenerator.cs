@@ -52,7 +52,7 @@ namespace Footballista.Players.Infrastracture.Generators
 			List<WorldCityRecord> cities = _worldCitiesLoader.GetRecords();
 			if (!cities.Any()) throw new ApplicationException("No cities were loaded");
 
-			WorldCityRecord city = _listRandomiser.GetRandomisedItemFromList(cities, record => record.CountryCodeIso2 == country.RegionInfo.TwoLetterISORegionName);
+			WorldCityRecord city = _listRandomiser.GetRandomisedItem(cities, record => record.CountryCodeIso2 == country.RegionInfo.TwoLetterISORegionName);
 
 			return new Location(new City(city.City), city.CountryCodeIso2);
 		}

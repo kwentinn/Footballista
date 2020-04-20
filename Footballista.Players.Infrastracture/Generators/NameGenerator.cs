@@ -51,7 +51,7 @@ namespace Footballista.Players.Infrastracture.Generators
 				.ToList();
 			if (firstnamesRecords == null) throw new ApplicationException("Cannot find any firstname record.");
 
-			return _listRandomiser.GetRandomisedItemFromList(firstnamesRecords);
+			return _listRandomiser.GetRandomisedItem(firstnamesRecords);
 		}
 
 		private LastnameRecord GetRandomLastnameRecord(Country country)
@@ -59,7 +59,7 @@ namespace Footballista.Players.Infrastracture.Generators
 			List<LastnameRecord> lastnameRecords = _lastnameRecordsLoader.GetRecords(country);
 			if (lastnameRecords == null) throw new ApplicationException("Cannot find any lastname record.");
 
-			return _listRandomiser.GetRandomisedItemFromList(lastnameRecords);
+			return _listRandomiser.GetRandomisedItem(lastnameRecords);
 		}
 	}
 }

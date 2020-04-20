@@ -2,8 +2,8 @@
 {
 	public enum Foot
 	{
-		Left,
-		Right,
-		Both
+		Left = 1,
+		Right = 2,
+		Both = 3
 	}
 }
