@@ -1,5 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Builders.Generators;
+using Footballista.Players.Builders.Randomisers;
 using Footballista.Players.Infrastracture.Loaders.Cities;
 using Footballista.Players.Infrastracture.Loaders.Cities.Records;
 using System;
@@ -11,6 +12,7 @@ namespace Footballista.Players.Infrastracture.Generators
 	public class BirthLocationGenerator : IBirthLocationGenerator
 	{
 		private readonly IWorldCitiesLoader _worldCitiesLoader;
+		private readonly IListRandomiser _listRandomiser;
 		
 		private Random _random = new Random();
 
@@ -35,9 +37,14 @@ namespace Footballista.Players.Infrastracture.Generators
 		//	Country.USA
 		//};
 
-		public BirthLocationGenerator(IWorldCitiesLoader worldCitiesLoader)
+		public BirthLocationGenerator
+		(
+			IWorldCitiesLoader worldCitiesLoader, 
+			IListRandomiser listRandomiser
+		)
 		{
 			_worldCitiesLoader = worldCitiesLoader;
+			_listRandomiser = listRandomiser;
 		}
 
 		public Location Generate(Country country)
@@ -45,16 +52,8 @@ namespace Footballista.Players.Infrastracture.Generators
 			List<WorldCityRecord> cities = _worldCitiesLoader.GetRecords();
 			if (!cities.Any()) throw new ApplicationException("No cities were loaded");
 
-			int nbOfCities = cities.Count(c => c.CountryCodeIso2 == country.RegionInfo.TwoLetterISORegionName);
+			WorldCityRecord city = _listRandomiser.GetRandomisedItemFromList(cities, record => record.CountryCodeIso2 == country.RegionInfo.TwoLetterISORegionName);
 
-			int index = _random.Next(nbOfCities);
-
-			WorldCityRecord city = cities
-				.Where(c => c.CountryCodeIso2 == country.RegionInfo.TwoLetterISORegionName)
-				.ElementAt(index);
-				
-
-			// TODO : renvoyer qqch
 			return new Location(new City(city.City), city.CountryCodeIso2);
 		}
 	}
