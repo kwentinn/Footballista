@@ -161,9 +161,11 @@ namespace Footballista.Controllers
 		public IActionResult GeneratePlayers()
 		{
 			var list = new List<Player>();
+			var countries = new Country[] { Country.France };
+			
 			for (var i = 0; i < 100; i++)
 			{
-				list.Add(_playerBuilder.Build(Gender.Male, new Country[] { Country.France }));
+				list.Add(_playerBuilder.Build(Gender.Male, countries));
 			}
 
 			var playersDto = list
