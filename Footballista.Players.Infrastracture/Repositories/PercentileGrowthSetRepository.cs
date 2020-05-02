@@ -1,7 +1,9 @@
-﻿using Footballista.Players.Growths;
+﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.Players.Growths;
 using Footballista.Players.Infrastracture.Loaders.Growths;
 using Footballista.Players.Infrastracture.Loaders.Growths.Records;
 using Footballista.Players.Persons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnitsNet;
@@ -28,29 +30,34 @@ namespace Footballista.Players.Infrastracture.Repositories
 			new FemalePercentileGrowthSet(GetPercentileGrowth(Gender.Female));
 		public MalePercentileGrowthSet GetMalePercentileGrowthSet() =>
 			new MalePercentileGrowthSet(GetPercentileGrowth(Gender.Male));
+		public AbstractPercentileGrowthSet GetPercentileGrowthSet(Gender gender) => gender switch
+		{
+			Gender.Male => GetMalePercentileGrowthSet(),
+			Gender.Female => GetFemalePercentileGrowthSet(),
+			_ => throw new ApplicationException("unknown gender")
+		};
 
 		private List<PercentileGrowth> GetPercentileGrowth(Gender gender)
 		{
-			WeightForAge CreateWfA(int age, double massInKg) =>
-				new WeightForAge(age, new Mass(massInKg, MassUnit.Kilogram));
+			WeightForAge CreateWfA(int age, double massInKg) => new WeightForAge(age, new Mass(massInKg, MassUnit.Kilogram));
+			StatureForAge CreateSfA(int age, double heightInCm) => new StatureForAge(age, new Length(heightInCm, LengthUnit.Centimeter));
 
-			StatureForAge CreateSfA(int age, double heightInCm) =>
-				new StatureForAge(age, new Length(heightInCm, LengthUnit.Centimeter));
+			// load records
+			List<GrowthRecord> statureRecords = _statureGrowthRecordLoader.GetRecords(gender).Value;
+			List<GrowthRecord> weightRecords = _weightGrowthRecordLoader.GetRecords(gender).Value;
 
-			List<GrowthRecord> statureRecords = _statureGrowthRecordLoader.GetRecords(gender);
-			if (!statureRecords.Any())
-				return null;
-			List<GrowthRecord> weightRecords = _weightGrowthRecordLoader.GetRecords(gender);
-			if (!weightRecords.Any())
-				return null;
 
-			var growths = new List<PercentileGrowth>();
+
+			List<PercentileGrowth> growths = new List<PercentileGrowth>();
 
 			growths.Add(new PercentileGrowth(
 				percentile: 3,
 				gender: gender,
-				weightsForAges: weightRecords.Select(r => CreateWfA(r.Age, r.ThirdPercentile)).ToList(),
-				staturesForAges: statureRecords.Select(r => CreateSfA(r.Age, r.ThirdPercentile)).ToList()
+				weightsForAges: weightRecords
+					.Select(r => CreateWfA(r.Age, r.ThirdPercentile))
+					.ToList(),
+				staturesForAges: statureRecords
+					.Select(r => CreateSfA(r.Age, r.ThirdPercentile)).ToList()
 			));
 			growths.Add(new PercentileGrowth(
 				percentile: 5,

@@ -1,4 +1,5 @@
-﻿using Footballista.Players.Infrastracture.Loaders.Cities.Records;
+﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.Players.Infrastracture.Loaders.Cities.Records;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Footballista.Players.Infrastracture.Loaders.Cities
 			_decorated = decorated;
 		}
 
-		public List<WorldCityRecord> GetRecords()
+		public Maybe<List<WorldCityRecord>> GetRecords()
 		{
 			return _cache.GetOrCreate("WORLD_CITIES", (entry) =>
 			{

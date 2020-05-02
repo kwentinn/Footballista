@@ -1,4 +1,5 @@
 ﻿using Footballista.Players.Growths;
+using Footballista.Players.Persons;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 
@@ -18,6 +19,13 @@ namespace Footballista.Players.Infrastracture.Repositories.Decorators
 			_cache = cache;
 			_decorated = decorated;
 		}
+
+		public AbstractPercentileGrowthSet GetPercentileGrowthSet(Gender gender) => gender switch
+		{
+			Gender.Male => GetMalePercentileGrowthSet(),
+			Gender.Female => GetFemalePercentileGrowthSet(),
+			_ => throw new ApplicationException("unknow gender")
+		};
 
 		public FemalePercentileGrowthSet GetFemalePercentileGrowthSet()
 		{

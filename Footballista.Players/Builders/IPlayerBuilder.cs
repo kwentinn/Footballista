@@ -6,6 +6,6 @@ namespace Footballista.Players.Builders
 {
 	public interface IPlayerBuilder
 	{
-		Player Build(Gender? playerGender = null, Country country = null, PlayerPosition playerPosition = null);
+		Player Build(Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null);
 	}
 }

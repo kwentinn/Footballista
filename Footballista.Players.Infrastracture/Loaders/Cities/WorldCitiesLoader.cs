@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using Footballista.BuildingBlocks.Domain;
 using Footballista.Players.Infrastracture.Loaders.Cities.ClassMaps;
 using Footballista.Players.Infrastracture.Loaders.Cities.Records;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Footballista.Players.Infrastracture.Loaders.Cities
 			_dataPathHelper = dataPathHelper;
 		}
 
-		public List<WorldCityRecord> GetRecords()
+		public Maybe<List<WorldCityRecord>> GetRecords()
 		{
 			List<WorldCityRecord> result;
 			string fullPath = _dataPathHelper.GetFullPath(_folderPath, _filename);
@@ -34,7 +35,7 @@ namespace Footballista.Players.Infrastracture.Loaders.Cities
 
 				result = csv.GetRecords<WorldCityRecord>().ToList();
 			}
-			return result;
+			return Maybe.Some(result);
 		}
 	}
 }

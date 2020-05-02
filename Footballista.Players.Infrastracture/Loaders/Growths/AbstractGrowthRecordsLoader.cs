@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using Footballista.BuildingBlocks.Domain;
 using Footballista.Players.Infrastracture.Loaders.Growths.Records;
 using Footballista.Players.Persons;
 using Microsoft.Extensions.Hosting;
@@ -24,7 +25,7 @@ namespace Footballista.Players.Infrastracture.Loaders.Growths
 			_dataPathHelper = dataPathHelper;
 		}
 
-		public List<GrowthRecord> GetRecords(Gender gender)
+		public Maybe<List<GrowthRecord>> GetRecords(Gender gender)
 		{
 			List<GrowthRecord> result;
 			using (var reader = new StreamReader(GetCompletePath(gender)))
@@ -32,7 +33,7 @@ namespace Footballista.Players.Infrastracture.Loaders.Growths
 			{
 				result = csv.GetRecords<GrowthRecord>().ToList();
 			}
-			return result;
+			return Maybe.Some(result);
 		}
 		private string GetCompletePath(Gender gender) =>
 			gender switch

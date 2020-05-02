@@ -29,18 +29,37 @@ namespace Footballista.Players.Persons
 			params Country[] nationalities
 		)
 		{
-			CheckRule(new BusinessRules.PersonCanHaveMultipleNationalitiesRule(nationalities));
+			CheckRule(new BusinessRules.PersonCanHaveTwoNationalitiesRule(nationalities));
 
 			Id = id;
 			Firstname = firstname;
 			Lastname = lastname;
 			Gender = gender;
 			BirthInfo = new Birth(dob, birthLocation);
+
 			_nationalities.AddRange(nationalities);
 		}
 
-		internal Person(Firstname firstname, Lastname lastname, Gender gender, Date dob, Location birthLocation, params Country[] nationalities)
-			: this(PersonId.CreateNew(), firstname, lastname, gender, dob, birthLocation, nationalities) { }
+		internal Person
+		(
+			Firstname firstname,
+			Lastname lastname,
+			Gender gender,
+			Date dob,
+			Location birthLocation,
+			params Country[] nationalities
+		)
+		: this
+		(
+			PersonId.CreateNew(),
+			firstname,
+			lastname,
+			gender,
+			dob,
+			birthLocation,
+			nationalities
+		)
+		{ }
 
 		public static Person CreateNew
 		(

@@ -41,7 +41,7 @@ namespace Footballista.BuildingBlocks.Domain.ValueObjects
 		public static Country Denmark => new Country("de", Language.Danish);
 		public static Country Spain => new Country("es", Language.Spanish);
 		public static Country Greece => new Country("gr", Language.Greek);
-		public static Country India => new Country("in", Language.Hindi);
+		public static Country India => new Country("in", Language.Hindi, Language.English);
 		public static Country Ireland => new Country("ie", Language.English, Language.Irish);
 		public static Country Italy => new Country("it", Language.Italian);
 		public static Country Korea => new Country("ko-KR", Language.Korean);
@@ -54,5 +54,6 @@ namespace Footballista.BuildingBlocks.Domain.ValueObjects
 		public static Country Wales => new Country("gb-wls", Language.English, Language.Welsh);
 		public static Country NorthernIreland => new Country("gb-nir", Language.English, Language.Irish);
 		public static Country USA => new Country("us", Language.English);
+		public static Country Japan => new Country("jp", Language.Japanese);
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Footballista.BuildingBlocks.Domain.Game;
 using Footballista.Game.Domain;
+using Footballista.Players.Builders;
 using Footballista.Players.Builders.Generators;
 using Footballista.Players.Builders.Randomisers;
 using Footballista.Players.Growths;
@@ -34,6 +35,12 @@ namespace Footballista.Modules
 			builder.RegisterType<ListRandomiser>().As<IListRandomiser>();
 			builder.RegisterType<CountriesGenerator>().As<ICountriesGenerator>();
 			builder.RegisterType<FavouriteFootGenerator>().As<IFavouriteFootGenerator>();
+			builder.RegisterType<GenderGenerator>().As<IGenderGenerator>();
+			builder.RegisterType<GrowthSetGenerator>().As<IGrowthSetGenerator>();
+			builder.RegisterType<PhysicalFeatureSetGenerator>().As<IPhysicalFeatureSetGenerator>();
+			builder.RegisterType<YoungPlayerBuilder>().As<IPlayerBuilder>();
+			builder.RegisterType<PercentileGenerator>().As<IPercentileGenerator>();
+			builder.RegisterType<BodyMassIndexGenerator>().As<IBodyMassIndexGenerator>();
 
 			// decorators
 			builder.RegisterDecorator<PercentileGrowthSetRepositoryCacheDecorator, IPercentileGrowthSetRepository>();

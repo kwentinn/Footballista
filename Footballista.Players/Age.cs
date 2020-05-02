@@ -1,4 +1,5 @@
 ﻿using Footballista.BuildingBlocks.Domain;
+using Itenso.TimePeriod;
 using System;
 using System.Diagnostics;
 
@@ -35,5 +36,15 @@ namespace Footballista.Players
 		public static Age FromMonths(int month) => new Age(Convert.ToDouble(month) / _monthsInYear);
 		public static Age FromWeeks(int weeks) => new Age(Convert.ToDouble(weeks) / _weeksInYear);
 		public static Age FromDays(int days) => new Age(Convert.ToDouble(days) / _daysInYear);
+		public static Age FromDate(Date dob, DateTime? currentDate = null)
+		{
+			if (currentDate == null) currentDate = DateTime.UtcNow.Date;
+
+			return Age.FromDays(Convert.ToInt32(
+				currentDate.Value.Subtract(dob.DateTime).TotalDays
+			));
+		}
+
+		public static Age FromYears(double years) => new Age(years);
 	}
 }

@@ -12,7 +12,7 @@ namespace Footballista.Players.Growths
 			{
 				if (g.Gender != Gender.Male)
 				{
-					throw new ApplicationException("Inccorect gender for MalePercentileGrowthSet");
+					throw new ApplicationException("Incorrect gender for MalePercentileGrowthSet");
 				}
 			}
 		}

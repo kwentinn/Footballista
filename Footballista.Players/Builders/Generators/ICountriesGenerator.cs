@@ -1,4 +1,5 @@
-﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
+﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Builders.Randomisers;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ namespace Footballista.Players.Builders.Generators
 {
 	public interface ICountriesGenerator
 	{
-		Country[] Generate();
+		Maybe<Country[]> Generate();
 	}
 	public class CountriesGenerator : ICountriesGenerator
 	{
@@ -18,6 +19,7 @@ namespace Footballista.Players.Builders.Generators
 		private List<Country> _countries = new List<Country>
 		{
 			Country.China,
+			Country.Japan,
 			Country.CzechRepublic,
 			Country.Denmark,
 			Country.Spain,
@@ -42,9 +44,9 @@ namespace Footballista.Players.Builders.Generators
 			_listRandomiser = listRandomiser;
 		}
 
-		public Country[] Generate()
+		public Maybe<Country[]> Generate()
 		{
-			return _listRandomiser.GetRandomisedItems(_countries, _random.Next(1, 3));
+			return Maybe.Some(_listRandomiser.GetRandomisedItems(_countries, _random.Next(1, 3)));
 		}
 	}
 }

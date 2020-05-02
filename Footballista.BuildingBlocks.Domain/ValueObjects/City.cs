@@ -2,11 +2,11 @@
 {
 	public class City : ValueObject
 	{
-		public string Value { get; }
+		public string Name { get; }
 
-		public City(string value)
+		public City(string name)
 		{
-			Value = value;
+			Name = name;
 		}
 	}
 }

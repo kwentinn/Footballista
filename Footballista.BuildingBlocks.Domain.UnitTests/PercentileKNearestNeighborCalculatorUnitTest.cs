@@ -25,10 +25,13 @@ namespace Footballista.BuildingBlocks.Domain.UnitTests
 				k: 2
 			);
 
-			List<KnnResult<Percentile>> result = nnc.Search();
+			Maybe<List<KnnResult<Percentile>>> resultMaybe = nnc.Search();
 
-			Assert.IsNotNull(result);
-			Assert.IsTrue(result.Count == 2);
+			//Assert.IsNotNull(result);
+			Assert.IsTrue(resultMaybe.HasValue);
+			
+			var result = resultMaybe.Value;
+
 			Assert.AreEqual(new Percentile(9), result[0].Value);
 			Assert.AreEqual(new Percentile(13), result[1].Value);
 		}

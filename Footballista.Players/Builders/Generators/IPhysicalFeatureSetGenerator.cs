@@ -6,4 +6,11 @@ namespace Footballista.Players.Builders.Generators
 	{
 		PhysicalFeatureSet Generate();
 	}
+	public class PhysicalFeatureSetGenerator : IPhysicalFeatureSetGenerator
+	{
+		public PhysicalFeatureSet Generate()
+		{
+			return PhysicalFeatureSet.ForwardFeatureSet;
+		}
+	}
 }

@@ -1,4 +1,5 @@
-﻿using Footballista.Players.Infrastracture.Loaders;
+﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.Players.Infrastracture.Loaders;
 using Footballista.Players.Infrastracture.Loaders.Growths;
 using Footballista.Players.Infrastracture.Loaders.Growths.Records;
 using Footballista.Players.Persons;
@@ -24,11 +25,11 @@ namespace Footballista.PlayersUnitTests.Infra
 			StatureGrowthRecordLoader loader = new StatureGrowthRecordLoader(mockDataPathHelper.Object);
 
 			// act
-			List<GrowthRecord> data = loader.GetRecords(Gender.Male);
+			var maybeData = loader.GetRecords(Gender.Male);
 
 			// assert
-			Assert.IsNotNull(data);
-			Assert.AreEqual(19, data.Count);
+			Assert.IsTrue(maybeData.HasValue);
+			Assert.AreEqual(19, maybeData.Value.Count);
 		}
 		[TestMethod]
 		public void GetRecords_PassGenderFemale_ShouldReturnRecordsForFemale()
@@ -42,10 +43,10 @@ namespace Footballista.PlayersUnitTests.Infra
 			StatureGrowthRecordLoader loader = new StatureGrowthRecordLoader(mockDataPathHelper.Object);
 
 			// act
-			var data = loader.GetRecords(Gender.Female);
+			Maybe<List<GrowthRecord>> data = loader.GetRecords(Gender.Female);
 
 			// assert
-			Assert.IsNotNull(data);
+			Assert.IsTrue(data.HasValue);
 		}
 	}
 }

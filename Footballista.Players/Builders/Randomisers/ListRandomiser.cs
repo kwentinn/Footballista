@@ -19,6 +19,7 @@ namespace Footballista.Players.Builders.Randomisers
 			where T : class
 		{
 			if (list is null) throw new ArgumentNullException(nameof(list));
+			if (!list.Any()) throw new ArgumentException(nameof(list));
 
 			int nbOfItems = list.Count;
 			return list.ElementAt(_random.Next(nbOfItems));

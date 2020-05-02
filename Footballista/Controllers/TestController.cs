@@ -1,11 +1,16 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
+using Footballista.Players;
+using Footballista.Players.Builders;
 using Footballista.Players.Builders.Generators;
 using Footballista.Players.Growths;
 using Footballista.Players.Infrastracture.Loaders.Cities;
 using Footballista.Players.Infrastracture.Loaders.Firstnames;
 using Footballista.Players.Infrastracture.Loaders.Lastnames;
+using Footballista.Players.Persons;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Footballista.Controllers
 {
@@ -21,6 +26,8 @@ namespace Footballista.Controllers
 		private readonly INameGenerator _nameGenerator;
 		private readonly IDateOfBirthGenerator _dateOfBirthGenerator;
 		private readonly ICountriesGenerator _countriesGenerator;
+		private readonly IGrowthSetGenerator _growthSetGenerator;
+		private readonly IPlayerBuilder _playerBuilder;
 
 		public TestController
 		(
@@ -31,7 +38,9 @@ namespace Footballista.Controllers
 			IBirthLocationGenerator birthLocationGenerator,
 			INameGenerator nameGenerator,
 			IDateOfBirthGenerator dateOfBirthGenerator,
-			ICountriesGenerator countriesGenerator
+			ICountriesGenerator countriesGenerator,
+			IGrowthSetGenerator growthSetGenerator,
+			IPlayerBuilder playerBuilder
 		)
 		{
 			_percentileGrowthSetRepository = percentileGrowthSetRepository;
@@ -42,6 +51,8 @@ namespace Footballista.Controllers
 			_nameGenerator = nameGenerator;
 			_dateOfBirthGenerator = dateOfBirthGenerator;
 			_countriesGenerator = countriesGenerator;
+			_growthSetGenerator = growthSetGenerator;
+			_playerBuilder = playerBuilder;
 		}
 
 		[HttpGet]
@@ -111,5 +122,76 @@ namespace Footballista.Controllers
 			var country = _countriesGenerator.Generate();
 			return Ok(country);
 		}
+		[HttpGet]
+		[Route("generategrowth")]
+		public IActionResult GenerateGrowth()
+		{
+			var growthSet = _growthSetGenerator.GeneratePercentileGrowth(Gender.Male);
+			return Ok(growthSet);
+		}
+		[HttpGet]
+		[Route("generateplayer")]
+		public IActionResult GeneratePlayer()
+		{
+			var player = _playerBuilder.Build();
+			return Ok(new
+			{
+				Name = $"{player.Firstname.Value} {player.Lastname.Value}",
+				Nationalities = string.Join(",", player.Nationalities.Select(n => n.RegionInfo.EnglishName)),
+				BirthInfo = new
+				{
+					City = new
+					{
+						player.BirthInfo.BirthLocation.City.Name,
+						Country = player.BirthInfo.BirthLocation.Country.RegionInfo.EnglishName
+					},
+					Dob = player.BirthInfo.DateOfBirth.DateTime
+				},
+				Foot = player.FavouriteFoot.ToString(),
+				Bmi = new
+				{
+					HeightInCentimeters = player.Bmi.Height.Centimeters,
+					WeightInKilograms = player.Bmi.Weight.Kilograms
+				},
+				Gender = player.Gender.ToString()
+			});
+		}
+		[HttpGet]
+		[Route("generateplayers")]
+		public IActionResult GeneratePlayers()
+		{
+			var list = new List<Player>();
+			for (var i = 0; i < 100; i++)
+			{
+				list.Add(_playerBuilder.Build(Gender.Male, new Country[] { Country.France }));
+			}
+
+			var playersDto = list
+				.Select(player => new
+				{
+					Name = $"{player.Firstname.Value} {player.Lastname.Value}",
+					Nationalities = string.Join(",", player.Nationalities.Select(n => n.RegionInfo.EnglishName)),
+					BirthInfo = new
+					{
+						City = new
+						{
+							player.BirthInfo.BirthLocation.City.Name,
+							Country = player.BirthInfo.BirthLocation.Country.RegionInfo.EnglishName
+						},
+						Dob = player.BirthInfo.DateOfBirth.DateTime
+					},
+					Foot = player.FavouriteFoot.ToString(),
+					Bmi = new
+					{
+						HeightInCentimeters = Math.Round(player.Bmi.Height.Centimeters, 0),
+						WeightInKilograms = Math.Round(player.Bmi.Weight.Kilograms, 0)
+					},
+					Gender = player.Gender.ToString()
+				})
+				.ToList();
+
+			return Ok(playersDto);
+		}
+
 	}
 }

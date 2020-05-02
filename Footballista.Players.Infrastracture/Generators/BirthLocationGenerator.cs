@@ -49,8 +49,7 @@ namespace Footballista.Players.Infrastracture.Generators
 
 		public Location Generate(Country country)
 		{
-			List<WorldCityRecord> cities = _worldCitiesLoader.GetRecords();
-			if (!cities.Any()) throw new ApplicationException("No cities were loaded");
+			List<WorldCityRecord> cities = _worldCitiesLoader.GetRecords().Value;
 
 			WorldCityRecord city = _listRandomiser.GetRandomisedItem(cities, record => record.CountryCodeIso2 == country.RegionInfo.TwoLetterISORegionName);
 
