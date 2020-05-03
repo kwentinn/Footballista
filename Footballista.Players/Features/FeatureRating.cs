@@ -1,5 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using Footballista.Players.Features.BusinessRules;
+using System;
 using System.Diagnostics;
 
 namespace Footballista.Players.Features
@@ -13,7 +14,7 @@ namespace Footballista.Players.Features
 		{
 			CheckRule(new FeatureRatingMustBeWithinRangeRule(rating));
 
-			Rating = rating;
+			Rating = Math.Round(rating, 3);
 		}
 	}
 }

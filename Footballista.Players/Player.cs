@@ -14,15 +14,12 @@ namespace Footballista.Players
 {
 	public class Player : Person
 	{
-		public ReadOnlyCollection<PlayerPosition> PlayerPositions => playerPositions.AsReadOnly();
-		private List<PlayerPosition> playerPositions = new List<PlayerPosition>();
-
+		//public ReadOnlyCollection<PlayerPosition> PlayerPositions => _playerPositions.AsReadOnly();
+		//private List<PlayerPosition> _playerPositions = new List<PlayerPosition>();
 		public PhysicalFeatureSet PhysicalFeatureSet { get; }
-
+		public PlayerPosition PlayerPosition { get; }
 		public Percentile Percentile { get; }
-
 		public Foot FavouriteFoot { get; }
-		
 		public BodyMassIndex Bmi { get; }
 
 		internal Player
@@ -37,6 +34,8 @@ namespace Footballista.Players
 			BodyMassIndex bmi,
 			Percentile percentile,
 			PhysicalFeatureSet physicalFeatureSet,
+			PlayerPosition playerPosition,
+
 			params Country[] nationalities
 		) : base(id, firstname, lastname, gender, dob, birthLocation, nationalities)
 		{
@@ -44,6 +43,7 @@ namespace Footballista.Players
 			Bmi = bmi;
 			Percentile = percentile;
 			PhysicalFeatureSet = physicalFeatureSet;
+			PlayerPosition = playerPosition;
 		}
 
 		public static Player CreatePlayer
@@ -57,6 +57,7 @@ namespace Footballista.Players
 			BodyMassIndex bmi,
 			Percentile percentile,
 			PhysicalFeatureSet physicalFeatureSet,
+			PlayerPosition playerPosition,
 			params Country[] nationalities
 		) => new Player
 		(
@@ -70,6 +71,7 @@ namespace Footballista.Players
 			bmi,
 			percentile,
 			physicalFeatureSet,
+			playerPosition,
 			nationalities
 		);
 	}

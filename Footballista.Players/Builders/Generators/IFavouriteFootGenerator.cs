@@ -36,7 +36,7 @@ namespace Footballista.Players.Builders.Generators
 				rndPct,
 				_data
 			);
-			return calculator.Search().Value[0].Value.Object;
+			return calculator.GetNearestNeighbours().Value[0].Value.Object;
 		}
 	}
 }

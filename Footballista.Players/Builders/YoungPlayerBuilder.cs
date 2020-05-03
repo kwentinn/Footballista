@@ -23,6 +23,7 @@ namespace Footballista.Players.Builders
 		private readonly ICountriesGenerator _countriesGenerator;
 		private readonly IGrowthSetGenerator _growthSetGenerator;
 		private readonly IPercentileGenerator _percentileGenerator;
+		private readonly IPlayerPositionGenerator _playerPositionGenerator;
 
 		public YoungPlayerBuilder
 		(
@@ -35,7 +36,8 @@ namespace Footballista.Players.Builders
 			IBodyMassIndexGenerator bmiGenerator,
 			ICountriesGenerator countriesGenerator,
 			IGrowthSetGenerator growthSetGenerator,
-			IPercentileGenerator percentileGenerator
+			IPercentileGenerator percentileGenerator,
+			IPlayerPositionGenerator playerPositionGenerator
 		)
 		{
 			_nameGenerator = nameGenerator;
@@ -47,7 +49,8 @@ namespace Footballista.Players.Builders
 			_bmiGenerator = bmiGenerator;
 			_countriesGenerator = countriesGenerator;
 			_growthSetGenerator = growthSetGenerator;
-			this._percentileGenerator = percentileGenerator;
+			_percentileGenerator = percentileGenerator;
+			_playerPositionGenerator = playerPositionGenerator;
 		}
 
 		public Player Build(Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
@@ -66,6 +69,7 @@ namespace Footballista.Players.Builders
 			PhysicalFeatureSet playerFeatureSet = _physicalFeatureSetGenerator.Generate();
 			Percentile percentile = _percentileGenerator.Generate();
 			BodyMassIndex bmi = _bmiGenerator.Generate(countries.FirstOrDefault(), playerGender.Value, percentile, dob);
+			PlayerPosition position = _playerPositionGenerator.Generate();
 
 			// first name & last name => according to the player's country
 			return Player.CreatePlayer
@@ -79,6 +83,7 @@ namespace Footballista.Players.Builders
 				bmi,
 				percentile,
 				playerFeatureSet,
+				position,
 				countries
 			);
 		}

@@ -13,7 +13,9 @@ namespace Footballista.BuildingBlocks.Domain.Percentiles
 		public static Percentile Max => new Percentile(100);
 		public Percentile(int value)
 		{
-			if (value < 0 || value > 100) throw new ArgumentException("Int value must be between 0 and 100.", nameof(value));
+			if (value < 0 || value > 100) 
+				throw new ArgumentException("Int value must be between 0 and 100.", nameof(value));
+
 			Value = value;
 		}
 

@@ -1,5 +1,8 @@
-﻿namespace Footballista.BuildingBlocks.Domain.Percentiles
+﻿using System.Diagnostics;
+
+namespace Footballista.BuildingBlocks.Domain.Percentiles
 {
+	[DebuggerDisplay("{Percentile} {Object}")]
 	public class PercentileData<T>
 	{
 		public Percentile Percentile { get; }

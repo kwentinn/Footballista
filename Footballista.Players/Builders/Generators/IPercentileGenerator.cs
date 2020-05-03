@@ -6,6 +6,7 @@ namespace Footballista.Players.Builders.Generators
 	public interface IPercentileGenerator
 	{
 		Percentile Generate();
+		Percentile Generate(Percentile min, Percentile max);
 	}
 	public class PercentileGenerator : IPercentileGenerator
 	{
@@ -19,5 +20,8 @@ namespace Footballista.Players.Builders.Generators
 			);
 			return new Percentile(randomIntValue);
 		}
+
+		public Percentile Generate(Percentile min, Percentile max)
+			=> new Percentile(Random.Next(min.Value, max.Value));
 	}
 }

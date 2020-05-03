@@ -1,7 +1,11 @@
 ﻿using Footballista.BuildingBlocks.Domain;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Footballista.Players.Positions
 {
+	[DebuggerDisplay("{Name}")]
 	public class PlayerPosition : ValueObject
 	{
 		public string Name { get; }
@@ -13,7 +17,7 @@ namespace Footballista.Players.Positions
 			PositionCategory = positionCategory;
 		}
 
-		#region Public static properties
+		// goalie
 		public static PlayerPosition GoalKeeper => new PlayerPosition(nameof(GoalKeeper), PositionCategory.GoalKeeper);
 
 		//defenders
@@ -32,6 +36,26 @@ namespace Footballista.Players.Positions
 		public static PlayerPosition CentreForward => new PlayerPosition(nameof(CentreForward), PositionCategory.Forward);
 		public static PlayerPosition SecondStriker => new PlayerPosition(nameof(SecondStriker), PositionCategory.Forward);
 		public static PlayerPosition Winger => new PlayerPosition(nameof(Winger), PositionCategory.Forward);
-		#endregion
+
+		// all positions
+		private static List<PlayerPosition> _allPositions = new List<PlayerPosition>
+		{
+			PlayerPosition.GoalKeeper,
+
+			PlayerPosition.CentreBack,
+			PlayerPosition.Sweeper,
+			PlayerPosition.FullBack,
+			PlayerPosition.WingBack,
+
+			PlayerPosition.CentreMidfield,
+			PlayerPosition.DefensiveMidfield,
+			PlayerPosition.AttackingMidfield,
+			PlayerPosition.WideMidfield,
+
+			PlayerPosition.CentreForward,
+			PlayerPosition.SecondStriker,
+			PlayerPosition.Winger,
+		};
+		public static ReadOnlyCollection<PlayerPosition> AllPositions => _allPositions.AsReadOnly();
 	}
 }

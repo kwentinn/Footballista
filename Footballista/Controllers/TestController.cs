@@ -134,6 +134,7 @@ namespace Footballista.Controllers
 		public IActionResult GeneratePlayer()
 		{
 			var player = _playerBuilder.Build();
+
 			return Ok(new
 			{
 				Name = $"{player.Firstname.Value} {player.Lastname.Value}",
@@ -161,7 +162,7 @@ namespace Footballista.Controllers
 		public IActionResult GeneratePlayers()
 		{
 			var list = new List<Player>();
-			var countries = new Country[] { Country.France };
+			var countries = new Country[] { Country.Poland };
 			
 			for (var i = 0; i < 100; i++)
 			{
@@ -188,7 +189,8 @@ namespace Footballista.Controllers
 						HeightInCentimeters = Math.Round(player.Bmi.Height.Centimeters, 0),
 						WeightInKilograms = Math.Round(player.Bmi.Weight.Kilograms, 0)
 					},
-					Gender = player.Gender.ToString()
+					Gender = player.Gender.ToString(),
+					Position = player.PlayerPosition.Name
 				})
 				.ToList();
 

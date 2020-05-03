@@ -41,6 +41,7 @@ namespace Footballista.Modules
 			builder.RegisterType<YoungPlayerBuilder>().As<IPlayerBuilder>();
 			builder.RegisterType<PercentileGenerator>().As<IPercentileGenerator>();
 			builder.RegisterType<BodyMassIndexGenerator>().As<IBodyMassIndexGenerator>();
+			builder.RegisterType<PlayerPositionGenerator>().As<IPlayerPositionGenerator>();
 
 			// decorators
 			builder.RegisterDecorator<PercentileGrowthSetRepositoryCacheDecorator, IPercentileGrowthSetRepository>();

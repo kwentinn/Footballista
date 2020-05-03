@@ -1,7 +1,9 @@
 ﻿using Footballista.BuildingBlocks.Domain;
+using System.Diagnostics;
 
 namespace Footballista.Players.Positions
 {
+	[DebuggerDisplay("{Name}")]
 	public class PositionCategory : ValueObject
 	{
 		public string Name { get; }

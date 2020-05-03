@@ -11,13 +11,4 @@ namespace Footballista.BuildingBlocks.Domain.KNNs.Models
 			Value = value;
 		}
 	}
-	[DebuggerDisplay("{Value}")]
-	public struct Distance<T>
-	{
-		public T Value { get; }
-		public Distance(T value)
-		{
-			Value = value;
-		}
-	}
 }
