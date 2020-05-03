@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Footballista.BuildingBlocks.Domain.Game;
 using Footballista.Game.Domain;
+using Footballista.Players;
 using Footballista.Players.Builders;
 using Footballista.Players.Builders.Generators;
 using Footballista.Players.Builders.Randomisers;
@@ -32,6 +33,8 @@ namespace Footballista.Modules
 			builder.RegisterType<DataPathHelper>().As<IDataPathHelper>();
 			builder.RegisterType<NameGenerator>().As<INameGenerator>();
 			builder.RegisterType<DateOfBirthGenerator>().As<IDateOfBirthGenerator>();
+			builder.RegisterType<IntRandomiser>().As<IRandomiser<int>>();
+			builder.RegisterType<AgeRandomiser>().As<IRandomiser<Age>>();
 			builder.RegisterType<ListRandomiser>().As<IListRandomiser>();
 			builder.RegisterType<CountriesGenerator>().As<ICountriesGenerator>();
 			builder.RegisterType<FavouriteFootGenerator>().As<IFavouriteFootGenerator>();

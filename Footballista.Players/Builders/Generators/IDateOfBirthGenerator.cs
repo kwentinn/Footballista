@@ -1,4 +1,5 @@
 ﻿using Footballista.BuildingBlocks.Domain.Game;
+using Footballista.Players.Builders.Randomisers;
 using Itenso.TimePeriod;
 using System;
 
@@ -11,11 +12,12 @@ namespace Footballista.Players.Builders.Generators
 	public class DateOfBirthGenerator : IDateOfBirthGenerator
 	{
 		private readonly IGame _game;
-		private readonly Random _random = new Random();
+		private readonly IRandomiser<Age> _ageRandomiser;
 
-		public DateOfBirthGenerator(IGame game)
+		public DateOfBirthGenerator(IGame game, IRandomiser<Age> ageRandomiser)
 		{
 			_game = game ?? throw new ArgumentNullException(nameof(game));
+			_ageRandomiser = ageRandomiser;
 		}
 
 		public Date Generate()
@@ -24,7 +26,9 @@ namespace Footballista.Players.Builders.Generators
 			DateTime gameDate = _game.CurrentDate;
 
 			// create a random player between 14 and 18 years old
-			Age age = Age.FromDays(_random.Next(14 * 365, 18 * 365));
+			Age age = _ageRandomiser.Randomise(
+				Age.FromDays(14 * 365), 
+				Age.FromDays(18 * 365 + 1));
 
 			return new Date(gameDate.AddDays(-age.Days));
 		}

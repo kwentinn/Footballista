@@ -25,12 +25,18 @@ namespace Footballista.Players.Builders.Generators
 			new PercentileData<Foot>(new Percentile(91), Foot.Both),
 			new PercentileData<Foot>(Percentile.Max, Foot.Both),
 		};
+		private readonly IPercentileGenerator _percentileGenerator;
 
-		private Random _random = new Random();
+		public FavouriteFootGenerator(IPercentileGenerator percentileGenerator)
+		{
+			_percentileGenerator = percentileGenerator;
+		}
 
 		public Foot Generate()
 		{
-			Percentile rndPct = new Percentile(_random.Next(Percentile.Min.Value, Percentile.Max.Value));
+
+			Percentile rndPct = _percentileGenerator.Generate();
+
 			var calculator = new PercentileKNearestNeighborCalculator<Foot>
 			(
 				rndPct,

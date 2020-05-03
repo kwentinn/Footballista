@@ -1,4 +1,5 @@
-﻿using Footballista.Players.Persons;
+﻿using Footballista.Players.Builders.Randomisers;
+using Footballista.Players.Persons;
 using System;
 
 namespace Footballista.Players.Builders.Generators
@@ -9,11 +10,16 @@ namespace Footballista.Players.Builders.Generators
 	}
 	public class GenderGenerator : IGenderGenerator
 	{
-		private Random _random = new Random();
+		private readonly IRandomiser<int> _intRandomiser;
+
+		public GenderGenerator(IRandomiser<int> intRandomiser)
+		{
+			_intRandomiser = intRandomiser;
+		}
 
 		public Gender Generate()
 		{
-			return (Gender)_random.Next(1, 3);
+			return (Gender)_intRandomiser.Randomise(1, 3);
 		}
 	}
 }

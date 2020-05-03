@@ -13,7 +13,12 @@ namespace Footballista.Players.Builders.Randomisers
 	}
 	public class ListRandomiser : IListRandomiser
 	{
-		private readonly Random _random = new Random();
+		private readonly IRandomiser<int> _intRandomiser;
+
+		public ListRandomiser(IRandomiser<int> intRandomiser)
+		{
+			this._intRandomiser = intRandomiser;
+		}
 
 		public T GetRandomisedItem<T>(List<T> list)
 			where T : class
@@ -22,7 +27,7 @@ namespace Footballista.Players.Builders.Randomisers
 			if (!list.Any()) throw new ArgumentException(nameof(list));
 
 			int nbOfItems = list.Count;
-			return list.ElementAt(_random.Next(nbOfItems));
+			return list.ElementAt(_intRandomiser.Randomise(0, nbOfItems));
 		}
 		public T GetRandomisedItem<T>(List<T> list, Func<T, bool> filterPredicate) where T : class
 		{
@@ -30,7 +35,7 @@ namespace Footballista.Players.Builders.Randomisers
 			if (filterPredicate == null) throw new ArgumentException(nameof(filterPredicate));
 
 			int nbOfItems = list.Count(filterPredicate);
-			return list.Where(filterPredicate).ElementAt(_random.Next(nbOfItems));
+			return list.Where(filterPredicate).ElementAt(_intRandomiser.Randomise(0, nbOfItems));
 		}
 		public T[] GetRandomisedItems<T>(List<T> list, int nbOfItemsToReturn) where T : class
 		{
@@ -41,7 +46,7 @@ namespace Footballista.Players.Builders.Randomisers
 			for (int i = 0; i < nbOfItemsToReturn; i++)
 			{
 				int nbOfItems = list.Count;
-				T item = list.ElementAt(_random.Next(nbOfItems));
+				T item = list.ElementAt(_intRandomiser.Randomise(0, nbOfItems));
 				returnList.Add(item);
 			}
 			return returnList.ToArray();
@@ -56,7 +61,7 @@ namespace Footballista.Players.Builders.Randomisers
 			for (int i = 0; i < nbOfItemsToReturn; i++)
 			{
 				int nbOfItems = list.Count(filterPredicate);
-				var item = list.Where(filterPredicate).ElementAt(_random.Next(nbOfItems));
+				var item = list.Where(filterPredicate).ElementAt(_intRandomiser.Randomise(0, nbOfItems));
 				returnList.Add(item);
 			}
 			return returnList.ToArray();

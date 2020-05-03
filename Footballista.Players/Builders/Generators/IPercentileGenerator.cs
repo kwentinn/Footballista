@@ -1,4 +1,5 @@
 ﻿using Footballista.BuildingBlocks.Domain.Percentiles;
+using Footballista.Players.Builders.Randomisers;
 using System;
 
 namespace Footballista.Players.Builders.Generators
@@ -10,10 +11,15 @@ namespace Footballista.Players.Builders.Generators
 	}
 	public class PercentileGenerator : IPercentileGenerator
 	{
-		private static Random Random = new Random();
+		private readonly IRandomiser<int> _intRandomiser;
+
+		public PercentileGenerator(IRandomiser<int> intRandomiser)
+		{
+			this._intRandomiser = intRandomiser;
+		}
 		public Percentile Generate()
 		{
-			var randomIntValue = Random.Next
+			var randomIntValue = _intRandomiser.Randomise
 			(
 				Percentile.Min.Value, 
 				Percentile.Max.Value
@@ -22,6 +28,6 @@ namespace Footballista.Players.Builders.Generators
 		}
 
 		public Percentile Generate(Percentile min, Percentile max)
-			=> new Percentile(Random.Next(min.Value, max.Value));
+			=> new Percentile(_intRandomiser.Randomise(min.Value, max.Value));
 	}
 }
