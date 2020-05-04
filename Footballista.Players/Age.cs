@@ -8,6 +8,9 @@ namespace Footballista.Players
 	[DebuggerDisplay("{Years} yrs.")]
 	public class Age : ValueObject
 	{
+		public static Age Min => new Age(0);
+		public static Age Max => new Age(100);
+
 		private static double _monthsInYear = 12d;
 		private static double _weeksInYear = 52d;
 		private static double _daysInYear = 365d;

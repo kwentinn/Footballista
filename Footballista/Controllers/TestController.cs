@@ -9,8 +9,10 @@ using Footballista.Players.Infrastracture.Loaders.Lastnames;
 using Footballista.Players.Persons;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Footballista.Controllers
 {
@@ -161,15 +163,22 @@ namespace Footballista.Controllers
 		[Route("generateplayers")]
 		public IActionResult GeneratePlayers()
 		{
-			var list = new List<Player>();
-			var countries = new Country[] { Country.Poland };
-			
-			for (var i = 0; i < 100; i++)
-			{
-				list.Add(_playerBuilder.Build(Gender.Male, countries));
-			}
+			var items = new BlockingCollection<Player>();
+			var countries = new Country[] { Country.Poland, Country.Russia };
 
-			var playersDto = list
+			Parallel.For(0, 100, (i) =>
+			{
+				items.Add(_playerBuilder.Build(Gender.Male, countries));
+			});
+
+			items.CompleteAdding();
+
+			//for (var i = 0; i < 100; i++)
+			//{
+			//	list.Add(_playerBuilder.Build(Gender.Male, countries));
+			//}
+
+			var playersDto = items
 				.Select(player => new
 				{
 					Name = $"{player.Firstname.Value} {player.Lastname.Value}",
@@ -190,7 +199,8 @@ namespace Footballista.Controllers
 						WeightInKilograms = Math.Round(player.Bmi.Weight.Kilograms, 0)
 					},
 					Gender = player.Gender.ToString(),
-					Position = player.PlayerPosition.Name
+					Position = player.PlayerPosition.Name,
+					Features = player.PhysicalFeatureSet.PhysicalFeatures
 				})
 				.ToList();
 

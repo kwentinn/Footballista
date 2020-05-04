@@ -5,6 +5,7 @@ using Footballista.Players;
 using Footballista.Players.Builders;
 using Footballista.Players.Builders.Generators;
 using Footballista.Players.Builders.Randomisers;
+using Footballista.Players.Features;
 using Footballista.Players.Growths;
 using Footballista.Players.Infrastracture.Generators;
 using Footballista.Players.Infrastracture.Loaders;
@@ -34,6 +35,7 @@ namespace Footballista.Modules
 			builder.RegisterType<NameGenerator>().As<INameGenerator>();
 			builder.RegisterType<DateOfBirthGenerator>().As<IDateOfBirthGenerator>();
 			builder.RegisterType<IntRandomiser>().As<IRandomiser<int>>();
+			builder.RegisterType<FeatureRatingRandomiser>().As<IRandomiser<FeatureRating>>();
 			builder.RegisterType<AgeRandomiser>().As<IRandomiser<Age>>();
 			builder.RegisterType<ListRandomiser>().As<IListRandomiser>();
 			builder.RegisterType<CountriesGenerator>().As<ICountriesGenerator>();

@@ -10,7 +10,7 @@ namespace Footballista.Players.Features.BusinessRules
 
 		public FeatureRatingMustBeWithinRangeRule(double featureValue)
 		{
-			this._featureValue = featureValue;
+			_featureValue = featureValue;
 		}
 
 		public bool IsBroken()

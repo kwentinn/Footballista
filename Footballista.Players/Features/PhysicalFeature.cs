@@ -1,5 +1,8 @@
-﻿namespace Footballista.Players.Features
+﻿using System.Diagnostics;
+
+namespace Footballista.Players.Features
 {
+	[DebuggerDisplay("{Name}:{Value}")]
 	public class PhysicalFeature
 	{
 		public FeatureName Name { get; }
