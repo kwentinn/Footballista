@@ -32,11 +32,10 @@ namespace Footballista.Modules
 			builder.RegisterType<WorldCitiesLoader>().As<IWorldCitiesLoader>();
 			builder.RegisterType<BirthLocationGenerator>().As<IBirthLocationGenerator>();
 			builder.RegisterType<DataPathHelper>().As<IDataPathHelper>();
-			builder.RegisterType<NameGenerator>().As<INameGenerator>();
 			builder.RegisterType<DateOfBirthGenerator>().As<IDateOfBirthGenerator>();
 			builder.RegisterType<IntRandomiser>().As<IRandomiser<int>>();
 			builder.RegisterType<FeatureRatingRandomiser>().As<IRandomiser<FeatureRating>>();
-			builder.RegisterType<AgeRandomiser>().As<IRandomiser<Age>>();
+			builder.RegisterType<AgeRandomiser>().As<IRandomiser<PersonAge>>();
 			builder.RegisterType<ListRandomiser>().As<IListRandomiser>();
 			builder.RegisterType<CountriesGenerator>().As<ICountriesGenerator>();
 			builder.RegisterType<FavouriteFootGenerator>().As<IFavouriteFootGenerator>();
@@ -47,6 +46,9 @@ namespace Footballista.Modules
 			builder.RegisterType<PercentileGenerator>().As<IPercentileGenerator>();
 			builder.RegisterType<BodyMassIndexGenerator>().As<IBodyMassIndexGenerator>();
 			builder.RegisterType<PlayerPositionGenerator>().As<IPlayerPositionGenerator>();
+			builder.RegisterType<FirstnameGenerator>().As<IFirstnameGenerator>();
+			builder.RegisterType<LastnameGenerator>().As<ILastnameGenerator>();
+			builder.RegisterType<PersonNameGenerator>().As<IPersonNameGenerator>();
 
 			// decorators
 			builder.RegisterDecorator<PercentileGrowthSetRepositoryCacheDecorator, IPercentileGrowthSetRepository>();

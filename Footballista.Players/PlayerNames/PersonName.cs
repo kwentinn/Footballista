@@ -5,12 +5,12 @@ using System.Diagnostics;
 namespace Footballista.Players.PlayerNames
 {
 	[DebuggerDisplay("{Firstname} {Lastname}")]
-	public class Name : ValueObject
+	public class PersonName : ValueObject
 	{
 		public Firstname Firstname { get; }
 		public Lastname Lastname { get; }
 
-		public Name(Firstname firstname, Lastname lastname)
+		public PersonName(Firstname firstname, Lastname lastname)
 		{
 			CheckRule(new NameCannotBeEmptyRule(firstname, lastname));
 

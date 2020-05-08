@@ -5,6 +5,7 @@ using Footballista.Players.Builders.Generators;
 using Footballista.Players.Growths;
 using Footballista.Players.Infrastracture.Loaders.Cities;
 using Footballista.Players.Infrastracture.Loaders.Firstnames;
+using Footballista.Players.Infrastracture.Loaders.Firstnames.Records;
 using Footballista.Players.Infrastracture.Loaders.Lastnames;
 using Footballista.Players.Persons;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,7 @@ namespace Footballista.Controllers
 		private readonly ILastnameRecordsLoader _lastnameRecordsLoader;
 		private readonly IWorldCitiesLoader _worldCitiesLoader;
 		private readonly IBirthLocationGenerator _birthLocationGenerator;
-		private readonly INameGenerator _nameGenerator;
+		private readonly IPersonNameGenerator _nameGenerator;
 		private readonly IDateOfBirthGenerator _dateOfBirthGenerator;
 		private readonly ICountriesGenerator _countriesGenerator;
 		private readonly IGrowthSetGenerator _growthSetGenerator;
@@ -38,7 +39,7 @@ namespace Footballista.Controllers
 			ILastnameRecordsLoader lastnameRecordsLoader,
 			IWorldCitiesLoader worldCitiesLoader,
 			IBirthLocationGenerator birthLocationGenerator,
-			INameGenerator nameGenerator,
+			IPersonNameGenerator nameGenerator,
 			IDateOfBirthGenerator dateOfBirthGenerator,
 			ICountriesGenerator countriesGenerator,
 			IGrowthSetGenerator growthSetGenerator,
@@ -68,7 +69,7 @@ namespace Footballista.Controllers
 		[Route("firstnames")]
 		public IActionResult GetFirstnames()
 		{
-			var data = _firstnameRecordsLoader.GetRecords();
+			List<FirstnameRecord> data = _firstnameRecordsLoader.GetRecords().Value;
 			return Ok(data);
 		}
 		[HttpGet]

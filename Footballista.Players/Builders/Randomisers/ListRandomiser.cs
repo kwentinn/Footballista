@@ -17,7 +17,7 @@ namespace Footballista.Players.Builders.Randomisers
 
 		public ListRandomiser(IRandomiser<int> intRandomiser)
 		{
-			this._intRandomiser = intRandomiser;
+			_intRandomiser = intRandomiser;
 		}
 
 		public T GetRandomisedItem<T>(List<T> list)

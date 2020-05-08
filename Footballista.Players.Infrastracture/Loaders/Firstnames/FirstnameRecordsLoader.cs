@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using Footballista.BuildingBlocks.Domain;
 using Footballista.Players.Infrastracture.Loaders.Firstnames.ClassMaps;
 using Footballista.Players.Infrastracture.Loaders.Firstnames.Records;
 using System.Collections.Generic;
@@ -13,7 +14,11 @@ namespace Footballista.Players.Infrastracture.Loaders.Firstnames
 	{
 		private readonly string _folderPath = @"..\data\firstnames";
 		private readonly string _filename = "firstnames-2014.csv";
-		
+
+		private const string CSV_DELIMITER = ";";
+		private readonly Encoding CSV_ENCODING = Encoding.UTF8;
+		private readonly CultureInfo CSV_READER_CULTURE = CultureInfo.InvariantCulture;
+
 		private readonly IDataPathHelper _dataPathHelper;
 
 		public FirstnameRecordsLoader(IDataPathHelper dataPathHelper)
@@ -21,22 +26,23 @@ namespace Footballista.Players.Infrastracture.Loaders.Firstnames
 			_dataPathHelper = dataPathHelper;
 		}
 
-		public List<FirstnameRecord> GetRecords()
+		public Maybe<List<FirstnameRecord>> GetRecords()
 		{
 			List<FirstnameRecord> result;
 
 			string fullPath = _dataPathHelper.GetFullPath(_folderPath, _filename);
 
 			using (var reader = new StreamReader(fullPath))
-			using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+			using (var csv = new CsvReader(reader, CSV_READER_CULTURE))
 			{
 				csv.Configuration.RegisterClassMap<FirstnameRecordClassMap>();
-				csv.Configuration.Delimiter = ";";
-				csv.Configuration.Encoding = Encoding.UTF8;
+				csv.Configuration.Delimiter = CSV_DELIMITER;
+				csv.Configuration.Encoding = CSV_ENCODING;
 
 				result = csv.GetRecords<FirstnameRecord>().ToList();
 			}
-			return result;
+
+			return Maybe.Some(result);
 		}
 	}
 }

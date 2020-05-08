@@ -33,8 +33,8 @@ namespace Footballista.Players.Builders.Generators
 			DateTime gameDate = _game.CurrentDate;
 
 			// get player age
-			Age playerAge = Age.FromDate(dob, gameDate);
-			playerAge = Age.FromYears(Math.Round(playerAge.Years, 0)); // round the value to be able to filter on it.
+			PersonAge playerAge = PersonAge.FromDate(dob, gameDate);
+			playerAge = PersonAge.FromYears(Math.Round(playerAge.Years, 0)); // round the value to be able to filter on it.
 
 			AbstractPercentileGrowthSet growthset = _percentileGrowthSetRepository.GetPercentileGrowthSet(playerGender);
 

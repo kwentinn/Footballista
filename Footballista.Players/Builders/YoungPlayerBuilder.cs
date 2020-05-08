@@ -13,7 +13,7 @@ namespace Footballista.Players.Builders
 {
 	public class YoungPlayerBuilder : IPlayerBuilder
 	{
-		private readonly INameGenerator _nameGenerator;
+		private readonly IPersonNameGenerator _nameGenerator;
 		private readonly IGenderGenerator _genderGenerator;
 		private readonly IDateOfBirthGenerator _dobGenerator;
 		private readonly IBirthLocationGenerator _birthLocationGenerator;
@@ -27,7 +27,7 @@ namespace Footballista.Players.Builders
 
 		public YoungPlayerBuilder
 		(
-			INameGenerator nameGenerator,
+			IPersonNameGenerator nameGenerator,
 			IGenderGenerator genderGenerator,
 			IDateOfBirthGenerator dobGenerator,
 			IBirthLocationGenerator birthLocationGenerator,
@@ -62,7 +62,7 @@ namespace Footballista.Players.Builders
 				countries = _countriesGenerator.Generate().Value;
 			}
 
-			Name playerName = _nameGenerator.Generate(playerGender.Value, countries.FirstOrDefault());
+			PersonName playerName = _nameGenerator.Generate(playerGender.Value, countries.FirstOrDefault());
 			Date dob = _dobGenerator.Generate();
 			Location birthLocation = _birthLocationGenerator.Generate(countries.FirstOrDefault());
 			Foot playerFoot = _favouriteFootGenerator.Generate();

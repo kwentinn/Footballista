@@ -4,8 +4,8 @@ using Footballista.Players.PlayerNames;
 
 namespace Footballista.Players.Builders.Generators
 {
-	public interface INameGenerator
+	public interface IFirstnameGenerator
 	{
-		Name Generate(Gender gender, Country country);
+		Firstname Generate(Gender gender, Country country);
 	}
 }

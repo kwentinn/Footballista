@@ -1,4 +1,5 @@
-﻿using Footballista.Players.Infrastracture.Loaders.Firstnames.Records;
+﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.Players.Infrastracture.Loaders.Firstnames.Records;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace Footballista.Players.Infrastracture.Loaders.Firstnames
 			_cache = cache;
 			_decorated = decorated;
 		}
-		public List<FirstnameRecord> GetRecords()
+		public Maybe<List<FirstnameRecord>> GetRecords()
 		{
 			return _cache.GetOrCreate("FIRSTNAME_RECORDS", (entry) =>
 			{

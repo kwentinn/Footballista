@@ -14,7 +14,7 @@ namespace Footballista.PlayersUnitTests.Infra
 		[TestMethod]
 		public void GetRecords()
 		{
-			string currentDir = Directory.GetCurrentDirectory() + @"\..\..\..\..\";
+			string currentDir = Directory.GetCurrentDirectory() + @"\..\..\..\..\data\firstnames\firstnames-2014.csv";
 
 			// arrange: create & setup mocks, create loader with mock
 			Mock<IDataPathHelper> mockDataPathHelper = new Mock<IDataPathHelper>();
@@ -24,7 +24,7 @@ namespace Footballista.PlayersUnitTests.Infra
 
 			var loader = new FirstnameRecordsLoader(mockDataPathHelper.Object);
 
-			List<FirstnameRecord> records = loader.GetRecords();
+			List<FirstnameRecord> records = loader.GetRecords().Value;
 
 			Assert.IsNotNull(records);
 		}

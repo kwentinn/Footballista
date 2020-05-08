@@ -17,12 +17,12 @@ namespace Footballista.Players.Builders.Randomisers
 		public int Randomise() => Random.Next(0, int.MaxValue);
 		public int Randomise(int min, int max) => Random.Next(min, max);
 	}
-	public class AgeRandomiser : GenericRandomiser, IRandomiser<Age>
+	public class AgeRandomiser : GenericRandomiser, IRandomiser<PersonAge>
 	{
-		public Age Randomise()
-			=> Age.FromDays(Random.Next(Convert.ToInt32(Age.Min.Days), Convert.ToInt32(Age.Max.Days)));
-		public Age Randomise(Age min, Age max)
-			=> Age.FromDays(Random.Next(Convert.ToInt32(min.Days), Convert.ToInt32(max.Days)));
+		public PersonAge Randomise()
+			=> PersonAge.FromDays(Random.Next(Convert.ToInt32(PersonAge.Min.Days), Convert.ToInt32(PersonAge.Max.Days)));
+		public PersonAge Randomise(PersonAge min, PersonAge max)
+			=> PersonAge.FromDays(Random.Next(Convert.ToInt32(min.Days), Convert.ToInt32(max.Days)));
 	}
 	public class FeatureRatingRandomiser : GenericRandomiser, IRandomiser<FeatureRating>
 	{

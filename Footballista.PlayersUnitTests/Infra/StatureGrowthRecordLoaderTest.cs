@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Footballista.PlayersUnitTests.Infra
 {
@@ -16,16 +17,18 @@ namespace Footballista.PlayersUnitTests.Infra
 		[TestMethod]
 		public void GetRecords_PassGenderMale_ShouldReturnRecordsForMale()
 		{
+			string dataPath = Directory.GetCurrentDirectory() + @"\..\..\..\..\data\growth-charts\Stature-for-age-Male-2-to-20-years.csv";
+
 			// arrange: create & setup mocks, create loader with mock
 			Mock<IDataPathHelper> mockDataPathHelper = new Mock<IDataPathHelper>();
 			mockDataPathHelper
 				.Setup(env => env.GetFullPath(It.IsAny<string>(), It.IsAny<string>()))
-				.Returns(() => @"C:\code\Footballista\Footballista\");
+				.Returns(() => dataPath);
 
 			StatureGrowthRecordLoader loader = new StatureGrowthRecordLoader(mockDataPathHelper.Object);
 
 			// act
-			var maybeData = loader.GetRecords(Gender.Male);
+			Maybe<List<GrowthRecord>> maybeData = loader.GetRecords(Gender.Male);
 
 			// assert
 			Assert.IsTrue(maybeData.HasValue);
@@ -34,11 +37,13 @@ namespace Footballista.PlayersUnitTests.Infra
 		[TestMethod]
 		public void GetRecords_PassGenderFemale_ShouldReturnRecordsForFemale()
 		{
+			string dataPath = Directory.GetCurrentDirectory() + @"\..\..\..\..\data\growth-charts\Stature-for-age-Female-2-to-20-years.csv";
+			
 			// arrange: create & setup mocks, create loader with mock
 			Mock<IDataPathHelper> mockDataPathHelper = new Mock<IDataPathHelper>();
 			mockDataPathHelper
 				.Setup(env => env.GetFullPath(It.IsAny<string>(), It.IsAny<string>()))
-				.Returns(() => @"C:\code\Footballista\Footballista\");
+				.Returns(() => dataPath);
 
 			StatureGrowthRecordLoader loader = new StatureGrowthRecordLoader(mockDataPathHelper.Object);
 
