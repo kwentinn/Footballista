@@ -66,10 +66,10 @@ namespace Footballista.Players.Builders
 			Date dob = _dobGenerator.Generate();
 			Location birthLocation = _birthLocationGenerator.Generate(countries.FirstOrDefault());
 			Foot playerFoot = _favouriteFootGenerator.Generate();
-			PhysicalFeatureSet playerFeatureSet = _physicalFeatureSetGenerator.Generate();
 			Percentile percentile = _percentileGenerator.Generate();
 			BodyMassIndex bmi = _bmiGenerator.Generate(countries.FirstOrDefault(), playerGender.Value, percentile, dob);
 			PlayerPosition position = _playerPositionGenerator.Generate();
+			PhysicalFeatureSet playerFeatureSet = _physicalFeatureSetGenerator.Generate(position, bmi, countries.FirstOrDefault());
 
 			// first name & last name => according to the player's country
 			return Player.CreatePlayer

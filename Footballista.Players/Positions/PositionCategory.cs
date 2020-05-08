@@ -7,6 +7,7 @@ namespace Footballista.Players.Positions
 	public class PositionCategory : ValueObject
 	{
 		public string Name { get; }
+
 		private PositionCategory(string name)
 		{
 			Name = name;
