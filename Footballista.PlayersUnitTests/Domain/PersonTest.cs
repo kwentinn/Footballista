@@ -20,8 +20,8 @@ namespace Footballista.PlayersUnitTests.Domain
 				lastname: new Lastname("Monroe"),
 				gender: Gender.Male,
 				dob: new Date(1990, 5, 11),
-				birthLocation: new Location(new City("Montpellier"), "FR"),
-				nationalities: new Country("FR")
+				birthLocation: new Location(new City("Montpellier"), Country.France),
+				nationalities: Country.France
 			);
 
 			Assert.IsNotNull(someone);
@@ -39,8 +39,8 @@ namespace Footballista.PlayersUnitTests.Domain
 					new Lastname("Monroe"),
 					Gender.Male,
 					new Date(1990, 5, 11),
-					new Location(new City("Montpellier"), "FR"),
-					new Country("FR"), new Country("de"), new Country("it")
+					new Location(new City("Montpellier"), Country.France),
+					Country.France, Country.Germany, Country.Italy
 				);
 			});
 		}

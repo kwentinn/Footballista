@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Footballista.BuildingBlocks.Domain;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace Footballista.Players.Features
 {
-	[DebuggerDisplay("{Name}:{Value}")]
-	public class PhysicalFeature
+	[DebuggerDisplay("{Name}={Value}")]
+	public class PhysicalFeature : ValueObject
 	{
 		public FeatureName Name { get; }
 		public FeatureRating Value { get; protected set; }

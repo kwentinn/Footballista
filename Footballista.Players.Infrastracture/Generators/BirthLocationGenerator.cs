@@ -28,7 +28,7 @@ namespace Footballista.Players.Infrastracture.Generators
 
 			WorldCityRecord city = _listRandomiser.GetRandomisedItem(cities, record => record.CountryCodeIso2 == country.RegionInfo.TwoLetterISORegionName);
 
-			return new Location(new City(city.City), city.CountryCodeIso2);
+			return new Location(new City(city.City), country);
 		}
 	}
 }

@@ -37,9 +37,10 @@ namespace Footballista.Players.Builders.Generators
 			Country.USA
 		};
 
-		public CountriesGenerator(IListRandomiser listRandomiser)
+		public CountriesGenerator(IListRandomiser listRandomiser, IRandomiser<int> intRandomiser)
 		{
 			_listRandomiser = listRandomiser;
+			_intRandomiser = intRandomiser;
 		}
 
 		public Maybe<Country[]> Generate()

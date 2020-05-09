@@ -17,8 +17,8 @@ namespace Footballista.PlayersUnitTests.Domain
 				new Firstname("José"), new Lastname("Pelé"), 
 				Gender.Male, 
 				new Date(2000, 1, 1), 
-				new Location(new City("Carnon"), "FR"),
-				new Country("FR")
+				new Location(new City("Carnon"), Country.France),
+				Country.France
 			);
 		}
 	}

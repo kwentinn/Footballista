@@ -29,14 +29,17 @@ namespace Footballista.Players.Builders.Generators
 
 			Parallel.ForEach(set.PhysicalFeatures, feature =>
 			{
+				FeatureRating rating;
+
 				if (feature.Equals(PhysicalFeature.Morale))
 				{
-					FeatureRating moraleRating = _randomiser.Randomise(_minRating, new FeatureRating(1));
-					feature.ChangeRating(moraleRating);
-					return;
+					rating = _randomiser.Randomise();
+				}
+				else
+				{
+					rating = _randomiser.Randomise(_minRating, _maxRating);
 				}
 
-				FeatureRating rating = _randomiser.Randomise(_minRating, _maxRating);
 				feature.ChangeRating(rating);
 			});
 

@@ -12,27 +12,24 @@ namespace Footballista.Players.Infrastracture.Loaders.Lastnames
 {
 	public class LastnameRecordsLoader : ILastnameRecordsLoader
 	{
-		private readonly IHostEnvironment _hostEnvironment;
 		private readonly string _folderPath = @"..\data\lastnames";
+		private readonly IDataPathHelper _dataPathHelper;
+
 		private string Filename(Country country) => $"{country.RegionInfo.TwoLetterISORegionName}.txt";
 
-		private string FullPath(Country country) => Path.GetFullPath(string.Concat
-		(
-			_hostEnvironment.ContentRootPath,
-			_hostEnvironment.ContentRootPath.EndsWith(@"\") ? "" : @"\",
-			_folderPath, @"\",
-			Filename(country)
-		));
 
-		public LastnameRecordsLoader(IHostEnvironment hostEnvironment)
+		public LastnameRecordsLoader(IDataPathHelper dataPathHelper)
 		{
-			_hostEnvironment = hostEnvironment;
+			_dataPathHelper = dataPathHelper;
 		}
 
 		public List<LastnameRecord> GetRecords(Country country)
 		{
 			List<LastnameRecord> result;
-			using (var reader = new StreamReader(FullPath(country)))
+
+			var path = _dataPathHelper.GetFullPath(_folderPath, Filename(country));
+
+			using (var reader = new StreamReader(path))
 			using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
 			{
 				csv.Configuration.Delimiter = ";";

@@ -76,7 +76,7 @@ namespace Footballista.Controllers
 		[Route("lastnames")]
 		public IActionResult GetLastnames()
 		{
-			var data = _lastnameRecordsLoader.GetRecords(new Country("gb-nir"));
+			var data = _lastnameRecordsLoader.GetRecords(Country.NorthernIreland);
 			return Ok(data);
 		}
 		[HttpGet]
@@ -90,7 +90,7 @@ namespace Footballista.Controllers
 		[Route("generatebirthlocation")]
 		public IActionResult GenerateBirthLocation()
 		{
-			Location data = _birthLocationGenerator.Generate(new Country("fr"));
+			Location data = _birthLocationGenerator.Generate(Country.France);
 			return Ok(data);
 		}
 		[HttpGet]
@@ -100,7 +100,7 @@ namespace Footballista.Controllers
 			List<Location> list = new List<Location>();
 			for (int i = 0; i < 1000; i++)
 			{
-				list.Add(_birthLocationGenerator.Generate(new Country("fr")));
+				list.Add(_birthLocationGenerator.Generate(Country.France));
 			}
 			return Ok(list);
 		}
@@ -172,12 +172,6 @@ namespace Footballista.Controllers
 				items.Add(_playerBuilder.Build(Gender.Male, countries));
 			});
 
-
-			//for (var i = 0; i < 100; i++)
-			//{
-			//	items.Add(_playerBuilder.Build(Gender.Male, countries));
-			//}
-
 			items.CompleteAdding();
 
 			var playersDto = items
@@ -203,6 +197,12 @@ namespace Footballista.Controllers
 					Gender = player.Gender.ToString(),
 					Position = player.PlayerPosition.Name,
 					Features = player.PhysicalFeatureSet.PhysicalFeatures
+						.Select(f => new
+						{
+							Feature = f.Name.Name,
+							Rating = Convert.ToInt32(f.Value.Rating * 100)
+						})
+						.ToList()
 				})
 				.ToList();
 

@@ -5,11 +5,11 @@ using System.Diagnostics;
 
 namespace Footballista.Players.Features
 {
-	[DebuggerDisplay("{Rating:P2}")]
+	[DebuggerDisplay("{Rating}")]
 	public class FeatureRating : ValueObject
 	{
-		public static FeatureRating Min => new FeatureRating(0);
-		public static FeatureRating Max => new FeatureRating(1);
+		public static FeatureRating Min => new FeatureRating(0.01);
+		public static FeatureRating Max => new FeatureRating(0.99);
 
 		public double Rating { get; }
 

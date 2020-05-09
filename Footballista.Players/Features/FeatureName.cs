@@ -1,8 +1,10 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using System;
+using System.Diagnostics;
 
 namespace Footballista.Players.Features
 {
+	[DebuggerDisplay("{Name}")]
 	public class FeatureName : ValueObject
 	{
 		public string Name { get; }
