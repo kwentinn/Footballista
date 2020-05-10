@@ -37,7 +37,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0EC2216D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.BuildingBlocks.Domain.UnitTests", "Footballista.BuildingBlocks.Domain.UnitTests\Footballista.BuildingBlocks.Domain.UnitTests.csproj", "{9FC0076B-1859-4C19-BCF6-A4605242136A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.Players.IntegrationTests", "Footballista.Players.IntegrationTests\Footballista.Players.IntegrationTests.csproj", "{D339491A-C387-4D8E-AC52-5C4DD55B995D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Players.IntegrationTests", "Footballista.Players.IntegrationTests\Footballista.Players.IntegrationTests.csproj", "{D339491A-C387-4D8E-AC52-5C4DD55B995D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{3E9746CA-2A06-4997-81AF-9B573684918D}"
+	ProjectSection(SolutionItems) = preProject
+		docs\génération de joueur.md = docs\génération de joueur.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,6 +97,7 @@ Global
 		{0EC2216D-39E8-4161-BAD9-726113543DDE} = {EDB7D2DA-9158-4138-B67C-F591D28C69C4}
 		{9FC0076B-1859-4C19-BCF6-A4605242136A} = {0EC2216D-39E8-4161-BAD9-726113543DDE}
 		{D339491A-C387-4D8E-AC52-5C4DD55B995D} = {D53DB4AA-9538-4953-B4B9-AFE3B97D2623}
+		{3E9746CA-2A06-4997-81AF-9B573684918D} = {59C215F7-051E-4AD0-8AAD-8863E7F2BDD6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8CA48F83-3D6D-4B67-8110-608DD680C317}
