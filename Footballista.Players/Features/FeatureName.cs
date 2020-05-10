@@ -37,7 +37,6 @@ namespace Footballista.Players.Features
 		public static FeatureName FightingSpirit => new FeatureName(nameof(FightingSpirit));
 		public static FeatureName Morale => new FeatureName(nameof(Morale));
 
-
 		public static FeatureName Goalkeeping => new FeatureName(nameof(Goalkeeping));
 	}
 }

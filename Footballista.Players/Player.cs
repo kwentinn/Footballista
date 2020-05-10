@@ -3,6 +3,7 @@ using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Features;
 using Footballista.Players.Growths;
 using Footballista.Players.Persons;
+using Footballista.Players.Physique;
 using Footballista.Players.PlayerNames;
 using Footballista.Players.Positions;
 using Itenso.TimePeriod;

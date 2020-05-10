@@ -103,7 +103,8 @@ namespace Footballista.Players.IntegrationTests
 				countriesGenerator: _countriesGenerator,
 				growthSetGenerator: _growthSetGenerator,
 				percentileGenerator: _percentileGenerator,
-				playerPositionGenerator: _playerPositionGenerator
+				playerPositionGenerator: _playerPositionGenerator,
+				game: _game
 			);
 
 			var player = builder.Build();

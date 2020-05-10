@@ -20,8 +20,7 @@ namespace Footballista.Players.Builders.Randomisers
 			_intRandomiser = intRandomiser;
 		}
 
-		public T GetRandomisedItem<T>(List<T> list)
-			where T : class
+		public T GetRandomisedItem<T>(List<T> list) where T : class
 		{
 			if (list is null) throw new ArgumentNullException(nameof(list));
 			if (!list.Any()) throw new ArgumentException(nameof(list));

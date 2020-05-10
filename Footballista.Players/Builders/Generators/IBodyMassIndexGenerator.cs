@@ -3,6 +3,7 @@ using Footballista.BuildingBlocks.Domain.Percentiles;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Growths;
 using Footballista.Players.Persons;
+using Footballista.Players.Physique;
 using Itenso.TimePeriod;
 using System;
 using System.Linq;

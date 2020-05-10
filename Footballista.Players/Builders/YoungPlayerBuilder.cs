@@ -1,9 +1,11 @@
 ﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.BuildingBlocks.Domain.Game;
 using Footballista.BuildingBlocks.Domain.Percentiles;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Builders.Generators;
 using Footballista.Players.Features;
 using Footballista.Players.Persons;
+using Footballista.Players.Physique;
 using Footballista.Players.PlayerNames;
 using Footballista.Players.Positions;
 using Itenso.TimePeriod;
@@ -24,6 +26,7 @@ namespace Footballista.Players.Builders
 		private readonly IGrowthSetGenerator _growthSetGenerator;
 		private readonly IPercentileGenerator _percentileGenerator;
 		private readonly IPlayerPositionGenerator _playerPositionGenerator;
+		private readonly IGame _game;
 
 		public YoungPlayerBuilder
 		(
@@ -37,7 +40,8 @@ namespace Footballista.Players.Builders
 			ICountriesGenerator countriesGenerator,
 			IGrowthSetGenerator growthSetGenerator,
 			IPercentileGenerator percentileGenerator,
-			IPlayerPositionGenerator playerPositionGenerator
+			IPlayerPositionGenerator playerPositionGenerator,
+			IGame game
 		)
 		{
 			_nameGenerator = nameGenerator;
@@ -51,6 +55,7 @@ namespace Footballista.Players.Builders
 			_growthSetGenerator = growthSetGenerator;
 			_percentileGenerator = percentileGenerator;
 			_playerPositionGenerator = playerPositionGenerator;
+			_game = game;
 		}
 
 		public Player Build(Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
@@ -64,12 +69,15 @@ namespace Footballista.Players.Builders
 
 			PersonName playerName = _nameGenerator.Generate(playerGender.Value, countries.FirstOrDefault());
 			Date dob = _dobGenerator.Generate();
+
+			PersonAge playerAge = PersonAge.FromDate(dob, _game.CurrentDate);
+
 			Location birthLocation = _birthLocationGenerator.Generate(countries.FirstOrDefault());
 			Foot playerFoot = _favouriteFootGenerator.Generate();
 			Percentile percentile = _percentileGenerator.Generate();
 			BodyMassIndex bmi = _bmiGenerator.Generate(countries.FirstOrDefault(), playerGender.Value, percentile, dob);
 			PlayerPosition position = _playerPositionGenerator.Generate();
-			PhysicalFeatureSet playerFeatureSet = _physicalFeatureSetGenerator.Generate(position, bmi, countries.FirstOrDefault());
+			PhysicalFeatureSet playerFeatureSet = _physicalFeatureSetGenerator.Generate(position, bmi, countries.FirstOrDefault(), playerAge);
 
 			// first name & last name => according to the player's country
 			return Player.CreatePlayer

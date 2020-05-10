@@ -6,7 +6,7 @@ using System.Diagnostics;
 namespace Footballista.Players
 {
 	[DebuggerDisplay("{Years} yrs.")]
-	public class PersonAge : ValueObject
+	public class PersonAge : ValueObject, IComparable<PersonAge>
 	{
 		public static PersonAge Min => new PersonAge(0);
 		public static PersonAge Max => new PersonAge(100);
@@ -48,5 +48,7 @@ namespace Footballista.Players
 				currentDate.Value.Subtract(dob.DateTime).TotalDays
 			));
 		}
+
+		public int CompareTo(PersonAge other) => Years.CompareTo(other.Years);
 	}
 }
