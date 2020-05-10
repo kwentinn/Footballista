@@ -13,8 +13,5 @@ namespace Footballista.Players.Physique
 			BmiType = bmiType;
 			Range = range ?? throw new ArgumentNullException(nameof(range));
 		}
-
-		public bool IsInRange(double value)
-			=> value >= Range.Min && value <= Range.Max;
 	}
 }

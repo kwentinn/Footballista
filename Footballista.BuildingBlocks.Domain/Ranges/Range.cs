@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Footballista.BuildingBlocks.Domain.Ranges.Rules;
+using System;
 using System.Diagnostics;
 
 namespace Footballista.BuildingBlocks.Domain
@@ -12,6 +13,8 @@ namespace Footballista.BuildingBlocks.Domain
 
 		public Range(T min, T max)
 		{
+			CheckRule(new MinMustBeLessOrEqualsMaxRule<T>(min, max));
+
 			Min = min;
 			Max = max;
 		}

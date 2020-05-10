@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace Footballista.Players
 {
-	[DebuggerDisplay("{Years} yrs.")]
+	[DebuggerDisplay("{System.Math.Round(Years, 1)} yrs.")]
 	public class PersonAge : ValueObject, IComparable<PersonAge>
 	{
 		public static PersonAge Min => new PersonAge(0);
