@@ -11,8 +11,8 @@ namespace Footballista.Players.Builders.Randomisers
 
 		public FeatureRating Randomise(FeatureRating min, FeatureRating max)
 		{
-			int minValue = Convert.ToInt32(Math.Round(min.Rating * 100d, 0));
-			int maxValue = Convert.ToInt32(Math.Round(max.Rating * 100d, 0));
+			int minValue = Convert.ToInt32(Math.Round(min.Value * 100d, 0));
+			int maxValue = Convert.ToInt32(Math.Round(max.Value * 100d, 0));
 
 			double value = Convert.ToDouble(Random.Next(minValue, maxValue)) / 100d;
 

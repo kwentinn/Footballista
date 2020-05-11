@@ -41,7 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Players.Integr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{3E9746CA-2A06-4997-81AF-9B573684918D}"
 	ProjectSection(SolutionItems) = preProject
-		docs\génération de joueur.md = docs\génération de joueur.md
+		docs\001.Player Generation.md = docs\001.Player Generation.md
+		docs\002.Player Features Evolution.md = docs\002.Player Features Evolution.md
 	EndProjectSection
 EndProject
 Global

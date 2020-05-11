@@ -6,7 +6,12 @@ namespace Footballista.Players.Features.BusinessRules
 	{
 		private readonly double _featureValue;
 
-		public string Message => "A feature value must be between 0 and 1.";
+		private const double MIN_VALUE = 0d;
+		private const double MAX_VALUE = 1d;
+
+		private readonly Range<double> _validRange = new Range<double>(MIN_VALUE, MAX_VALUE);
+
+		public string Message => $"A feature value must be between {MIN_VALUE} and {MAX_VALUE}.";
 
 		public FeatureRatingMustBeWithinRangeRule(double featureValue)
 		{
@@ -15,7 +20,7 @@ namespace Footballista.Players.Features.BusinessRules
 
 		public bool IsBroken()
 		{
-			return _featureValue < 0.01 || _featureValue > 0.99;
+			return !_validRange.IsValueInRange(_featureValue);
 		}
 	}
 }
