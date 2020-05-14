@@ -21,7 +21,7 @@ namespace Footballista.Players.Builders.Randomisers
 
 		public FeatureRating Randomise(Range<FeatureRating> range)
 		{
-			return Randomise(range.Min, range.Max);
+			return Randomise(range.Lower, range.Upper);
 		}
 	}
 }

@@ -3,14 +3,21 @@ using Footballista.Players.PlayerEvolutions.Rules;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using Range = Footballista.BuildingBlocks.Domain.Range;
 
+[assembly: InternalsVisibleTo("Footballista.BuildingBlocks.Domain.UnitTests")]
+[assembly: InternalsVisibleTo("Footballista.PlayersUnitTests")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 namespace Footballista.Players.PlayerEvolutions
 {
 	public class PlayerEvolution
 	{
-		public Duration Duration { get; }
+		private readonly Range<PersonAge> _ageRange;
+		private readonly Duration _duration;
 
-		public ReadOnlyCollection<FeatureEvolution> Phases => _phases.AsReadOnly();
+		internal ReadOnlyCollection<FeatureEvolution> Phases => _phases.AsReadOnly();
 		private readonly List<FeatureEvolution> _phases = new List<FeatureEvolution>
 		{
 			Phase1Evolution.Value,
@@ -18,24 +25,38 @@ namespace Footballista.Players.PlayerEvolutions
 			Phase3Evolution.Value
 		};
 
-		public PlayerEvolution(Duration duration)
+		public PlayerEvolution()
 		{
-			Duration = duration;
+			List<Range<PersonAge>> ranges = _phases
+				.Select(p => p.AgeRange)
+				.ToList();
+
+			_ageRange = Range<PersonAge>.MergeRanges(ranges);
+
+			_duration = Duration.FromAgeRange(_ageRange);
 		}
 	}
 
-	public sealed class Phase1Evolution : FeatureEvolution
+	internal sealed class Phase1Evolution : FeatureEvolution
 	{
+		private const int AGE_MIN = 14;
+		private const int AGE_MAX = 28;
+
 		public static Phase1Evolution Value => new Phase1Evolution
 		(
-			new Range<PersonAge>(PersonAge.FromYears(14), PersonAge.FromYears(28)),
+			new Range<PersonAge>(PersonAge.FromYears(AGE_MIN), PersonAge.FromYears(AGE_MAX)),
 			EvolutionCurve.Slow
 		);
 
+		public static Phase1Evolution Create(EvolutionCurve evolutionCurve)
+			=> new Phase1Evolution(new Range<PersonAge>(PersonAge.FromYears(AGE_MIN), PersonAge.FromYears(AGE_MAX)), evolutionCurve);
+
 		private Phase1Evolution(Range<PersonAge> ageRange, EvolutionCurve evolutionCurve)
-			: base(ageRange, new FeatureImprovementRatio(0.5), evolutionCurve) { }
+			: base(ageRange, new FeatureImprovementRatio(0.5), evolutionCurve) 
+		{ 
+		}
 	}
-	public sealed class Phase2Evolution : FeatureEvolution
+	internal sealed class Phase2Evolution : FeatureEvolution
 	{
 		public static Phase2Evolution Value => new Phase2Evolution
 		(
@@ -47,7 +68,7 @@ namespace Footballista.Players.PlayerEvolutions
 		private Phase2Evolution(Range<PersonAge> ageRange, FeatureImprovementRatio maxImprovement, EvolutionCurve evolutionCurve)
 			: base(ageRange, maxImprovement, evolutionCurve) { }
 	}
-	public sealed class Phase3Evolution : FeatureEvolution
+	internal sealed class Phase3Evolution : FeatureEvolution
 	{
 		public static Phase3Evolution Value => new Phase3Evolution
 		(
@@ -60,7 +81,7 @@ namespace Footballista.Players.PlayerEvolutions
 			: base(ageRange, maxImprovement, evolutionCurve) { }
 	}
 
-	public class FeatureEvolution : ValueObject
+	internal class FeatureEvolution : ValueObject
 	{
 		public Range<PersonAge> AgeRange { get; }
 		public FeatureImprovementRatio MaxFeatureImprovement { get; }
@@ -81,7 +102,7 @@ namespace Footballista.Players.PlayerEvolutions
 			CheckRule(new PersonAgeMustBeWithinAgeRangeRule(age, AgeRange));
 
 			// recalculer l'abscisse pour que 0 <= x <= 1
-			double x = (age.Years - AgeRange.Min.Years) / Duration.FromAgeRange(AgeRange).Years;
+			double x = (age.Years - AgeRange.Lower.Years) / Duration.FromAgeRange(AgeRange).Years;
 
 			// calculer y entre 0 et 1
 			double y = Math.Pow(x, EvolutionCurve.Value) * MaxFeatureImprovement.Value;
@@ -89,11 +110,16 @@ namespace Footballista.Players.PlayerEvolutions
 
 			return new FeatureImprovementRatio(y);
 		}
+		public FeatureImprovementRatio GetImprovementFromAgeRange(Range<PersonAge> ageRange)
+		{
+			var improvement = GetImprovementFromAge(ageRange.Upper).Value - GetImprovementFromAge(ageRange.Lower).Value;
+			return new FeatureImprovementRatio(improvement);
+		}
 
 		public AgeRating ImproveRatingFromAge(AgeRating ageRating, Duration evolutionDuration)
 		{
 			if (ageRating is null) throw new ArgumentNullException(nameof(ageRating));
-			if (evolutionDuration is null)throw new ArgumentNullException(nameof(evolutionDuration));
+			if (evolutionDuration is null) throw new ArgumentNullException(nameof(evolutionDuration));
 
 			var futureAge = PersonAge.FromYears(ageRating.Age.Years + evolutionDuration.Years);
 

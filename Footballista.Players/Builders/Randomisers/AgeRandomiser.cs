@@ -11,6 +11,6 @@ namespace Footballista.Players.Builders.Randomisers
 			=> PersonAge.FromDays(Random.Next(Convert.ToInt32(min.Days), Convert.ToInt32(max.Days)));
 
 		public PersonAge Randomise(Range<PersonAge> range)
-			=> Randomise(range.Min, range.Max);
+			=> Randomise(range.Lower, range.Upper);
 	}
 }
