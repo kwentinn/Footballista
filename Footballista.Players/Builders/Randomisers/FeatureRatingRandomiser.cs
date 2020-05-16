@@ -5,21 +5,21 @@ using System;
 namespace Footballista.Players.Builders.Randomisers
 {
 
-	public class FeatureRatingRandomiser : GenericRandomiser, IRandomiser<FeatureRating>
+	public class FeatureRatingRandomiser : GenericRandomiser, IRandomiser<Rating>
 	{
-		public FeatureRating Randomise() => Randomise(FeatureRating.Min, FeatureRating.Max);
+		public Rating Randomise() => Randomise(Rating.Min, Rating.Max);
 
-		public FeatureRating Randomise(FeatureRating min, FeatureRating max)
+		public Rating Randomise(Rating min, Rating max)
 		{
 			int minValue = Convert.ToInt32(Math.Round(min.Value * 100d, 0));
 			int maxValue = Convert.ToInt32(Math.Round(max.Value * 100d, 0));
 
 			double value = Convert.ToDouble(Random.Next(minValue, maxValue)) / 100d;
 
-			return new FeatureRating(value);
+			return new Rating(value);
 		}
 
-		public FeatureRating Randomise(Range<FeatureRating> range)
+		public Rating Randomise(Range<Rating> range)
 		{
 			return Randomise(range.Lower, range.Upper);
 		}

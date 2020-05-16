@@ -29,7 +29,7 @@ namespace Footballista.PlayersUnitTests.Domain
 		{
 			FeatureImprovementRatio improvement = Phase1Evolution.Value.GetImprovementFromAge(PersonAge.FromYears(16));
 
-			FeatureRating rating = new FeatureRating(0.2);
+			Rating rating = new Rating(0.2);
 			var newRating = improvement.ImproveRating(rating);
 
 			Assert.IsNotNull(newRating);
@@ -41,7 +41,7 @@ namespace Footballista.PlayersUnitTests.Domain
 		{
 			FeatureImprovementRatio improvement = Phase1Evolution.Value.GetImprovementFromAge(PersonAge.FromYears(28));
 
-			FeatureRating rating = new FeatureRating(0.2);
+			Rating rating = new Rating(0.2);
 			var newRating = improvement.ImproveRating(rating);
 
 			Assert.IsNotNull(newRating);
@@ -53,7 +53,7 @@ namespace Footballista.PlayersUnitTests.Domain
 		{
 			FeatureImprovementRatio improvement = Phase1Evolution.Value.GetImprovementFromAge(PersonAge.FromYears(28));
 
-			FeatureRating rating = new FeatureRating(0.45);
+			Rating rating = new Rating(0.45);
 			var newRating = improvement.ImproveRating(rating);
 
 			Assert.IsNotNull(newRating);
@@ -64,7 +64,7 @@ namespace Footballista.PlayersUnitTests.Domain
 		{
 			FeatureImprovementRatio improvement = Phase1Evolution.Value.GetImprovementFromAge(PersonAge.FromYears(28));
 
-			FeatureRating rating = new FeatureRating(0.7);
+			Rating rating = new Rating(0.7);
 			var newRating = improvement.ImproveRating(rating);
 
 			Assert.IsNotNull(newRating);
@@ -73,7 +73,7 @@ namespace Footballista.PlayersUnitTests.Domain
 		[TestMethod]
 		public void ImproveRatingFromAge_()
 		{
-			FeatureRating rating = new FeatureRating(0.6);
+			Rating rating = new Rating(0.6);
 			var ageRating = new AgeRating(PersonAge.FromYears(27), rating);
 			var newRatingForAge = Phase1Evolution.Value.ImproveRatingFromAge(ageRating, Duration.FromYears(1));
 
@@ -84,7 +84,7 @@ namespace Footballista.PlayersUnitTests.Domain
 		[TestMethod]
 		public void ImproveRatingFromAge_2()
 		{
-			FeatureRating rating = new FeatureRating(0.8);
+			Rating rating = new Rating(0.8);
 			var ageRating = new AgeRating(PersonAge.FromYears(27), rating);
 			var newRatingForAge = Phase1Evolution.Value.ImproveRatingFromAge(ageRating, Duration.FromMonths(1));
 

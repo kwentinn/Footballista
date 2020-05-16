@@ -16,17 +16,17 @@ namespace Footballista.Players.Builders.Generators
 
 	public class PhysicalFeatureSetGenerator : IPhysicalFeatureSetGenerator
 	{
-		private readonly IRandomiser<FeatureRating> _randomiser;
+		private readonly IRandomiser<Rating> _randomiser;
 
-		private static Range<FeatureRating> _youngPlayerFeatureRatingRange 
-			=> new Range<FeatureRating>(new FeatureRating(.2), new FeatureRating(.55));
+		private static Range<Rating> _youngPlayerFeatureRatingRange 
+			=> new Range<Rating>(new Rating(.2), new Rating(.55));
 
-		private static Range<FeatureRating> _standardPlayerFeatureRatingRange 
-			=> new Range<FeatureRating>(new FeatureRating(.35), new FeatureRating(.85));
-		private static Range<FeatureRating> _specialPlayerFeatureRatingRange 
-			=> new Range<FeatureRating>(new FeatureRating(.5), new FeatureRating(.99));
+		private static Range<Rating> _standardPlayerFeatureRatingRange 
+			=> new Range<Rating>(new Rating(.35), new Rating(.85));
+		private static Range<Rating> _specialPlayerFeatureRatingRange 
+			=> new Range<Rating>(new Rating(.5), new Rating(.99));
 
-		public PhysicalFeatureSetGenerator(IRandomiser<FeatureRating> randomiser)
+		public PhysicalFeatureSetGenerator(IRandomiser<Rating> randomiser)
 		{
 			_randomiser = randomiser;
 		}
@@ -35,9 +35,15 @@ namespace Footballista.Players.Builders.Generators
 		{
 			PhysicalFeatureSet set = PhysicalFeatureSet.GetFeatureSet(position.PositionCategory);
 
+			// plages de génération différentes en fonction de 
+			// - la position du joueur
+			// - du BMI
+			// - du pays (à voir plus tard)
+			// - de l'âge du joueur
+
 			Parallel.ForEach(set.PhysicalFeatures, feature =>
 			{
-				FeatureRating rating;
+				Rating rating;
 
 				if (feature == PhysicalFeature.Morale)
 				{
@@ -61,7 +67,7 @@ namespace Footballista.Players.Builders.Generators
 	//	{
 	//		// higher BMI means more power, but less acceleration
 	//		//PhysicalFeature.Power
-			
+
 	//		// taller players have better heading capabilities
 	//		//PhysicalFeature.TopSpeed
 	//	}

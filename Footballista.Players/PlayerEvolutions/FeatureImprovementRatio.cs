@@ -17,11 +17,11 @@ namespace Footballista.Players.PlayerEvolutions
 
 		public int CompareTo(FeatureImprovementRatio other) => Value.CompareTo(other.Value);
 
-		public FeatureRating ImproveRating(FeatureRating featureRating)
+		public Rating ImproveRating(Rating featureRating)
 		{
-			double newValue = Math.Min(Math.Round(featureRating.Value * (1 + Value), 2), FeatureRating.Max.Value);
+			double newValue = Math.Min(Math.Round(featureRating.Value * (1 + Value), 2), Rating.Max.Value);
 
-			return new FeatureRating(newValue);
+			return new Rating(newValue);
 		}
 	}
 }

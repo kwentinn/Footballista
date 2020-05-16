@@ -10,7 +10,7 @@ namespace Footballista.PlayersUnitTests.Domain
 		[TestMethod]
 		public void New_PassZero_ShouldThrowBusinessRuleValidationException()
 		{
-			Assert.ThrowsException<BusinessRuleValidationException>(() => new FeatureRating(-10d));
+			Assert.ThrowsException<BusinessRuleValidationException>(() => new Rating(-10d));
 		}
 	}
 }
