@@ -1,5 +1,3 @@
-using Footballista.BuildingBlocks.Domain.Game;
-using Footballista.Game.Domain;
 using Footballista.Players.Builders;
 using Footballista.Players.Builders.Generators;
 using Footballista.Players.Builders.Randomisers;
@@ -10,7 +8,6 @@ using Footballista.Players.Infrastracture.Loaders.Firstnames;
 using Footballista.Players.Infrastracture.Loaders.Growths;
 using Footballista.Players.Infrastracture.Loaders.Lastnames;
 using Footballista.Players.Infrastracture.Repositories;
-using Footballista.Players.PlayerNames;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

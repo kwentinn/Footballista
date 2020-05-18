@@ -1,10 +1,13 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
+using Footballista.Players.Builders.Generators.FeatureGeneration;
+using Footballista.Players.Builders.Generators.FeatureGeneration.PlayerPositions;
 using Footballista.Players.Builders.Randomisers;
 using Footballista.Players.Features;
 using Footballista.Players.Physique;
 using Footballista.Players.Positions;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Footballista.Players.Builders.Generators
@@ -18,12 +21,12 @@ namespace Footballista.Players.Builders.Generators
 	{
 		private readonly IRandomiser<Rating> _randomiser;
 
-		private static Range<Rating> _youngPlayerFeatureRatingRange 
+		private static Range<Rating> _youngPlayerFeatureRatingRange
 			=> new Range<Rating>(new Rating(.2), new Rating(.55));
 
-		private static Range<Rating> _standardPlayerFeatureRatingRange 
+		private static Range<Rating> _standardPlayerFeatureRatingRange
 			=> new Range<Rating>(new Rating(.35), new Rating(.85));
-		private static Range<Rating> _specialPlayerFeatureRatingRange 
+		private static Range<Rating> _specialPlayerFeatureRatingRange
 			=> new Range<Rating>(new Rating(.5), new Rating(.99));
 
 		public PhysicalFeatureSetGenerator(IRandomiser<Rating> randomiser)
@@ -33,43 +36,53 @@ namespace Footballista.Players.Builders.Generators
 
 		public PhysicalFeatureSet Generate(PlayerPosition position, BodyMassIndex bmi, Country country, PersonAge playerAge)
 		{
-			PhysicalFeatureSet set = PhysicalFeatureSet.GetFeatureSet(position.PositionCategory);
+			PlayerPositionGenerationRangeDefinition playerPositionGenRange = PlayerPositionGenerationRangeDefinition.GetFromPosition(position);
+
+			var positionGenRanges = playerPositionGenRange.GetGenerationRangeDefinitions();
+			var bmiGenRanges = BodyMassIndexGenerationRangeDefinition.Generate(bmi, playerAge);
 
 			// plages de génération différentes en fonction de 
 			// - la position du joueur
-			// - du BMI
+			// - [TODO] du BMI
 			// - du pays (à voir plus tard)
-			// - de l'âge du joueur
+			// - [TODO] de l'âge du joueur
 
+			PhysicalFeatureSet set = PhysicalFeatureSet.GetFeatureSet(position.PositionCategory);
 			Parallel.ForEach(set.PhysicalFeatures, feature =>
 			{
 				Rating rating;
 
-				if (feature == PhysicalFeature.Morale)
+				GenRange genRangeFromPosition = positionGenRanges.FirstOrDefault(c => c.Feature == feature.Name);
+				GenRange genRangeFromBmi = bmiGenRanges.FirstOrDefault(c => c.Feature == feature.Name);
+				if (genRangeFromBmi != null && genRangeFromPosition != null)
 				{
-					rating = _randomiser.Randomise();
+					rating = _randomiser.Randomise(Range<Rating>.MergeRanges(new Range<Rating>[] 
+					{
+						genRangeFromBmi.RatingRange,
+						genRangeFromPosition.RatingRange
+					}));
 				}
 				else
 				{
-					rating = _randomiser.Randomise(_youngPlayerFeatureRatingRange);
+					if (genRangeFromPosition != null)
+					{
+						rating = _randomiser.Randomise(genRangeFromPosition.RatingRange);
+					}
+					else
+					{
+						if (feature == PhysicalFeature.Morale)
+						{
+							rating = _randomiser.Randomise();
+						}
+						else
+						{
+							rating = _randomiser.Randomise(_youngPlayerFeatureRatingRange);
+						}
+					}
 				}
-
 				feature.ChangeRating(rating);
 			});
-
 			return set;
 		}
 	}
-
-	//public class BodyMassIndexFeatureSetGenerator
-	//{
-	//	public ReadOnlyCollection<PhysicalFeatureSet> Generate(BodyMassIndex bmi, PersonAge age)
-	//	{
-	//		// higher BMI means more power, but less acceleration
-	//		//PhysicalFeature.Power
-
-	//		// taller players have better heading capabilities
-	//		//PhysicalFeature.TopSpeed
-	//	}
-	//}
 }

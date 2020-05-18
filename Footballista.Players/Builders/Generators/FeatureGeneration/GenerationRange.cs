@@ -18,16 +18,4 @@ namespace Footballista.Players.Builders.Generators.FeatureGeneration
 			RatingRange = ratingRange;
 		}
 	}
-
-	//public class BodyMassIndexFeatureSetGenerator
-	//{
-	//	public ReadOnlyCollection<PhysicalFeatureSet> Generate(BodyMassIndex bmi, PersonAge age)
-	//	{
-	//		// higher BMI means more power, but less acceleration
-	//		//PhysicalFeature.Power
-
-	//		// taller players have better heading capabilities
-	//		//PhysicalFeature.TopSpeed
-	//	}
-	//}
 }
