@@ -1,5 +1,5 @@
 ﻿using Footballista.BuildingBlocks.Domain;
-using Itenso.TimePeriod;
+using Footballista.Players.PlayerEvolutions;
 using System;
 using System.Diagnostics;
 
@@ -40,7 +40,7 @@ namespace Footballista.Players
 		public static PersonAge FromMonths(int month) => new PersonAge(Convert.ToDouble(month) / _monthsInYear);
 		public static PersonAge FromWeeks(int weeks) => new PersonAge(Convert.ToDouble(weeks) / _weeksInYear);
 		public static PersonAge FromDays(int days) => new PersonAge(Convert.ToDouble(days) / _daysInYear);
-		public static PersonAge FromDate(Date dob, DateTime? currentDate = null)
+		public static PersonAge FromDate(Itenso.TimePeriod.Date dob, DateTime? currentDate = null)
 		{
 			if (currentDate == null) currentDate = DateTime.UtcNow.Date;
 
@@ -50,5 +50,10 @@ namespace Footballista.Players
 		}
 
 		public int CompareTo(PersonAge other) => Years.CompareTo(other.Years);
+
+		public static PersonAge operator +(PersonAge age, Duration duration)
+			=> FromYears(age.Years + duration.Years);
+		public static PersonAge operator -(PersonAge age, Duration duration)
+			=> FromYears(age.Years - duration.Years);
 	}
 }

@@ -23,5 +23,10 @@ namespace Footballista.Players.PlayerEvolutions
 
 			return new Rating(newValue);
 		}
+
+		public static FeatureImprovementRatio operator -(FeatureImprovementRatio ratio1, FeatureImprovementRatio ratio2)
+			=> new FeatureImprovementRatio(ratio1.Value - ratio2.Value);
+		public static FeatureImprovementRatio operator +(FeatureImprovementRatio ratio1, FeatureImprovementRatio ratio2)
+			=> new FeatureImprovementRatio(ratio1.Value + ratio2.Value);
 	}
 }
