@@ -1,4 +1,6 @@
-﻿using Footballista.Players.Positions;
+﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.Players.Features;
+using Footballista.Players.Positions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,8 +9,14 @@ namespace Footballista.Players.Builders.Generators.FeatureGeneration.PlayerPosit
 {
 	public abstract class PlayerPositionGenerationRangeDefinition
 	{
-		private readonly PlayerPosition position;
+		private readonly PlayerPosition _position;
+
 		protected List<GenRange> generationRanges = new List<GenRange>();
+
+		protected static Range<Rating> MinRange => new Range<Rating>(Rating.FromInt(10), Rating.FromInt(40));
+		protected static Range<Rating> MediumRange => new Range<Rating>(Rating.FromInt(20), Rating.FromInt(50));
+		protected static Range<Rating> MaxRange => new Range<Rating>(Rating.FromInt(30), Rating.FromInt(65));
+
 
 		public static PlayerPositionGenerationRangeDefinition GetFromPosition(PlayerPosition position)
 		{
@@ -56,7 +64,7 @@ namespace Footballista.Players.Builders.Generators.FeatureGeneration.PlayerPosit
 
 		protected PlayerPositionGenerationRangeDefinition(PlayerPosition position)
 		{
-			this.position = position;
+			this._position = position;
 		}
 
 		public ReadOnlyCollection<GenRange> GetGenerationRangeDefinitions()

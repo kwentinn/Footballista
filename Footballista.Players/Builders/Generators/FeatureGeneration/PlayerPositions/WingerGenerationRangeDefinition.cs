@@ -11,18 +11,18 @@ namespace Footballista.Players.Builders.Generators.FeatureGeneration.PlayerPosit
 			generationRanges.AddRange(new GenRange[]
 			{
 				// top skills
-				new GenRange(Feature.Acceleration, new Range<Rating>(Rating.FromInt(40), Rating.FromInt(70))),
-				new GenRange(Feature.TopSpeed, new Range<Rating>(Rating.FromInt(50), Rating.FromInt(70))),
-				new GenRange(Feature.Finishing, new Range<Rating>(Rating.FromInt(50), Rating.FromInt(70))),
+				new GenRange(Feature.Acceleration, MaxRange),
+				new GenRange(Feature.TopSpeed, MaxRange),
+				new GenRange(Feature.Finishing, MaxRange),
 				
 				// medium skills
-				new GenRange(Feature.PassingAccuracy, new Range<Rating>(Rating.FromInt(40), Rating.FromInt(60))),
-				new GenRange(Feature.PassingSpeed, new Range<Rating>(Rating.FromInt(40), Rating.FromInt(60))),
-				new GenRange(Feature.Cross, new Range<Rating>(Rating.FromInt(40), Rating.FromInt(60))),
+				new GenRange(Feature.PassingAccuracy, MediumRange),
+				new GenRange(Feature.PassingSpeed, MediumRange),
+				new GenRange(Feature.Cross, MediumRange),
 
 				// bad skills
-				new GenRange(Feature.Interception, new Range<Rating>(Rating.FromInt(10), Rating.FromInt(30))),
-				new GenRange(Feature.Tackling, new Range<Rating>(Rating.FromInt(10), Rating.FromInt(30))),
+				new GenRange(Feature.Interception, MinRange),
+				new GenRange(Feature.Tackling, MinRange),
 			});
 		}
 	}
