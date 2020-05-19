@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Range = Footballista.BuildingBlocks.Domain.Range;
 
 [assembly: InternalsVisibleTo("Footballista.BuildingBlocks.Domain.UnitTests")]
 [assembly: InternalsVisibleTo("Footballista.PlayersUnitTests")]
@@ -116,18 +115,17 @@ namespace Footballista.Players.PlayerEvolutions
 			return new FeatureImprovementRatio(improvement);
 		}
 
-		public AgeRating ImproveRatingFromAge(AgeRating ageRating, Duration evolutionDuration)
+		public AgeRating ImproveRatingFromAge(AgeRating currentAgeRating, Duration evolutionDuration)
 		{
-			if (ageRating is null) throw new ArgumentNullException(nameof(ageRating));
+			if (currentAgeRating is null) throw new ArgumentNullException(nameof(currentAgeRating));
 			if (evolutionDuration is null) throw new ArgumentNullException(nameof(evolutionDuration));
 
-			var futureAge = PersonAge.FromYears(ageRating.Age.Years + evolutionDuration.Years);
+			// on ajoute la durée à l'âge du joueur (PersonAge + Duration = PersonAge)
+			PersonAge futureAge = currentAgeRating.Age + evolutionDuration;
 
-			var improvement = GetImprovementFromAge(futureAge).Value - GetImprovementFromAge(ageRating.Age).Value;
-			var ratio = new FeatureImprovementRatio(improvement);
+			FeatureImprovementRatio improvement = GetImprovementFromAge(futureAge) - GetImprovementFromAge(currentAgeRating.Age);
 
-
-			return new AgeRating(futureAge, ratio.ImproveRating(ageRating.Rating));
+			return new AgeRating(futureAge, improvement.ImproveRating(currentAgeRating.Rating));
 		}
 	}
 }
