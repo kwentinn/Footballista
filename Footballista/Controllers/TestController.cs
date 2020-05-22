@@ -164,7 +164,7 @@ namespace Footballista.Controllers
 		[Route("generateplayers")]
 		public IActionResult GeneratePlayers()
 		{
-			Player[] items = _playerBuilder.BuildMany_Parallel(100);
+			Player[] items = _playerBuilder.BuildMany_Parallel(1000);
 
 			//var items = new BlockingCollection<Player>();
 			//Parallel.For(0, 100, (i) =>
