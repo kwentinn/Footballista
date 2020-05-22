@@ -49,10 +49,10 @@ namespace Footballista.Players.Builders.Generators
 
 			PhysicalFeatureSet set = PhysicalFeatureSet.CreateFeatureSet(position.PositionCategory);
 
-			//Parallel.ForEach(set.PhysicalFeatures, feature =>
-			//{
-			foreach (PhysicalFeature feature in set.PhysicalFeatures)
+			Parallel.ForEach(set.PhysicalFeatures, feature =>
 			{
+				//	foreach (PhysicalFeature feature in set.PhysicalFeatures)
+				//{
 				Rating rating;
 
 				GenRange genRangeFromPosition = positionGenRanges.FirstOrDefault(c => c.FeatureType == feature.FeatureType);
@@ -86,8 +86,8 @@ namespace Footballista.Players.Builders.Generators
 					}
 				}
 				feature.ChangeRating(rating);
-			}
-			//});
+				//}
+			});
 			return set;
 		}
 	}

@@ -147,6 +147,44 @@ namespace Footballista.Players.IntegrationTests
 					CompareFeatureSets(currentplayer.PhysicalFeatureSet, nextPlayer.PhysicalFeatureSet)));
 			}
 		}
+		[TestMethod]
+		public void BuildMany_Parallel_Pass10_ShouldReturn100Players()
+		{
+			var builder = new YoungPlayerBuilder(
+				nameGenerator: _personNameGenerator,
+				genderGenerator: _genderGenerator,
+				dobGenerator: _dobGenerator,
+				birthLocationGenerator: _birthLocationGenerator,
+				favouriteFootGenerator: _favouriteFootGenerator,
+				physicalFeatureSetGenerator: _physicalFeatureSetGenerator,
+				bmiGenerator: _bmiGenerator,
+				countriesGenerator: _countriesGenerator,
+				growthSetGenerator: _growthSetGenerator,
+				percentileGenerator: _percentileGenerator,
+				playerPositionGenerator: _playerPositionGenerator,
+				game: _game
+			);
+
+			Player[] players = builder.BuildMany_Parallel(10);
+
+			Assert.IsNotNull(players);
+			Assert.AreEqual(10, players.Length);
+
+			var test = new List<PlayerComparison>();
+			for (int i = 0; i < players.Length - 1; i++)
+			{
+				Player currentplayer = players[i];
+				Player nextPlayer = players[i + 1];
+
+				test.Add(new PlayerComparison(
+					currentplayer, 
+					nextPlayer, 
+					CompareFeatureSets(currentplayer.PhysicalFeatureSet, nextPlayer.PhysicalFeatureSet)));
+			}
+		}
+
+
+
 		[DebuggerDisplay("1: {_player1.Firstname} 2: {_player2.Firstname} - {_comparisons}")]
 		private class PlayerComparison
 		{

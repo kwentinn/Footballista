@@ -100,19 +100,22 @@ namespace Footballista.Players.Builders
 
 		public Player[] BuildMany(int nbOfPlayers, Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
 		{
-			//var items = new BlockingCollection<Player>();
-			//Parallel.For(0, nbOfPlayers, (i) =>
-			//{
-			//	items.Add(Build(Gender.Male));
-			//});
-			//items.CompleteAdding();
-			//return items.ToArray();
 			var list = new List<Player>();
 			for (int i = 0; i < nbOfPlayers; i++)
 			{
 				list.Add(Build(playerGender, countries, playerPosition));
 			}
 			return list.ToArray();
+		}
+		public Player[] BuildMany_Parallel(int nbOfPlayers, Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
+		{
+			var items = new BlockingCollection<Player>();
+			Parallel.For(0, nbOfPlayers, (i) =>
+			{
+				items.Add(Build(Gender.Male));
+			});
+			items.CompleteAdding();
+			return items.ToArray();
 		}
 	}
 }

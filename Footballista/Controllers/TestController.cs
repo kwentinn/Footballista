@@ -164,12 +164,14 @@ namespace Footballista.Controllers
 		[Route("generateplayers")]
 		public IActionResult GeneratePlayers()
 		{
-			var items = new BlockingCollection<Player>();
-			Parallel.For(0, 100, (i) =>
-			{
-				items.Add(_playerBuilder.Build(Gender.Male));
-			});
-			items.CompleteAdding();
+			Player[] items = _playerBuilder.BuildMany_Parallel(100);
+
+			//var items = new BlockingCollection<Player>();
+			//Parallel.For(0, 100, (i) =>
+			//{
+			//	items.Add(_playerBuilder.Build(Gender.Male));
+			//});
+			//items.CompleteAdding();
 
 			var playersDto = items
 				.Select(player => new
