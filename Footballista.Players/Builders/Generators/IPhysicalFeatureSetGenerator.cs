@@ -6,6 +6,7 @@ using Footballista.Players.Builders.Randomisers;
 using Footballista.Players.Features;
 using Footballista.Players.Physique;
 using Footballista.Players.Positions;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -37,8 +38,8 @@ namespace Footballista.Players.Builders.Generators
 		{
 			PlayerPositionGenerationRangeDefinition playerPositionGenRange = PlayerPositionGenerationRangeDefinition.GetFromPosition(position);
 
-			var positionGenRanges = playerPositionGenRange.GetGenerationRangeDefinitions();
-			var bmiGenRanges = BodyMassIndexGenerationRangeDefinition.Generate(bmi, playerAge);
+			ReadOnlyCollection<GenRange> positionGenRanges = playerPositionGenRange.GetGenerationRangeDefinitions();
+			ReadOnlyCollection<GenRange> bmiGenRanges = BodyMassIndexGenerationRangeDefinition.Generate(bmi, playerAge);
 
 			// plages de génération différentes en fonction de 
 			// - la position du joueur
@@ -46,13 +47,17 @@ namespace Footballista.Players.Builders.Generators
 			// - du pays (à voir plus tard)
 			// - [TODO] de l'âge du joueur
 
-			PhysicalFeatureSet set = PhysicalFeatureSet.GetFeatureSet(position.PositionCategory);
-			Parallel.ForEach(set.PhysicalFeatures, feature =>
+			PhysicalFeatureSet set = PhysicalFeatureSet.CreateFeatureSet(position.PositionCategory);
+
+			//Parallel.ForEach(set.PhysicalFeatures, feature =>
+			//{
+			foreach (PhysicalFeature feature in set.PhysicalFeatures)
 			{
 				Rating rating;
 
-				GenRange genRangeFromPosition = positionGenRanges.FirstOrDefault(c => c.Feature == feature.Name);
-				GenRange genRangeFromBmi = bmiGenRanges.FirstOrDefault(c => c.Feature == feature.Name);
+				GenRange genRangeFromPosition = positionGenRanges.FirstOrDefault(c => c.FeatureType == feature.FeatureType);
+				GenRange genRangeFromBmi = bmiGenRanges.FirstOrDefault(c => c.FeatureType == feature.FeatureType);
+
 				if (genRangeFromBmi != null && genRangeFromPosition != null)
 				{
 					Range<Rating> range = Range<Rating>.MergeRanges(new Range<Rating>[]
@@ -70,7 +75,7 @@ namespace Footballista.Players.Builders.Generators
 					}
 					else
 					{
-						if (feature == PhysicalFeature.Morale)
+						if (feature.FeatureType == FeatureType.Morale)
 						{
 							rating = _randomiser.Randomise();
 						}
@@ -81,7 +86,8 @@ namespace Footballista.Players.Builders.Generators
 					}
 				}
 				feature.ChangeRating(rating);
-			});
+			}
+			//});
 			return set;
 		}
 	}

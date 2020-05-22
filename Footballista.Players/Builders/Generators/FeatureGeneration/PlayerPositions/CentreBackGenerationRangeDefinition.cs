@@ -10,18 +10,18 @@ namespace Footballista.Players.Builders.Generators.FeatureGeneration.PlayerPosit
 			generationRanges.AddRange(new GenRange[]
 			{
 				// top skills
-				new GenRange(Feature.Interception, MaxRange),
-				new GenRange(Feature.Tackling, MaxRange),
+				new GenRange(FeatureType.Interception, MaxRange),
+				new GenRange(FeatureType.Tackling, MaxRange),
 				
 				// medium skills
-				new GenRange(Feature.PassingAccuracy, MediumRange),
-				new GenRange(Feature.PassingSpeed, MediumRange),
-				new GenRange(Feature.Cross, MediumRange),
+				new GenRange(FeatureType.PassingAccuracy, MediumRange),
+				new GenRange(FeatureType.PassingSpeed, MediumRange),
+				new GenRange(FeatureType.Cross, MediumRange),
 
 				// bad skills
-				new GenRange(Feature.Acceleration, MinRange),
-				new GenRange(Feature.TopSpeed,MinRange),
-				new GenRange(Feature.Finishing, MinRange),
+				new GenRange(FeatureType.Acceleration, MinRange),
+				new GenRange(FeatureType.TopSpeed,MinRange),
+				new GenRange(FeatureType.Finishing, MinRange),
 			});
 		}
 	}

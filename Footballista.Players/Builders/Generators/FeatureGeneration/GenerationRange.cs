@@ -9,12 +9,12 @@ namespace Footballista.Players.Builders.Generators.FeatureGeneration
 	public class GenRange
 	{
 		// telle feature => telle plage de génération
-		public Feature Feature { get; }
+		public FeatureType FeatureType { get; }
 		public Range<Rating> RatingRange { get; }
 
-		public GenRange(Feature feature, Range<Rating> ratingRange)
+		public GenRange(FeatureType featureType, Range<Rating> ratingRange)
 		{
-			Feature = feature;
+			FeatureType = featureType;
 			RatingRange = ratingRange;
 		}
 	}

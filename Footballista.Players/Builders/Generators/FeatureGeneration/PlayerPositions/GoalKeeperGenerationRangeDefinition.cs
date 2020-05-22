@@ -10,8 +10,8 @@ namespace Footballista.Players.Builders.Generators.FeatureGeneration.PlayerPosit
 			generationRanges.AddRange(new GenRange[]
 			{
 				// top skills
-				new GenRange(Feature.Goalkeeping, MaxRange),
-				new GenRange(Feature.ReactionSpeed, MaxRange),
+				new GenRange(FeatureType.Goalkeeping, MaxRange),
+				new GenRange(FeatureType.ReactionSpeed, MaxRange),
 			});
 		}
 	}

@@ -196,7 +196,7 @@ namespace Footballista.Controllers
 					Features = player.PhysicalFeatureSet.PhysicalFeatures
 						.Select(f => new
 						{
-							Feature = f.Name.Name,
+							Feature = f.FeatureType.ToString(),
 							Rating = Convert.ToInt32(f.Value.Value * 100)
 						})
 						.ToList()

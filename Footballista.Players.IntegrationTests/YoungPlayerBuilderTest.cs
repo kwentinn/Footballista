@@ -113,7 +113,7 @@ namespace Footballista.Players.IntegrationTests
 			Assert.IsNotNull(player);
 		}
 		[TestMethod]
-		public void BuildMany_Pass25_ShouldReturn100Players()
+		public void BuildMany_Pass10_ShouldReturn100Players()
 		{
 			var builder = new YoungPlayerBuilder(
 				nameGenerator: _personNameGenerator,
@@ -130,10 +130,10 @@ namespace Footballista.Players.IntegrationTests
 				game: _game
 			);
 
-			Player[] players = builder.BuildMany(25);
+			Player[] players = builder.BuildMany(10);
 
 			Assert.IsNotNull(players);
-			Assert.AreEqual(25, players.Length);
+			Assert.AreEqual(10, players.Length);
 
 			var test = new List<PlayerComparison>();
 			for (int i = 0; i < players.Length - 1; i++)
@@ -146,8 +146,6 @@ namespace Footballista.Players.IntegrationTests
 					nextPlayer, 
 					CompareFeatureSets(currentplayer.PhysicalFeatureSet, nextPlayer.PhysicalFeatureSet)));
 			}
-
-			//var nbOfSame
 		}
 		[DebuggerDisplay("1: {_player1.Firstname} 2: {_player2.Firstname} - {_comparisons}")]
 		private class PlayerComparison

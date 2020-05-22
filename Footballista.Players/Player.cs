@@ -1,18 +1,16 @@
 ﻿using Footballista.BuildingBlocks.Domain.Percentiles;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Features;
-using Footballista.Players.Growths;
 using Footballista.Players.Persons;
 using Footballista.Players.Physique;
 using Footballista.Players.PlayerNames;
 using Footballista.Players.Positions;
 using Itenso.TimePeriod;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using UnitsNet;
+using System.Diagnostics;
 
 namespace Footballista.Players
 {
+	[DebuggerDisplay("{base.Id} {Firstname} {Lastname}")]
 	public class Player : Person
 	{
 		//public ReadOnlyCollection<PlayerPosition> PlayerPositions => _playerPositions.AsReadOnly();

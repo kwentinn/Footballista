@@ -31,7 +31,7 @@ namespace Footballista.Players.Builders.Generators.FeatureGeneration
 			{
 				rangeForPower = new Range<Rating>(rangeForPower.Lower * 0.8, rangeForPower.Upper * 0.9);
 			}
-			return new GenRange(Feature.Power, rangeForPower);
+			return new GenRange(FeatureType.Power, rangeForPower);
 		}
 	}
 }

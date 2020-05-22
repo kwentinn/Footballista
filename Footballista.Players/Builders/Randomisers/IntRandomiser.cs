@@ -10,6 +10,7 @@ namespace Footballista.Players.Builders.Randomisers
 		private readonly Guid _id;
 
 		private static readonly IEnumerable<double> _values = SystemRandomSource.DoubleSequence();
+		private static IEnumerator<double> _enumerator;
 		private static object _lock = new object();
 
 		public double Current
@@ -18,9 +19,9 @@ namespace Footballista.Players.Builders.Randomisers
 			{
 				lock (_lock)
 				{
-					var enumerator = _values.GetEnumerator();
-					enumerator.MoveNext();
-					return enumerator.Current;
+					_enumerator ??= _values.GetEnumerator();
+					_enumerator.MoveNext();
+					return _enumerator.Current;
 				}
 			}
 		}

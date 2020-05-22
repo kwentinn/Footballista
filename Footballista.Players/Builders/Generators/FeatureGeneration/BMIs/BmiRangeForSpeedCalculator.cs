@@ -31,7 +31,7 @@ namespace Footballista.Players.Builders.Generators.FeatureGeneration
 			{
 				rangeForSpeed = new Range<Rating>(rangeForSpeed.Lower * 1.05, rangeForSpeed.Upper * 1.05);
 			}
-			return new GenRange(Feature.TopSpeed, rangeForSpeed);
+			return new GenRange(FeatureType.TopSpeed, rangeForSpeed);
 		}
 	}
 }

@@ -27,7 +27,7 @@ namespace Footballista.Players.Builders.Generators.FeatureGeneration
 			{
 				rangeForHeader = MediumRange;
 			}
-			return new GenRange(Feature.Header, rangeForHeader);
+			return new GenRange(FeatureType.Header, rangeForHeader);
 		}
 	}
 }
