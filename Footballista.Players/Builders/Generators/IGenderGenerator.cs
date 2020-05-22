@@ -19,7 +19,7 @@ namespace Footballista.Players.Builders.Generators
 
 		public Gender Generate()
 		{
-			return (Gender)_intRandomiser.Randomise(1, 3);
+			return (Gender)_intRandomiser.Randomise(1, 2);
 		}
 	}
 }

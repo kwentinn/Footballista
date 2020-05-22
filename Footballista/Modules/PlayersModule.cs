@@ -33,10 +33,12 @@ namespace Footballista.Modules
 			builder.RegisterType<BirthLocationGenerator>().As<IBirthLocationGenerator>();
 			builder.RegisterType<DataPathHelper>().As<IDataPathHelper>();
 			builder.RegisterType<DateOfBirthGenerator>().As<IDateOfBirthGenerator>();
-			builder.RegisterType<IntRandomiser>().As<IRandomiser<int>>();
+
+			builder.RegisterType<IntRandomiser>().As<IRandomiser<int>>().SingleInstance();
 			builder.RegisterType<FeatureRatingRandomiser>().As<IRandomiser<Rating>>();
 			builder.RegisterType<AgeRandomiser>().As<IRandomiser<PersonAge>>();
 			builder.RegisterType<ListRandomiser>().As<IListRandomiser>();
+
 			builder.RegisterType<CountriesGenerator>().As<ICountriesGenerator>();
 			builder.RegisterType<FavouriteFootGenerator>().As<IFavouriteFootGenerator>();
 			builder.RegisterType<GenderGenerator>().As<IGenderGenerator>();

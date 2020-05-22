@@ -47,7 +47,7 @@ namespace Footballista.Players.Builders.Generators
 		{
 			return Maybe.Some(_listRandomiser.GetRandomisedItems(
 				list: _countries,
-				nbOfItemsToReturn: _intRandomiser.Randomise(1, 3)));
+				nbOfItemsToReturn: _intRandomiser.Randomise(1, 2)));
 		}
 	}
 }

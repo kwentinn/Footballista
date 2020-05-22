@@ -5,8 +5,15 @@ using System;
 namespace Footballista.Players.Builders.Randomisers
 {
 
-	public class FeatureRatingRandomiser : GenericRandomiser, IRandomiser<Rating>
+	public class FeatureRatingRandomiser : IRandomiser<Rating>
 	{
+		private readonly IRandomiser<int> _intRandomiser;
+
+		public FeatureRatingRandomiser(IRandomiser<int> intRandomiser)
+		{
+			_intRandomiser = intRandomiser;
+		}
+		
 		public Rating Randomise() => Randomise(Rating.Min, Rating.Max);
 
 		public Rating Randomise(Rating min, Rating max)
@@ -14,7 +21,8 @@ namespace Footballista.Players.Builders.Randomisers
 			int minValue = Convert.ToInt32(Math.Round(min.Value * 100d, 0));
 			int maxValue = Convert.ToInt32(Math.Round(max.Value * 100d, 0));
 
-			double value = Convert.ToDouble(Random.Next(minValue, maxValue)) / 100d;
+			int rnd = _intRandomiser.Randomise(minValue, maxValue);
+			double value = Convert.ToDouble(rnd) / 100d;
 
 			return new Rating(value);
 		}

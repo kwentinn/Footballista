@@ -35,14 +35,14 @@ namespace Footballista.Players.Builders.Generators
 
 			// get player age
 			PersonAge playerAge = PersonAge.FromDate(dob, gameDate);
-			playerAge = PersonAge.FromYears(Math.Round(playerAge.Years, 0)); // round the value to be able to filter on it.
+			playerAge = playerAge.AsRoundedYears(); // round the value to be able to filter on it.
 
 			AbstractPercentileGrowthSet growthset = _percentileGrowthSetRepository.GetPercentileGrowthSet(playerGender);
 
 			PercentileGrowth percentileGrowth = growthset.GetForPercentile(percentile);
 
-			StatureForAge stature = percentileGrowth.StaturesForAges.FirstOrDefault(sfa => sfa.Age.Equals(playerAge));
-			WeightForAge weightForAge = percentileGrowth.WeightForAges.FirstOrDefault(wfa => wfa.Age.Equals(playerAge));
+			StatureForAge stature = percentileGrowth.GetStatureForAge(playerAge);
+			WeightForAge weightForAge = percentileGrowth.GetWeightForAge(playerAge);
 
 			return new BodyMassIndex(stature.Stature, weightForAge.Mass);
 		}

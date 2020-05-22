@@ -52,8 +52,23 @@ namespace Footballista.Players
 		public int CompareTo(PersonAge other) => Years.CompareTo(other.Years);
 
 		public static PersonAge operator +(PersonAge age, Duration duration)
-			=> FromYears(age.Years + duration.Years);
+		{
+			if (age is null) throw new ArgumentNullException(nameof(age));
+			if (duration is null) throw new ArgumentNullException(nameof(duration));
+
+			return FromYears(age.Years + duration.Years);
+		}
 		public static PersonAge operator -(PersonAge age, Duration duration)
 			=> FromYears(age.Years - duration.Years);
+		public static bool operator >(PersonAge left, PersonAge right) => left.CompareTo(right) > 0;
+		public static bool operator <(PersonAge left, PersonAge right) => left.CompareTo(right) < 0;
+		public static bool operator >=(PersonAge left, PersonAge right) => left.CompareTo(right) >= 0;
+		public static bool operator <=(PersonAge left, PersonAge right) => left.CompareTo(right) <= 0;
+
+		/// <summary>
+		/// Returns a new instance of <see cref="PersonAge"/> with rounded years.
+		/// </summary>
+		/// <returns></returns>
+		public PersonAge AsRoundedYears() => new PersonAge(Math.Round(Years, 0));
 	}
 }

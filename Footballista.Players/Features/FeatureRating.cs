@@ -26,5 +26,19 @@ namespace Footballista.Players.Features
 
 		public override string ToString() => $"{Value:N0}";
 		public override int GetHashCode() => Value.GetHashCode();
+
+		public static Rating operator *(Rating rating1, Rating rating2)
+		{
+			return rating1 * rating2.Value;
+		}
+		public static Rating operator *(Rating rating, double ratio)
+		{
+			var d = rating.Value * ratio;
+			if (d > Max.Value)
+			{
+				return Max;
+			}
+			return new Rating(d);
+		}
 	}
 }

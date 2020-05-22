@@ -1,5 +1,4 @@
-﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.BuildingBlocks.Domain.Game;
+﻿using Footballista.BuildingBlocks.Domain.Game;
 using Footballista.BuildingBlocks.Domain.Percentiles;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Builders.Generators;
@@ -9,7 +8,9 @@ using Footballista.Players.Physique;
 using Footballista.Players.PlayerNames;
 using Footballista.Players.Positions;
 using Itenso.TimePeriod;
+using System.Collections.Concurrent;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Footballista.Players.Builders
 {
@@ -94,6 +95,17 @@ namespace Footballista.Players.Builders
 				position,
 				countries
 			);
+		}
+
+		public Player[] BuildMany(int nbOfPlayers, Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
+		{
+			var items = new BlockingCollection<Player>();
+			Parallel.For(0, nbOfPlayers, (i) =>
+			{
+				items.Add(Build(Gender.Male));
+			});
+			items.CompleteAdding();
+			return items.ToArray();
 		}
 	}
 }

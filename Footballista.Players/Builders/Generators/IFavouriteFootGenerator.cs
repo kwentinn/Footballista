@@ -8,7 +8,7 @@ namespace Footballista.Players.Builders.Generators
 	{
 		Foot Generate();
 	}
-	
+
 	public class FavouriteFootGenerator : IFavouriteFootGenerator
 	{
 		private readonly PercentileData<Foot>[] _data = new PercentileData<Foot>[]
@@ -37,11 +37,7 @@ namespace Footballista.Players.Builders.Generators
 
 			Percentile rndPct = _percentileGenerator.Generate();
 
-			var calculator = new PercentileKNearestNeighborCalculator<Foot>
-			(
-				rndPct,
-				_data
-			);
+			var calculator = new PercentileKNearestNeighborCalculator<Foot>(rndPct, _data);
 			return calculator.GetNearestNeighbours().Value[0].Value.Object;
 		}
 	}

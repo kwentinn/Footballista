@@ -165,13 +165,10 @@ namespace Footballista.Controllers
 		public IActionResult GeneratePlayers()
 		{
 			var items = new BlockingCollection<Player>();
-			var countries = new Country[] { Country.Poland, Country.Russia };
-
-			Parallel.For(0, 25, (i) =>
+			Parallel.For(0, 100, (i) =>
 			{
-				items.Add(_playerBuilder.Build(Gender.Male, countries));
+				items.Add(_playerBuilder.Build(Gender.Male));
 			});
-
 			items.CompleteAdding();
 
 			var playersDto = items

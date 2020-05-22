@@ -25,30 +25,37 @@ namespace Footballista.Players.Builders.Randomisers
 			if (list is null) throw new ArgumentNullException(nameof(list));
 			if (!list.Any()) throw new ArgumentException(nameof(list));
 
-			int nbOfItems = list.Count;
-			return list.ElementAt(_intRandomiser.Randomise(0, nbOfItems));
+			return GetRandomisedItemInternal(list);
 		}
 		public T GetRandomisedItem<T>(List<T> list, Func<T, bool> filterPredicate) where T : class
 		{
 			if (list is null) throw new ArgumentNullException(nameof(list));
+			if (!list.Any()) throw new ArgumentException(nameof(list));
 			if (filterPredicate == null) throw new ArgumentException(nameof(filterPredicate));
 
-			int nbOfItems = list.Count(filterPredicate);
-			return list.Where(filterPredicate).ElementAt(_intRandomiser.Randomise(0, nbOfItems));
+			return GetRandomisedItemInternal(list, filterPredicate);
 		}
+
+		private T GetRandomisedItemInternal<T>(List<T> list, Func<T, bool> filterPredicate = null) where T : class
+		{
+			if (list is null) throw new ArgumentNullException(nameof(list));
+
+			int nbOfItems = filterPredicate != null ? list.Count(filterPredicate) : list.Count;
+			int index = _intRandomiser.Randomise(0, nbOfItems);
+			if (index >= nbOfItems)
+			{
+				index = nbOfItems - 1;
+			}
+			return filterPredicate != null ? list.Where(filterPredicate).ElementAt(index) : list.ElementAt(index);
+		}
+
+
 		public T[] GetRandomisedItems<T>(List<T> list, int nbOfItemsToReturn) where T : class
 		{
 			if (list is null) throw new ArgumentNullException(nameof(list));
 			if (nbOfItemsToReturn <= 0) throw new ArgumentException(nameof(nbOfItemsToReturn));
 
-			var returnList = new List<T>();
-			for (int i = 0; i < nbOfItemsToReturn; i++)
-			{
-				int nbOfItems = list.Count;
-				T item = list.ElementAt(_intRandomiser.Randomise(0, nbOfItems));
-				returnList.Add(item);
-			}
-			return returnList.ToArray();
+			return GetRandomisedItemsInternal(list, nbOfItemsToReturn);
 		}
 		public T[] GetRandomisedItems<T>(List<T> list, Func<T, bool> filterPredicate, int nbOfItemsToReturn) where T : class
 		{
@@ -56,11 +63,19 @@ namespace Footballista.Players.Builders.Randomisers
 			if (filterPredicate == null) throw new ArgumentException(nameof(filterPredicate));
 			if (nbOfItemsToReturn <= 0) throw new ArgumentException(nameof(nbOfItemsToReturn));
 
-			var returnList = new List<T>();
+			return GetRandomisedItemsInternal(list, nbOfItemsToReturn, filterPredicate);
+		}
+		private T[] GetRandomisedItemsInternal<T>(List<T> list, int nbOfItemsToReturn, Func<T, bool> filterPredicate = null)
+			where T : class
+		{
+			if (list is null) throw new ArgumentNullException(nameof(list));
+			if (nbOfItemsToReturn <= 0) throw new ArgumentException(nameof(nbOfItemsToReturn));
+
+			List<T> returnList = new List<T>();
 			for (int i = 0; i < nbOfItemsToReturn; i++)
 			{
-				int nbOfItems = list.Count(filterPredicate);
-				var item = list.Where(filterPredicate).ElementAt(_intRandomiser.Randomise(0, nbOfItems));
+				T item = GetRandomisedItemInternal(list, filterPredicate);
+
 				returnList.Add(item);
 			}
 			return returnList.ToArray();

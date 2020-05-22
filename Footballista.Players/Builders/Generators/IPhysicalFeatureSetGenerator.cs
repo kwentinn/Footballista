@@ -6,7 +6,6 @@ using Footballista.Players.Builders.Randomisers;
 using Footballista.Players.Features;
 using Footballista.Players.Physique;
 using Footballista.Players.Positions;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -43,7 +42,7 @@ namespace Footballista.Players.Builders.Generators
 
 			// plages de génération différentes en fonction de 
 			// - la position du joueur
-			// - [TODO] du BMI
+			// - du BMI
 			// - du pays (à voir plus tard)
 			// - [TODO] de l'âge du joueur
 
@@ -56,11 +55,12 @@ namespace Footballista.Players.Builders.Generators
 				GenRange genRangeFromBmi = bmiGenRanges.FirstOrDefault(c => c.Feature == feature.Name);
 				if (genRangeFromBmi != null && genRangeFromPosition != null)
 				{
-					rating = _randomiser.Randomise(Range<Rating>.MergeRanges(new Range<Rating>[] 
+					Range<Rating> range = Range<Rating>.MergeRanges(new Range<Rating>[]
 					{
 						genRangeFromBmi.RatingRange,
 						genRangeFromPosition.RatingRange
-					}));
+					});
+					rating = _randomiser.Randomise(range);
 				}
 				else
 				{
