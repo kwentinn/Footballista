@@ -22,7 +22,7 @@ namespace Footballista.Players.Builders.Generators.FeatureGeneration
 				rangeForPower = MediumRange;
 			}
 
-			// take player age into account
+			// take player's age into account
 			if (age > PersonAge.FromYears(25))
 			{
 				rangeForPower = new Range<Rating>(rangeForPower.Lower * 1.05, rangeForPower.Upper * 1.05);

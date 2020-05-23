@@ -8,6 +8,7 @@ using Footballista.Players.Physique;
 using Footballista.Players.PlayerNames;
 using Footballista.Players.Positions;
 using Itenso.TimePeriod;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -116,6 +117,56 @@ namespace Footballista.Players.Builders
 			});
 			items.CompleteAdding();
 			return items.ToArray();
+		}
+		
+		public async Task<Player[]> BuildManyAsync(int nbOfPlayers, Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
+		{
+			List<Task<Player>> tasks = new List<Task<Player>>();
+			for (int i = 0; i < nbOfPlayers; i++)
+			{
+				tasks.Add(BuildAsync(playerGender, countries, playerPosition));
+			}
+			return await Task.WhenAll(tasks);
+		}
+		public async Task<Player> BuildAsync(Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
+		{
+			if (playerGender == null) playerGender = _genderGenerator.Generate();
+
+			if (countries == null)
+			{
+				countries = _countriesGenerator.Generate().Value;
+			}
+
+			PersonName playerName = await _nameGenerator.GenerateAsync(
+				playerGender.Value, 
+				countries.FirstOrDefault());
+
+			Date dob = _dobGenerator.Generate();
+
+			PersonAge playerAge = PersonAge.FromDate(dob, _game.CurrentDate);
+
+			Location birthLocation = await _birthLocationGenerator.GenerateAsync(countries.FirstOrDefault());
+			Foot playerFoot = _favouriteFootGenerator.Generate();
+			Percentile percentile = _percentileGenerator.Generate();
+			BodyMassIndex bmi = _bmiGenerator.Generate(countries.FirstOrDefault(), playerGender.Value, percentile, dob);
+			PlayerPosition position = _playerPositionGenerator.Generate();
+			PhysicalFeatureSet playerFeatureSet = _physicalFeatureSetGenerator.Generate(position, bmi, countries.FirstOrDefault(), playerAge);
+
+			// first name & last name => according to the player's country
+			return Player.CreatePlayer
+			(
+				playerName.Firstname,
+				playerName.Lastname,
+				playerGender.Value,
+				dob,
+				birthLocation,
+				playerFoot,
+				bmi,
+				percentile,
+				playerFeatureSet,
+				position,
+				countries
+			);
 		}
 	}
 }

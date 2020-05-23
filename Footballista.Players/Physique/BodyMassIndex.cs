@@ -38,6 +38,9 @@ namespace Footballista.Players.Physique
 
 			Height = height;
 			Weight = weight;
+
+			// BMI cannot be calculated while Height and Weight have not been set. 
+			CheckRule(new Rules.BmiMustBeWithinRangeRule(BMI));
 		}
 	}
 }

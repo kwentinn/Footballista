@@ -4,6 +4,7 @@ using Footballista.Players.Builders.Randomisers;
 using Footballista.Players.Infrastracture.Loaders.Cities;
 using Footballista.Players.Infrastracture.Loaders.Cities.Records;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Footballista.Players.Infrastracture.Generators
 {
@@ -14,7 +15,7 @@ namespace Footballista.Players.Infrastracture.Generators
 
 		public BirthLocationGenerator
 		(
-			IWorldCitiesLoader worldCitiesLoader, 
+			IWorldCitiesLoader worldCitiesLoader,
 			IListRandomiser listRandomiser
 		)
 		{
@@ -25,6 +26,14 @@ namespace Footballista.Players.Infrastracture.Generators
 		public Location Generate(Country country)
 		{
 			List<WorldCityRecord> cities = _worldCitiesLoader.GetRecords().Value;
+
+			WorldCityRecord city = _listRandomiser.GetRandomisedItem(cities, record => record.CountryCodeIso2 == country.RegionInfo.TwoLetterISORegionName);
+
+			return new Location(new City(city.City), country);
+		}
+		public async Task<Location> GenerateAsync(Country country)
+		{
+			List<WorldCityRecord> cities = (await _worldCitiesLoader.GetRecordsAsync()).Value;
 
 			WorldCityRecord city = _listRandomiser.GetRandomisedItem(cities, record => record.CountryCodeIso2 == country.RegionInfo.TwoLetterISORegionName);
 

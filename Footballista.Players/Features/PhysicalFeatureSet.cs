@@ -50,16 +50,5 @@ namespace Footballista.Players.Features
 			PositionCategory = positionCategory ?? throw new System.ArgumentNullException(nameof(positionCategory));
 			_physicalFeatures = physicalFeatures ?? throw new System.ArgumentNullException(nameof(physicalFeatures));
 		}
-
-		private new PhysicalFeatureSet MemberwiseClone()
-		{
-			var list = new List<PhysicalFeature>();
-			foreach (PhysicalFeature feature in _physicalFeatures)
-			{
-				list.Add(new PhysicalFeature(feature.FeatureType));
-
-			}
-			return new PhysicalFeatureSet(PositionCategory, _physicalFeatures.ToList());
-		}
 	}
 }

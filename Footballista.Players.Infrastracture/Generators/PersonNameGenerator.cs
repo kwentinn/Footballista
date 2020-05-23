@@ -2,6 +2,7 @@
 using Footballista.Players.Builders.Generators;
 using Footballista.Players.Persons;
 using Footballista.Players.PlayerNames;
+using System.Threading.Tasks;
 
 namespace Footballista.Players.Infrastracture.Generators
 {
@@ -24,6 +25,13 @@ namespace Footballista.Players.Infrastracture.Generators
 		{
 			Firstname firstname = _firstnameGenerator.Generate(gender, country);
 			Lastname lastname = _lastnameGenerator.Generate(gender, country);
+
+			return new PersonName(firstname, lastname);
+		}
+		public async Task<PersonName> GenerateAsync(Gender gender, Country country)
+		{
+			Firstname firstname = await _firstnameGenerator.GenerateAsync(gender, country);
+			Lastname lastname = await _lastnameGenerator.GenerateAsync(gender, country);
 
 			return new PersonName(firstname, lastname);
 		}

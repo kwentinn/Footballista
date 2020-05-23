@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Footballista.Players.Infrastracture.Loaders.Firstnames
 {
@@ -40,6 +41,24 @@ namespace Footballista.Players.Infrastracture.Loaders.Firstnames
 				csv.Configuration.Encoding = CSV_ENCODING;
 
 				result = csv.GetRecords<FirstnameRecord>().ToList();
+			}
+
+			return Maybe.Some(result);
+		}
+		public async Task<Maybe<List<FirstnameRecord>>> GetRecordsAsync()
+		{
+			List<FirstnameRecord> result;
+
+			string fullPath = _dataPathHelper.GetFullPath(_folderPath, _filename);
+
+			using (var reader = new StreamReader(fullPath))
+			using (var csv = new CsvReader(reader, CSV_READER_CULTURE))
+			{
+				csv.Configuration.RegisterClassMap<FirstnameRecordClassMap>();
+				csv.Configuration.Delimiter = CSV_DELIMITER;
+				csv.Configuration.Encoding = CSV_ENCODING;
+
+				result = await csv.GetRecordsAsync<FirstnameRecord>().ToListAsync();
 			}
 
 			return Maybe.Some(result);

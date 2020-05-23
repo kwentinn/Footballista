@@ -14,9 +14,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Footballista.Players.IntegrationTests
 {
@@ -113,7 +115,7 @@ namespace Footballista.Players.IntegrationTests
 			Assert.IsNotNull(player);
 		}
 		[TestMethod]
-		public void BuildMany_Pass10_ShouldReturn100Players()
+		public void BuildMany_Pass10_ShouldReturn10Players()
 		{
 			var builder = new YoungPlayerBuilder(
 				nameGenerator: _personNameGenerator,
@@ -135,17 +137,32 @@ namespace Footballista.Players.IntegrationTests
 			Assert.IsNotNull(players);
 			Assert.AreEqual(10, players.Length);
 
-			var test = new List<PlayerComparison>();
-			for (int i = 0; i < players.Length - 1; i++)
-			{
-				Player currentplayer = players[i];
-				Player nextPlayer = players[i + 1];
+			PlayerComparer.CheckResultsAreValid(players);
+		}
+		[TestMethod]
+		public void BuildMany_Pass100_ShouldReturn100Players()
+		{
+			var builder = new YoungPlayerBuilder(
+				nameGenerator: _personNameGenerator,
+				genderGenerator: _genderGenerator,
+				dobGenerator: _dobGenerator,
+				birthLocationGenerator: _birthLocationGenerator,
+				favouriteFootGenerator: _favouriteFootGenerator,
+				physicalFeatureSetGenerator: _physicalFeatureSetGenerator,
+				bmiGenerator: _bmiGenerator,
+				countriesGenerator: _countriesGenerator,
+				growthSetGenerator: _growthSetGenerator,
+				percentileGenerator: _percentileGenerator,
+				playerPositionGenerator: _playerPositionGenerator,
+				game: _game
+			);
 
-				test.Add(new PlayerComparison(
-					currentplayer, 
-					nextPlayer, 
-					CompareFeatureSets(currentplayer.PhysicalFeatureSet, nextPlayer.PhysicalFeatureSet)));
-			}
+			Player[] players = builder.BuildMany(100);
+
+			Assert.IsNotNull(players);
+			Assert.AreEqual(100, players.Length);
+
+			PlayerComparer.CheckResultsAreValid(players);
 		}
 		[TestMethod]
 		public void BuildMany_Parallel_Pass10_ShouldReturn100Players()
@@ -170,26 +187,132 @@ namespace Footballista.Players.IntegrationTests
 			Assert.IsNotNull(players);
 			Assert.AreEqual(10, players.Length);
 
-			var test = new List<PlayerComparison>();
-			for (int i = 0; i < players.Length - 1; i++)
-			{
-				Player currentplayer = players[i];
-				Player nextPlayer = players[i + 1];
+			PlayerComparer.CheckResultsAreValid(players);
+		}
 
-				test.Add(new PlayerComparison(
-					currentplayer, 
-					nextPlayer, 
-					CompareFeatureSets(currentplayer.PhysicalFeatureSet, nextPlayer.PhysicalFeatureSet)));
-			}
+		[TestMethod]
+		public void BuildMany_Parallel_Pass100_ShouldReturn100Players()
+		{
+			var builder = new YoungPlayerBuilder(
+				nameGenerator: _personNameGenerator,
+				genderGenerator: _genderGenerator,
+				dobGenerator: _dobGenerator,
+				birthLocationGenerator: _birthLocationGenerator,
+				favouriteFootGenerator: _favouriteFootGenerator,
+				physicalFeatureSetGenerator: _physicalFeatureSetGenerator,
+				bmiGenerator: _bmiGenerator,
+				countriesGenerator: _countriesGenerator,
+				growthSetGenerator: _growthSetGenerator,
+				percentileGenerator: _percentileGenerator,
+				playerPositionGenerator: _playerPositionGenerator,
+				game: _game
+			);
+
+			Player[] players = builder.BuildMany_Parallel(100);
+
+			Assert.IsNotNull(players);
+			Assert.AreEqual(100, players.Length);
+
+			PlayerComparer.CheckResultsAreValid(players);
+		}
+
+		[TestMethod]
+		public async Task BuildAsync()
+		{
+			var builder = new YoungPlayerBuilder(
+				nameGenerator: _personNameGenerator,
+				genderGenerator: _genderGenerator,
+				dobGenerator: _dobGenerator,
+				birthLocationGenerator: _birthLocationGenerator,
+				favouriteFootGenerator: _favouriteFootGenerator,
+				physicalFeatureSetGenerator: _physicalFeatureSetGenerator,
+				bmiGenerator: _bmiGenerator,
+				countriesGenerator: _countriesGenerator,
+				growthSetGenerator: _growthSetGenerator,
+				percentileGenerator: _percentileGenerator,
+				playerPositionGenerator: _playerPositionGenerator,
+				game: _game
+			);
+
+			Player player = await builder.BuildAsync(Persons.Gender.Male);
+
+			Assert.IsNotNull(player);
+		}
+		[TestMethod]
+		public async Task BuildManyAsync_Pass10_ShouldReturn10GeneratedPlayers()
+		{
+			var builder = new YoungPlayerBuilder(
+				nameGenerator: _personNameGenerator,
+				genderGenerator: _genderGenerator,
+				dobGenerator: _dobGenerator,
+				birthLocationGenerator: _birthLocationGenerator,
+				favouriteFootGenerator: _favouriteFootGenerator,
+				physicalFeatureSetGenerator: _physicalFeatureSetGenerator,
+				bmiGenerator: _bmiGenerator,
+				countriesGenerator: _countriesGenerator,
+				growthSetGenerator: _growthSetGenerator,
+				percentileGenerator: _percentileGenerator,
+				playerPositionGenerator: _playerPositionGenerator,
+				game: _game
+			);
+
+			Player[] players = await builder.BuildManyAsync(10);
+
+			Assert.IsNotNull(players);
+			Assert.AreEqual(10, players.Length);
+
+			PlayerComparer.CheckResultsAreValid(players);
 		}
 
 
+		private static class PlayerComparer
+		{
+			public static void CheckResultsAreValid(Player[] playersToCompare)
+			{
+				List<PlayerComparison> comparisonResults = new List<PlayerComparison>();
+				for (int i = 0; i < playersToCompare.Length - 1; i++)
+				{
+					Player currentplayer = playersToCompare[i];
+					Player nextPlayer = playersToCompare[i + 1];
 
+					comparisonResults.Add(new PlayerComparison(
+						currentplayer,
+						nextPlayer,
+						CompareFeatureSets(currentplayer.PhysicalFeatureSet, nextPlayer.PhysicalFeatureSet)));
+				}
+
+				var similarities = comparisonResults.SelectMany(r => r.Comparisons.ToList()).ToList();
+				float ratio = Convert.ToSingle(similarities.Count(s => s.AreEqual)) / Convert.ToSingle(similarities.Count);
+
+				Assert.IsNotNull(comparisonResults);
+				Assert.IsTrue(ratio < 0.1, "Incorrect results : similarities between players must be less than 10%");
+			}
+
+			private static List<FeatureSetComparison> CompareFeatureSets(PhysicalFeatureSet set1, PhysicalFeatureSet set2)
+			{
+				var results = new List<FeatureSetComparison>();
+
+				var set1Enumerator = set1.PhysicalFeatures.GetEnumerator();
+				var set2Enumerator = set2.PhysicalFeatures.GetEnumerator();
+
+				while (set1Enumerator.MoveNext() && set2Enumerator.MoveNext())
+				{
+					PhysicalFeature set1value = set1Enumerator.Current;
+					PhysicalFeature set2value = set2Enumerator.Current;
+
+					results.Add(new FeatureSetComparison(set1value, set2value));
+				}
+
+				return results;
+			}
+
+		}
 		[DebuggerDisplay("1: {_player1.Firstname} 2: {_player2.Firstname} - {_comparisons}")]
 		private class PlayerComparison
 		{
 			private readonly Player _player1;
 			private readonly Player _player2;
+			public ReadOnlyCollection<FeatureSetComparison> Comparisons => _comparisons.AsReadOnly();
 			private readonly List<FeatureSetComparison> _comparisons;
 			public PlayerComparison(Player player1, Player player2, List<FeatureSetComparison> comparisons)
 			{
@@ -211,23 +334,6 @@ namespace Footballista.Players.IntegrationTests
 				_feature1 = feature1;
 				_feature2 = feature2;
 			}
-		}
-		private List<FeatureSetComparison> CompareFeatureSets(PhysicalFeatureSet set1, PhysicalFeatureSet set2)
-		{
-			var results = new List<FeatureSetComparison>();
-
-			var set1Enumerator = set1.PhysicalFeatures.GetEnumerator();
-			var set2Enumerator = set2.PhysicalFeatures.GetEnumerator();
-
-			while (set1Enumerator.MoveNext() && set2Enumerator.MoveNext())
-			{
-				PhysicalFeature set1value = set1Enumerator.Current;
-				PhysicalFeature set2value = set2Enumerator.Current;
-
-				results.Add(new FeatureSetComparison(set1value, set2value));
-			}
-
-			return results;
 		}
 	}
 }

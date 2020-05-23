@@ -1,4 +1,5 @@
 ﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.Players.Features.LinkedFeatures;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,16 +10,19 @@ namespace Footballista.Players.Features
 	[DebuggerDisplay("{FeatureType}={Value} [{_id}]")]
 	public class PhysicalFeature : ValueObject
 	{
+		[IgnoreMember]
 		private readonly Guid _id = Guid.NewGuid();
 
 		public FeatureType FeatureType { get; }
-		public Rating Value { get; protected set; }
+		public Rating Rating { get; protected set; }
 
 		private readonly List<PhysicalFeature> _commonFeatures;
 
+		[IgnoreMember]
 		public ReadOnlyCollection<PhysicalFeature> OutfieldPlayerFeatures => _outfieldPlayerFeatures.AsReadOnly();
 		private readonly List<PhysicalFeature> _outfieldPlayerFeatures;
 
+		[IgnoreMember]
 		public ReadOnlyCollection<PhysicalFeature> GoalKeeperFeatures => _goalkeeperFeatures.AsReadOnly();
 		private readonly List<PhysicalFeature> _goalkeeperFeatures;
 
@@ -40,7 +44,7 @@ namespace Footballista.Players.Features
 			_outfieldPlayerFeatures = new List<PhysicalFeature>(_commonFeatures)
 			{
 				new  PhysicalFeature(FeatureType.Acceleration),
-				new  PhysicalFeature(FeatureType.TopSpeed),
+				new  TopSpeedFeature(),
 				new  PhysicalFeature(FeatureType.Finishing),
 				new  PhysicalFeature(FeatureType.Header),
 				new  PhysicalFeature(FeatureType.PassingSpeed),
@@ -59,12 +63,12 @@ namespace Footballista.Players.Features
 		public PhysicalFeature(FeatureType type, Rating value = null)
 		{
 			FeatureType = type;
-			Value = value;
+			Rating = value;
 		}
 
-		public void ChangeRating(Rating value)
+		public void ChangeRating(Rating newRating)
 		{
-			Value = value;
+			Rating = newRating;
 		}
 	}
 }

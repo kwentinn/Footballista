@@ -199,7 +199,7 @@ namespace Footballista.Controllers
 						.Select(f => new
 						{
 							Feature = f.FeatureType.ToString(),
-							Rating = Convert.ToInt32(f.Value.Value * 100)
+							Rating = Convert.ToInt32(f.Rating.Value * 100)
 						})
 						.ToList()
 				})

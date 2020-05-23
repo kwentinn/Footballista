@@ -40,5 +40,10 @@ namespace Footballista.Players.Features
 			}
 			return new Rating(d);
 		}
+
+		public static bool operator >(Rating left, Rating right) => left.CompareTo(right) > 0;
+		public static bool operator <(Rating left, Rating right) => left.CompareTo(right) < 0;
+		public static bool operator >=(Rating left, Rating right) => left.CompareTo(right) >= 0;
+		public static bool operator <=(Rating left, Rating right) => left.CompareTo(right) <= 0;
 	}
 }

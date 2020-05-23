@@ -4,7 +4,7 @@ using Footballista.Players.Features;
 namespace Footballista.Players.Builders.Generators.FeatureGeneration
 {
 	/// <summary>
-	/// Représente une plage de génération de note de caractéristique de joueur.
+	/// Représente une plage de génération de note d'une caractéristique de joueur.
 	/// </summary>
 	public class GenRange
 	{

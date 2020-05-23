@@ -7,6 +7,7 @@ using Footballista.Players.Persons;
 using Footballista.Players.PlayerNames;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Footballista.Players.Infrastracture.Generators
 {
@@ -26,6 +27,19 @@ namespace Footballista.Players.Infrastracture.Generators
 		public Lastname Generate(Gender gender, Country country)
 		{
 			List<LastnameRecord> lastnameRecords = _lastnameRecordsLoader.GetRecords(country);
+			if (lastnameRecords == null)
+			{
+				throw new ApplicationException("Cannot find any lastname record.");
+			}
+
+			var lastname = _listRandomiser.GetRandomisedItem(lastnameRecords)
+				.Lastname;
+			return new Lastname(lastname);
+		}
+
+		public async Task<Lastname> GenerateAsync(Gender gender, Country country)
+		{
+			List<LastnameRecord> lastnameRecords = await _lastnameRecordsLoader.GetRecordsAsync(country);
 			if (lastnameRecords == null)
 			{
 				throw new ApplicationException("Cannot find any lastname record.");
