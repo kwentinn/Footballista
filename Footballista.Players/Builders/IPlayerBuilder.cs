@@ -11,6 +11,7 @@ namespace Footballista.Players.Builders
 		Task<Player> BuildAsync(Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null);
 
 		Player[] BuildMany(int nbOfPlayers, Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null);
+		Task<Player[]> BuildManyAsync(int nbOfPlayers, Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null);
 		Player[] BuildMany_Parallel(int nbOfPlayers, Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null);
 	}
 }

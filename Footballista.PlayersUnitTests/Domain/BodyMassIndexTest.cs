@@ -28,14 +28,14 @@ namespace Footballista.PlayersUnitTests.Domain
 		[TestMethod]
 		public void New_PassValidValues_ShouldReturnNewBmi()
 		{
-			BodyMassIndex bmi = new BodyMassIndex(new Length(1, LengthUnit.Meter), new Mass(50, MassUnit.Kilogram));
+			BodyMassIndex bmi = new BodyMassIndex(new Length(1.5, LengthUnit.Meter), new Mass(50, MassUnit.Kilogram));
 
 			Assert.IsNotNull(bmi);
 		}
 		[TestMethod]
 		public void New_PassValidValues_ShouldReturnNewBmiWithObeseRange()
 		{
-			BodyMassIndex bmi = new BodyMassIndex(new Length(1, LengthUnit.Meter), new Mass(50, MassUnit.Kilogram));
+			BodyMassIndex bmi = new BodyMassIndex(new Length(2, LengthUnit.Meter), new Mass(130, MassUnit.Kilogram));
 
 			Assert.IsNotNull(bmi);
 			Assert.AreEqual(BmiType.Obese, bmi.BmiType);
