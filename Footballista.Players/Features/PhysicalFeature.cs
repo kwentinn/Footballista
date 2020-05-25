@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace Footballista.Players.Features
 {
-	[DebuggerDisplay("{FeatureType}={Value} [{_id}]")]
+	[DebuggerDisplay("{FeatureType}={Rating} [{_id}]")]
 	public class PhysicalFeature : ValueObject
 	{
 		[IgnoreMember]

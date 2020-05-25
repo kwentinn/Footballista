@@ -50,5 +50,7 @@ namespace Footballista.Players.Features
 			PositionCategory = positionCategory ?? throw new System.ArgumentNullException(nameof(positionCategory));
 			_physicalFeatures = physicalFeatures ?? throw new System.ArgumentNullException(nameof(physicalFeatures));
 		}
+
+
 	}
 }

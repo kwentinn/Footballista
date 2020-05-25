@@ -1,6 +1,7 @@
 ﻿using Footballista.BuildingBlocks.Domain.Percentiles;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Features;
+using Footballista.Players.Features.GlobalRatingCalculators;
 using Footballista.Players.Persons;
 using Footballista.Players.Physique;
 using Footballista.Players.PlayerNames;
@@ -10,7 +11,7 @@ using System.Diagnostics;
 
 namespace Footballista.Players
 {
-	[DebuggerDisplay("{base.Id} {Firstname} {Lastname}")]
+	[DebuggerDisplay("{Firstname} {Lastname} {PlayerPosition}")]
 	public class Player : Person
 	{
 		//public ReadOnlyCollection<PlayerPosition> PlayerPositions => _playerPositions.AsReadOnly();
@@ -20,6 +21,10 @@ namespace Footballista.Players
 		public Percentile Percentile { get; }
 		public Foot FavouriteFoot { get; }
 		public BodyMassIndex Bmi { get; }
+
+		public readonly GlobalRatingCalculator _globalRatingCalculator = new GlobalRatingCalculator();
+
+		public Rating GeneralRating => _globalRatingCalculator.Calculate(PlayerPosition, PhysicalFeatureSet);
 
 		internal Player
 		(
@@ -34,7 +39,6 @@ namespace Footballista.Players
 			Percentile percentile,
 			PhysicalFeatureSet physicalFeatureSet,
 			PlayerPosition playerPosition,
-
 			params Country[] nationalities
 		) : base(id, firstname, lastname, gender, dob, birthLocation, nationalities)
 		{

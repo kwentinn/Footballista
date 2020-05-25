@@ -112,6 +112,8 @@ namespace Footballista.Players.IntegrationTests
 
 			var player = builder.Build();
 
+			var t = player.GeneralRating;
+
 			Assert.IsNotNull(player);
 		}
 		[TestMethod]
