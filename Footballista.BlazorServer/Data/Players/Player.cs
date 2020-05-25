@@ -11,6 +11,7 @@ namespace Footballista.BlazorServer.Data.Players
 		public Bmi Bmi { get; set; }
 		public string Foot { get; set; }
 		public string Gender { get; set; }
-		public int Rating { get; set; }
+		public int GeneralRating { get; set; }
+		public List<Rating> Ratings { get; set; }
 	}
 }

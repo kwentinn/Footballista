@@ -14,6 +14,9 @@
 }
 else
 {
+	<MatButton>Enregistrer joueurs</MatButton>
+	<MatButton>Charger joueurs</MatButton>
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -30,37 +33,39 @@ else
 			</tr>
 		</thead>
 		<tbody>
-			@foreach (Player player in players)
+			@foreach (var player in players)
 			{
 				<tr>
 					<td>@player.Firstname</td>
 					<td>@player.Lastname</td>
-					<td>
-						<span>
-							@foreach (var country in player.Nationalities)
-							{
-								@country
-							}
-						</span>
-					</td>
+					<td>@GetNationalities(player.Nationalities)</td>
 					<td>@player.Gender</td>
 					<td>@player.Foot</td>
 					<td>@player.BirthInfo.DateOfBirth</td>
 					<td>@player.BirthInfo.City.Name, @player.BirthInfo.City.Country</td>
 					<td>@player.Bmi.HeightInCentimeters</td>
 					<td>@player.Bmi.WeightInKilograms</td>
-					<td>@player.Rating</td>
+					<td>@player.GeneralRating</td>
 				</tr>
+				@*<tr colspan="10">
+					@foreach (var rating in @player.Ratings)
+					{
+						@rating.Feature
+						@rating.Value
+					}
+				</tr>*@
 			}
 		</tbody>
 	</table>
 }
 
 @code {
-	private Player[] players;
+	private Data.Players.Player[] players;
 
 	protected override async Task OnInitializedAsync()
 	{
 		players = await playerService.GetPlayersAsync();
 	}
+	protected string GetNationalities(List<string> nationalities)
+		=> string.Join(", ", nationalities);
 }
