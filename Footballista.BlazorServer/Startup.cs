@@ -56,6 +56,7 @@ namespace Footballista.BlazorServer
 		{
 			builder.RegisterModule(new PlayersModule());
 			builder.RegisterModule(new BlazorServerModule());
+			builder.RegisterModule(new MappersModule());
 		}
 	}
 }
