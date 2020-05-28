@@ -72,5 +72,33 @@ namespace Footballista.BuildingBlocks.Domain.ValueObjects
 		public static Country USA => new Country("us", nameof(USA), Language.English);
 		public static Country Japan => new Country("jp", nameof(Japan), Language.Japanese);
 		public static Country Germany => new Country("de", nameof(Germany), Language.German);
+
+
+		public static Country GetFromName(string name)
+			=> _countries.FirstOrDefault(c => c.EnglishName == name);
+		private static readonly List<Country> _countries = new List<Country>
+		{
+			France,
+			China,
+			CzechRepublic,
+			Denmark,
+			Spain,
+			Greece,
+			India,
+			Ireland,
+			Italy,
+			Korea,
+			Netherlands,
+			Poland,
+			Portugal,
+			Russia,
+			England,
+			Scotland,
+			Wales,
+			NorthernIreland,
+			USA,
+			Japan,
+			Germany
+		};
 	}
 }
