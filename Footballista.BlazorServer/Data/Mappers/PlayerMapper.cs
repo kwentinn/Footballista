@@ -5,16 +5,16 @@ using System.Linq;
 
 namespace Footballista.BlazorServer.Data.Mappers
 {
-	public class PlayerMapper : IMapper<Footballista.Players.Player, Player>
+	public class PlayerMapper : IMapper<Footballista.Players.Player, Players.Player>
 	{
-		public Player Map(Footballista.Players.Player player)
+		public Players.Player Map(Footballista.Players.Player player)
 		{
 			if (player is null)
 			{
 				return null;
 			}
 
-			return new Player
+			return new Players.Player
 			{
 				Firstname = player.Firstname.Value,
 				Lastname = player.Lastname.Value,
@@ -23,7 +23,7 @@ namespace Footballista.BlazorServer.Data.Mappers
 						.ToList(),
 				BirthInfo = new BirthInfo
 				{
-					City = new City
+					City = new Players.City
 					{
 						Name = player.BirthInfo.BirthLocation.City.Name,
 						Country = player.BirthInfo.BirthLocation.Country.RegionInfo.EnglishName
@@ -37,6 +37,7 @@ namespace Footballista.BlazorServer.Data.Mappers
 					WeightInKilograms = Convert.ToInt32(player.Bmi.Weight.Kilograms)
 				},
 				Gender = player.Gender.ToString(),
+				Percentile = player.Percentile.Value,
 				GeneralRating = Convert.ToInt32(player.GeneralRating.Value * 100),
 				Ratings = player.PhysicalFeatureSet.PhysicalFeatures
 						.Select(feat => new Rating
@@ -47,7 +48,7 @@ namespace Footballista.BlazorServer.Data.Mappers
 						.ToList()
 			};
 		}
-		public IEnumerable<Player> Map(IEnumerable<Footballista.Players.Player> players)
+		public IEnumerable<Players.Player> Map(IEnumerable<Footballista.Players.Player> players)
 		{
 			return players
 				.Select(player => Map(player));
