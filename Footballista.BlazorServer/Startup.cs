@@ -1,10 +1,14 @@
 using Autofac;
 using Footballista.BlazorServer.Modules;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Linq;
+using System.Net.Http;
 
 namespace Footballista.BlazorServer
 {
@@ -23,6 +27,20 @@ namespace Footballista.BlazorServer
 		{
 			services.AddRazorPages();
 			services.AddServerSideBlazor();
+
+			// vieux workaround pour faire fonctionner MatBlazor.MatTable
+			if (services.All(x => x.ServiceType != typeof(HttpClient)))
+			{
+				services.AddScoped(
+					s =>
+					{
+						var navigationManager = s.GetRequiredService<NavigationManager>();
+						return new HttpClient
+						{
+							BaseAddress = new Uri(navigationManager.BaseUri)
+						};
+					});
+			}
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
