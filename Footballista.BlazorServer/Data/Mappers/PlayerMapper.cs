@@ -38,6 +38,7 @@ namespace Footballista.BlazorServer.Data.Mappers
 				},
 				Gender = player.Gender.ToString(),
 				Percentile = player.Percentile.Value,
+				Position = player.PlayerPosition.Name,
 				GeneralRating = Convert.ToInt32(player.GeneralRating.Value * 100),
 				Ratings = player.PhysicalFeatureSet.PhysicalFeatures
 						.Select(feat => new Rating

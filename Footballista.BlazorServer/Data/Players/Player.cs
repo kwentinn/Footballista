@@ -14,5 +14,6 @@ namespace Footballista.BlazorServer.Data.Players
 		public int GeneralRating { get; set; }
 		public List<Rating> Ratings { get; set; }
 		public int Percentile { get; set; }
+		public string Position { get; set; }
 	}
 }
