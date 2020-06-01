@@ -1,4 +1,4 @@
-﻿using Footballista.BuildingBlocks.Domain.Percentiles;
+using Footballista.BuildingBlocks.Domain.Percentiles;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Features;
 using Footballista.Players.Features.GlobalRatingCalculators;
@@ -14,8 +14,6 @@ namespace Footballista.Players
 	[DebuggerDisplay("{Firstname} {Lastname} {PlayerPosition}")]
 	public class Player : Person
 	{
-		//public ReadOnlyCollection<PlayerPosition> PlayerPositions => _playerPositions.AsReadOnly();
-		//private List<PlayerPosition> _playerPositions = new List<PlayerPosition>();
 		public PhysicalFeatureSet PhysicalFeatureSet { get; }
 		public PlayerPosition PlayerPosition { get; }
 		public Percentile Percentile { get; }

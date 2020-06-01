@@ -26,6 +26,7 @@ namespace Footballista.Players.Infrastracture.Loaders
 			(
 				_hostEnvironment.ContentRootPath,
 				_hostEnvironment.ContentRootPath.EndsWith(@"\") ? "" : @"\",
+				@"..\",
 				folderPath, @"\",
 				filename
 			));

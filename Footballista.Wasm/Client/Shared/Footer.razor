@@ -1,0 +1,8 @@
+﻿<p>Footballista - @GetVersion(version)</p>
+
+@code {
+	private Version version = new Version("0.1");
+
+	string GetVersion(Version version) 
+		=> $"{version.Major}.{version.Minor}";
+}

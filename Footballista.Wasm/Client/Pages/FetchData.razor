@@ -1,0 +1,41 @@
+@page "/fetchdata"
+@using Blazorise.DataGrid
+@using Footballista.Wasm.Shared.Data.Players
+@using Footballista.Wasm.Client.ClientServices
+@inject IPlayersClientService PlayersClientService
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (players == null)
+{
+	<p><em>Loading...</em></p>
+}
+else if (!players.Any())
+{
+	<p><em>There are no players to display...</em></p>
+}
+else
+{
+	<DataGrid TItem="Player" Data="@players"
+			  @bind-SelectedRow="@selectedPlayer" PageSize="50">
+		<DataGridCommandColumn TItem="Player" />
+
+		<DataGridColumn TItem="Player" Field="@nameof(Player.Firstname)" Caption="Firstname" Sortable="true" />
+		<DataGridColumn TItem="Player" Field="@nameof(Player.Lastname)" Caption="Lastname" Sortable="true" />
+		<DataGridColumn TItem="Player" Field="@nameof(Player.Gender)" Caption="Gender" Sortable="true" />
+		<DataGridColumn TItem="Player" Field="@nameof(Player.Foot)" Caption="Foot" Sortable="true" />
+		<DataGridColumn TItem="Player" Field="@nameof(Player.Nationalities)"  Caption="Nationalities" Sortable="true" />
+	</DataGrid>
+}
+
+@code {
+	private List<Player> players;
+	private Player selectedPlayer;
+
+	protected override async Task OnInitializedAsync()
+	{
+		players = await PlayersClientService.GetGeneratedPlayersAsync(20);
+	}
+}
