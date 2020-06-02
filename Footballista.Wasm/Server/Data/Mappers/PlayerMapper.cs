@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Footballista.Wasm.Shared.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,7 +24,7 @@ namespace Footballista.Wasm.Server.Data.Mappers
 				Nationalities = string.Join(", ", player.Nationalities.Select(n => n.CountryCode)),
 				BirthInfo = new Shared.Data.Players.BirthInfo
 				{
-					City = new Shared.Data.Players.City
+					City = new City
 					{
 						Name = player.BirthInfo.BirthLocation.City.Name,
 						Country = player.BirthInfo.BirthLocation.Country.RegionInfo.EnglishName

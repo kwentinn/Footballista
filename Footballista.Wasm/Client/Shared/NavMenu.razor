@@ -1,4 +1,5 @@
-﻿<Sidebar @ref="sidebar">
+﻿
+<Sidebar @ref="sidebar">
 	<SidebarContent>
 		<SidebarNavigation>
 			<SidebarItem>
@@ -6,16 +7,63 @@
 					<Icon Name="IconName.Lock" Margin="Margin.Is2.FromRight" />Home
 				</SidebarLink>
 			</SidebarItem>
+
+			<!-- career -->
 			<SidebarItem>
-				<SidebarLink Toggled="(isOpen) => careerSidebarSubItems.Toggle(isOpen)" IsShow="true">
+				<SidebarLink Toggled="(isOpen) => careerSidebarSubItems.Toggle(isOpen)">
 					<Icon Name="IconName.Dashboard" Margin="Margin.Is2.FromRight" />Career
 				</SidebarLink>
-				<SidebarSubItem @ref="careerSidebarSubItems" IsShow="true">
+				<SidebarSubItem @ref="careerSidebarSubItems">
 					<SidebarItem>
 						<SidebarLink To="career/home">Home</SidebarLink>
 					</SidebarItem>
 					<SidebarItem>
 						<SidebarLink To="/fetchdata">Fetch data</SidebarLink>
+					</SidebarItem>
+				</SidebarSubItem>
+			</SidebarItem>
+
+			<!-- team -->
+			<SidebarItem>
+				<SidebarLink Toggled="(isOpen) => teamSidebarSubItems.Toggle(isOpen)">
+					<Icon Name="IconName.Dashboard" Margin="Margin.Is2.FromRight" />Team
+				</SidebarLink>
+				<SidebarSubItem @ref="teamSidebarSubItems">
+					<SidebarItem>
+						<SidebarLink To="team/home">Manage main team</SidebarLink>
+					</SidebarItem>
+					<SidebarItem>
+						<SidebarLink To="/fetchdata">View players</SidebarLink>
+					</SidebarItem>
+				</SidebarSubItem>
+			</SidebarItem>
+
+			<!-- recruitment -->
+			<SidebarItem>
+				<SidebarLink Toggled="(isOpen) => recruitmentSidebarSubItems.Toggle(isOpen)">
+					<Icon Name="IconName.Dashboard" Margin="Margin.Is2.FromRight" />Recruitment
+				</SidebarLink>
+				<SidebarSubItem @ref="recruitmentSidebarSubItems">
+					<SidebarItem>
+						<SidebarLink To="recruitment/home">Search for players</SidebarLink>
+					</SidebarItem>
+					<SidebarItem>
+						<SidebarLink To="recruitment/fetchdata">View current contracts</SidebarLink>
+					</SidebarItem>
+				</SidebarSubItem>
+			</SidebarItem>
+
+			<!-- training -->
+			<SidebarItem>
+				<SidebarLink Toggled="(isOpen) => trainingSidebarSubItems.Toggle(isOpen)">
+					<Icon Name="IconName.Dashboard" Margin="Margin.Is2.FromRight" />Team Training
+				</SidebarLink>
+				<SidebarSubItem @ref="trainingSidebarSubItems">
+					<SidebarItem>
+						<SidebarLink To="recruitment/home">Search for players</SidebarLink>
+					</SidebarItem>
+					<SidebarItem>
+						<SidebarLink To="recruitment/fetchdata">View current contracts</SidebarLink>
 					</SidebarItem>
 				</SidebarSubItem>
 			</SidebarItem>
@@ -27,7 +75,12 @@
 @code{
 	Sidebar sidebar;
 	SidebarSubItem careerSidebarSubItems;
-	//SidebarSubItem appsSidebarSubItems;
+	SidebarSubItem teamSidebarSubItems;
+	SidebarSubItem recruitmentSidebarSubItems;
+	SidebarSubItem trainingSidebarSubItems;
+	SidebarSubItem youngstersSidebarSubItems;
+	SidebarSubItem clubSidebarSubItems;
+	SidebarSubItem transfersSidebarSubItems;
 
 	void ToggleSidebar()
 	{

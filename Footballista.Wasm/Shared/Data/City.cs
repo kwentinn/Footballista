@@ -1,4 +1,4 @@
-﻿namespace Footballista.Wasm.Shared.Data.Players
+﻿namespace Footballista.Wasm.Shared.Data
 {
 	public class City
 	{
