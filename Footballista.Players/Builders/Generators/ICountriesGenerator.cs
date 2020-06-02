@@ -2,6 +2,7 @@
 using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Builders.Randomisers;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Footballista.Players.Builders.Generators
 {
@@ -13,41 +14,37 @@ namespace Footballista.Players.Builders.Generators
 	{
 		private readonly IListRandomiser _listRandomiser;
 		private readonly IRandomiser<int> _intRandomiser;
+		private readonly IMultipleValuesRandomiser<int> _multipleValuesRandomiser;
 
-		private List<Country> _countries = new List<Country>
-		{
-			Country.China,
-			Country.Japan,
-			Country.CzechRepublic,
-			Country.Denmark,
-			Country.Spain,
-			Country.France,
-			Country.England,
-			Country.NorthernIreland,
-			Country.Scotland,
-			Country.Ireland,
-			Country.Greece,
-			Country.India,
-			Country.Italy,
-			Country.Korea,
-			Country.Netherlands,
-			Country.Poland,
-			Country.Portugal,
-			Country.Russia,
-			Country.USA
-		};
-
-		public CountriesGenerator(IListRandomiser listRandomiser, IRandomiser<int> intRandomiser)
+		public CountriesGenerator
+		(
+			IListRandomiser listRandomiser, 
+			IRandomiser<int> intRandomiser, 
+			IMultipleValuesRandomiser<int> multipleValuesRandomiser
+		)
 		{
 			_listRandomiser = listRandomiser;
 			_intRandomiser = intRandomiser;
+			_multipleValuesRandomiser = multipleValuesRandomiser;
 		}
 
 		public Maybe<Country[]> Generate()
 		{
-			return Maybe.Some(_listRandomiser.GetRandomisedItems(
-				list: _countries,
-				nbOfItemsToReturn: _intRandomiser.Randomise(1, 2)));
+			var nbOfItemsToReturn = _intRandomiser.Randomise(1, 2);
+			Country[] items = null;
+			if (nbOfItemsToReturn > 1)
+			{
+				int[] indices = _multipleValuesRandomiser.GetRandomisedValues(new Range<int>(0, Country.Countries.Count - 1), nbOfItemsToReturn);
+				items = indices
+					.AsEnumerable()
+					.Select(i => Country.Countries[i])
+					.ToArray();
+			}
+			else
+			{
+				items = _listRandomiser.GetRandomisedItems(Country.Countries.ToList(), nbOfItemsToReturn);
+			}
+			return Maybe.Some(items);
 		}
 	}
 }
