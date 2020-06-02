@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Footballista.BuildingBlocks.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 

@@ -34,6 +34,7 @@ namespace Footballista.Wasm.Server.Modules
 			builder.RegisterType<DateOfBirthGenerator>().As<IDateOfBirthGenerator>();
 
 			builder.RegisterType<IntRandomiser>().As<IRandomiser<int>>().SingleInstance();
+			builder.RegisterType<MultipleIntValuesRandomiser>().As<IMultipleValuesRandomiser<int>>().SingleInstance();
 			builder.RegisterType<FeatureRatingRandomiser>().As<IRandomiser<Rating>>();
 			builder.RegisterType<AgeRandomiser>().As<IRandomiser<PersonAge>>();
 			builder.RegisterType<ListRandomiser>().As<IListRandomiser>();

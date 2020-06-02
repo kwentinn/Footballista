@@ -13,7 +13,7 @@ namespace Footballista.Players.Builders.Randomisers
 		private static IEnumerator<double> _enumerator;
 		private static object _lock = new object();
 
-		public double Current
+		private double Current
 		{
 			get
 			{

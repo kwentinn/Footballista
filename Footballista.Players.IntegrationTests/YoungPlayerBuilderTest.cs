@@ -27,6 +27,7 @@ namespace Footballista.Players.IntegrationTests
 	{
 		private readonly Game.Domain.Game _game;
 		private readonly IntRandomiser _intRandomiser;
+		private readonly MultipleIntValuesRandomiser _multipleIntValuesRandomiser;
 		private readonly AgeRandomiser _ageRandomiser;
 		private readonly FeatureRatingRandomiser _featureRatingRandomiser;
 		private readonly DataPathHelper _dataPathHelper;
@@ -67,6 +68,7 @@ namespace Footballista.Players.IntegrationTests
 			_game = new Game.Domain.Game("test game", DateTime.Parse("2020-01-01"));
 
 			_intRandomiser = new IntRandomiser();
+			_multipleIntValuesRandomiser = new MultipleIntValuesRandomiser();
 			_ageRandomiser = new AgeRandomiser(_intRandomiser);
 			_featureRatingRandomiser = new FeatureRatingRandomiser(_intRandomiser);
 			_dataPathHelper = new DataPathHelper(_mockHostingEnv.Object);
@@ -87,7 +89,7 @@ namespace Footballista.Players.IntegrationTests
 			_weightGrLoader = new WeightGrowthRecordLoader(_dataPathHelper);
 			_percentileGrRepository = new PercentileGrowthSetRepository(_statureGrLoader, _weightGrLoader);
 			_bmiGenerator = new BodyMassIndexGenerator(_game, _percentileGrRepository);
-			_countriesGenerator = new CountriesGenerator(_listRandomiser, _intRandomiser);
+			_countriesGenerator = new CountriesGenerator(_listRandomiser, _intRandomiser, _multipleIntValuesRandomiser);
 			_growthSetGenerator = new GrowthSetGenerator(_percentileGrRepository, _listRandomiser);
 			_playerPositionGenerator = new PlayerPositionGenerator(_percentileGenerator);
 		}
