@@ -2,6 +2,7 @@
 @using Blazorise.DataGrid
 @using Footballista.Wasm.Shared.Data.Players
 @using Footballista.Wasm.Client.ClientServices
+@using Footballista.Wasm.Client.Components
 @inject IPlayersClientService PlayersClientService
 
 <h1>Weather forecast</h1>
@@ -10,7 +11,7 @@
 
 @if (players == null)
 {
-	<p><em>Loading...</em></p>
+	<Loader></Loader>
 }
 else if (!players.Any())
 {

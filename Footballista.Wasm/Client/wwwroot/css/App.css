@@ -1,0 +1,21 @@
+﻿.loader {
+  border: 16px solid silver;
+  border-top: 16px solid #337AB7;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 700ms linear infinite;
+  top: 40%;
+  left: 55%;
+  position: absolute; }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+body {
+  font-family: 'Play', sans-serif; }
+
+/*# sourceMappingURL=data:application/json;base64,ewoJInZlcnNpb24iOiAzLAoJImZpbGUiOiAiU3R5bGVzL0FwcC5jc3MiLAoJInNvdXJjZXMiOiBbCgkJIlN0eWxlcy9BcHAuc2NzcyIsCgkJIkNvbXBvbmVudHMvTG9hZGVyLnNjc3MiCgldLAoJIm5hbWVzIjogW10sCgkibWFwcGluZ3MiOiAiQUNBQSxBQUFBLE9BQU8sQ0FBQztFQUNQLE1BQU0sRUFBRSxpQkFBaUI7RUFDekIsVUFBVSxFQUFFLGtCQUFrQjtFQUM5QixhQUFhLEVBQUUsR0FBRztFQUNsQixLQUFLLEVBQUUsSUFBSTtFQUNYLE1BQU0sRUFBRSxJQUFJO0VBQ1osU0FBUyxFQUFFLDBCQUEwQjtFQUNyQyxHQUFHLEVBQUUsR0FBRztFQUNSLElBQUksRUFBRSxHQUFHO0VBQ1QsUUFBUSxFQUFFLFFBQVEsR0FDbEI7O0FBRUQsVUFBVSxDQUFWLElBQVU7RUFDVCxBQUFBLEVBQUU7SUFDRCxTQUFTLEVBQUUsWUFBWTtFQUd4QixBQUFBLElBQUk7SUFDSCxTQUFTLEVBQUUsY0FBYzs7QURoQjNCLEFBQUEsSUFBSSxDQUFDO0VBQ0osV0FBVyxFQUFFLGtCQUFrQixHQUMvQiIKfQ== */
