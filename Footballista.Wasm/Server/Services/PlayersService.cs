@@ -1,10 +1,11 @@
 ﻿using Footballista.Players.Builders;
-using Footballista.Wasm.Server.Data.Mappers;
+using Footballista.Wasm.Server.Services.Mappers;
 using Footballista.Wasm.Shared.Data.Players;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Footballista.Wasm.Server.Data
+namespace Footballista.Wasm.Server.Services
 {
 	public class PlayersService : IPlayersService
 	{

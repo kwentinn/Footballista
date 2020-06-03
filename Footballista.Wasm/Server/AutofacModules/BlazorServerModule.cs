@@ -1,7 +1,7 @@
 ﻿using Autofac;
-using Footballista.Wasm.Server.Data;
+using Footballista.Wasm.Server.Services;
 
-namespace Footballista.Wasm.Server.Modules
+namespace Footballista.Wasm.Server.AutofacModules
 {
 	internal class BlazorWasmServerModule : Module
 	{

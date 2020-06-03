@@ -1,5 +1,5 @@
 using Autofac;
-using Footballista.Wasm.Server.Modules;
+using Footballista.Wasm.Server.AutofacModules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

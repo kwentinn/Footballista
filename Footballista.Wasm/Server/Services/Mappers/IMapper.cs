@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Footballista.Wasm.Server.Data.Mappers
+namespace Footballista.Wasm.Server.Services.Mappers
 {
 	public interface IMapper<in TSource, out TDestination>
 	{

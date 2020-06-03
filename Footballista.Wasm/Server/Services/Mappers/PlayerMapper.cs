@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Footballista.Wasm.Server.Data.Mappers
+namespace Footballista.Wasm.Server.Services.Mappers
 {
 	/// <summary>
 	/// Map domain to dto/client
