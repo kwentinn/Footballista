@@ -8,7 +8,7 @@ namespace Footballista.Wasm.Shared.Data.Competitions
 	public class CompetitionRanking
 	{
 		public int Position { get; set; }
-		public Club Club { get; set; }
+		public string ClubName { get; set; }
 		public int GamesPlayed { get; set; }
 		public int Won { get; set; }
 		public int Drawn { get; set; }
