@@ -3,6 +3,7 @@
 @using Footballista.Wasm.Shared.Data.Players
 @using Footballista.Wasm.Client.ClientServices
 @using Footballista.Wasm.Client.Components
+@using Footballista.Wasm.Client.Components.TableBased
 @inject IPlayersClientService PlayersClientService
 
 <h1>Weather forecast</h1>
@@ -19,16 +20,7 @@ else if (!players.Any())
 }
 else
 {
-	<DataGrid TItem="Player" Data="@players"
-			  @bind-SelectedRow="@selectedPlayer" PageSize="50">
-		<DataGridCommandColumn TItem="Player" />
-
-		<DataGridColumn TItem="Player" Field="@nameof(Player.Firstname)" Caption="Firstname" Sortable="true" />
-		<DataGridColumn TItem="Player" Field="@nameof(Player.Lastname)" Caption="Lastname" Sortable="true" />
-		<DataGridColumn TItem="Player" Field="@nameof(Player.Gender)" Caption="Gender" Sortable="true" />
-		<DataGridColumn TItem="Player" Field="@nameof(Player.Foot)" Caption="Foot" Sortable="true" />
-		<DataGridColumn TItem="Player" Field="@nameof(Player.Nationalities)"  Caption="Nationalities" Sortable="true" />
-	</DataGrid>
+	<PlayersTableComponent Players="players"></PlayersTableComponent>
 }
 
 @code {
