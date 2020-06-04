@@ -1,8 +1,12 @@
-﻿<p>Footballista - @GetVersion(version)</p>
+﻿<Bar Breakpoint="Breakpoint.Desktop" Background="Background.Light" ThemeContrast="ThemeContrast.Light">
+	<BarToggler />
+	<BarBrand>Footballista - @GetVersion(version) </BarBrand>
+</Bar>
+
 
 @code {
 	private Version version = new Version("0.1");
 
-	string GetVersion(Version version) 
-		=> $"{version.Major}.{version.Minor}";
+	string GetVersion(Version version)
+		=> $"v{version.Major}.{version.Minor}";
 }

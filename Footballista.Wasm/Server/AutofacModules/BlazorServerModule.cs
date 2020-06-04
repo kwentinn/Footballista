@@ -1,5 +1,6 @@
 ﻿using Autofac;
-using Footballista.Wasm.Server.Services;
+using System.Reflection;
+using Module = Autofac.Module;
 
 namespace Footballista.Wasm.Server.AutofacModules
 {
@@ -7,7 +8,11 @@ namespace Footballista.Wasm.Server.AutofacModules
 	{
 		protected override void Load(ContainerBuilder builder)
 		{
-			builder.RegisterType<PlayersService>().As<IPlayersService>();
+			var asm = Assembly.GetExecutingAssembly();
+			builder
+				.RegisterAssemblyTypes(asm)
+				.Where(t => t.Name.EndsWith("Service"))
+				.AsImplementedInterfaces();
 		}
 	}
 }
