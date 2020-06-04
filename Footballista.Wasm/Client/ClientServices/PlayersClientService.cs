@@ -14,9 +14,9 @@ namespace Footballista.Wasm.Client.ClientServices
 		{
 			_httpClient = httpClient;
 		}
-		public async Task<List<Player>> GetGeneratedPlayersAsync(int maxPlayers = 50) //, CancellationToken cancellationToken = default)
+		public async Task<List<Player>> GetGeneratedPlayersAsync(int maxPlayers = 50)
 		{
-			return await _httpClient.GetFromJsonAsync<List<Player>>("generate/players"); //, cancellationToken);
+			return await _httpClient.GetFromJsonAsync<List<Player>>("generate/players");
 		}
 	}
 }

@@ -7,6 +7,6 @@ namespace Footballista.Wasm.Client.ClientServices
 {
 	public interface IPlayersClientService
 	{
-		Task<List<Player>> GetGeneratedPlayersAsync(int maxPlayers = 50); //, CancellationToken cancellationToken = default);
+		Task<List<Player>> GetGeneratedPlayersAsync(int maxPlayers = 50);
 	}
 }
