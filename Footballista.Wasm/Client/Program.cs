@@ -30,6 +30,7 @@ namespace Footballista.Wasm.Client
 					BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
 				})
 				.AddTransient(typeof(IPlayersClientService), typeof(PlayersClientService))
+				.AddTransient(typeof(IRankingsClientService), typeof(RankingsClientService))
 			;
 
 			builder.RootComponents.Add<App>("app");
