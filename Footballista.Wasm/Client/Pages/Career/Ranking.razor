@@ -1,0 +1,31 @@
+﻿@page "/career/ranking"
+@using Footballista.Wasm.Client.Components.TableBased
+@using Footballista.Wasm.Client.Components
+@using Footballista.Wasm.Shared.Data.Competitions
+@using Footballista.Wasm.Client.ClientServices
+@inject IRankingsClientService _rankingsClientService
+
+<h3>Current Rankings</h3>
+
+@if (rankings == null)
+{
+	<Loader></Loader>
+}
+else if (!rankings.Any())
+{
+	<p><em>There are no players to display...</em></p>
+}
+else
+{
+	<CompetitionRankingComponent Rankings="@rankings"></CompetitionRankingComponent>
+}
+
+
+@code {
+	private List<CompetitionRanking> rankings;
+
+	protected override async Task OnInitializedAsync()
+	{
+		rankings = await _rankingsClientService.GetRankings();
+	}
+}
