@@ -3,10 +3,11 @@
 @using Footballista.Wasm.Client.Components
 @using Footballista.Wasm.Shared.Data.Competitions
 @using Footballista.Wasm.Client.ClientServices
+@using Footballista.Wasm.Shared.Data 
 @inject IRankingsClientService _rankingsClientService
 
 <h3>Current Rankings</h3>
-
+<h4>Season @currentSeason</h4>
 @if (rankings == null)
 {
 	<Loader></Loader>
@@ -22,6 +23,9 @@ else
 
 
 @code {
+
+	private Season currentSeason = new Season(2011, 2012);
+
 	private List<CompetitionRanking> rankings;
 
 	protected override async Task OnInitializedAsync()
