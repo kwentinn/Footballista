@@ -26,9 +26,9 @@ namespace Footballista.Wasm.Server.Services
 			Players.Player player = await _builder.BuildAsync();
 			return _mapper.Map(player);
 		}
-		public async Task<Player[]> GetPlayersAsync()
+		public async Task<Player[]> GetPlayersAsync(int maxPlayers = 50)
 		{
-			var players = await _builder.BuildManyAsync(50);
+			var players = await _builder.BuildManyAsync(maxPlayers);
 			return _mapper.Map(players)?.ToArray();
 		}
 	}

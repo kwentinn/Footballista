@@ -18,10 +18,10 @@ namespace Footballista.Wasm.Server.Controllers
 		}
 
 		[HttpGet]
-		[Route("players")]
-		public async Task<IEnumerable<Player>> GetGeneratedPlayersAsync()
+		[Route("players/{maxPlayers}")]
+		public async Task<IEnumerable<Player>> GetGeneratedPlayersAsync(int maxPlayers)
 		{
-			return await _playersService.GetPlayersAsync(); //, new System.Threading.CancellationToken());
+			return await _playersService.GetPlayersAsync(maxPlayers);
 		}
 	}
 }
