@@ -1,0 +1,50 @@
+﻿@using Footballista.Wasm.Shared.Data.Players
+
+<span>@Rating.Feature</span>
+<span class="@GetClassFromRating(Rating)">@Rating.Value</span>
+
+@code {
+
+	[Parameter]
+	public Rating Rating { get; set; }
+
+	public string GetClassFromRating(Rating rating)
+	{
+		if (rating.Value >= 90)
+		{
+			return "rating-highest";
+		}
+		if (rating.Value >= 80 && rating.Value < 90)
+		{
+			return "rating-higher";
+		}
+		if (rating.Value >= 70 && rating.Value < 80)
+		{
+			return "rating-high";
+		}
+		if (rating.Value >= 60 && rating.Value < 70)
+		{
+			return "rating-mid-high";
+		}
+		if (rating.Value >= 50 && rating.Value < 60)
+		{
+			return "rating-mid";
+		}
+		if (rating.Value >= 40 && rating.Value < 50)
+		{
+			return "rating-mid-low";
+		}
+		if (rating.Value >= 30 && rating.Value < 40)
+		{
+			return "rating-low";
+		}
+		if (rating.Value >= 20 && rating.Value < 30)
+		{
+			return "rating-lower";
+		}
+
+		// rating.Value < 20
+		return "rating-lowest";
+	}
+
+}

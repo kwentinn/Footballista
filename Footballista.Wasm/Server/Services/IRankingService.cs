@@ -14,9 +14,7 @@ namespace Footballista.Wasm.Server.Services
 	{
 		public async Task<List<CompetitionRanking>> GetCompetitionRankingsAsync()
 		{
-			await Task.Delay(1000);
-
-			return new List<CompetitionRanking>
+			return await Task.FromResult(new List<CompetitionRanking>
 			{
 				new CompetitionRanking
 				{
@@ -96,7 +94,7 @@ namespace Footballista.Wasm.Server.Services
 					GoalsDifference = 9,
 					Points = 60
 				}
-			};
+			});
 		}
 	}
 }
