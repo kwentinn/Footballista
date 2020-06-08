@@ -20,15 +20,23 @@ else if (!players.Any())
 }
 else
 {
-	<PlayersTableComponent Players="players"></PlayersTableComponent>
+	<div>SelectedPlayer: @_selectedPlayer?.Id</div>
+
+	<PlayersTableComponent Players="players" OnSelectionChanged="OnPlayerSelect"></PlayersTableComponent>
+
 }
 
 @code {
 	private List<Player> players;
-	private Player selectedPlayer;
+	private Player _selectedPlayer;
 
 	protected override async Task OnInitializedAsync()
 	{
 		players = await PlayersClientService.GetGeneratedPlayersAsync(20);
+	}
+
+	private void OnPlayerSelect(Player selectedPlayer)
+	{
+		_selectedPlayer = selectedPlayer;
 	}
 }

@@ -1,7 +1,9 @@
 ﻿@using Blazorise.DataGrid
 @using Footballista.Wasm.Shared.Data.Players
+@using Footballista.Wasm.Client.Components.RatingRelated
 
-<DataGrid TItem="Player" Data="@Players" PageSize="50">
+<DataGrid TItem="Player" Data="@Players" PageSize="50" @ref="@grid"
+		  SelectedRowChanged="OnSelectionChanged">
 	<DataGridCommandColumn TItem="Player" />
 
 	<DataGridColumn TItem="Player" Field="@nameof(Player.Firstname)" Caption="Firstname" Sortable="true" />
@@ -9,11 +11,26 @@
 	<DataGridColumn TItem="Player" Field="@nameof(Player.Gender)" Caption="Gender" Sortable="true" />
 	<DataGridColumn TItem="Player" Field="@nameof(Player.Foot)" Caption="Foot" Sortable="true" />
 	<DataGridColumn TItem="Player" Field="@nameof(Player.Nationalities)" Caption="Nationalities" Sortable="true" />
-	<DataGridColumn TItem="Player" Field="@nameof(Player.GeneralRating)" Caption="Avg." Sortable="true" />
+	<DataGridNumericColumn TItem="Player" Field="@nameof(Player.GeneralRating)" Caption="Avg." Sortable="true" />
+	<DataGridColumn TItem="Player" Field="@nameof(Player.Ratings)" Caption="Action">
+		<DisplayTemplate>
+			<FeatureCollectionComponent Ratings="(context as Player)?.Ratings" />
+		</DisplayTemplate>
+	</DataGridColumn>
 </DataGrid>
 
 @code
 {
+	private DataGrid<Player> grid;
+
 	[Parameter]
 	public List<Player> Players { get; set; }
+
+	public PlayersTableComponent()
+	{
+
+	}
+
+	[Parameter]
+	public EventCallback<Player> OnSelectionChanged { get; set; }
 }
