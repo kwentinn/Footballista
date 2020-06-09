@@ -1,9 +1,12 @@
-﻿@import '../Components/Loader.scss';
+﻿@import '../Components/_Shared/Loader.scss';
 @import '../Components/RatingRelated/FeatureRatingComponent.scss';
 @import '../Components/RatingRelated/FeatureCollectionComponent.scss';
+@import 'Theme.scss';
+
 
 body {
-	font-family: 'Play', sans-serif;
+	font-family: $font-primary;
+	color: $text-color;
 }
 
 .main-content {

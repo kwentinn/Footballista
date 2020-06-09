@@ -65,7 +65,7 @@ namespace Footballista.PlayersUnitTests.Domain
 			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.Focus).ChangeRating(Rating.Max);
 			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.PenaltyKick).ChangeRating(Rating.Max);
 
-			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.Morale).ChangeRating(Rating.Max);
+			//set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.Morale).ChangeRating(Rating.Max);
 			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.Stamina).ChangeRating(Rating.Max);
 			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.TopSpeed).ChangeRating(Rating.Max);
 			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.Vista).ChangeRating(Rating.Max);
@@ -76,9 +76,6 @@ namespace Footballista.PlayersUnitTests.Domain
 			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.Cross).ChangeRating(Rating.FromInt(50));
 			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.Interception).ChangeRating(Rating.FromInt(50));
 			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.Tackling).ChangeRating(Rating.FromInt(50));
-
-
-
 
 			// act
 			Rating generalRating = grc.Calculate(PlayerPosition.CentreForward, set);
@@ -106,7 +103,7 @@ namespace Footballista.PlayersUnitTests.Domain
 			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.Focus).ChangeRating(Rating.FromInt(60));
 			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.PenaltyKick).ChangeRating(Rating.FromInt(60));
 
-			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.Morale).ChangeRating(Rating.FromInt(60));
+			//set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.Morale).ChangeRating(Rating.FromInt(60));
 			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.Stamina).ChangeRating(Rating.FromInt(60));
 			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.TopSpeed).ChangeRating(Rating.FromInt(60));
 			set.PhysicalFeatures.Single(f => f.FeatureType == FeatureType.Vista).ChangeRating(Rating.FromInt(60));

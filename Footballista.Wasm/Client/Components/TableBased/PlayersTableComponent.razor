@@ -9,14 +9,11 @@
 	<DataGridColumn TItem="Player" Field="@nameof(Player.Firstname)" Caption="Firstname" Sortable="true" />
 	<DataGridColumn TItem="Player" Field="@nameof(Player.Lastname)" Caption="Lastname" Sortable="true" />
 	<DataGridColumn TItem="Player" Field="@nameof(Player.Gender)" Caption="Gender" Sortable="true" />
+	<DataGridNumericColumn TItem="Player" Field="@nameof(Player.Position)" Caption="Pos." Sortable="true" />
 	<DataGridColumn TItem="Player" Field="@nameof(Player.Foot)" Caption="Foot" Sortable="true" />
 	<DataGridColumn TItem="Player" Field="@nameof(Player.Nationalities)" Caption="Nationalities" Sortable="true" />
 	<DataGridNumericColumn TItem="Player" Field="@nameof(Player.GeneralRating)" Caption="Avg." Sortable="true" />
-	<DataGridColumn TItem="Player" Field="@nameof(Player.Ratings)" Caption="Action">
-		<DisplayTemplate>
-			<FeatureCollectionComponent Ratings="(context as Player)?.Ratings" />
-		</DisplayTemplate>
-	</DataGridColumn>
+	
 </DataGrid>
 
 @code
@@ -25,11 +22,6 @@
 
 	[Parameter]
 	public List<Player> Players { get; set; }
-
-	public PlayersTableComponent()
-	{
-
-	}
 
 	[Parameter]
 	public EventCallback<Player> OnSelectionChanged { get; set; }

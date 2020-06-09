@@ -1,6 +1,8 @@
-﻿.loader {
+﻿@import '../../Styles/Theme.scss';
+
+.loader {
 	border: 16px solid silver;
-	border-top: 16px solid #337AB7;
+	border-top: 16px solid $color-primary;
 	border-radius: 50%;
 	width: 80px;
 	height: 80px;

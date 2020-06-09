@@ -2,6 +2,8 @@
 {
 	public enum FeatureType
 	{
+		ShotAccuracy,
+		ShotPower,
 		Finishing,
 		PenaltyKick,
 		Cross,
@@ -21,7 +23,6 @@
 		Focus,
 		Composure,
 		FightingSpirit,
-		Morale,
 		Goalkeeping,
 	}
 }

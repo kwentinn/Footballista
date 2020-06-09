@@ -22,7 +22,7 @@ namespace Footballista.Players.Features.GlobalRatingCalculators.RatingConfigs
 				new RatingWeighting(3, new List<FeatureType>
 				{
 					FeatureType.Power,
-					FeatureType.Morale,
+					//FeatureType.Morale,
 					FeatureType.Composure,
 					FeatureType.Focus,
 					FeatureType.Cross,

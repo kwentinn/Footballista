@@ -1,9 +1,9 @@
 @page "/team/players"
-@using Blazorise.DataGrid
 @using Footballista.Wasm.Shared.Data.Players
 @using Footballista.Wasm.Client.ClientServices
-@using Footballista.Wasm.Client.Components
+@using Footballista.Wasm.Client.Components._Shared
 @using Footballista.Wasm.Client.Components.TableBased
+@using Footballista.Wasm.Client.Components.PlayerRelated
 @inject IPlayersClientService PlayersClientService
 
 <h1>Team players</h1>
@@ -12,7 +12,7 @@
 
 @if (players == null)
 {
-	<Loader></Loader>
+	<Loader />
 }
 else if (!players.Any())
 {
@@ -20,10 +20,22 @@ else if (!players.Any())
 }
 else
 {
-	<div>SelectedPlayer: @_selectedPlayer?.Id</div>
+	<Row>
+		<Column ColumnSize="ColumnSize.Is7">
+			<PlayersTableComponent Players="players" OnSelectionChanged="OnPlayerSelect"></PlayersTableComponent>
 
-	<PlayersTableComponent Players="players" OnSelectionChanged="OnPlayerSelect"></PlayersTableComponent>
-
+		</Column>
+		<Column ColumnSize="ColumnSize.Is5" >
+			@if (_selectedPlayer is null)
+			{
+				<p>Select a player to view their details.</p>
+			}
+			else
+			{
+				<ViewPlayerComponent Player="_selectedPlayer" />
+			}
+		</Column>
+	</Row>
 }
 
 @code {

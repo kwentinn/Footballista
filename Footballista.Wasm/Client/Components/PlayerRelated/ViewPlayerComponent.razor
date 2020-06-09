@@ -1,0 +1,57 @@
+﻿@using Footballista.Wasm.Shared.Data.Players
+@using Footballista.Wasm.Client.Components.RatingRelated
+
+
+<Row>
+	<Column ColumnSize="ColumnSize.Is12">
+		<h2>@Player.Lastname</h2>
+		<h3>@Player.Firstname @Player.Lastname</h3>
+	</Column>
+</Row>
+<Row>
+	<Column ColumnSize="ColumnSize.Is4">
+		<FeatureCollectionComponent Ratings="Player.Ratings" />
+	</Column>
+	<Column ColumnSize="ColumnSize.Is8">
+		<RadarChart TItem="int" @ref="playerChart" Options="GetChartOptions()" />
+	</Column>
+</Row>
+
+
+@code {
+
+	[Parameter]
+	public Player Player { get; set; }
+
+	RadarChart<int> playerChart;
+
+	string[] GetLabels() => Player.Ratings?.Select(r => r.Feature)?.ToArray();
+
+	RadarChartDataset<int>[] GetChartDataSet() => new RadarChartDataset<int>[]
+	{
+		new RadarChartDataset<int>()
+		{
+			Data = Player.Ratings?.Select(r => r.Value)?.ToList(),
+			LineTension = 0,
+			Fill = true
+		}
+	};
+
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		await HandleRedraw();
+	}
+
+	async Task HandleRedraw()
+	{
+		await playerChart.Clear();
+
+		var labels = GetLabels();
+		var dataset = GetChartDataSet();
+
+		await playerChart.AddLabel(labels);
+		await playerChart.AddDataSet(dataset);
+		await playerChart.Update();
+	}
+}

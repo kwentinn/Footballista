@@ -30,7 +30,7 @@ namespace Footballista.Players.Features
 		{
 			_commonFeatures = new List<PhysicalFeature>
 			{
-				new  PhysicalFeature(FeatureType.Morale),
+				//new  PhysicalFeature(FeatureType.Morale),
 				new  PhysicalFeature(FeatureType.Focus),
 				new  PhysicalFeature(FeatureType.Stamina),
 				new  PhysicalFeature(FeatureType.FightingSpirit),

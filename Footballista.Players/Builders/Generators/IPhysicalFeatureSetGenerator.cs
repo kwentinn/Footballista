@@ -75,14 +75,14 @@ namespace Footballista.Players.Builders.Generators
 					}
 					else
 					{
-						if (feature.FeatureType == FeatureType.Morale)
-						{
-							rating = _randomiser.Randomise();
-						}
-						else
-						{
-							rating = _randomiser.Randomise(_youngPlayerFeatureRatingRange);
-						}
+						//if (feature.FeatureType == FeatureType.Morale)
+						//{
+						//	rating = _randomiser.Randomise();
+						//}
+						//else
+						//{
+						rating = _randomiser.Randomise(_youngPlayerFeatureRatingRange);
+						//}
 					}
 				}
 				feature.ChangeRating(rating);

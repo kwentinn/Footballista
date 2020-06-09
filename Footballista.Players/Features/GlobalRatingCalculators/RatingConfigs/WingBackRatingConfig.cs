@@ -23,7 +23,7 @@ namespace Footballista.Players.Features.GlobalRatingCalculators.RatingConfigs
 				{
 					FeatureType.Cross,
 					FeatureType.PassingAccuracy,
-					FeatureType.Morale,
+					//FeatureType.Morale,
 					FeatureType.Composure,
 					FeatureType.Interception,
 					FeatureType.ReactionSpeed,

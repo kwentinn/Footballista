@@ -28,7 +28,7 @@ namespace Footballista.Players.Features.GlobalRatingCalculators.RatingConfigs
 				}),
 				new RatingWeighting(1, new List<FeatureType>
 				{
-					FeatureType.Morale,
+					//FeatureType.Morale,
 					FeatureType.Stamina,
 					FeatureType.TopSpeed,
 					FeatureType.Vista,

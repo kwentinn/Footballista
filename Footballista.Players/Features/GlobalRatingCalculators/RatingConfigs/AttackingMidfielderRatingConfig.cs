@@ -39,7 +39,7 @@ namespace Footballista.Players.Features.GlobalRatingCalculators.RatingConfigs
 					FeatureType.Interception,
 					FeatureType.Power,
 					FeatureType.Tackling,
-					FeatureType.Morale,
+					//FeatureType.Morale,
 				})
 			});
 		}

@@ -1,38 +1,40 @@
-﻿.rating-highest {
-	background-color: forestgreen;
+﻿@import '../../Styles/Theme.scss';
+
+.rating-highest {
+	background-color: $rating-highest;
 }
 .rating-higher {
-	background-color: darkseagreen;
+	background-color: $rating-higher;
 }
 
 .rating-high {
-	background-color: palegreen;
+	background-color: $rating-high;
 }
 
 .rating-mid-high {
-	background-color: lightyellow;
+	background-color: $rating-mid-high;
 }
 
 .rating-mid {
-	background-color: lightpink;
+	background-color: $rating-mid;
 }
 
 .rating-mid-low {
-	background-color: tomato;
-	color: white;
+	background-color: $rating-mid-low;
+	color: $text-color-clear;
 }
 
 .rating-low {
-	background-color: brown;
-	color: white;
+	background-color: $rating-low;
+	color: $text-color-clear;
 }
 
 .rating-lower {
-	color: white;
-	background-color: darkred;
+	background-color: $rating-lower;
+	color: $text-color-clear;
 }
 
 .rating-lowest {
-	color: white;
-	background-color: firebrick;
+	background-color: $rating-lowest;
+	color: $text-color-clear;
 }
