@@ -1,11 +1,13 @@
 ﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.BuildingBlocks.Domain.KNNs;
+using Footballista.BuildingBlocks.Domain.KNNs.Models;
 using System;
 using System.Diagnostics;
 
 namespace Footballista.BuildingBlocks.Domain.Percentiles
 {
 	[DebuggerDisplay("{Value}")]
-	public struct Percentile : IEquatable<Percentile>, IComparable<Percentile>
+	public struct Percentile : IEquatable<Percentile>, IComparable<Percentile>, IDistanceMeasurable<Percentile>
 	{
 		public int Value { get; }
 
@@ -39,6 +41,11 @@ namespace Footballista.BuildingBlocks.Domain.Percentiles
 		public int CompareTo(Percentile other)
 		{
 			return Value.CompareTo(other.Value);
+		}
+
+		public Distance GetDistance(Percentile other)
+		{
+			return new Distance(Math.Abs(Value - other.Value));
 		}
 
 		public static bool operator ==(Percentile left, Percentile right)
