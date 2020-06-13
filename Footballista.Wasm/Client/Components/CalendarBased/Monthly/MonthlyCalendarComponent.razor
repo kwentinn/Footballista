@@ -1,0 +1,59 @@
+﻿@using Itenso.TimePeriod;
+@using System.Globalization;
+
+<div class="month">
+	<ul>
+		<li class="prev">&#10094;</li>
+		<li class="next">&#10095;</li>
+		<li>@DisplayMonth<br>@DisplayYear</li>
+	</ul>
+</div>
+
+<ul class="weekdays">
+	<li>Mo.</li>
+	<li>Tu.</li>
+	<li>We.</li>
+	<li>Th.</li>
+	<li>Fr.</li>
+	<li>Sa.</li>
+	<li>Su.</li>
+
+	@*@foreach (var weekday in Weekdays)
+	{
+		<li>@weekday.EnglishName</li>
+	}*@
+</ul>
+
+<ul class="days">
+	@for (int i = 1; i <= NumberOfDays; i++)
+	{
+		<li>@i</li>
+	}
+	@*<li><span class="active">10</span></li>*@
+</ul>
+
+@code {
+
+	// Uses the default calendar of the InvariantCulture.
+	Calendar Calendar = CultureInfo.InvariantCulture.Calendar;
+
+	[Parameter]
+	public Date DisplayDate { get; set; }
+
+	public string DisplayMonth
+		=> DisplayDate.DateTime.ToString("MMMM", CultureInfo.InvariantCulture);
+
+	public string DisplayYear
+		=> DisplayDate.DateTime.ToString("yyyy", CultureInfo.InvariantCulture);
+
+	public int NumberOfDays
+		=> Calendar.GetDaysInMonth(DisplayDate.Year, DisplayDate.Month);
+
+	protected override void OnInitialized()
+	{
+		// Sets a DateTime to April 3, 2002 of the Gregorian calendar.
+		DateTime myDT = DisplayDate.DateTime;
+
+	}
+
+}

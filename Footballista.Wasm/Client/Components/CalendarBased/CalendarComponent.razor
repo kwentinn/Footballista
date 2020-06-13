@@ -1,0 +1,47 @@
+﻿@using System.Globalization;
+@using Itenso.TimePeriod;
+@using Footballista.Wasm.Client.Components.CalendarBased.Yearly;
+@using Footballista.Wasm.Client.Components.CalendarBased.Monthly;
+@using Footballista.Wasm.Client.Components.CalendarBased.Weekly;
+
+
+@switch (CalendarViewType)
+{
+	case CalendarViewType.YearlyView:
+		<YearlyCalendarComponent DisplayDate="DisplayDate" />
+		break;
+
+	case CalendarViewType.MonthlyView:
+		<MonthlyCalendarComponent DisplayDate="DisplayDate" />
+		break;
+
+	case CalendarViewType.WeeklyView:
+		<WeeklyCalendarComponent DisplayDate="DisplayDate" />
+		break;
+
+	default:
+		<Alert>Unknown calendar view</Alert>
+		break;
+}
+
+
+@code {
+
+	[Parameter]
+	public Date DisplayDate { get; set; }
+
+	[Parameter]
+	public CalendarViewType CalendarViewType { get; set; }
+
+	protected override void OnInitialized()
+	{
+		// Sets a DateTime to April 3, 2002 of the Gregorian calendar.
+		DateTime myDT = DisplayDate.DateTime;
+
+
+	}
+
+
+
+
+}

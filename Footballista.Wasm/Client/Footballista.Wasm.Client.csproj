@@ -6,6 +6,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <_ContentIncludedByDefault Remove="wwwroot\css\App.min.css" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Blazorise" Version="0.9.0.3" />
 		<PackageReference Include="Blazorise.Bootstrap" Version="0.9.0.3" />
 		<PackageReference Include="Blazorise.Charts" Version="0.9.0.3" />
@@ -22,10 +26,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Shared\Footballista.Wasm.Shared.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="wwwroot\css\" />
 	</ItemGroup>
 
 </Project>
