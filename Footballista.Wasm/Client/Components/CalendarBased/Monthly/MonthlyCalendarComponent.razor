@@ -1,28 +1,31 @@
 ﻿@using Itenso.TimePeriod;
 @using Footballista.Wasm.Client.ClientServices;
+@using Footballista.Wasm.Shared.Extensions;
 
-@inject CareerDateService CareerDateService;  
+@inject CareerDateService careerDateService;
 
 <div class="month">
 	<ul>
-		<li class="prev">&#10094;</li>
-		<li class="next">&#10095;</li>
-		<li>@CareerDateService.GetDisplayMonth(DisplayDate)<br>@CareerDateService.GetDisplayYear(DisplayDate)</li>
+		<li class="prev">
+			<button class="btn" @onclick="() => DisplayPreviousMonth()">&#10094;</button> 
+		</li>
+		<li class="btn" @onclick="() => DisplayInitialDate()">@careerDateService.GetDisplayMonth(DisplayDate)<br>@careerDateService.GetDisplayYear(DisplayDate)</li>
+		<li class="btn next" @onclick="() => DisplayNextMonth()">&#10095;</li>
 	</ul>
 </div>
 
 <ul class="weekdays">
-	@foreach (var dow in CareerDateService.DaysOfWeekEnumerable)
+	@foreach (var dow in careerDateService.DaysOfWeekEnumerable)
 	{
 		<li>@dow</li>
 	}
 </ul>
 
 <ul class="days">
-	@foreach (var date in CareerDateService.GetDates(DisplayDate))
+	@foreach (Date date in careerDateService.GetDates(DisplayDate))
 	{
 		<li>
-			@if (date.DateTime.DayOfWeek == CareerDateService.FirstDayOfWeek)
+			@if (date == InitialDate)
 			{
 				<span class="active">@date.Day</span>
 			}
@@ -35,8 +38,48 @@
 </ul>
 
 @code {
+	private Date? _initialDate;
+	public Date? InitialDate => _initialDate;
 
+	private Date _displayDate;
 	[Parameter]
-	public Date DisplayDate { get; set; }
+	public Date DisplayDate
+	{
+		get => _displayDate;
+		set
+		{
+			if (!_initialDate.HasValue)
+			{
+				_initialDate = value;
+			}
 
+			_displayDate = value;
+		}
+	}
+
+	public void DisplayPreviousMonth()
+	{
+		if (!_initialDate.HasValue)
+		{
+			_initialDate = DisplayDate;
+		}
+
+		DisplayDate = DisplayDate.AddMonths(-1);
+	}
+	public void DisplayNextMonth()
+	{
+		if (!_initialDate.HasValue)
+		{
+			_initialDate = DisplayDate;
+		}
+
+		DisplayDate = DisplayDate.AddMonths(1);
+	}
+	public void DisplayInitialDate()
+	{
+		if (!_initialDate.HasValue)
+			return;
+
+		DisplayDate = _initialDate.Value;
+	}
 }

@@ -1,11 +1,13 @@
 ﻿@page "/career/calendar";
 @using Footballista.Wasm.Client.Components.CalendarBased;
-@using Itenso.TimePeriod; 
+@using Itenso.TimePeriod;
+@inject Footballista.Wasm.Client.ClientServices.CareerDateService careerDateService;
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Calendar> Loc;
 
-<h3>Calendar</h3>
+<p>@Loc["CurrentDate"]&nbsp;@careerDateService.GetDisplayFullDate(CurrentDate)</p>
 
-<CalendarComponent CalendarViewType="CalendarViewType.MonthlyView" DisplayDate="new Date(2020, 6)" />
+<CalendarComponent CalendarViewType="CalendarViewType.MonthlyView" DisplayDate="CurrentDate" />
 
 @code {
-
+	Date CurrentDate = new Date(2020, 6, 22);
 }
