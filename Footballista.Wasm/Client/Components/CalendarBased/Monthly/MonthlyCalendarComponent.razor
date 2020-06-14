@@ -7,7 +7,7 @@
 <div class="month">
 	<ul>
 		<li class="prev">
-			<button class="btn" @onclick="() => DisplayPreviousMonth()">&#10094;</button> 
+			<button class="btn" @onclick="() => DisplayPreviousMonth()">&#10094;</button>
 		</li>
 		<li class="btn" @onclick="() => DisplayInitialDate()">@careerDateService.GetDisplayMonth(DisplayDate)<br>@careerDateService.GetDisplayYear(DisplayDate)</li>
 		<li class="btn next" @onclick="() => DisplayNextMonth()">&#10095;</li>
@@ -17,22 +17,15 @@
 <ul class="weekdays">
 	@foreach (var dow in careerDateService.DaysOfWeekEnumerable)
 	{
-		<li>@dow</li>
+		<li>@careerDateService.GetDisplayDayOfWeek(dow)</li>
 	}
 </ul>
 
 <ul class="days">
-	@foreach (Date date in careerDateService.GetDates(DisplayDate))
+	@foreach (Date date in careerDateService.GetDatesForMonthlyCalendar(DisplayDate))
 	{
 		<li>
-			@if (date == InitialDate)
-			{
-				<span class="active">@date.Day</span>
-			}
-			else
-			{
-				@date.Day
-			}
+			<span class="@GetDateClasses(date)">@date.Day</span>
 		</li>
 	}
 </ul>
@@ -59,27 +52,27 @@
 
 	public void DisplayPreviousMonth()
 	{
-		if (!_initialDate.HasValue)
-		{
-			_initialDate = DisplayDate;
-		}
-
 		DisplayDate = DisplayDate.AddMonths(-1);
 	}
 	public void DisplayNextMonth()
 	{
-		if (!_initialDate.HasValue)
-		{
-			_initialDate = DisplayDate;
-		}
-
 		DisplayDate = DisplayDate.AddMonths(1);
 	}
 	public void DisplayInitialDate()
 	{
-		if (!_initialDate.HasValue)
-			return;
-
 		DisplayDate = _initialDate.Value;
+	}
+
+	public string GetDateClasses(Date date)
+	{
+		if (date.Month != DisplayDate.Month)
+		{
+			return "inactive";
+		}
+		if (date == InitialDate)
+		{
+			return "active";
+		}
+		return "";
 	}
 }
