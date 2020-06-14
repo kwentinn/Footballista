@@ -41,6 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{3E9746CA-2
 	ProjectSection(SolutionItems) = preProject
 		docs\001.Player Generation.md = docs\001.Player Generation.md
 		docs\002.Player Features Evolution.md = docs\002.Player Features Evolution.md
+		docs\ui\003.UI Career Header.md = docs\ui\003.UI Career Header.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor.Wasm", "Blazor.Wasm", "{585BE759-B04C-43F0-BC6C-046AFB8E6B21}"

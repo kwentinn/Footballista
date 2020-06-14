@@ -25,7 +25,7 @@ else
 			<PlayersTableComponent Players="players" OnSelectionChanged="OnPlayerSelect"></PlayersTableComponent>
 
 		</Column>
-		<Column ColumnSize="ColumnSize.Is5" >
+		<Column ColumnSize="ColumnSize.Is5">
 			@if (_selectedPlayer is null)
 			{
 				<p>Select a player to view their details.</p>
@@ -49,6 +49,9 @@ else
 
 	private void OnPlayerSelect(Player selectedPlayer)
 	{
-		_selectedPlayer = selectedPlayer;
+		if (_selectedPlayer == null || (_selectedPlayer.Id != selectedPlayer.Id))
+		{
+			_selectedPlayer = selectedPlayer;
+		}
 	}
 }
