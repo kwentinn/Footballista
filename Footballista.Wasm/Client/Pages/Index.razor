@@ -1,8 +1,8 @@
 ﻿@page "/"
-@using Footballista.Wasm.Client.Pages.Career
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Index> Loc;
 
 <Container Fluid="true">
-	<h1>Welcome to Footballista</h1>
-	<p><strong>Footballista</strong> is a game where you're in the flesh of a football manager.</p>
-	<p>Manage your team, recruit new players, make yougsters become professional players, help your team be the best.</p>
+	<h1>@Loc["FootballistaWelcomeTitle"]</h1>
+	<p>@Loc["FootballistaWelcomeLine1"]</p>
+	<p>@Loc["FootballistaWelcomeLine2"]</p>
 </Container>

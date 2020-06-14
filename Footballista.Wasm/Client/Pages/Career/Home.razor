@@ -1,48 +1,55 @@
 ﻿@page "/career/home"
+@using Microsoft.Extensions.Localization; 
+
+@inject NavigationManager Nav
+@inject IStringLocalizer<Home> Loc
+
+
 <h1>Career</h1>
-<h3>Home</h3>
 
 <!-- Row 1 -->
 <Row>
 	<!-- Column 1 -->
 	<Column ColumnSize="ColumnSize.Is4">
 		<Card>
-			<CardImage Source="/img/MUFC96-97.jpg" Alt="Placeholder image" >
+			<CardImage Source="/img/MUFC96-97.jpg" Alt="Placeholder image">
 			</CardImage>
 			<CardBody>
-				<CardTitle Size="2">Team</CardTitle>
+				<CardTitle Size="2">@Loc["Team"]</CardTitle>
 				<CardText>
-					<p>Manage your team here.</p>
+					<p>@Loc["ManageTeamDescription"]</p>
 				</CardText>
-				<Button Color="Color.Primary">Button</Button>
+				<Button Color="Color.Primary" @onclick="() => NavigateToTeamManagement()">Go</Button>
 			</CardBody>
 		</Card>
 	</Column>
+
 	<!-- Column 2 -->
 	<Column ColumnSize="ColumnSize.Is4">
 		<Card Background="Background.Light">
 			<CardImage Source="/img/recruitment.jpg" Alt="Placeholder image">
 			</CardImage>
 			<CardBody>
-				<CardTitle Size="2">Recruitment</CardTitle>
+				<CardTitle Size="2">@Loc["Recruitment"]</CardTitle>
 				<CardText>
-					<p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<p>@Loc["RecruitmentDescription"]</p>
 				</CardText>
 				<Button Color="Color.Primary">Button</Button>
 			</CardBody>
 		</Card>
 	</Column>
+
 	<!-- Column 3 -->
 	<Column ColumnSize="ColumnSize.Is4">
 		<Card Background="Background.Light">
 			<CardImage Source="/img/training.jpg" Alt="Placeholder image">
 			</CardImage>
 			<CardBody>
-				<CardTitle Size="2">Training</CardTitle>
+				<CardTitle Size="2">@Loc["Training"]</CardTitle>
 				<CardText>
-					<p>Manage your team trainings here.</p>
+					<p>@Loc["TrainingDescription"]</p>
 				</CardText>
-				<Button Color="Color.Primary">Button</Button>
+				<Button Color="Color.Primary" @onclick="() => NavigateToTrainingHome()">Button</Button>
 			</CardBody>
 		</Card>
 	</Column>
@@ -56,9 +63,9 @@
 			<CardImage Source="/img/club.png" Alt="Placeholder image">
 			</CardImage>
 			<CardBody>
-				<CardTitle Size="2">Club</CardTitle>
+				<CardTitle Size="2">@Loc["Club"]</CardTitle>
 				<CardText>
-					<p>Manage your team here.</p>
+					<p>@Loc["ClubDescription"]</p>
 				</CardText>
 				<Button Color="Color.Primary">Button</Button>
 			</CardBody>
@@ -70,9 +77,9 @@
 			<CardImage Source="/img/youngsters.png" Alt="Placeholder image">
 			</CardImage>
 			<CardBody>
-				<CardTitle Size="2">Youngsters</CardTitle>
+				<CardTitle Size="2">@Loc["Youngsters"]</CardTitle>
 				<CardText>
-					<p>Manage your young players.</p>
+					<p>@Loc["YoungstersDescription"]</p>
 				</CardText>
 				<Button Color="Color.Primary">Button</Button>
 			</CardBody>
@@ -84,9 +91,9 @@
 			<CardImage Source="/img/transfers.png" Alt="Placeholder image">
 			</CardImage>
 			<CardBody>
-				<CardTitle Size="2">Transfers</CardTitle>
+				<CardTitle Size="2">@Loc["Transfers"]</CardTitle>
 				<CardText>
-					<p>Manage your team trainings here.</p>
+					<p>@Loc["TransfersDescription"]</p>
 				</CardText>
 				<Button Color="Color.Primary">Button</Button>
 			</CardBody>
@@ -95,5 +102,6 @@
 </Row>
 
 @code {
-
+	public void NavigateToTrainingHome() => Nav.NavigateTo("/training/home");
+	public void NavigateToTeamManagement() => Nav.NavigateTo("/team/main-team");
 }

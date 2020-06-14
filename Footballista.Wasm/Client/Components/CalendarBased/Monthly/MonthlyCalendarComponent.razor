@@ -1,59 +1,42 @@
 ﻿@using Itenso.TimePeriod;
-@using System.Globalization;
+@using Footballista.Wasm.Client.ClientServices;
+
+@inject CareerDateService CareerDateService;  
 
 <div class="month">
 	<ul>
 		<li class="prev">&#10094;</li>
 		<li class="next">&#10095;</li>
-		<li>@DisplayMonth<br>@DisplayYear</li>
+		<li>@CareerDateService.GetDisplayMonth(DisplayDate)<br>@CareerDateService.GetDisplayYear(DisplayDate)</li>
 	</ul>
 </div>
 
 <ul class="weekdays">
-	<li>Mo.</li>
-	<li>Tu.</li>
-	<li>We.</li>
-	<li>Th.</li>
-	<li>Fr.</li>
-	<li>Sa.</li>
-	<li>Su.</li>
-
-	@*@foreach (var weekday in Weekdays)
+	@foreach (var dow in CareerDateService.DaysOfWeekEnumerable)
 	{
-		<li>@weekday.EnglishName</li>
-	}*@
+		<li>@dow</li>
+	}
 </ul>
 
 <ul class="days">
-	@for (int i = 1; i <= NumberOfDays; i++)
+	@foreach (var date in CareerDateService.GetDates(DisplayDate))
 	{
-		<li>@i</li>
+		<li>
+			@if (date.DateTime.DayOfWeek == CareerDateService.FirstDayOfWeek)
+			{
+				<span class="active">@date.Day</span>
+			}
+			else
+			{
+				@date.Day
+			}
+		</li>
 	}
-	@*<li><span class="active">10</span></li>*@
 </ul>
 
 @code {
 
-	// Uses the default calendar of the InvariantCulture.
-	Calendar Calendar = CultureInfo.InvariantCulture.Calendar;
-
 	[Parameter]
 	public Date DisplayDate { get; set; }
-
-	public string DisplayMonth
-		=> DisplayDate.DateTime.ToString("MMMM", CultureInfo.InvariantCulture);
-
-	public string DisplayYear
-		=> DisplayDate.DateTime.ToString("yyyy", CultureInfo.InvariantCulture);
-
-	public int NumberOfDays
-		=> Calendar.GetDaysInMonth(DisplayDate.Year, DisplayDate.Month);
-
-	protected override void OnInitialized()
-	{
-		// Sets a DateTime to April 3, 2002 of the Gregorian calendar.
-		DateTime myDT = DisplayDate.DateTime;
-
-	}
 
 }
