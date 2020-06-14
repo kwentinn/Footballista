@@ -147,10 +147,10 @@
   <data name="TransfersDescription" xml:space="preserve">
     <value>Find new players to improve your team</value>
   </data>
-  <data name="Yougsters" xml:space="preserve">
-    <value>Yougsters</value>
+  <data name="Youngsters" xml:space="preserve">
+    <value>Youngsters</value>
   </data>
-  <data name="YougstersDescription" xml:space="preserve">
+  <data name="YoungstersDescription" xml:space="preserve">
     <value>Manage your young players here and make them become professional ones</value>
   </data>
 </root>
