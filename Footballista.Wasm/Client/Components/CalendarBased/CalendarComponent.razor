@@ -3,8 +3,7 @@
 @using Footballista.Wasm.Client.Components.CalendarBased.Yearly;
 @using Footballista.Wasm.Client.Components.CalendarBased.Monthly;
 @using Footballista.Wasm.Client.Components.CalendarBased.Weekly;
-
-
+@using Footballista.Wasm.Shared.Data.Calendars; 
 
 @switch (CalendarViewType)
 {
@@ -13,7 +12,7 @@
 		break;
 
 	case CalendarViewType.MonthlyView:
-		<MonthlyCalendarComponent DisplayDate="DisplayDate" />
+		<MonthlyCalendarComponent DisplayDate="DisplayDate" Events="Events" />
 		break;
 
 	case CalendarViewType.WeeklyView:
@@ -34,11 +33,11 @@
 	[Parameter]
 	public CalendarViewType CalendarViewType { get; set; }
 
+	[Parameter]
+	public List<Event> Events { get; set; }
+
 	protected override void OnInitialized()
 	{
 	}
-
-
-
 
 }

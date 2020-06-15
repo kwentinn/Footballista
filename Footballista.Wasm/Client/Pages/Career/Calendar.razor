@@ -1,13 +1,29 @@
-﻿@page "/career/calendar";
+﻿@page "/career/calendar"
 @using Footballista.Wasm.Client.Components.CalendarBased;
 @using Itenso.TimePeriod;
-@inject Footballista.Wasm.Client.ClientServices.CareerDateService careerDateService;
-@inject Microsoft.Extensions.Localization.IStringLocalizer<Calendar> Loc;
+@using Footballista.Wasm.Client.ClientServices;
+@using Footballista.Wasm.Shared.Data.Careers;
+@using Footballista.Wasm.Shared.Data.Calendars;
+
+@inject Footballista.Wasm.Client.ClientServices.CareerDateService careerDateService
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Calendar> Loc
+@inject GameService _gameService
+@inject CalendarService _calendarService
 
 <p>@Loc["CurrentDate"]&nbsp;@careerDateService.GetDisplayFullDate(CurrentDate)</p>
 
-<CalendarComponent CalendarViewType="CalendarViewType.MonthlyView" DisplayDate="CurrentDate" />
+<CalendarComponent CalendarViewType="CalendarViewType.MonthlyView" DisplayDate="CurrentDate" Events="CalendarEvents" />
 
 @code {
-	Date CurrentDate = new Date(2020, 6, 22);
+	public Date CurrentDate { get; set; }
+	public List<Event> CalendarEvents { get; set; }
+
+	protected override void OnInitialized()
+	{
+		_gameService.Load();
+
+		CurrentDate = _gameService.CurrentGame.CurrentDate;
+
+		CalendarEvents = _calendarService.GetEventsForDate(CurrentDate);
+	}
 }
