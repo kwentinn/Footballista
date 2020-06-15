@@ -1,4 +1,4 @@
-﻿@page "/career/calendar"
+﻿@page "/calendar"
 @using Footballista.Wasm.Client.Components.CalendarBased;
 @using Itenso.TimePeriod;
 @using Footballista.Wasm.Client.ClientServices;
@@ -22,7 +22,7 @@
 	{
 		_gameService.Load();
 
-		CurrentDate = _gameService.CurrentGame.CurrentDate;
+		CurrentDate = _gameService.CurrentGame.CurrentDate.ToDate();
 
 		CalendarEvents = _calendarService.GetEventsForDate(CurrentDate);
 	}

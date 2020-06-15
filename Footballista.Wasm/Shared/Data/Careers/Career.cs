@@ -1,19 +1,21 @@
-﻿using Itenso.TimePeriod;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Footballista.Wasm.Shared.Data.Careers
+﻿namespace Footballista.Wasm.Shared.Data.Careers
 {
 	public class Career
 	{
-		public string Name { get; private set; }
-		public Date CurrentDate { get; private set; }
+		public string Name { get; set; }
+		public DateDto CurrentDate { get; set; }
+		public Manager Manager { get; set; }
 
-		public Career(string name, Date currentDate)
+		public static Career DefaultCareer
+			=> new Career("Default career", new DateDto(2020, 7, 1), Manager.DefaultManager);
+		public Career()
+		{
+		}
+		public Career(string name, DateDto currentDate, Manager manager)
 		{
 			Name = name;
 			CurrentDate = currentDate;
+			Manager = manager;
 		}
 	}
 }

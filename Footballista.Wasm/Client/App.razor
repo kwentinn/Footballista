@@ -1,10 +1,64 @@
-<Router AppAssembly="@typeof(Program).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <p>Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
+@using Blazored.LocalStorage;
+@using Footballista.Wasm.Shared.Data.Careers;
+@using Footballista.Wasm.Client.Layouts;
+@using Footballista.Wasm.Client.LocalStorage;
+
+@inject ISyncLocalStorageService LocalStorageService
+
+<Blazorise.ThemeProvider Theme="@theme">
+
+	@if (!HasCurrentCareer)
+	{
+		<WelcomeLayout />
+	}
+	else
+	{
+		<Router AppAssembly="@typeof(Program).Assembly">
+
+			<Found Context="routeData">
+
+				<RouteView RouteData="@routeData" DefaultLayout="@typeof(CareerLayout)" />
+
+			</Found>
+
+			<NotFound>
+				<LayoutView Layout="@typeof(CareerLayout)">
+					<NotFoundComponent />
+				</LayoutView>
+			</NotFound>
+
+		</Router>
+	}
+</Blazorise.ThemeProvider>
+
+@code{
+
+	public Career CurrentCareer
+		=> LocalStorageService.GetItem<Career>(LocalStorageKeys.CurrentCareer);
+
+	public bool HasCurrentCareer
+		=> CurrentCareer != null;
+
+
+	private Theme theme = new Theme
+	{
+		IsGradient = true,
+		IsRounded = false,
+		White = "",
+		Black = "",
+
+		// theme settings
+		ColorOptions = new ThemeColorOptions
+		{
+			Primary = "#0D47A1",
+			Secondary = "#F9A825",
+			Danger = "#B71C1C",
+			Dark = "#212121",
+			Light = "#FAFAFA",
+			Info = "#4DD0E1",
+			Success = "#16A800",
+			Warning = "#FF1F00"
+		}
+	};
+
+}

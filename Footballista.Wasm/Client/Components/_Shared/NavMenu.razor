@@ -2,28 +2,18 @@
 <Sidebar @ref="sidebar">
 	<SidebarContent>
 		<SidebarNavigation>
-			<SidebarItem>
-				<SidebarLink To="/" Title="Home">
-					<Icon Name="IconName.Lock" Margin="Margin.Is2.FromRight" />Home
-				</SidebarLink>
-			</SidebarItem>
 
 			<!-- career -->
 			<SidebarItem>
-				<SidebarLink Toggled="(isOpen) => careerSidebarSubItems.Toggle(isOpen)">
-					<Icon Name="IconName.Dashboard" Margin="Margin.Is2.FromRight" />Career
-				</SidebarLink>
-				<SidebarSubItem @ref="careerSidebarSubItems">
-					<SidebarItem>
-						<SidebarLink To="/career/home">Home</SidebarLink>
-					</SidebarItem>
-					<SidebarItem>
-						<SidebarLink To="/career/ranking">Ranking</SidebarLink>
-					</SidebarItem>
-					<SidebarItem>
-						<SidebarLink To="/career/calendar">Calendar</SidebarLink>
-					</SidebarItem>
-				</SidebarSubItem>
+				<SidebarItem>
+					<SidebarLink To="/home">Home</SidebarLink>
+				</SidebarItem>
+				<SidebarItem>
+					<SidebarLink To="/ranking">Ranking</SidebarLink>
+				</SidebarItem>
+				<SidebarItem>
+					<SidebarLink To="/calendar">Calendar</SidebarLink>
+				</SidebarItem>
 			</SidebarItem>
 
 			<!-- team -->
@@ -77,7 +67,6 @@
 
 @code{
 	Sidebar sidebar;
-	SidebarSubItem careerSidebarSubItems;
 	SidebarSubItem teamSidebarSubItems;
 	SidebarSubItem recruitmentSidebarSubItems;
 	SidebarSubItem trainingSidebarSubItems;

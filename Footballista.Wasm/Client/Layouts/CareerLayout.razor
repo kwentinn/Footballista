@@ -1,20 +1,29 @@
 ﻿@inherits LayoutComponentBase
 
 <Layout Sider="true">
+
+	@*SIDEBAR*@
 	<LayoutSider>
 		<LayoutSiderContent>
 			<NavMenu />
 		</LayoutSiderContent>
 	</LayoutSider>
+
 	<Layout>
+		@*HEADER*@
 		<LayoutHeader Fixed="true">
 			<Header />
 		</LayoutHeader>
+
+		@*CONTENT*@
 		<LayoutContent>
 			<div class="main-content">@Body</div>
 		</LayoutContent>
+
+		@*FOOTER*@
 		<LayoutFooter>
 			<Footer />
 		</LayoutFooter>
 	</Layout>
+
 </Layout>

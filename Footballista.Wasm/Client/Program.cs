@@ -1,10 +1,11 @@
+using Blazored.LocalStorage;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using Footballista.Wasm.Client.ClientServices;
+using Footballista.Wasm.Client.LocalStorage;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.JSInterop;
 using System;
 using System.Globalization;
 using System.Net.Http;
@@ -31,6 +32,12 @@ namespace Footballista.Wasm.Client
 				.AddTransient(typeof(GameService))
 				.AddTransient(typeof(CalendarService))
 				.AddTransient(typeof(CareerDateService))
+				.AddBlazoredLocalStorage(config =>
+				{
+					config.JsonSerializerOptions.AllowTrailingCommas = true;
+					//config.JsonSerializerOptions.
+					config.JsonSerializerOptions.WriteIndented = true;
+				})
 				.AddLocalization()
 			;
 
@@ -52,8 +59,8 @@ namespace Footballista.Wasm.Client
 		{
 			CultureInfo culture = new CultureInfo("en-us");
 
-			IJSRuntime jsInterop = host.Services.GetRequiredService<IJSRuntime>();
-			string result = await jsInterop.InvokeAsync<string>("blazorCulture.get");
+			ILocalStorageService localStorageService = host.Services.GetService<ILocalStorageService>();
+			string result = await localStorageService.GetItemAsync<string>(LocalStorageKeys.CurrentCulture);
 			if (result != null)
 			{
 				culture = new CultureInfo(result);

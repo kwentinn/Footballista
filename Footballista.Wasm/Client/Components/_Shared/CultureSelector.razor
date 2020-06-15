@@ -1,12 +1,15 @@
 ﻿@using  System.Globalization
-@inject IJSRuntime JSRuntime
+@using Blazored.LocalStorage;
+@using Footballista.Wasm.Client.LocalStorage;
+
 @inject NavigationManager Nav
+@inject ISyncLocalStorageService LocalStorageService
 
 <strong>Culture:</strong>
 <select @bind="Culture">
 	@foreach (var culture in supportedCultures)
 	{
-		<option value="@culture">@culture.DisplayName</option>
+		<option value="@culture">@culture.TwoLetterISOLanguageName</option>
 	}
 </select>
 
@@ -25,9 +28,7 @@
 		{
 			if (CultureInfo.CurrentCulture != value)
 			{
-				var js = (IJSInProcessRuntime)JSRuntime;
-				js.InvokeVoid("blazorCulture.set", value.Name);
-
+				LocalStorageService.SetItem(LocalStorageKeys.CurrentCulture, value.Name);
 				Nav.NavigateTo(Nav.Uri, forceLoad: true);
 			}
 		}

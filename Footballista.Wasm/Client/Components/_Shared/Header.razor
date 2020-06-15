@@ -1,4 +1,10 @@
-﻿<Bar Breakpoint="Breakpoint.Desktop" Background="Background.Light" ThemeContrast="ThemeContrast.Light">
+﻿@using Blazored.LocalStorage
+@using Footballista.Wasm.Client.LocalStorage;
+
+@inject NavigationManager Nav
+@inject ISyncLocalStorageService LocalStorageService
+
+<Bar Breakpoint="Breakpoint.Desktop" Background="Background.Light" ThemeContrast="ThemeContrast.Light">
 	<BarBrand>Footballista</BarBrand>
 	<BarToggler />
 	<BarMenu>
@@ -12,8 +18,7 @@
 		</BarStart>
 		<BarEnd>
 			<BarItem>
-				<Button Color="Color.Primary">Sign up</Button>
-				<Button Color="Color.Secondary">Log in</Button>
+				<Button Color="Color.Secondary" @onclick="() => ExitCareer()">Exit Career</Button>
 				<CultureSelector />
 			</BarItem>
 		</BarEnd>
@@ -21,5 +26,10 @@
 </Bar>
 
 @code {
+	public void ExitCareer()
+	{
+		LocalStorageService.RemoveItem(LocalStorageKeys.CurrentCareer);
 
+		Nav.NavigateTo("/", forceLoad: true);
+	}
 }

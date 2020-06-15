@@ -3,13 +3,15 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<RazorLangVersion>3.0</RazorLangVersion>
+		<Version>0.1.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <_ContentIncludedByDefault Remove="wwwroot\css\App.min.css" />
+		<_ContentIncludedByDefault Remove="wwwroot\css\App.min.css" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Blazored.LocalStorage" Version="2.1.6" />
 		<PackageReference Include="Blazorise" Version="0.9.0.3" />
 		<PackageReference Include="Blazorise.Bootstrap" Version="0.9.0.3" />
 		<PackageReference Include="Blazorise.Charts" Version="0.9.0.3" />
