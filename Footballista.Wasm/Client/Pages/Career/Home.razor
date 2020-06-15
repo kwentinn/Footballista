@@ -1,8 +1,11 @@
 ﻿@page "/career/home"
-@using Microsoft.Extensions.Localization; 
-
+@using Microsoft.Extensions.Localization;
+@using Footballista.Wasm.Client.ClientServices;
+@using Footballista.Wasm.Shared.Data.Careers;
+ 
 @inject NavigationManager Nav
 @inject IStringLocalizer<Home> Loc
+@inject GameService _gameService
 
 
 <h1>Career</h1>
@@ -104,4 +107,16 @@
 @code {
 	public void NavigateToTrainingHome() => Nav.NavigateTo("/training/home");
 	public void NavigateToTeamManagement() => Nav.NavigateTo("/team/main-team");
+
+	public Career CurrentGame { get; set; }
+
+	protected override void OnInitialized()
+	{
+		_gameService.Load();
+
+		CurrentGame = _gameService.CurrentGame;
+
+		Console.WriteLine(CurrentGame.Name);
+		Console.WriteLine(CurrentGame.CurrentDate);
+	}
 }
