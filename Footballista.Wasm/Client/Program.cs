@@ -28,6 +28,8 @@ namespace Footballista.Wasm.Client
 				})
 				.AddTransient(typeof(IPlayersClientService), typeof(PlayersClientService))
 				.AddTransient(typeof(IRankingsClientService), typeof(RankingsClientService))
+				.AddTransient(typeof(GameService))
+				.AddTransient(typeof(CalendarService))
 				.AddTransient(typeof(CareerDateService))
 				.AddLocalization()
 			;
