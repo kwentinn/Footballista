@@ -1,14 +1,14 @@
 ﻿@import '../../Styles/Theme.scss';
 
 .loader {
-	border: 16px solid silver;
-	border-top: 16px solid $color-primary;
+	border: 1px solid $text-color-disabled;
+	border-top: 1px solid $color-accent;
 	border-radius: 50%;
 	width: 80px;
 	height: 80px;
-	animation: spin 700ms linear infinite;
+	animation: spin 950ms linear infinite;
 	top: 40%;
-	left: 55%;
+	left: 50%;
 	position: absolute;
 }
 
