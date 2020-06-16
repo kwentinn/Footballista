@@ -1,0 +1,19 @@
+﻿@inject Footballista.Wasm.Client.ClientServices.GameService GameService
+@inject NavigationManager Nav
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Welcome> Loc
+
+<div class="centered text-centered">
+	<DisplayHeading Size="DisplayHeadingSize.Is1">Footballista</DisplayHeading>
+	<button class="btn btn-primary">@Loc["Btn_CreateCareer"]</button>
+	<button class="btn btn-primary" @onclick="() => LoadCareer()">@Loc["Btn_LoadCareer"]</button>
+</div>
+
+
+@code {
+	void LoadCareer()
+	{
+		GameService.Load();
+
+		Nav.NavigateTo("/home", forceLoad: true);
+	}
+}
