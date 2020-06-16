@@ -1,18 +1,5 @@
-﻿@inject Footballista.Wasm.Client.ClientServices.GameService GameService
-@inject NavigationManager Nav
-
-<div class="main-content">
-	<DisplayHeading Size="DisplayHeadingSize.Is1">Footballista</DisplayHeading>
-
-	<button class="btn btn-primary">Create a new career</button>
-	<button class="btn btn-primary" @onclick="() => LoadCareer()">Load career</button>
-</div>
-
-@code {
-	void LoadCareer()
-	{
-		GameService.Load();
-
-		Nav.NavigateTo("/home", forceLoad: true);
-	}
-}
+﻿<LayoutContent>
+	<div class="main-content">
+		<Welcome />
+	</div>
+</LayoutContent>
