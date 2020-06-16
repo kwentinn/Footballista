@@ -39,6 +39,6 @@ namespace Footballista.Wasm.Shared.Extensions
 		/// <param name="date"></param>
 		/// <returns></returns>
 		public static Date LastDayOfMonth(this Date date) 
-			=> new Date(date.Year, date.Month + 1).AddDays(-1);
+			=> new Date(date.Year, date.Month).AddMonths(1).AddDays(-1);
 	}
 }
