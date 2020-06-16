@@ -14,6 +14,7 @@ namespace Footballista.Wasm.Shared.Data.Calendars
 			Id = id;
 			Name = name;
 			Date = date;
+			Description = description;
 		}
 	}
 }
