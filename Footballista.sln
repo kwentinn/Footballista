@@ -56,6 +56,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorServer", "BlazorServe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.BlazorServer", "Footballista.BlazorServer\Footballista.BlazorServer.csproj", "{B260A166-B9D8-42F6-A6FA-9ED9751C58F9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{DA837480-844A-4018-9AF6-02624BA4313B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.Wasm.Shared.UnitTests", "Footballista.Wasm.Shared.UnitTests\Footballista.Wasm.Shared.UnitTests.csproj", "{FF725C69-3E67-4F7B-8C85-848DB0B7D0B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,6 +114,10 @@ Global
 		{B260A166-B9D8-42F6-A6FA-9ED9751C58F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B260A166-B9D8-42F6-A6FA-9ED9751C58F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B260A166-B9D8-42F6-A6FA-9ED9751C58F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF725C69-3E67-4F7B-8C85-848DB0B7D0B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF725C69-3E67-4F7B-8C85-848DB0B7D0B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF725C69-3E67-4F7B-8C85-848DB0B7D0B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF725C69-3E67-4F7B-8C85-848DB0B7D0B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,6 +138,8 @@ Global
 		{A5ACAC36-AC1C-41C7-AB92-63AE0944A6A8} = {585BE759-B04C-43F0-BC6C-046AFB8E6B21}
 		{FCEDEBE2-0210-45D5-AAF3-186385E28E09} = {585BE759-B04C-43F0-BC6C-046AFB8E6B21}
 		{B260A166-B9D8-42F6-A6FA-9ED9751C58F9} = {5267E70C-050A-4532-A252-1D3D4BDF3B0A}
+		{DA837480-844A-4018-9AF6-02624BA4313B} = {585BE759-B04C-43F0-BC6C-046AFB8E6B21}
+		{FF725C69-3E67-4F7B-8C85-848DB0B7D0B3} = {DA837480-844A-4018-9AF6-02624BA4313B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8CA48F83-3D6D-4B67-8110-608DD680C317}
