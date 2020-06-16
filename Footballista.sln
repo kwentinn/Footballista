@@ -58,7 +58,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.BlazorServer",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{DA837480-844A-4018-9AF6-02624BA4313B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.Wasm.Shared.UnitTests", "Footballista.Wasm.Shared.UnitTests\Footballista.Wasm.Shared.UnitTests.csproj", "{FF725C69-3E67-4F7B-8C85-848DB0B7D0B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Wasm.Shared.UnitTests", "Footballista.Wasm.Shared.UnitTests\Footballista.Wasm.Shared.UnitTests.csproj", "{FF725C69-3E67-4F7B-8C85-848DB0B7D0B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

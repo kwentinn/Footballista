@@ -5,45 +5,47 @@
 
 @inject CareerDateService careerDateService;
 
-<div class="month">
-	<ul>
-		<li class="prev">
-			<button class="btn" @onclick="() => DisplayPreviousMonth()">&#10094;</button>
-		</li>
+<div class="calendar">
+	<div class="month">
+		<ul>
+			<li class="prev">
+				<button class="btn" @onclick="() => DisplayPreviousMonth()">&#10094;</button>
+			</li>
 
-		<li class="btn" @onclick="() => DisplayInitialDate()">
-			@careerDateService.GetDisplayMonth(DisplayDate)
-			<br>@careerDateService.GetDisplayYear(DisplayDate)
-		</li>
+			<li class="btn" @onclick="() => DisplayInitialDate()">
+				@careerDateService.GetDisplayMonth(DisplayDate)
+				<br>@careerDateService.GetDisplayYear(DisplayDate)
+			</li>
 
-		<li class="next">
-			<button class="btn" @onclick="() => DisplayNextMonth()">&#10095;</button>
-		</li>
+			<li class="next">
+				<button class="btn" @onclick="() => DisplayNextMonth()">&#10095;</button>
+			</li>
+		</ul>
+	</div>
+
+	<ul class="weekdays">
+		@foreach (var dow in careerDateService.DaysOfWeekEnumerable)
+		{
+			<li>@careerDateService.GetDisplayDayOfWeek(dow)</li>
+		}
+	</ul>
+
+	<ul class="days">
+		@foreach (Date date in careerDateService.GetDatesForMonthlyCalendar(DisplayDate))
+		{
+			<li>
+				<span class="@GetDateClasses(date)">@date.Day</span>
+				@if (HasEventsForDate(date))
+				{
+					@foreach (Event evt in GetEventsForDate(date))
+					{
+						<span class="event">@evt.Name</span>
+					}
+				}
+			</li>
+		}
 	</ul>
 </div>
-
-<ul class="weekdays">
-	@foreach (var dow in careerDateService.DaysOfWeekEnumerable)
-	{
-		<li>@careerDateService.GetDisplayDayOfWeek(dow)</li>
-	}
-</ul>
-
-<ul class="days">
-	@foreach (Date date in careerDateService.GetDatesForMonthlyCalendar(DisplayDate))
-	{
-		<li>
-			<span class="@GetDateClasses(date)">@date.Day</span>
-			@if (HasEventsForDate(date))
-			{
-				@foreach (Event evt in GetEventsForDate(date))
-				{
-					<span class="event">@evt.Name</span>
-				}
-			}
-		</li>
-	}
-</ul>
 
 @code {
 

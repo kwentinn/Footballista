@@ -120,4 +120,7 @@
   <data name="CurrentDate" xml:space="preserve">
     <value>The current date is</value>
   </data>
+  <data name="WhatsUpNext" xml:space="preserve">
+    <value>Events to come...</value>
+  </data>
 </root>

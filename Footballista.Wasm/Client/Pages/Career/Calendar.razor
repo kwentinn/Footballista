@@ -2,17 +2,34 @@
 @using Footballista.Wasm.Client.Components.CalendarBased;
 @using Itenso.TimePeriod;
 @using Footballista.Wasm.Client.ClientServices;
-@using Footballista.Wasm.Shared.Data.Careers;
 @using Footballista.Wasm.Shared.Data.Calendars;
+@using Footballista.Wasm.Client.Components.EventsRelated;
+@using Microsoft.Extensions.Localization;
 
-@inject Footballista.Wasm.Client.ClientServices.CareerDateService careerDateService
-@inject Microsoft.Extensions.Localization.IStringLocalizer<Calendar> Loc
+@inject CareerDateService careerDateService
+@inject IStringLocalizer<Calendar> Loc
 @inject GameService _gameService
 @inject CalendarService _calendarService
 
 <p>@Loc["CurrentDate"]&nbsp;@careerDateService.GetDisplayFullDate(CurrentDate)</p>
 
-<CalendarComponent CalendarViewType="CalendarViewType.MonthlyView" DisplayDate="CurrentDate" Events="CalendarEvents" />
+<Layout>
+	<Row>
+		<Column ColumnSize="ColumnSize.Is8">
+			<CalendarComponent CalendarViewType="CalendarViewType.MonthlyView"
+							   DisplayDate="CurrentDate"
+							   Events="CalendarEvents">
+			</CalendarComponent>
+		</Column>
+		<Column ColumnSize="ColumnSize.Is4">
+			<h3>@Loc["WhatsUpNext"]</h3>
+			<EventsComponent Events="CalendarEvents" />
+		</Column>
+	</Row>
+</Layout>
+
+
+
 
 @code {
 	public Date CurrentDate { get; set; }

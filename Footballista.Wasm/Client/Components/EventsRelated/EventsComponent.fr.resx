@@ -117,10 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CurrentDate" xml:space="preserve">
-    <value>Nous sommes le</value>
-  </data>
-  <data name="WhatsUpNext" xml:space="preserve">
-    <value>Evènements à venir...</value>
+  <data name="NoEventsToCome" xml:space="preserve">
+    <value>Aucun évènement à venir</value>
   </data>
 </root>
