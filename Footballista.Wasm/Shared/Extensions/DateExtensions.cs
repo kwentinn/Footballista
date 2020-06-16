@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Itenso.TimePeriod;
+﻿using Itenso.TimePeriod;
 
 namespace Footballista.Wasm.Shared.Extensions
 {
@@ -39,6 +36,6 @@ namespace Footballista.Wasm.Shared.Extensions
 		/// <param name="date"></param>
 		/// <returns></returns>
 		public static Date LastDayOfMonth(this Date date) 
-			=> new Date(date.Year, date.Month).AddMonths(1).AddDays(-1);
+			=> FirstDayOfMonth(date).AddMonths(1).AddDays(-1);
 	}
 }
