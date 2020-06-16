@@ -10,8 +10,15 @@
 		<li class="prev">
 			<button class="btn" @onclick="() => DisplayPreviousMonth()">&#10094;</button>
 		</li>
-		<li class="btn" @onclick="() => DisplayInitialDate()">@careerDateService.GetDisplayMonth(DisplayDate)<br>@careerDateService.GetDisplayYear(DisplayDate)</li>
-		<li class="btn next" @onclick="() => DisplayNextMonth()">&#10095;</li>
+
+		<li class="btn" @onclick="() => DisplayInitialDate()">
+			@careerDateService.GetDisplayMonth(DisplayDate)
+			<br>@careerDateService.GetDisplayYear(DisplayDate)
+		</li>
+
+		<li class="next">
+			<button class="btn" @onclick="() => DisplayNextMonth()">&#10095;</button>
+		</li>
 	</ul>
 </div>
 
@@ -39,6 +46,7 @@
 </ul>
 
 @code {
+
 	private Date? _initialDate;
 	public Date? InitialDate => _initialDate;
 
@@ -63,15 +71,17 @@
 
 	bool HasEventsForDate(Date date) => Events.Any(e => e.Date == date);
 	List<Event> GetEventsForDate(Date date)
-		=> Events.Where(e => e.Date == date).ToList();
+		=> Events
+			.Where(e => e.Date == date)
+			.ToList();
 
 	public void DisplayPreviousMonth()
 	{
-		DisplayDate = DisplayDate.AddMonths(-1);
+		_displayDate = DisplayDate.AddMonths(-1);
 	}
 	public void DisplayNextMonth()
 	{
-		DisplayDate = DisplayDate.AddMonths(1);
+		_displayDate = DisplayDate.AddMonths(1);
 	}
 	public void DisplayInitialDate()
 	{
