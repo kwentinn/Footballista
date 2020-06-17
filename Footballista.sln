@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista", "Footballista\Footballista.csproj", "{7F94EA0A-59B7-4BA9-BCCC-24846383024E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Players", "Footballista.Players\Footballista.Players.csproj", "{B3A2A0A7-5848-447D-A6B7-5746BC18BDCF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.PlayersUnitTests", "Footballista.PlayersUnitTests\Footballista.PlayersUnitTests.csproj", "{767D360D-AA4C-47D3-A330-6148340AE91C}"
@@ -22,8 +20,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Players", "Players", "{C8FD54AF-2A45-464F-9927-B1D2DC5E71B6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Players.Infrastracture", "Footballista.Players.Infrastracture\Footballista.Players.Infrastracture.csproj", "{51440947-BE75-4E48-9E96-953E4A8FC8B3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{5C734F04-49ED-4047-9B76-D612AE13BBF0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D53DB4AA-9538-4953-B4B9-AFE3B97D2623}"
 EndProject
@@ -52,10 +48,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Wasm.Server", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Wasm.Shared", "Footballista.Wasm\Shared\Footballista.Wasm.Shared.csproj", "{FCEDEBE2-0210-45D5-AAF3-186385E28E09}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorServer", "BlazorServer", "{5267E70C-050A-4532-A252-1D3D4BDF3B0A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.BlazorServer", "Footballista.BlazorServer\Footballista.BlazorServer.csproj", "{B260A166-B9D8-42F6-A6FA-9ED9751C58F9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{DA837480-844A-4018-9AF6-02624BA4313B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Wasm.Shared.UnitTests", "Footballista.Wasm.Shared.UnitTests\Footballista.Wasm.Shared.UnitTests.csproj", "{FF725C69-3E67-4F7B-8C85-848DB0B7D0B3}"
@@ -66,10 +58,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7F94EA0A-59B7-4BA9-BCCC-24846383024E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F94EA0A-59B7-4BA9-BCCC-24846383024E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F94EA0A-59B7-4BA9-BCCC-24846383024E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F94EA0A-59B7-4BA9-BCCC-24846383024E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B3A2A0A7-5848-447D-A6B7-5746BC18BDCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B3A2A0A7-5848-447D-A6B7-5746BC18BDCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3A2A0A7-5848-447D-A6B7-5746BC18BDCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -110,10 +98,6 @@ Global
 		{FCEDEBE2-0210-45D5-AAF3-186385E28E09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCEDEBE2-0210-45D5-AAF3-186385E28E09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCEDEBE2-0210-45D5-AAF3-186385E28E09}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B260A166-B9D8-42F6-A6FA-9ED9751C58F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B260A166-B9D8-42F6-A6FA-9ED9751C58F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B260A166-B9D8-42F6-A6FA-9ED9751C58F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B260A166-B9D8-42F6-A6FA-9ED9751C58F9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FF725C69-3E67-4F7B-8C85-848DB0B7D0B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FF725C69-3E67-4F7B-8C85-848DB0B7D0B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF725C69-3E67-4F7B-8C85-848DB0B7D0B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -123,7 +107,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{7F94EA0A-59B7-4BA9-BCCC-24846383024E} = {5C734F04-49ED-4047-9B76-D612AE13BBF0}
 		{B3A2A0A7-5848-447D-A6B7-5746BC18BDCF} = {C8FD54AF-2A45-464F-9927-B1D2DC5E71B6}
 		{767D360D-AA4C-47D3-A330-6148340AE91C} = {D53DB4AA-9538-4953-B4B9-AFE3B97D2623}
 		{FAF0BA18-4E53-4278-AA5B-35F38C7D43CA} = {EDB7D2DA-9158-4138-B67C-F591D28C69C4}
@@ -137,7 +120,6 @@ Global
 		{F1C67053-94FD-4ECA-B59B-6F7298B32CD1} = {585BE759-B04C-43F0-BC6C-046AFB8E6B21}
 		{A5ACAC36-AC1C-41C7-AB92-63AE0944A6A8} = {585BE759-B04C-43F0-BC6C-046AFB8E6B21}
 		{FCEDEBE2-0210-45D5-AAF3-186385E28E09} = {585BE759-B04C-43F0-BC6C-046AFB8E6B21}
-		{B260A166-B9D8-42F6-A6FA-9ED9751C58F9} = {5267E70C-050A-4532-A252-1D3D4BDF3B0A}
 		{DA837480-844A-4018-9AF6-02624BA4313B} = {585BE759-B04C-43F0-BC6C-046AFB8E6B21}
 		{FF725C69-3E67-4F7B-8C85-848DB0B7D0B3} = {DA837480-844A-4018-9AF6-02624BA4313B}
 	EndGlobalSection

@@ -3,6 +3,18 @@ A football manager-style game
 
 ## Description
 
+
+
+## Modularity
+
+- player generation module
+- team generation module
+- matchday module
+- 
+
+
+## Details
+
 ### Person
 A __person__ is someone who will be referenced in Footballista. It can be a player, a coach or a staff member of a team.
 
