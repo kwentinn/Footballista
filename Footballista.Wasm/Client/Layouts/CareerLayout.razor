@@ -1,4 +1,5 @@
-﻿@inherits LayoutComponentBase
+﻿@using Footballista.Wasm.Client.Components; 
+@inherits LayoutComponentBase
 
 <Layout Sider="true">
 
@@ -12,7 +13,7 @@
 	<Layout>
 		@*HEADER*@
 		<LayoutHeader Fixed="true">
-			<Header />
+			<CareerHeader/>
 		</LayoutHeader>
 
 		@*CONTENT*@

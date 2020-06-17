@@ -1,0 +1,54 @@
+﻿@using Blazored.LocalStorage
+@using Footballista.Wasm.Client.LocalStorage;
+
+@inject NavigationManager Nav
+@inject ISyncLocalStorageService LocalStorageService
+
+@*<Header />*@
+
+<div class="career-header">
+	<div class="career-header-left">
+		<ul>
+			<li class="title">Quick Info</li>
+			<li>Current date</li>
+			<li>Current season</li>
+			<li>Current competition</li>
+			<li>Current rank</li>
+			<li>Next important event</li>
+		</ul>
+	</div>
+	<div class="career-header-right">
+		<ul>
+			<li>Quick actions</li>
+			<li></li>
+			@*<li>
+				<Button @onclick="() => NextDay()">Next day</Button>
+			</li>
+			<li>
+				<Button @onclick="() => NextEvent()">Next event</Button>
+			</li>
+			<li>
+				<Button @onclick="() => ExitCareer()">Exit careerevent</Button>
+			</li>*@
+		</ul>
+	</div>
+
+</div>
+
+
+@code {
+	public void ExitCareer()
+	{
+		LocalStorageService.RemoveItem(LocalStorageKeys.CurrentCareer);
+
+		Nav.NavigateTo("/", forceLoad: true);
+	}
+	public void NextDay()
+	{
+		Console.WriteLine("next day clicked");
+	}
+	public void NextEvent()
+	{
+		Console.WriteLine("next event clicked");
+	}
+}
