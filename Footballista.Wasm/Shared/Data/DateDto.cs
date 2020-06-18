@@ -1,7 +1,4 @@
 ﻿using Itenso.TimePeriod;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Footballista.Wasm.Shared.Data
 {
@@ -20,5 +17,10 @@ namespace Footballista.Wasm.Shared.Data
 		}
 		public Date ToDate()
 			=> new Date(Year, Month, Day);
+
+		public override string ToString()
+		{
+			return ToDate().ToString();
+		}
 	}
 }

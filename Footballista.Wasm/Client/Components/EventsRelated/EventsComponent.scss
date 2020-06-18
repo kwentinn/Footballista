@@ -8,13 +8,14 @@
 	border: 1px solid darken($color-primary, 10%);
 	margin-bottom: 10px;
 
-	.event-date {
+	.event .event-date {
 		text-shadow: 1px 1px 3px lighten($text-color, 80%);
 	}
 
-	.event-title {
+	.event .event-title {
+		font-weight: bold;
 	}
 
-	.event-description {
+	.event .event-description {
 	}
 }

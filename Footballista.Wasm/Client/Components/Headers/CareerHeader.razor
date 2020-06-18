@@ -1,0 +1,66 @@
+﻿@using Blazored.LocalStorage
+@using Footballista.Wasm.Client.LocalStorage;
+@using Footballista.Wasm.Client.Components._Shared;
+@using Footballista.Wasm.Shared.Data.Careers;
+
+@inject NavigationManager Nav
+@inject ISyncLocalStorageService LocalStorageService
+@inject Footballista.Wasm.Client.ClientServices.GameService gameService
+@inject Microsoft.Extensions.Localization.IStringLocalizer<CareerHeader> Loc
+
+<div class="career-header">
+	<div class="career-header-left">
+		<ul>
+			<li class="title">@Loc["Label_QuickInfo"]</li>
+			@if (CurrentGame == null)
+			{
+				<li>...</li>
+
+			}
+			else
+			{
+				<li>@CurrentGame.CurrentDate.ToString()</li>
+				<li>@CurrentGame.CurrentCompetition</li>
+				<li>@Loc["Shortcut_CurrentSeason"]: @CurrentGame.CurrentSeason</li>
+				<li>@Loc["Shortcut_CurrentRank"]: @CurrentGame.CurrentRank</li>
+				<li>@Loc["Shortcut_Upcoming"]: @CurrentGame.UpcomingEvents</li>
+			}
+		</ul>
+	</div>
+	<div class="career-header-right">
+		<ul>
+			<li class="title">@Loc["Label_QuickActions"]</li>
+			<li><a class="career-header-link" @onclick="() => NextDay()">@Loc["Btn_NextDay"]</a></li>
+			<li><a class="career-header-link" @onclick="() => NextEvent()">@Loc["Btn_NextEvent"]</a></li>
+			<li><a class="career-header-link" @onclick="() => ExitCareer()">@Loc["Btn_ExitCareer"]</a></li>
+			<li><CultureSelector></CultureSelector></li>
+		</ul>
+	</div>
+
+</div>
+
+
+@code {
+
+	public Career CurrentGame { get; set; }
+	protected override void OnInitialized()
+	{
+		gameService.Load();
+		CurrentGame = gameService.CurrentGame;
+	}
+
+	public void ExitCareer()
+	{
+		LocalStorageService.RemoveItem(LocalStorageKeys.CurrentCareer);
+
+		Nav.NavigateTo("/", forceLoad: true);
+	}
+	public void NextDay()
+	{
+		Console.WriteLine("next day clicked");
+	}
+	public void NextEvent()
+	{
+		Console.WriteLine("next event clicked");
+	}
+}

@@ -1,0 +1,57 @@
+﻿@import '../../Styles/Theme.scss';
+
+.career-header {
+	position: sticky;
+	background: $color-accent;
+	background: linear-gradient(180deg, darken($color-accent, 16%) 0%, darken($color-accent, 10%) 100%);
+	line-height: 3rem;
+	color: $text-color-clear;
+}
+
+.career-header ul {
+	list-style-type: none;
+}
+
+.career-header ul li {
+	display: inline-block;
+}
+
+.career-header-left li + li:before {
+	content: " | ";
+/*	padding: 0 10px;*/
+}
+
+.career-header ul li.title {
+	font-weight: bold;
+}
+
+.career-header span {
+	display: inline-block;
+	font-size: 0.8rem;
+}
+
+.career-header .career-header-left {
+	float: left;
+	display: inline-block;
+}
+
+.career-header .career-header-right {
+	text-align: right;
+}
+
+.career-header-link {
+	display: block;
+	padding: 0 1rem;
+	color: $text-color !important;
+	transition: background .1s ease-in-out,color .1s ease-in-out;
+	position: relative;
+	text-decoration: none;
+	text-shadow: 1px 1px 2px $text-color-clear;
+}
+
+.career-header-link:hover {
+	color: darken($text-color, 30%) !important;
+	background: lighten($color-primary, 30%) !important;
+	cursor: pointer;
+	text-decoration: none;
+}
