@@ -5,6 +5,15 @@ namespace Footballista.Wasm.Shared.Extensions
 	public static class DateExtensions
 	{
 		/// <summary>
+		/// Add years to the current date
+		/// </summary>
+		/// <param name="date"></param>
+		/// <param name="yearsToAdd"></param>
+		/// <returns></returns>
+		public static Date AddYears(this Date date, int yearsToAdd)
+			=> new Date(date.DateTime.AddYears(yearsToAdd));
+
+		/// <summary>
 		/// Add months to the current date
 		/// </summary>
 		/// <param name="date"></param>
@@ -37,5 +46,6 @@ namespace Footballista.Wasm.Shared.Extensions
 		/// <returns></returns>
 		public static Date LastDayOfMonth(this Date date) 
 			=> FirstDayOfMonth(date).AddMonths(1).AddDays(-1);
+
 	}
 }

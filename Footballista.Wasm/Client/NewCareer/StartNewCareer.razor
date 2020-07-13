@@ -1,7 +1,18 @@
-﻿<h3>Start a new career</h3>
+﻿@using Footballista.Wasm.Shared.Data.Competitions;
+@inject Footballista.Wasm.Client.ClientServices.GameService GameService
+@inject NavigationManager Nav
+
+<h3>Start a new career</h3>
 
 <TextEdit @bind-Text="@CareerName" Placeholder="Career name" />
+<Select @bind-SelectedValue="@SelectedCompetitionId" TValue="int">
+	@foreach (Competition competition in AvailableCompetitions)
+	{
+		<SelectItem Value="@competition.Id">@competition.Name (@competition.Country)</SelectItem>
+	}
+</Select>
 
-@code {
-	public string CareerName { get; set; }
-}
+<Button Clicked="@CancelClick" Color="Color.Light">Cancel</Button>
+<Button Clicked="@StartNewCareerClick" Color="Color.Primary">Start new career</Button>
+
+

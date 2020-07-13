@@ -13,6 +13,11 @@
 	<DataGridColumn TItem="Player" Field="@nameof(Player.Foot)" Caption="Foot" Sortable="true" />
 	<DataGridColumn TItem="Player" Field="@nameof(Player.Nationalities)" Caption="Nationalities" Sortable="true" />
 	<DataGridNumericColumn TItem="Player" Field="@nameof(Player.GeneralRating)" Caption="Avg." Sortable="true" />
+	<DataGridColumn TItem="Player" Field="@nameof(Player.BirthInfo)" Caption="DoB" Sortable="true">
+		<DisplayTemplate>
+			@(context.BirthInfo.DateOfBirth)
+		</DisplayTemplate>
+	</DataGridColumn>
 	
 </DataGrid>
 

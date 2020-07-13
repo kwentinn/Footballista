@@ -2,16 +2,21 @@
 {
 	public class Season
 	{
-		public int Start { get; }
-		public int End { get; }
+		public DateDto Start { get; set; }
+		public DateDto End { get; set; }
 
-		public Season(int start, int end)
+		public static Season Default = new Season(2020, 2021);
+
+		public Season() { }
+		private Season(int startYear, int endYear)
 		{
-			Start = start;
-			End = end;
+			Start = new DateDto(startYear, 7, 1);
+			End = new DateDto(endYear, 6, 30);
 		}
 
 		public override string ToString() 
-			=> $"{Start}-{End}";
+			=> $"{Start.Year}-{End.Year}";
+
+		public Season Next() => new Season(Start.Year + 1, End.Year + 1);
 	}
 }

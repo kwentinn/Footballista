@@ -1,4 +1,6 @@
-﻿namespace Footballista.Wasm.Shared.Data.Careers
+﻿using Footballista.Wasm.Shared.Data.Competitions;
+
+namespace Footballista.Wasm.Shared.Data.Careers
 {
 	public class Career
 	{
@@ -6,32 +8,26 @@
 		public DateDto CurrentDate { get; set; }
 		public Manager Manager { get; set; }
 
-		public string CurrentCompetition { get; set; }
-		public string CurrentSeason { get; set; }
-		public int CurrentRank { get; set; }
-		public string UpcomingEvents { get; set; } 
+		public Competition CurrentCompetition { get; set; }
+		public Season CurrentSeason { get; set; }
+		public int CurrentRank { get; set; } = 0;
+		public string UpcomingEvents { get; set; }
 
-		public static Career DefaultCareer
-			=> new Career("Default career", new DateDto(2020, 7, 1), Manager.DefaultManager)
-			{
-				CurrentCompetition = "League One",
-				CurrentSeason = "2020-2021",
-				CurrentRank = 5,
-				UpcomingEvents = "..."
-			};
-		
+		public static Career DefaultCareer => new Career("Default career", Competition.Ligue1);
+
+		/// <summary>
+		/// Empty constructor for deserialisation in wasm client
+		/// </summary>
 		public Career()
 		{
 		}
-		public Career(string name, DateDto currentDate, Manager manager)
+		public Career(string name, Competition currentCompetition)
 		{
 			Name = name;
-			CurrentDate = currentDate;
-			Manager = manager;
+			CurrentDate = Season.Default.Start;
+			Manager = Manager.DefaultManager;
+			CurrentCompetition = currentCompetition;
+			CurrentSeason = Season.Default;
 		}
 	}
-	//public class Competition
-	//{
-	//	public string Name { get; set; }
-	//}
 }

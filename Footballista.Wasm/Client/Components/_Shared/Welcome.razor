@@ -1,19 +1,34 @@
-﻿@inject Footballista.Wasm.Client.ClientServices.GameService GameService
+﻿@using Footballista.Wasm.Client.NewCareer;
+
+@inject Footballista.Wasm.Client.ClientServices.GameService GameService
 @inject NavigationManager Nav
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Welcome> Loc
 
 <div class="centered text-centered">
 	<DisplayHeading Size="DisplayHeadingSize.Is1">Footballista</DisplayHeading>
-	<button class="btn btn-primary">@Loc["Btn_CreateCareer"]</button>
+	<button class="btn btn-primary" @onclick="() => StartNewCareerClick()">@Loc["Btn_CreateCareer"]</button>
 	<button class="btn btn-primary" @onclick="() => LoadCareer()">@Loc["Btn_LoadCareer"]</button>
 </div>
 
+@if (StartNewCareer)
+{
+	<StartNewCareer></StartNewCareer>
+}
+
 
 @code {
+
+	public bool StartNewCareer { get; set; } = false;
+
 	void LoadCareer()
 	{
 		GameService.Load();
 
 		Nav.NavigateTo("/home", forceLoad: true);
+	}
+
+	public void StartNewCareerClick()
+	{
+		StartNewCareer = true;
 	}
 }
