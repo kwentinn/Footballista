@@ -2,7 +2,7 @@
 {
 	public enum BoundType
 	{
-		Open,
-		Closed,
+		Exclude,
+		Include,
 	}
 }

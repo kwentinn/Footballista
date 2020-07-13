@@ -1,4 +1,5 @@
 ﻿using Footballista.BuildingBlocks.Domain.Percentiles;
+using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Persons;
 using System;
 using System.Collections.Generic;

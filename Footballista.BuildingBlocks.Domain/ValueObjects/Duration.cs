@@ -1,9 +1,8 @@
-﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.Players.PlayerEvolutions.Rules;
+﻿using Footballista.BuildingBlocks.Domain.ValueObjects.Rules;
 using System;
 using System.Diagnostics;
 
-namespace Footballista.Players.PlayerEvolutions
+namespace Footballista.BuildingBlocks.Domain.ValueObjects
 {
 	[DebuggerDisplay("{System.Math.Round(Years, 2)} yrs.")]
 	public class Duration : ValueObject, IComparable<Duration>
@@ -21,7 +20,7 @@ namespace Footballista.Players.PlayerEvolutions
 
 		public int CompareTo(Duration other) => Years.CompareTo(other.Years);
 
-		public static Duration FromAgeRange(Range<PersonAge> ageRange) 
+		public static Duration FromAgeRange(Range<PersonAge> ageRange)
 			=> FromYears(ageRange.Upper.Years - ageRange.Lower.Years);
 
 		public static Duration FromMonths(int months) => FromYears(Convert.ToDouble(months) / 12d);

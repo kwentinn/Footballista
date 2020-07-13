@@ -1,6 +1,4 @@
-﻿using Footballista.BuildingBlocks.Domain;
-
-namespace Footballista.Players.PlayerEvolutions.Rules
+﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects.Rules
 {
 	public class DurationMustBeGreaterThanZeroRule : IBusinessRule
 	{

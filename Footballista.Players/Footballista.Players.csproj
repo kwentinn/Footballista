@@ -5,8 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Commands\**" />
     <Compile Remove="Features\OutfieldPlayers\**" />
+    <EmbeddedResource Remove="Commands\**" />
     <EmbeddedResource Remove="Features\OutfieldPlayers\**" />
+    <None Remove="Commands\**" />
     <None Remove="Features\OutfieldPlayers\**" />
   </ItemGroup>
 
@@ -19,10 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Footballista.BuildingBlocks.Domain\Footballista.BuildingBlocks.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Commands\" />
   </ItemGroup>
 
 </Project>

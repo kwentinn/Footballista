@@ -1,4 +1,4 @@
-﻿using Footballista.Players;
+﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Features;
 using Footballista.Players.PlayerEvolutions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

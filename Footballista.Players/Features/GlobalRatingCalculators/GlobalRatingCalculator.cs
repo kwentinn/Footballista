@@ -8,8 +8,6 @@ namespace Footballista.Players.Features.GlobalRatingCalculators
 {
 	public class GlobalRatingCalculator
 	{
-		public PlayerPosition PlayerPosition { get; }
-
 		public readonly List<PlayerRatingConfigBase> _playerRatingWeightings = new List<PlayerRatingConfigBase>()
 		{
 			new RatingConfigs.AttackingMidfielderRatingConfig(),
@@ -32,7 +30,8 @@ namespace Footballista.Players.Features.GlobalRatingCalculators
 			if (featureSet is null) throw new ArgumentNullException(nameof(featureSet));
 
 			// récupération de la config de rating
-			PlayerRatingConfigBase config = _playerRatingWeightings.FirstOrDefault(prw => prw.PlayerPosition == position);
+			PlayerRatingConfigBase config = _playerRatingWeightings
+				.FirstOrDefault(prw => prw.PlayerPosition == position);
 			if (config is null)
 			{
 				throw new InvalidOperationException("Cannot find corresponding rating calculator");
@@ -43,11 +42,9 @@ namespace Footballista.Players.Features.GlobalRatingCalculators
 
 			foreach (RatingWeighting rw in config.RatingWeightings)
 			{
-				//GetFeatures(rw.FeatureTypes, featureSet);
 				List<PhysicalFeature> features = featureSet.PhysicalFeatures
 					.Where(fs => rw.FeatureTypes.Any(ft => ft == fs.FeatureType))
 					.ToList();
-
 				if (features.Any())
 				{
 					weightedRatingsSum += features.Sum(f => f.Rating.Value * rw.Weighting) / features.Count;

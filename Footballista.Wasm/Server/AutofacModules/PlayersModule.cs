@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using Footballista.BuildingBlocks.Domain.Game;
-using Footballista.Players;
+using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Builders;
 using Footballista.Players.Builders.Generators;
 using Footballista.Players.Builders.Randomisers;

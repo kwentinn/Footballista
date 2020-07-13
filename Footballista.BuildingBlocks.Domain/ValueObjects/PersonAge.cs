@@ -1,9 +1,8 @@
-﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.Players.PlayerEvolutions;
-using System;
+﻿using System;
 using System.Diagnostics;
+using Date = Itenso.TimePeriod.Date;
 
-namespace Footballista.Players
+namespace Footballista.BuildingBlocks.Domain.ValueObjects
 {
 	[DebuggerDisplay("{System.Math.Round(Years, 1)} yrs.")]
 	public class PersonAge : ValueObject, IComparable<PersonAge>
@@ -11,9 +10,9 @@ namespace Footballista.Players
 		public static PersonAge Min => new PersonAge(0);
 		public static PersonAge Max => new PersonAge(100);
 
-		private static double _monthsInYear = 12d;
-		private static double _weeksInYear = 52d;
-		private static double _daysInYear = 365d;
+		private const double _monthsInYear = 12d;
+		private const double _weeksInYear = 52d;
+		private const double _daysInYear = 365d;
 
 		public double Years { get; }
 
@@ -40,11 +39,10 @@ namespace Footballista.Players
 		public static PersonAge FromMonths(int month) => new PersonAge(Convert.ToDouble(month) / _monthsInYear);
 		public static PersonAge FromWeeks(int weeks) => new PersonAge(Convert.ToDouble(weeks) / _weeksInYear);
 		public static PersonAge FromDays(int days) => new PersonAge(Convert.ToDouble(days) / _daysInYear);
-		public static PersonAge FromDate(Itenso.TimePeriod.Date dob, DateTime? currentDate = null)
+		public static PersonAge FromDate(Date dob, DateTime? currentDate = null)
 		{
 			if (currentDate == null) currentDate = DateTime.UtcNow.Date;
-
-			return PersonAge.FromDays(Convert.ToInt32(
+			return FromDays(Convert.ToInt32(
 				currentDate.Value.Subtract(dob.DateTime).TotalDays
 			));
 		}

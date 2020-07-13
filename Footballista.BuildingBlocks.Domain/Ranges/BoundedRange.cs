@@ -38,26 +38,25 @@ namespace Footballista.BuildingBlocks.Domain
 		{
 		}
 
-		//public static BoundedRange<T> Create(T lower, BoundType lowerBoundType, T upper, BoundType upperBoundType)
-		//{
-		//	if (lower == null) throw new ArgumentNullException(nameof(lower));
-		//	if (upper == null) throw new ArgumentNullException(nameof(upper));
-
-		//	return new BoundedRange<T>(new Bound<T>(lower, lowerBoundType), new Bound<T>(upper, upperBoundType));
-		//}
+		public static BoundedRange<T> CreateIncluded(T lower, T upper)
+			=> new BoundedRange<T>
+			(
+				lower, BoundType.Include,
+				upper, BoundType.Include
+			);
 
 		public bool IsValueInRange(T value) => IsLowerBoundInRange(value) && IsUpperBoundInRange(value);
 
 		private bool IsLowerBoundInRange(T value) => Lower.BoundType switch
 		{
-			BoundType.Closed => IsLowerBoundLessOrEqualsBoundValue(value),
-			BoundType.Open => IsLowerBoundStrictlyLessThanBoundValue(value),
+			BoundType.Include => IsLowerBoundLessOrEqualsBoundValue(value),
+			BoundType.Exclude => IsLowerBoundStrictlyLessThanBoundValue(value),
 			_ => throw new InvalidOperationException("Incorrect BoundType value"),
 		};
 		private bool IsUpperBoundInRange(T value) => Upper.BoundType switch
 		{
-			BoundType.Closed => IsBoundValueLessOrEqualsUpperBound(value),
-			BoundType.Open => IsBoundValueStrictlyLessThanUpperBound(value),
+			BoundType.Include => IsBoundValueLessOrEqualsUpperBound(value),
+			BoundType.Exclude => IsBoundValueStrictlyLessThanUpperBound(value),
 			_ => throw new InvalidOperationException("Incorrect BoundType value"),
 		};
 

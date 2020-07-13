@@ -1,4 +1,5 @@
 ﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.PlayerEvolutions.Rules;
 using System;
 using System.Collections.Generic;

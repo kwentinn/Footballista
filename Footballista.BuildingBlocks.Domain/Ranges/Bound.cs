@@ -17,7 +17,7 @@ namespace Footballista.BuildingBlocks.Domain
 			BoundType = boundType;
 		}
 
-		public static Bound<T> CreateOpenBound(T boundValue) => new Bound<T>(boundValue, BoundType.Open);
-		public static Bound<T> CreateClosedBound(T boundValue) => new Bound<T>(boundValue, BoundType.Closed);
+		public static Bound<T> CreateOpenBound(T boundValue) => new Bound<T>(boundValue, BoundType.Exclude);
+		public static Bound<T> CreateClosedBound(T boundValue) => new Bound<T>(boundValue, BoundType.Include);
 	}
 }
