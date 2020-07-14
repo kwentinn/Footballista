@@ -1,9 +1,8 @@
-﻿@using  System.Globalization
-@using Blazored.LocalStorage;
-@using Footballista.Wasm.Client.LocalStorage;
+﻿@using System.Globalization;
+@using Footballista.Wasm.Client.Domain.ClientServices;
 
+@inject ICurrentCultureService CurrentCultureService
 @inject NavigationManager Nav
-@inject ISyncLocalStorageService LocalStorageService
 
 <select @bind="Culture">
 	@foreach (var culture in supportedCultures)
@@ -27,7 +26,7 @@
 		{
 			if (CultureInfo.CurrentCulture != value)
 			{
-				LocalStorageService.SetItem(LocalStorageKeys.CurrentCulture, value.Name);
+				CurrentCultureService.SetCurrentCulture(value.Name);
 				Nav.NavigateTo(Nav.Uri, forceLoad: true);
 			}
 		}

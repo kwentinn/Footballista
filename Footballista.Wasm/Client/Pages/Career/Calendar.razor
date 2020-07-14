@@ -1,15 +1,12 @@
 ﻿@page "/calendar"
 @using Footballista.Wasm.Client.Components.CalendarBased;
-@using Itenso.TimePeriod;
-@using Footballista.Wasm.Client.ClientServices;
 @using Footballista.Wasm.Shared.Data.Calendars;
 @using Footballista.Wasm.Client.Components.EventsRelated;
-@using Microsoft.Extensions.Localization;
 
 @inject CareerDateService careerDateService
 @inject IStringLocalizer<Calendar> Loc
-@inject GameService _gameService
-@inject CalendarService _calendarService
+@inject IGameService _gameService
+@inject ICalendarService _calendarService
 
 <p>@Loc["CurrentDate"]&nbsp;@careerDateService.GetDisplayFullDate(CurrentDate)</p>
 
@@ -27,8 +24,6 @@
 		</Column>
 	</Row>
 </Layout>
-
-
 
 
 @code {

@@ -21,6 +21,9 @@
 		public static Competition Ligue1 => new Competition(1, "Ligue 1", 1, "France");
 		public static Competition Ligue2 => new Competition(2, "Ligue 2", 2, "France");
 
+		public static Competition Instantiate(int id, string name, int division, string country)
+			=> new Competition(id, name, division, country);
+
 		public override string ToString() => Name;
 		
 	}

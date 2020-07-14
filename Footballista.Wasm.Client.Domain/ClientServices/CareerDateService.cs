@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using Footballista.Wasm.Shared.Extensions;
 
-namespace Footballista.Wasm.Client.ClientServices
+namespace Footballista.Wasm.Client.Domain.ClientServices
 {
 	public class CareerDateService
 	{

@@ -1,9 +1,8 @@
-@using Blazored.LocalStorage;
 @using Footballista.Wasm.Shared.Data.Careers;
 @using Footballista.Wasm.Client.Layouts;
-@using Footballista.Wasm.Client.LocalStorage;
+@using Footballista.Wasm.Client.Domain.ClientServices;
 
-@inject ISyncLocalStorageService LocalStorageService
+@inject IGameService GameService
 
 <Blazorise.ThemeProvider Theme="@theme">
 
@@ -34,7 +33,7 @@
 @code{
 
 	public Career CurrentCareer
-		=> LocalStorageService.GetItem<Career>(LocalStorageKeys.CurrentCareer);
+		=> GameService.GetCurrentCareer();
 
 	public bool HasCurrentCareer
 		=> CurrentCareer != null;

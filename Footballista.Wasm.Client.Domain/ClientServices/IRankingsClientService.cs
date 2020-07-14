@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Footballista.Wasm.Client.ClientServices
+namespace Footballista.Wasm.Client.Domain.ClientServices
 {
 	public interface IRankingsClientService
 	{
 		Task<List<CompetitionRanking>> GetRankings();
 	}
-
 }

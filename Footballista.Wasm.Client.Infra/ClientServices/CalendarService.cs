@@ -1,10 +1,11 @@
-﻿using Footballista.Wasm.Shared.Data.Calendars;
+﻿using Footballista.Wasm.Client.Domain.ClientServices;
+using Footballista.Wasm.Shared.Data.Calendars;
 using Itenso.TimePeriod;
 using System.Collections.Generic;
 
-namespace Footballista.Wasm.Client.ClientServices
+namespace Footballista.Wasm.Client.Infra.ClientServices
 {
-	public class CalendarService
+	public class CalendarService : ICalendarService
 	{
 		public List<Event> GetEventsForDate(Date date)
 		{

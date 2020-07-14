@@ -4,23 +4,17 @@ namespace Footballista.Wasm.Shared.Data.Careers
 {
 	public class Career
 	{
-		public string Name { get; set; }
-		public DateDto CurrentDate { get; set; }
-		public Manager Manager { get; set; }
+		public string Name { get; }
+		public SimpleDate CurrentDate { get; }
+		public Manager Manager { get; }
 
-		public Competition CurrentCompetition { get; set; }
-		public Season CurrentSeason { get; set; }
-		public int CurrentRank { get; set; } = 0;
-		public string UpcomingEvents { get; set; }
+		public Competition CurrentCompetition { get; }
+		public Season CurrentSeason { get; }
+		public int CurrentRank { get; } = 0;
+		public string UpcomingEvents { get; }
 
 		public static Career DefaultCareer => new Career("Default career", Competition.Ligue1);
 
-		/// <summary>
-		/// Empty constructor for deserialisation in wasm client
-		/// </summary>
-		public Career()
-		{
-		}
 		public Career(string name, Competition currentCompetition)
 		{
 			Name = name;

@@ -1,11 +1,10 @@
 ﻿@page "/home"
 @using Microsoft.Extensions.Localization;
-@using Footballista.Wasm.Client.ClientServices;
 @using Footballista.Wasm.Shared.Data.Careers;
  
 @inject NavigationManager Nav
 @inject IStringLocalizer<Home> Loc
-@inject GameService _gameService
+@inject IGameService _gameService
 
 
 <h1>Career</h1>

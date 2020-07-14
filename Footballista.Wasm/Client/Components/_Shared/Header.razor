@@ -1,8 +1,6 @@
-﻿@using Blazored.LocalStorage
-@using Footballista.Wasm.Client.LocalStorage;
-
+﻿@using Footballista.Wasm.Client.Domain.ClientServices;
 @inject NavigationManager Nav
-@inject ISyncLocalStorageService LocalStorageService
+@inject IGameService GameService
 
 <Bar Breakpoint="Breakpoint.Desktop" Background="Background.Light" ThemeContrast="ThemeContrast.Light">
 	<BarBrand>Footballista</BarBrand>
@@ -28,7 +26,7 @@
 @code {
 	public void ExitCareer()
 	{
-		LocalStorageService.RemoveItem(LocalStorageKeys.CurrentCareer);
+		GameService.ExitCareer();
 
 		Nav.NavigateTo("/", forceLoad: true);
 	}

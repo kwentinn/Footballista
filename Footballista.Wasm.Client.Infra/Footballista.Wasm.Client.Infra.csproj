@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="10.0.0" />
+		<PackageReference Include="System.Net.Http.Json" Version="3.2.1" />
+		<PackageReference Include="Blazored.LocalStorage" Version="2.1.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Footballista.Wasm.Client.Domain\Footballista.Wasm.Client.Domain.csproj" />
+		<ProjectReference Include="..\Footballista.Wasm.Client.Dto\Footballista.Wasm.Client.Dto.csproj" />
+	</ItemGroup>
+
+</Project>

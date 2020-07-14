@@ -1,10 +1,11 @@
-﻿using Footballista.Wasm.Shared.Data.Competitions;
+﻿using Footballista.Wasm.Client.Domain.ClientServices;
+using Footballista.Wasm.Shared.Data.Competitions;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace Footballista.Wasm.Client.ClientServices
+namespace Footballista.Wasm.Client.Infra.ClientServices
 {
 	public class RankingsClientService : IRankingsClientService
 	{

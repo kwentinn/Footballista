@@ -1,4 +1,5 @@
-﻿using Footballista.Wasm.Shared.Data.Players;
+﻿using Footballista.Wasm.Client.Domain.ClientServices;
+using Footballista.Wasm.Shared.Data.Players;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;

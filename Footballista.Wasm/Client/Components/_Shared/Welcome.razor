@@ -1,8 +1,10 @@
 ﻿@using Footballista.Wasm.Client.NewCareer;
+@using Footballista.Wasm.Client.Domain.ClientServices;
+@using Microsoft.Extensions.Localization;
 
-@inject Footballista.Wasm.Client.ClientServices.GameService GameService
+@inject IGameService GameService
 @inject NavigationManager Nav
-@inject Microsoft.Extensions.Localization.IStringLocalizer<Welcome> Loc
+@inject IStringLocalizer<Welcome> Loc
 
 <div class="centered text-centered">
 	<DisplayHeading Size="DisplayHeadingSize.Is1">Footballista</DisplayHeading>
@@ -12,7 +14,7 @@
 
 @if (StartNewCareer)
 {
-	<StartNewCareer></StartNewCareer>
+	<StartNewCareer />
 }
 
 

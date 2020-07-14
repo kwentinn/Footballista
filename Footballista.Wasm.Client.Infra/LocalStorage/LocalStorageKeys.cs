@@ -1,4 +1,4 @@
-﻿namespace Footballista.Wasm.Client.LocalStorage
+﻿namespace Footballista.Wasm.Client.Infra.LocalStorage
 {
 	public static class LocalStorageKeys
 	{

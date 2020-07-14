@@ -1,5 +1,5 @@
 ﻿using Footballista.Players.Builders;
-using Footballista.Wasm.Server.Services.Mappers;
+using Footballista.Wasm.Shared;
 using Footballista.Wasm.Shared.Data.Players;
 using System;
 using System.Linq;

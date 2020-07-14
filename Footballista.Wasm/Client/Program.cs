@@ -1,13 +1,15 @@
+using AutoMapper;
 using Blazored.LocalStorage;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using Footballista.Wasm.Client.ClientServices;
-using Footballista.Wasm.Client.LocalStorage;
+using Footballista.Wasm.Client.Domain.ClientServices;
+using Footballista.Wasm.Client.Infra.ClientServices;
+using Footballista.Wasm.Client.Infra.MappingProfiles;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -29,17 +31,23 @@ namespace Footballista.Wasm.Client
 				})
 				.AddTransient(typeof(IPlayersClientService), typeof(PlayersClientService))
 				.AddTransient(typeof(IRankingsClientService), typeof(RankingsClientService))
-				.AddTransient(typeof(GameService))
-				.AddTransient(typeof(CalendarService))
+				.AddTransient(typeof(ICurrentCultureService), typeof(CurrentCultureService))
+				.AddTransient(typeof(IGameService), typeof(GameService))
+				.AddTransient(typeof(ICalendarService), typeof(CalendarService))
 				.AddTransient(typeof(CareerDateService))
 				.AddBlazoredLocalStorage(config =>
 				{
 					config.JsonSerializerOptions.AllowTrailingCommas = true;
-					//config.JsonSerializerOptions.
 					config.JsonSerializerOptions.WriteIndented = true;
 				})
 				.AddLocalization()
 			;
+
+			var configuration = new MapperConfiguration(cfg =>
+			{
+				cfg.AddProfile<ClientMappingProfile>();
+			});
+			builder.Services.AddSingleton(configuration.CreateMapper());
 
 			builder.RootComponents.Add<App>("app");
 
@@ -57,17 +65,8 @@ namespace Footballista.Wasm.Client
 
 		private static async Task SetCurrentCulture(WebAssemblyHost host)
 		{
-			CultureInfo culture = new CultureInfo("en-us");
-
-			ILocalStorageService localStorageService = host.Services.GetService<ILocalStorageService>();
-			string result = await localStorageService.GetItemAsync<string>(LocalStorageKeys.CurrentCulture);
-			if (result != null)
-			{
-				culture = new CultureInfo(result);
-			}
-
-			CultureInfo.DefaultThreadCurrentCulture = culture;
-			CultureInfo.DefaultThreadCurrentUICulture = culture;
+			var currentcultureService = host.Services.GetService<ICurrentCultureService>();
+			await currentcultureService.SetDefaultCurrentCultureAsync();
 		}
 	}
 }

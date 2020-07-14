@@ -2,14 +2,14 @@
 
 namespace Footballista.Wasm.Shared.Data
 {
-	public class DateDto
+	public class SimpleDate
 	{
 		public int Year { get; set; }
 		public int Month { get; set; }
 		public int Day { get; set; }
 
-		public DateDto() { }
-		public DateDto(int year, int month, int day)
+		public SimpleDate() { }
+		public SimpleDate(int year, int month, int day)
 		{
 			Year = year;
 			Month = month;

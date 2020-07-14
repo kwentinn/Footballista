@@ -1,4 +1,6 @@
-﻿using Footballista.Wasm.Shared.Data.Competitions;
+﻿using Footballista.Wasm.Client.Domain.ClientServices;
+using Footballista.Wasm.Shared.Data.Competitions;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 
@@ -6,6 +8,13 @@ namespace Footballista.Wasm.Client.NewCareer
 {
 	public partial class StartNewCareer
 	{
+		[Inject]
+		public IGameService GameService { get; set; }
+
+		[Inject]
+		public NavigationManager Nav { get; set; }
+
+
 		private List<Competition> AvailableCompetitions = new List<Competition>
 		{
 			Competition.Ligue1,
@@ -25,7 +34,7 @@ namespace Footballista.Wasm.Client.NewCareer
 			}
 		}
 
-		void StartNewCareerClick()
+		public void StartNewCareerClick()
 		{
 			Console.WriteLine("start career clicked !");
 			Console.WriteLine(SelectedCompetition);
@@ -35,7 +44,7 @@ namespace Footballista.Wasm.Client.NewCareer
 
 			NavigateToHome();
 		}
-		void CancelClick()
+		public void CancelClick()
 		{
 			Console.WriteLine("cancel clicked !");
 

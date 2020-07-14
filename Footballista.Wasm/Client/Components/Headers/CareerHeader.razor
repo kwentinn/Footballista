@@ -1,11 +1,9 @@
-﻿@using Blazored.LocalStorage
-@using Footballista.Wasm.Client.LocalStorage;
-@using Footballista.Wasm.Client.Components._Shared;
+﻿@using Footballista.Wasm.Client.Components._Shared;
 @using Footballista.Wasm.Shared.Data.Careers;
+@using Footballista.Wasm.Client.Domain.ClientServices;
 
 @inject NavigationManager Nav
-@inject ISyncLocalStorageService LocalStorageService
-@inject Footballista.Wasm.Client.ClientServices.GameService gameService
+@inject IGameService GameService
 @inject Microsoft.Extensions.Localization.IStringLocalizer<CareerHeader> Loc
 
 <div class="career-header">
@@ -45,13 +43,12 @@
 	public Career CurrentGame { get; set; }
 	protected override void OnInitialized()
 	{
-		gameService.Load();
-		CurrentGame = gameService.CurrentGame;
+		CurrentGame = GameService.GetCurrentCareer();
 	}
 
 	public void ExitCareer()
 	{
-		LocalStorageService.RemoveItem(LocalStorageKeys.CurrentCareer);
+		GameService.ExitCareer();
 
 		Nav.NavigateTo("/", forceLoad: true);
 	}
