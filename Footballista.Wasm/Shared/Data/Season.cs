@@ -7,7 +7,6 @@
 
 		public static Season Default = new Season(2020, 2021);
 
-		public Season() { }
 		private Season(int startYear, int endYear)
 		{
 			Start = new SimpleDate(startYear, 7, 1);

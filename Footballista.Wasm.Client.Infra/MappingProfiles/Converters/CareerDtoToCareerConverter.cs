@@ -10,7 +10,7 @@ namespace Footballista.Wasm.Client.Infra.MappingProfiles.Converters
 		public Career Convert(CareerDto source, Career destination, ResolutionContext context)
 		{
 			Competition cpt = context.Mapper.Map<Competition>(source.CurrentCompetition);
-			return new Career(source.Name, cpt);
+			return Career.Instantiate(source.Id, source.Name, cpt);
 		}
 	}
 }

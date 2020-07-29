@@ -32,7 +32,7 @@ namespace Footballista.Wasm.Client
 				.AddTransient(typeof(IPlayersClientService), typeof(PlayersClientService))
 				.AddTransient(typeof(IRankingsClientService), typeof(RankingsClientService))
 				.AddTransient(typeof(ICurrentCultureService), typeof(CurrentCultureService))
-				.AddTransient(typeof(IGameService), typeof(GameService))
+				.AddTransient(typeof(IGameService), typeof(GameClientService))
 				.AddTransient(typeof(ICalendarService), typeof(CalendarService))
 				.AddTransient(typeof(CareerDateService))
 				.AddBlazoredLocalStorage(config =>

@@ -11,6 +11,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Footballista.BuildingBlocks.Domain\Footballista.BuildingBlocks.Domain.csproj" />
 		<ProjectReference Include="..\Footballista.Wasm.Client.Domain\Footballista.Wasm.Client.Domain.csproj" />
 		<ProjectReference Include="..\Footballista.Wasm.Client.Dto\Footballista.Wasm.Client.Dto.csproj" />
 	</ItemGroup>

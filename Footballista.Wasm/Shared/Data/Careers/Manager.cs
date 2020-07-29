@@ -16,7 +16,7 @@
 		public static Manager DefaultManager
 			=> new Manager(Gender.Male, "John", "Doe", new SimpleDate(1975, 1, 1), "England");
 
-		internal Manager(Gender gender, string firstname, string lastname, SimpleDate dateOfBirth, string country)
+		private Manager(Gender gender, string firstname, string lastname, SimpleDate dateOfBirth, string country)
 		{
 			Gender = gender;
 			Firstname = firstname;

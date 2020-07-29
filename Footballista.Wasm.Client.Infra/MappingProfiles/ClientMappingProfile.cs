@@ -16,7 +16,8 @@ namespace Footballista.Wasm.Client.Infra.MappingProfiles
 			CreateMap<SimpleDate, SimpleDateDto>();
 			CreateMap<Competition, CompetitionDto>();
 			CreateMap<Season, SeasonDto>();
-			CreateMap<Gender, GenderDto>();
+			CreateMap<Gender, GenderDto>()
+				.ReverseMap();
 
 			CreateMap<CareerDto, Career>()
 				.ConvertUsing<CareerDtoToCareerConverter>();

@@ -15,7 +15,12 @@
 	<DataGridNumericColumn TItem="Player" Field="@nameof(Player.GeneralRating)" Caption="Avg." Sortable="true" />
 	<DataGridColumn TItem="Player" Field="@nameof(Player.BirthInfo)" Caption="DoB" Sortable="true">
 		<DisplayTemplate>
-			@(context.BirthInfo.DateOfBirth)
+			@(context.BirthInfo.DateOfBirth.DateTime)
+		</DisplayTemplate>
+	</DataGridColumn>
+	<DataGridColumn TItem="Player" Field="@nameof(Player.Bmi)" Caption="Bmi" Sortable="true">
+		<DisplayTemplate>
+			@(context.Bmi.HeightInCentimeters)cm - @(context.Bmi.WeightInKilograms)kg
 		</DisplayTemplate>
 	</DataGridColumn>
 	

@@ -44,12 +44,12 @@ namespace Footballista.Wasm.Server.Services.Mappers
 				Position = player.PlayerPosition.Name,
 				GeneralRating = Convert.ToInt32(player.GeneralRating.Value * 100),
 				Ratings = player.PhysicalFeatureSet.PhysicalFeatures
-						.Select(feat => new Shared.Data.Players.Rating
-						{
-							Feature = feat.FeatureType.ToString(),
-							Value = Convert.ToInt32(feat.Rating.Value * 100)
-						})
-						.ToList()
+					.Select(feat => new Shared.Data.Players.Rating
+					{
+						Feature = feat.FeatureType.ToString(),
+						Value = Convert.ToInt32(feat.Rating.Value * 100)
+					})
+					.ToList()
 			};
 		}
 		public IEnumerable<Shared.Data.Players.Player> Map(IEnumerable<Players.Player> players)

@@ -1,6 +1,9 @@
 ﻿using Footballista.Wasm.Server.Services;
+using Footballista.Wasm.Shared.Data.Careers;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Footballista.Wasm.Server.Controllers
 {
@@ -20,6 +23,14 @@ namespace Footballista.Wasm.Server.Controllers
 		public List<string> GetAll()
 		{
 			return _careerService.GetAll();
+		}
+
+		[HttpGet]
+		[Route("load")]
+		public async Task<IActionResult> LoadCareer(Guid careerGuid)
+		{
+			Career career = await _careerService.LoadCareerAsync(careerGuid);
+			return Ok(career);
 		}
 	}
 }

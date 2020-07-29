@@ -8,15 +8,14 @@ namespace Footballista.Wasm.Shared.Data
 		public int Month { get; set; }
 		public int Day { get; set; }
 
-		public SimpleDate() { }
 		public SimpleDate(int year, int month, int day)
 		{
 			Year = year;
 			Month = month;
 			Day = day;
 		}
-		public Date ToDate()
-			=> new Date(Year, Month, Day);
+
+		public Date ToDate() => new Date(Year, Month, Day);
 
 		public override string ToString()
 		{

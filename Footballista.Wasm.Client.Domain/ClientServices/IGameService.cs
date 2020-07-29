@@ -8,7 +8,7 @@ namespace Footballista.Wasm.Client.Domain.ClientServices
 		Career CurrentGame { get; }
 
 		void Load();
-		void StartNewCareer(string careerName, Competition competition);
+		void StartNewCareer(string careerName, Competition competition, Manager manager);
 		Career GetCurrentCareer();
 		void ExitCareer();
 	}

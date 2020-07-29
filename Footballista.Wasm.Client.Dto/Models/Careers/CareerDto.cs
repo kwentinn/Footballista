@@ -1,7 +1,10 @@
-﻿namespace Footballista.Wasm.Client.Dto.Models.Careers
+﻿using System;
+
+namespace Footballista.Wasm.Client.Dto.Models.Careers
 {
 	public class CareerDto
 	{
+		public Guid Id { get; set; }
 		public string Name { get; set; }
 		public SimpleDateDto CurrentDate { get; set; }
 		public ManagerDto Manager { get; set; }

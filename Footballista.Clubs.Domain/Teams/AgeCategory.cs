@@ -43,7 +43,8 @@ namespace Footballista.Clubs.Domain.Teams
 
 		public bool IsInCategory(TeamPlayer player)
 		{
-			if (player is null) throw new ArgumentNullException(nameof(player));
+			Ensure.IsNotNull(player, nameof(player));
+
 			foreach (AgeCategory ageCategory in _allAgeCategories)
 			{
 				//if ()

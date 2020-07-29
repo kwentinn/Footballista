@@ -1,4 +1,7 @@
-﻿using Footballista.Wasm.Client.Domain.ClientServices;
+﻿using Blazorise;
+using Footballista.Wasm.Client.Domain.ClientServices;
+using Footballista.Wasm.Shared.Data;
+using Footballista.Wasm.Shared.Data.Careers;
 using Footballista.Wasm.Shared.Data.Competitions;
 using Microsoft.AspNetCore.Components;
 using System;
@@ -6,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Footballista.Wasm.Client.NewCareer
 {
-	public partial class StartNewCareer
+	public class StartNewCareerBase : ComponentBase
 	{
 		[Inject]
 		public IGameService GameService { get; set; }
@@ -14,13 +17,18 @@ namespace Footballista.Wasm.Client.NewCareer
 		[Inject]
 		public NavigationManager Nav { get; set; }
 
-
-		private List<Competition> AvailableCompetitions = new List<Competition>
+		protected List<Competition> AvailableCompetitions = new List<Competition>
 		{
 			Competition.Ligue1,
 			Competition.Ligue2
 		};
+		
 		internal string CareerName { get; set; }
+		internal string ManagerFirstname { get; set; }
+		internal string ManagerLastname { get; set; }
+		internal DateTime? ManagerDateOfBirth { get; set; }
+		internal string ManagerCountry { get; set; }
+
 		internal int SelectedCompetitionId { get; set; } = Competition.Ligue1.Id;
 
 		public Competition SelectedCompetition
@@ -36,11 +44,21 @@ namespace Footballista.Wasm.Client.NewCareer
 
 		public void StartNewCareerClick()
 		{
-			Console.WriteLine("start career clicked !");
-			Console.WriteLine(SelectedCompetition);
-			Console.WriteLine(CareerName);
-
-			GameService.StartNewCareer(CareerName, SelectedCompetition);
+			var dob = new SimpleDate
+			(
+				ManagerDateOfBirth.Value.Year,
+				ManagerDateOfBirth.Value.Month,
+				ManagerDateOfBirth.Value.Day
+			);
+			var manager = Manager.CreateManager
+			(
+				Gender.Male,
+				ManagerFirstname,
+				ManagerLastname,
+				dob,
+				ManagerCountry
+			);
+			GameService.StartNewCareer(CareerName, SelectedCompetition, manager);
 
 			NavigateToHome();
 		}
@@ -51,7 +69,7 @@ namespace Footballista.Wasm.Client.NewCareer
 			NavigateToHome();
 		}
 
-		private void NavigateToHome()
+		protected void NavigateToHome()
 		{
 			Nav.NavigateTo("/home", forceLoad: true);
 		}

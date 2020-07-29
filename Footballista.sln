@@ -66,13 +66,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{DBA579
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{D014C68F-4F72-41B7-9512-6A17286DEBC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.Wasm.Client.Domain", "Footballista.Wasm.Client.Domain\Footballista.Wasm.Client.Domain.csproj", "{53E216B5-0429-49F3-AE83-5DBDB53A6130}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Wasm.Client.Domain", "Footballista.Wasm.Client.Domain\Footballista.Wasm.Client.Domain.csproj", "{53E216B5-0429-49F3-AE83-5DBDB53A6130}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{818E2105-A434-497D-A15A-5CFC28832D37}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{BF376A95-980C-49CF-A539-32D3C5EB5BAA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{8E7ECDF2-FA81-4343-B9A0-647BE750C8A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_UI", "_UI", "{816DD3FA-7EED-4E4B-A0F5-445B9B65AF4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.Wasm.Client.UI", "Footballista.Wasm.Client.UI\Footballista.Wasm.Client.UI.csproj", "{979BB32C-EFB1-4D6B-A049-9E3CC0FD172C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -140,6 +144,10 @@ Global
 		{53E216B5-0429-49F3-AE83-5DBDB53A6130}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53E216B5-0429-49F3-AE83-5DBDB53A6130}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53E216B5-0429-49F3-AE83-5DBDB53A6130}.Release|Any CPU.Build.0 = Release|Any CPU
+		{979BB32C-EFB1-4D6B-A049-9E3CC0FD172C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{979BB32C-EFB1-4D6B-A049-9E3CC0FD172C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{979BB32C-EFB1-4D6B-A049-9E3CC0FD172C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{979BB32C-EFB1-4D6B-A049-9E3CC0FD172C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -170,6 +178,8 @@ Global
 		{818E2105-A434-497D-A15A-5CFC28832D37} = {F1930035-3849-47CE-8180-2C19D9475F54}
 		{BF376A95-980C-49CF-A539-32D3C5EB5BAA} = {F1930035-3849-47CE-8180-2C19D9475F54}
 		{8E7ECDF2-FA81-4343-B9A0-647BE750C8A7} = {F1930035-3849-47CE-8180-2C19D9475F54}
+		{816DD3FA-7EED-4E4B-A0F5-445B9B65AF4D} = {F1930035-3849-47CE-8180-2C19D9475F54}
+		{979BB32C-EFB1-4D6B-A049-9E3CC0FD172C} = {816DD3FA-7EED-4E4B-A0F5-445B9B65AF4D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8CA48F83-3D6D-4B67-8110-608DD680C317}

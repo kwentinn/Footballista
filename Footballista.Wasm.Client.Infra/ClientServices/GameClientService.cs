@@ -1,22 +1,22 @@
 ﻿using AutoMapper;
 using Blazored.LocalStorage;
+using Footballista.BuildingBlocks.Domain;
 using Footballista.Wasm.Client.Domain.ClientServices;
 using Footballista.Wasm.Client.Dto.Models.Careers;
 using Footballista.Wasm.Client.Infra.LocalStorage;
 using Footballista.Wasm.Shared.Data.Careers;
 using Footballista.Wasm.Shared.Data.Competitions;
-using System;
 
 namespace Footballista.Wasm.Client.Infra.ClientServices
 {
-	public class GameService : IGameService
+	public class GameClientService : IGameService
 	{
 		private readonly ISyncLocalStorageService _localStorageService;
 		private readonly IMapper _mapper;
 
 		public Career CurrentGame { get; private set; }
 
-		public GameService(
+		public GameClientService(
 			ISyncLocalStorageService localStorageService,
 			IMapper mapper
 		)
@@ -30,26 +30,34 @@ namespace Footballista.Wasm.Client.Infra.ClientServices
 			CurrentGame = GetCurrentCareer();
 		}
 
-		public void StartNewCareer(string careerName, Competition competition)
+		public void StartNewCareer(string careerName, Competition competition, Manager manager)
 		{
-			if (string.IsNullOrEmpty(careerName)) throw new ArgumentException(nameof(careerName));
-			if (competition is null) throw new ArgumentNullException(nameof(competition));
+			EnsureInputParametersAreOK(careerName, competition);
 
-			var career = new Career(careerName, competition);
+			Career career = Career.StartNew(careerName, competition, manager: manager);
+
 			SetCurrentCareerInLocalStorage(career);
 			CurrentGame = career;
 		}
 
-		public Career GetCurrentCareer()
+		private static void EnsureInputParametersAreOK(string careerName, Competition competition)
 		{
-			CareerDto currentGame = _localStorageService.GetItem<CareerDto>(LocalStorageKeys.CurrentCareer);
-			return _mapper.Map<Career>(currentGame);
+			Ensure.IsNotNullOrEmpty(careerName, nameof(careerName));
+			Ensure.IsNotNull(competition, nameof(competition));
 		}
 
 		private void SetCurrentCareerInLocalStorage(Career career)
 		{
 			CareerDto careerDto = _mapper.Map<CareerDto>(career);
 			_localStorageService.SetItem(LocalStorageKeys.CurrentCareer, careerDto);
+		}
+
+
+		public Career GetCurrentCareer()
+		{
+			CareerDto currentGame = _localStorageService
+				.GetItem<CareerDto>(LocalStorageKeys.CurrentCareer);
+			return _mapper.Map<Career>(currentGame);
 		}
 
 		public void ExitCareer()
