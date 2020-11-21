@@ -1,25 +1,13 @@
 ﻿@using Footballista.Wasm.Shared.Data.Competitions;
+@using Footballista.Wasm.Client.NewCareer.ManagerInfo;
 @inherits StartNewCareerBase
 
 <h3>Start a new career</h3>
 
-@* Career name *@
 <TextEdit @bind-Text="@CareerName" Placeholder="Career name" />
 
-@* Manager info : firstname *@
-<TextEdit @bind-Text="@ManagerFirstname" Placeholder="Manager firstname" />
+<ManagerInfoComponent Manager="TheManager"></ManagerInfoComponent>
 
-@* Manager info : lastname *@
-<TextEdit @bind-Text="@ManagerLastname" Placeholder="Manager lastname" />
-
-@* Manager info : date of birth *@
-<DateEdit TValue="DateTime?" @bind-Date="@ManagerDateOfBirth" Placeholder="Manager date of birth" />
-
-@* Manager info : country *@
-<TextEdit @bind-Text="@ManagerCountry" Placeholder="Manager country" />
-
-
-@* Select competition *@
 <Select @bind-SelectedValue="@SelectedCompetitionId" TValue="int">
 	@foreach (Competition competition in AvailableCompetitions)
 	{
@@ -29,5 +17,4 @@
 
 <Button Clicked="@CancelClick" Color="Color.Light">Cancel</Button>
 <Button Clicked="@StartNewCareerClick" Color="Color.Primary">Start new career</Button>
-
 

@@ -1,5 +1,5 @@
-﻿using Blazorise;
-using Footballista.Wasm.Client.Domain.ClientServices;
+﻿using Footballista.Wasm.Client.Domain.ClientServices;
+using Footballista.Wasm.Client.NewCareer.Data;
 using Footballista.Wasm.Shared.Data;
 using Footballista.Wasm.Shared.Data.Careers;
 using Footballista.Wasm.Shared.Data.Clubs;
@@ -23,13 +23,10 @@ namespace Footballista.Wasm.Client.NewCareer
 			Competition.Ligue1,
 			Competition.Ligue2
 		};
-		
+
 		internal string CareerName { get; set; }
 		internal string Club { get; set; }
-		internal string ManagerFirstname { get; set; }
-		internal string ManagerLastname { get; set; }
-		internal DateTime? ManagerDateOfBirth { get; set; }
-		internal string ManagerCountry { get; set; }
+		internal ManagerData TheManager { get; set; } = ManagerData.Default;
 
 		internal int SelectedCompetitionId { get; set; } = Competition.Ligue1.Id;
 
@@ -48,19 +45,21 @@ namespace Footballista.Wasm.Client.NewCareer
 		{
 			SimpleDate dob = new SimpleDate
 			(
-				ManagerDateOfBirth.Value.Year,
-				ManagerDateOfBirth.Value.Month,
-				ManagerDateOfBirth.Value.Day
+				TheManager.DateOfBirth.Value.Year,
+				TheManager.DateOfBirth.Value.Month,
+				TheManager.DateOfBirth.Value.Day
 			);
 			Manager manager = Manager.CreateManager
 			(
 				Gender.Male,
-				ManagerFirstname,
-				ManagerLastname,
+				TheManager.Firstname,
+				TheManager.Lastname,
 				dob,
-				ManagerCountry
+				TheManager.Country
 			);
+
 			Club club = new Club(Guid.Empty, "Montpellier", "MHSC", new City("Montpellier", "France"));
+
 			GameService.StartNewCareer(CareerName, club, SelectedCompetition, manager);
 
 			NavigateToHome();
