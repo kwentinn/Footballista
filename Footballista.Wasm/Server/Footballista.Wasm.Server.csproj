@@ -5,6 +5,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Pages\Error.cshtml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="Pages\Error.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Autofac" Version="6.0.0" />
 		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
 		<PackageReference Include="MediatR" Version="9.0.0" />
@@ -17,6 +25,10 @@
 		<ProjectReference Include="..\..\Footballista.Players\Footballista.Players.csproj" />
 		<ProjectReference Include="..\Client\Footballista.Wasm.Client.csproj" />
 		<ProjectReference Include="..\Shared\Footballista.Wasm.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="wwwroot\" />
 	</ItemGroup>
 
 </Project>

@@ -5,9 +5,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="10.0.0" />
-		<PackageReference Include="System.Net.Http.Json" Version="3.2.1" />
-		<PackageReference Include="Blazored.LocalStorage" Version="2.1.6" />
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+		<PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
