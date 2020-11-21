@@ -78,6 +78,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_UI", "_UI", "{816DD3FA-7EE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Wasm.Client.UI", "Footballista.Wasm.Client.UI\Footballista.Wasm.Client.UI.csproj", "{979BB32C-EFB1-4D6B-A049-9E3CC0FD172C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.Cqrs", "Footballista.Cqrs\Footballista.Cqrs.csproj", "{7558C370-C4B2-42F0-B109-B5FBC8F6CE16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -148,6 +150,10 @@ Global
 		{979BB32C-EFB1-4D6B-A049-9E3CC0FD172C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{979BB32C-EFB1-4D6B-A049-9E3CC0FD172C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{979BB32C-EFB1-4D6B-A049-9E3CC0FD172C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7558C370-C4B2-42F0-B109-B5FBC8F6CE16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7558C370-C4B2-42F0-B109-B5FBC8F6CE16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7558C370-C4B2-42F0-B109-B5FBC8F6CE16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7558C370-C4B2-42F0-B109-B5FBC8F6CE16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -180,6 +186,7 @@ Global
 		{8E7ECDF2-FA81-4343-B9A0-647BE750C8A7} = {F1930035-3849-47CE-8180-2C19D9475F54}
 		{816DD3FA-7EED-4E4B-A0F5-445B9B65AF4D} = {F1930035-3849-47CE-8180-2C19D9475F54}
 		{979BB32C-EFB1-4D6B-A049-9E3CC0FD172C} = {816DD3FA-7EED-4E4B-A0F5-445B9B65AF4D}
+		{7558C370-C4B2-42F0-B109-B5FBC8F6CE16} = {DBA5799B-16A9-4F1B-96A0-16E23CE1F467}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8CA48F83-3D6D-4B67-8110-608DD680C317}

@@ -1,5 +1,6 @@
 ﻿using Footballista.Wasm.Client.Domain.ClientServices;
 using Footballista.Wasm.Client.NewCareer.Data;
+using Footballista.Wasm.Client.Routing;
 using Footballista.Wasm.Shared.Data;
 using Footballista.Wasm.Shared.Data.Careers;
 using Footballista.Wasm.Shared.Data.Clubs;
@@ -7,6 +8,7 @@ using Footballista.Wasm.Shared.Data.Competitions;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Footballista.Wasm.Client.NewCareer
 {
@@ -41,7 +43,7 @@ namespace Footballista.Wasm.Client.NewCareer
 			}
 		}
 
-		public void StartNewCareerClick()
+		public async Task StartNewCareerClick()
 		{
 			SimpleDate dob = new SimpleDate
 			(
@@ -60,7 +62,7 @@ namespace Footballista.Wasm.Client.NewCareer
 
 			Club club = new Club(Guid.Empty, "Montpellier", "MHSC", new City("Montpellier", "France"));
 
-			GameService.StartNewCareer(CareerName, club, SelectedCompetition, manager);
+			await GameService.StartNewCareerAsync(CareerName, club, SelectedCompetition, manager);
 
 			NavigateToHome();
 		}
@@ -73,7 +75,7 @@ namespace Footballista.Wasm.Client.NewCareer
 
 		protected void NavigateToHome()
 		{
-			Nav.NavigateTo("/home", forceLoad: true);
+			Nav.NavigateTo(AllRoutes.Home.Url, forceLoad: true);
 		}
 	}
 }

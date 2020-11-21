@@ -1,12 +1,11 @@
-﻿using Footballista.Wasm.Server.BuildingBlocks.Queries;
-using Footballista.Wasm.Server.Queries;
+﻿using Footballista.Cqrs.BuildingBlocks.Queries;
 using Footballista.Wasm.Shared.Data.Competitions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Footballista.Wasm.Server.Handlers
+namespace Footballista.Cqrs.Queries
 {
-	public class GetCompetitionRankingHandler : QueryHandler<GetCompetitionRanking, List<CompetitionRanking>>
+	public class GetCompetitionRankingQueryHandler : QueryHandler<GetCompetitionRanking, List<CompetitionRanking>>
 	{
 		public override Task<List<CompetitionRanking>> Handle(GetCompetitionRanking request)
 		{

@@ -4,6 +4,7 @@ using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using Footballista.Wasm.Client.ClientServices;
+using Footballista.Wasm.Client.Components.Services;
 using Footballista.Wasm.Client.Domain.ClientServices;
 using Footballista.Wasm.Client.Infra.ClientServices;
 using Footballista.Wasm.Client.Infra.MappingProfiles;
@@ -29,12 +30,13 @@ namespace Footballista.Wasm.Client
 				{
 					BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
 				})
-				.AddTransient(typeof(IPlayersClientService), typeof(PlayersClientService))
-				.AddTransient(typeof(IRankingsClientService), typeof(RankingsClientService))
-				.AddTransient(typeof(ICurrentCultureService), typeof(CurrentCultureService))
-				.AddTransient(typeof(IGameService), typeof(GameClientService))
-				.AddTransient(typeof(ICalendarService), typeof(CalendarService))
-				.AddTransient(typeof(CareerDateService))
+				.AddTransient<IPlayersClientService,PlayersClientService>()
+				.AddTransient<IRankingsClientService, RankingsClientService>()
+				.AddTransient<ICurrentCultureService, CurrentCultureService>()
+				.AddTransient<IGameService, GameClientService>()
+				.AddTransient<ICalendarService, CalendarService>()
+				.AddTransient<CareerDateService>()
+				.AddScoped<IToasterService, ToasterService>()
 				.AddBlazoredLocalStorage(config =>
 				{
 					config.JsonSerializerOptions.AllowTrailingCommas = true;

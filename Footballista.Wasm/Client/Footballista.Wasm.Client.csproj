@@ -13,11 +13,13 @@
 		<PackageReference Include="Blazorise.DataGrid" Version="0.9.2" />
 		<PackageReference Include="Blazorise.Icons.FontAwesome" Version="0.9.2" />
 		<PackageReference Include="Blazorise.Sidebar" Version="0.9.2" />
+		<PackageReference Include="Blazorise.Snackbar" Version="0.9.2" />
 		<PackageReference Include="BuildWebCompiler" Version="1.12.405" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Localization" Version="5.0.0" />
+		<PackageReference Include="System.Linq" Version="4.3.0" />
 		<PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
 	</ItemGroup>
 

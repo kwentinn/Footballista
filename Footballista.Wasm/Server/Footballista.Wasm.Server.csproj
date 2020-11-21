@@ -18,11 +18,11 @@
 	<ItemGroup>
 		<PackageReference Include="Autofac" Version="6.0.0" />
 		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
-		<PackageReference Include="MediatR" Version="9.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.0" />
 	</ItemGroup>
 	
 	<ItemGroup>
+		<ProjectReference Include="..\..\Footballista.Cqrs\Footballista.Cqrs.csproj" />
 		<ProjectReference Include="..\..\Footballista.Game.Domain\Footballista.Game.Domain.csproj" />
 		<ProjectReference Include="..\..\Footballista.Players.Infrastracture\Footballista.Players.Infrastracture.csproj" />
 		<ProjectReference Include="..\..\Footballista.Players\Footballista.Players.csproj" />

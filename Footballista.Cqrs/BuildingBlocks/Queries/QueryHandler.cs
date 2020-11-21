@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Footballista.Wasm.Server.BuildingBlocks.Queries
+namespace Footballista.Cqrs.BuildingBlocks.Queries
 {
 	public abstract class QueryHandler<TQuery, TResponse> : IQueryHandler<TQuery, TResponse>
 		where TQuery : IQuery<TResponse>

@@ -1,4 +1,4 @@
-﻿using Footballista.Wasm.Server.Queries;
+﻿using Footballista.Cqrs.Queries;
 using Footballista.Wasm.Shared.Data.Competitions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

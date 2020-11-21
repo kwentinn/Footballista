@@ -7,22 +7,31 @@ using Footballista.Wasm.Client.Infra.LocalStorage;
 using Footballista.Wasm.Shared.Data.Careers;
 using Footballista.Wasm.Shared.Data.Clubs;
 using Footballista.Wasm.Shared.Data.Competitions;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
 
 namespace Footballista.Wasm.Client.Infra.ClientServices
 {
 	public class GameClientService : IGameService
 	{
 		private readonly ISyncLocalStorageService _localStorageService;
+		private readonly IToasterService _toasterService;
 		private readonly IMapper _mapper;
+		private readonly HttpClient _httpClient;
 
 		public Career CurrentGame { get; private set; }
 
 		public GameClientService(
+			HttpClient httpClient,
 			ISyncLocalStorageService localStorageService,
+			IToasterService toasterService,
 			IMapper mapper
 		)
 		{
+			_httpClient = httpClient;
 			_localStorageService = localStorageService;
+			_toasterService = toasterService;
 			_mapper = mapper;
 		}
 
@@ -31,7 +40,7 @@ namespace Footballista.Wasm.Client.Infra.ClientServices
 			CurrentGame = GetCurrentCareer();
 		}
 
-		public void StartNewCareer(string careerName, Club club, Competition competition, Manager manager)
+		public async Task StartNewCareerAsync(string careerName, Club club, Competition competition, Manager manager)
 		{
 			Ensure.IsNotNullOrEmpty(careerName, nameof(careerName));
 			Ensure.IsNotNull(competition, nameof(competition));
@@ -40,6 +49,12 @@ namespace Footballista.Wasm.Client.Infra.ClientServices
 
 			SetCurrentCareerInLocalStorage(career);
 			CurrentGame = career;
+
+			HttpResponseMessage httpResponseMessage = await _httpClient.PostAsJsonAsync("career/create", _mapper.Map<CareerDto>(career));
+			if (httpResponseMessage.IsSuccessStatusCode)
+			{
+				_toasterService.ShowSuccess("Carrière créée avec succès.");
+			}
 		}
 
 		private void SetCurrentCareerInLocalStorage(Career career)
