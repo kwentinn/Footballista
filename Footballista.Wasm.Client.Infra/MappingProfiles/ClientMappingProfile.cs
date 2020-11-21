@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Footballista.Wasm.Client.Dto.Models.Careers;
-using Footballista.Wasm.Client.Infra.MappingProfiles.Converters;
+using Footballista.Wasm.Client.Infra.MappingProfiles.Converters.DomainToDto;
+using Footballista.Wasm.Client.Infra.MappingProfiles.Converters.DtoToDomain;
 using Footballista.Wasm.Shared.Data;
 using Footballista.Wasm.Shared.Data.Careers;
 using Footballista.Wasm.Shared.Data.Clubs;
@@ -12,6 +13,8 @@ namespace Footballista.Wasm.Client.Infra.MappingProfiles
 	{
 		public ClientMappingProfile()
 		{
+			CreateMap<Club, ClubDto>()
+				.ConvertUsing<ClubToClubDtoConverter>();
 			CreateMap<Career, CareerDto>();
 			CreateMap<Manager, ManagerDto>();
 			CreateMap<SimpleDate, SimpleDateDto>();

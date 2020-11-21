@@ -50,10 +50,10 @@ namespace Footballista.Wasm.Client
 			builder.Services.AddSingleton(configuration.CreateMapper());
 
 			// .net core 3.1
-			//builder.RootComponents.Add<App>("app");
+			builder.RootComponents.Add<App>("app");
 
 			// .net 5.0
-			builder.RootComponents.Add<App>("#app");
+			//builder.RootComponents.Add<App>("#app");
 
 			WebAssemblyHost host = builder.Build();
 

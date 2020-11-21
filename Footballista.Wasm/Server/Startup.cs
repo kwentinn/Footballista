@@ -1,5 +1,6 @@
 using Autofac;
 using Footballista.Wasm.Server.AutofacModules;
+using Footballista.Wasm.Server.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,7 +29,7 @@ namespace Footballista.Wasm.Server
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
 			//app.UseResponseCompression(); 
-			
+
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
@@ -41,17 +42,17 @@ namespace Footballista.Wasm.Server
 				app.UseHsts();
 			}
 
-			app.UseHttpsRedirection();
-			app.UseBlazorFrameworkFiles();
-			app.UseStaticFiles();
-
-			app.UseRouting();
-
-			app.UseEndpoints(endpoints =>
-			{
-				endpoints.MapControllers();
-				endpoints.MapFallbackToFile("index.html");
-			});
+			app
+				.UseHttpsRedirection()
+				.UseBlazorFrameworkFiles()
+				.UseStaticFiles()
+				.UseLocalizationMiddleware()
+				.UseRouting()
+				.UseEndpoints(endpoints =>
+				{
+					endpoints.MapControllers();
+					endpoints.MapFallbackToFile("index.html");
+				});
 		}
 
 		public void ConfigureContainer(ContainerBuilder builder)

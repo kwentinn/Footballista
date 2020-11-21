@@ -2,7 +2,7 @@
 using Footballista.Wasm.Client.Dto.Models.Careers;
 using Footballista.Wasm.Shared.Data.Clubs;
 
-namespace Footballista.Wasm.Client.Infra.MappingProfiles.Converters
+namespace Footballista.Wasm.Client.Infra.MappingProfiles.Converters.DtoToDomain
 {
 	public class ClubDtoToClubConverter : ITypeConverter<ClubDto, Club>
 	{
@@ -10,9 +10,9 @@ namespace Footballista.Wasm.Client.Infra.MappingProfiles.Converters
 		{
 			return new Club
 			(
-				id: source.Id, 
-				name: source.Name, 
-				abbreviation: source.Abbreviation, 
+				id: source.Id,
+				name: source.Name,
+				abbreviation: source.Abbreviation,
 				city: new Shared.Data.City(source.City, source.Country)
 			);
 		}
