@@ -76,7 +76,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{8E7ECDF2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_UI", "_UI", "{816DD3FA-7EED-4E4B-A0F5-445B9B65AF4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.Wasm.Client.UI", "Footballista.Wasm.Client.UI\Footballista.Wasm.Client.UI.csproj", "{979BB32C-EFB1-4D6B-A049-9E3CC0FD172C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Wasm.Client.UI", "Footballista.Wasm.Client.UI\Footballista.Wasm.Client.UI.csproj", "{979BB32C-EFB1-4D6B-A049-9E3CC0FD172C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

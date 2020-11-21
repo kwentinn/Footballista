@@ -1,16 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
-		<PackageReference Include="Autofac" Version="5.2.0" />
-		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
-		<PackageReference Include="MediatR" Version="8.0.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="3.2.0" />
+		<Compile Remove="Pages\Error.cshtml.cs" />
 	</ItemGroup>
-
+	
+	<ItemGroup>
+		<Content Remove="Pages\Error.cshtml" />
+	</ItemGroup>
+	
+	<!--<ItemGroup>
+		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+	</ItemGroup>-->
+	
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="6.0.0" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+		<PackageReference Include="MediatR" Version="9.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.0" />
+	</ItemGroup>
+	
 	<ItemGroup>
 		<ProjectReference Include="..\..\Footballista.Game.Domain\Footballista.Game.Domain.csproj" />
 		<ProjectReference Include="..\..\Footballista.Players.Infrastracture\Footballista.Players.Infrastracture.csproj" />
@@ -18,5 +29,9 @@
 		<ProjectReference Include="..\Client\Footballista.Wasm.Client.csproj" />
 		<ProjectReference Include="..\Shared\Footballista.Wasm.Shared.csproj" />
 	</ItemGroup>
-
+	
+	<ItemGroup>
+		<Folder Include="wwwroot\" />
+	</ItemGroup>
+	
 </Project>

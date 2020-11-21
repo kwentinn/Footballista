@@ -1,9 +1,10 @@
 ﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects
 {
-	public class Language
+
+	public record Language
 	{
-		public string Value { get; }
-		public string Code { get; }
+		public string Value { get; init; }
+		public string Code { get; init; }
 
 		private Language(string value, string code)
 		{

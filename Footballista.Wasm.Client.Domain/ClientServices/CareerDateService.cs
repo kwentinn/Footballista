@@ -9,8 +9,8 @@ namespace Footballista.Wasm.Client.Domain.ClientServices
 {
 	public class CareerDateService
 	{
-		public CultureInfo CultureInfo => CultureInfo.DefaultThreadCurrentCulture;
-		public DateTimeFormatInfo DateTimeInfo => CultureInfo.DateTimeFormat;
+		private CultureInfo CultureInfo => CultureInfo.DefaultThreadCurrentCulture;
+		private DateTimeFormatInfo DateTimeInfo => CultureInfo.DateTimeFormat;
 
 		public Calendar Calendar => CultureInfo.Calendar;
 

@@ -1,20 +1,14 @@
-﻿using Footballista.Wasm.Server.Queries;
+﻿using Footballista.Wasm.Server.BuildingBlocks.Queries;
+using Footballista.Wasm.Server.Queries;
 using Footballista.Wasm.Shared.Data.Competitions;
-using MediatR;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Footballista.Wasm.Server.Handlers
 {
-	public class GetCompetitionRankingHandler :
-		IRequestHandler<GetCompetitionRanking, List<CompetitionRanking>>
+	public class GetCompetitionRankingHandler : QueryHandler<GetCompetitionRanking, List<CompetitionRanking>>
 	{
-		public Task<List<CompetitionRanking>> Handle
-		(
-			GetCompetitionRanking request, 
-			CancellationToken cancellationToken
-		)
+		public override Task<List<CompetitionRanking>> Handle(GetCompetitionRanking request)
 		{
 			return Task.FromResult(new List<CompetitionRanking>
 			{

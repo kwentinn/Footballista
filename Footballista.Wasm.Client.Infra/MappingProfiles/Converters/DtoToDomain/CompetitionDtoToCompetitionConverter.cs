@@ -2,7 +2,7 @@
 using Footballista.Wasm.Client.Dto.Models.Careers;
 using Footballista.Wasm.Shared.Data.Competitions;
 
-namespace Footballista.Wasm.Client.Infra.MappingProfiles.Converters
+namespace Footballista.Wasm.Client.Infra.MappingProfiles.Converters.DtoToDomain
 {
 	public class CompetitionDtoToCompetitionConverter : ITypeConverter<CompetitionDto, Competition>
 	{

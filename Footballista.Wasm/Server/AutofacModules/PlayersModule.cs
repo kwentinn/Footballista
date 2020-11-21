@@ -44,7 +44,7 @@ namespace Footballista.Wasm.Server.AutofacModules
 			builder.RegisterType<GenderGenerator>().As<IGenderGenerator>().SingleInstance();
 			builder.RegisterType<GrowthSetGenerator>().As<IGrowthSetGenerator>().SingleInstance();
 			builder.RegisterType<PhysicalFeatureSetGenerator>().As<IPhysicalFeatureSetGenerator>().SingleInstance();
-			builder.RegisterType<YoungPlayerBuilder>().As<IPlayerBuilder>().SingleInstance();
+			builder.RegisterType<YoungPlayerGenerator>().As<IPlayerGenerator>().SingleInstance();
 			builder.RegisterType<PercentileGenerator>().As<IPercentileGenerator>().SingleInstance();
 			builder.RegisterType<BodyMassIndexGenerator>().As<IBodyMassIndexGenerator>().SingleInstance();
 			builder.RegisterType<PlayerPositionGenerator>().As<IPlayerPositionGenerator>().SingleInstance();

@@ -5,6 +5,7 @@ using Footballista.Wasm.Client.Domain.ClientServices;
 using Footballista.Wasm.Client.Dto.Models.Careers;
 using Footballista.Wasm.Client.Infra.LocalStorage;
 using Footballista.Wasm.Shared.Data.Careers;
+using Footballista.Wasm.Shared.Data.Clubs;
 using Footballista.Wasm.Shared.Data.Competitions;
 
 namespace Footballista.Wasm.Client.Infra.ClientServices
@@ -30,37 +31,32 @@ namespace Footballista.Wasm.Client.Infra.ClientServices
 			CurrentGame = GetCurrentCareer();
 		}
 
-		public void StartNewCareer(string careerName, Competition competition, Manager manager)
+		public void StartNewCareer(string careerName, Club club, Competition competition, Manager manager)
 		{
-			EnsureInputParametersAreOK(careerName, competition);
+			Ensure.IsNotNullOrEmpty(careerName, nameof(careerName));
+			Ensure.IsNotNull(competition, nameof(competition));
 
-			Career career = Career.StartNew(careerName, competition, manager: manager);
+			Career career = Career.StartNew(careerName, club, competition, manager: manager);
 
 			SetCurrentCareerInLocalStorage(career);
 			CurrentGame = career;
 		}
 
-		private static void EnsureInputParametersAreOK(string careerName, Competition competition)
-		{
-			Ensure.IsNotNullOrEmpty(careerName, nameof(careerName));
-			Ensure.IsNotNull(competition, nameof(competition));
-		}
-
 		private void SetCurrentCareerInLocalStorage(Career career)
 		{
 			CareerDto careerDto = _mapper.Map<CareerDto>(career);
-			_localStorageService.SetItem(LocalStorageKeys.CurrentCareer, careerDto);
+			_localStorageService.SetItem(LocalStorageKeys.CURRENT_CAREER, careerDto);
 		}
 
 
 		public Career GetCurrentCareer()
 		{
 			CareerDto currentGame = _localStorageService
-				.GetItem<CareerDto>(LocalStorageKeys.CurrentCareer);
+				.GetItem<CareerDto>(LocalStorageKeys.CURRENT_CAREER);
 			return _mapper.Map<Career>(currentGame);
 		}
 
 		public void ExitCareer()
-			=> _localStorageService.RemoveItem(LocalStorageKeys.CurrentCareer);
+			=> _localStorageService.RemoveItem(LocalStorageKeys.CURRENT_CAREER);
 	}
 }

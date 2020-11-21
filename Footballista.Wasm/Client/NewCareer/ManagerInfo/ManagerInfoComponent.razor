@@ -1,0 +1,14 @@
+﻿@inherits ManagerInfoComponentBase
+
+<TextEdit @bind-Text="@Manager.Firstname"
+		  Placeholder="Manager firstname" />
+
+<TextEdit @bind-Text="@Manager.Lastname"
+		  Placeholder="Manager lastname" />
+
+<DateEdit TValue="DateTime?"
+		  @bind-Date="@Manager.DateOfBirth"
+		  Placeholder="Manager date of birth" />
+
+<TextEdit @bind-Text="@Manager.Country" 
+		  Placeholder="Manager country" />

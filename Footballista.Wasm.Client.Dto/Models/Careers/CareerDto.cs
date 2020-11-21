@@ -6,6 +6,7 @@ namespace Footballista.Wasm.Client.Dto.Models.Careers
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }
+		public ClubDto Club { get; set; }
 		public SimpleDateDto CurrentDate { get; set; }
 		public ManagerDto Manager { get; set; }
 

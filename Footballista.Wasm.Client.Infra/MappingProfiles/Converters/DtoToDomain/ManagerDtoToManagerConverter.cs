@@ -3,7 +3,7 @@ using Footballista.Wasm.Client.Dto.Models.Careers;
 using Footballista.Wasm.Shared.Data;
 using Footballista.Wasm.Shared.Data.Careers;
 
-namespace Footballista.Wasm.Client.Infra.MappingProfiles.Converters
+namespace Footballista.Wasm.Client.Infra.MappingProfiles.Converters.DtoToDomain
 {
 	public class ManagerDtoToManagerConverter : ITypeConverter<ManagerDto, Manager>
 	{
