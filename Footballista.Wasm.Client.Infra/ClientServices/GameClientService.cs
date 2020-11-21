@@ -5,6 +5,7 @@ using Footballista.Wasm.Client.Domain.ClientServices;
 using Footballista.Wasm.Client.Dto.Models.Careers;
 using Footballista.Wasm.Client.Infra.LocalStorage;
 using Footballista.Wasm.Shared.Data.Careers;
+using Footballista.Wasm.Shared.Data.Clubs;
 using Footballista.Wasm.Shared.Data.Competitions;
 
 namespace Footballista.Wasm.Client.Infra.ClientServices
@@ -30,11 +31,11 @@ namespace Footballista.Wasm.Client.Infra.ClientServices
 			CurrentGame = GetCurrentCareer();
 		}
 
-		public void StartNewCareer(string careerName, Competition competition, Manager manager)
+		public void StartNewCareer(string careerName, Club club, Competition competition, Manager manager)
 		{
 			EnsureInputParametersAreOK(careerName, competition);
 
-			Career career = Career.StartNew(careerName, competition, manager: manager);
+			Career career = Career.StartNew(careerName, club, competition, manager: manager);
 
 			SetCurrentCareerInLocalStorage(career);
 			CurrentGame = career;

@@ -1,4 +1,5 @@
 ﻿using Footballista.Wasm.Shared.Data.Careers;
+using Footballista.Wasm.Shared.Data.Clubs;
 using Footballista.Wasm.Shared.Data.Competitions;
 
 namespace Footballista.Wasm.Client.Domain.ClientServices
@@ -8,7 +9,7 @@ namespace Footballista.Wasm.Client.Domain.ClientServices
 		Career CurrentGame { get; }
 
 		void Load();
-		void StartNewCareer(string careerName, Competition competition, Manager manager);
+		void StartNewCareer(string careerName, Club club, Competition competition, Manager manager);
 		Career GetCurrentCareer();
 		void ExitCareer();
 	}

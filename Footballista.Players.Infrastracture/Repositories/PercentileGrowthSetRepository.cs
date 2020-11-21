@@ -1,5 +1,4 @@
-﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.Players.Growths;
+﻿using Footballista.Players.Growths;
 using Footballista.Players.Infrastracture.Loaders.Growths;
 using Footballista.Players.Infrastracture.Loaders.Growths.Records;
 using Footballista.Players.Persons;

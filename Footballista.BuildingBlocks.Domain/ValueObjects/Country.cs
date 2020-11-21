@@ -7,7 +7,6 @@ using System.Linq;
 
 namespace Footballista.BuildingBlocks.Domain.ValueObjects
 {
-
 	[DebuggerDisplay("{EnglishName}")]
 	public class Country : ValueObject
 	{
@@ -73,10 +72,8 @@ namespace Footballista.BuildingBlocks.Domain.ValueObjects
 		public static Country Japan => new Country("jp", nameof(Japan), Language.Japanese);
 		public static Country Germany => new Country("de", nameof(Germany), Language.German);
 
+		public static Country GetFromName(string name) => _countries.FirstOrDefault(c => c.EnglishName == name);
 
-		public static Country GetFromName(string name)
-			=> _countries.FirstOrDefault(c => c.EnglishName == name);
-		public static ReadOnlyCollection<Country> Countries => _countries.AsReadOnly();
 		private static readonly List<Country> _countries = new List<Country>
 		{
 			France,
@@ -101,5 +98,6 @@ namespace Footballista.BuildingBlocks.Domain.ValueObjects
 			Japan,
 			Germany
 		};
+		public static ReadOnlyCollection<Country> Countries => _countries.AsReadOnly();
 	}
 }

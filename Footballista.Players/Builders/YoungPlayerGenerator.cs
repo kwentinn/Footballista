@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Footballista.Players.Builders
 {
-	public class YoungPlayerBuilder : IPlayerBuilder
+	public class YoungPlayerGenerator : IPlayerGenerator
 	{
 		private readonly IPersonNameGenerator _nameGenerator;
 		private readonly IGenderGenerator _genderGenerator;
@@ -31,7 +31,7 @@ namespace Footballista.Players.Builders
 		private readonly IPlayerPositionGenerator _playerPositionGenerator;
 		private readonly IGame _game;
 
-		public YoungPlayerBuilder
+		public YoungPlayerGenerator
 		(
 			IPersonNameGenerator nameGenerator,
 			IGenderGenerator genderGenerator,
@@ -61,7 +61,7 @@ namespace Footballista.Players.Builders
 			_game = game;
 		}
 
-		public Player Build(Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
+		public Player Generate(Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
 		{
 			if (playerGender == null) playerGender = _genderGenerator.Generate();
 
@@ -83,52 +83,50 @@ namespace Footballista.Players.Builders
 			PhysicalFeatureSet playerFeatureSet = _physicalFeatureSetGenerator.Generate(position, bmi, countries.FirstOrDefault(), playerAge);
 
 			// first name & last name => according to the player's country
-			return Player.CreatePlayer
-			(
-				playerName.Firstname,
-				playerName.Lastname,
-				playerGender.Value,
-				dob,
-				birthLocation,
-				playerFoot,
-				bmi,
-				percentile,
-				playerFeatureSet,
-				position,
-				countries
-			);
+			return new PlayerBuilder()
+				.WithName(playerName)
+				.WithGender(playerGender.Value)
+				.WithBirthdate(dob)
+				.WithBirthLocation(birthLocation)
+				.WithFoot(playerFoot)
+				.WithPercentile(percentile)
+				.WithBodyMassIndex(bmi)
+				.WithPlayerPosition(position)
+				.WithFeatureSet(playerFeatureSet)
+				.WithCountries(countries)
+				.Build();
 		}
 
-		public Player[] BuildMany(int nbOfPlayers, Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
+		public Player[] GenerateMany(int nbOfPlayers, Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
 		{
 			var list = new List<Player>();
 			for (int i = 0; i < nbOfPlayers; i++)
 			{
-				list.Add(Build(playerGender, countries, playerPosition));
+				list.Add(Generate(playerGender, countries, playerPosition));
 			}
 			return list.ToArray();
 		}
-		public Player[] BuildMany_Parallel(int nbOfPlayers, Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
+		public Player[] GenerateManyParallel(int nbOfPlayers, Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
 		{
 			var items = new BlockingCollection<Player>();
 			Parallel.For(0, nbOfPlayers, (i) =>
 			{
-				items.Add(Build(Gender.Male));
+				items.Add(Generate(Gender.Male));
 			});
 			items.CompleteAdding();
 			return items.ToArray();
 		}
-		
-		public async Task<Player[]> BuildManyAsync(int nbOfPlayers, Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
+
+		public async Task<Player[]> GenerateManyAsync(int nbOfPlayers, Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
 		{
 			List<Task<Player>> tasks = new List<Task<Player>>();
 			for (int i = 0; i < nbOfPlayers; i++)
 			{
-				tasks.Add(BuildAsync(playerGender, countries, playerPosition));
+				tasks.Add(GenerateAsync(playerGender, countries, playerPosition));
 			}
 			return await Task.WhenAll(tasks);
 		}
-		public async Task<Player> BuildAsync(Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
+		public async Task<Player> GenerateAsync(Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
 		{
 			if (playerGender == null) playerGender = _genderGenerator.Generate();
 
@@ -138,7 +136,7 @@ namespace Footballista.Players.Builders
 			}
 
 			PersonName playerName = await _nameGenerator.GenerateAsync(
-				playerGender.Value, 
+				playerGender.Value,
 				countries.FirstOrDefault());
 
 			Date dob = _dobGenerator.Generate();
@@ -153,20 +151,18 @@ namespace Footballista.Players.Builders
 			PhysicalFeatureSet playerFeatureSet = _physicalFeatureSetGenerator.Generate(position, bmi, countries.FirstOrDefault(), playerAge);
 
 			// first name & last name => according to the player's country
-			return Player.CreatePlayer
-			(
-				playerName.Firstname,
-				playerName.Lastname,
-				playerGender.Value,
-				dob,
-				birthLocation,
-				playerFoot,
-				bmi,
-				percentile,
-				playerFeatureSet,
-				position,
-				countries
-			);
+			return new PlayerBuilder()
+				.WithName(playerName)
+				.WithGender(playerGender.Value)
+				.WithBirthdate(dob)
+				.WithBirthLocation(birthLocation)
+				.WithFoot(playerFoot)
+				.WithPercentile(percentile)
+				.WithBodyMassIndex(bmi)
+				.WithPlayerPosition(position)
+				.WithFeatureSet(playerFeatureSet)
+				.WithCountries(countries)
+				.Build();
 		}
 	}
 }

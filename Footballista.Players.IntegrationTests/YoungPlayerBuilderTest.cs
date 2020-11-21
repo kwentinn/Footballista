@@ -56,7 +56,7 @@ namespace Footballista.Players.IntegrationTests
 		public YoungPlayerBuilderTest()
 		{
 			//initialise dependencies
-			string dataDir = Directory.GetCurrentDirectory() + @"\..\..\..\";
+			string dataDir = Directory.GetCurrentDirectory() + @"\..\..\";
 
 
 			// arrange: create & setup mocks, create loader with mock
@@ -97,7 +97,7 @@ namespace Footballista.Players.IntegrationTests
 		[TestMethod]
 		public void Build()
 		{
-			var builder = new YoungPlayerBuilder(
+			var generator = new YoungPlayerGenerator(
 				nameGenerator: _personNameGenerator,
 				genderGenerator: _genderGenerator,
 				dobGenerator: _dobGenerator,
@@ -112,7 +112,7 @@ namespace Footballista.Players.IntegrationTests
 				game: _game
 			);
 
-			var player = builder.Build();
+			var player = generator.Generate();
 
 			var t = player.GeneralRating;
 
@@ -121,7 +121,7 @@ namespace Footballista.Players.IntegrationTests
 		[TestMethod]
 		public void BuildMany_Pass10_ShouldReturn10Players()
 		{
-			var builder = new YoungPlayerBuilder(
+			var builder = new YoungPlayerGenerator(
 				nameGenerator: _personNameGenerator,
 				genderGenerator: _genderGenerator,
 				dobGenerator: _dobGenerator,
@@ -136,7 +136,7 @@ namespace Footballista.Players.IntegrationTests
 				game: _game
 			);
 
-			Player[] players = builder.BuildMany(10);
+			Player[] players = builder.GenerateMany(10);
 
 			Assert.IsNotNull(players);
 			Assert.AreEqual(10, players.Length);
@@ -146,7 +146,7 @@ namespace Footballista.Players.IntegrationTests
 		[TestMethod]
 		public void BuildMany_Pass100_ShouldReturn100Players()
 		{
-			var builder = new YoungPlayerBuilder(
+			var builder = new YoungPlayerGenerator(
 				nameGenerator: _personNameGenerator,
 				genderGenerator: _genderGenerator,
 				dobGenerator: _dobGenerator,
@@ -161,7 +161,7 @@ namespace Footballista.Players.IntegrationTests
 				game: _game
 			);
 
-			Player[] players = builder.BuildMany(100);
+			Player[] players = builder.GenerateMany(100);
 
 			Assert.IsNotNull(players);
 			Assert.AreEqual(100, players.Length);
@@ -171,7 +171,7 @@ namespace Footballista.Players.IntegrationTests
 		[TestMethod]
 		public void BuildMany_Parallel_Pass10_ShouldReturn100Players()
 		{
-			var builder = new YoungPlayerBuilder(
+			var builder = new YoungPlayerGenerator(
 				nameGenerator: _personNameGenerator,
 				genderGenerator: _genderGenerator,
 				dobGenerator: _dobGenerator,
@@ -186,7 +186,7 @@ namespace Footballista.Players.IntegrationTests
 				game: _game
 			);
 
-			Player[] players = builder.BuildMany_Parallel(10);
+			Player[] players = builder.GenerateManyParallel(10);
 
 			Assert.IsNotNull(players);
 			Assert.AreEqual(10, players.Length);
@@ -197,7 +197,7 @@ namespace Footballista.Players.IntegrationTests
 		[TestMethod]
 		public void BuildMany_Parallel_Pass100_ShouldReturn100Players()
 		{
-			var builder = new YoungPlayerBuilder(
+			var builder = new YoungPlayerGenerator(
 				nameGenerator: _personNameGenerator,
 				genderGenerator: _genderGenerator,
 				dobGenerator: _dobGenerator,
@@ -212,7 +212,7 @@ namespace Footballista.Players.IntegrationTests
 				game: _game
 			);
 
-			Player[] players = builder.BuildMany_Parallel(100);
+			Player[] players = builder.GenerateManyParallel(100);
 
 			Assert.IsNotNull(players);
 			Assert.AreEqual(100, players.Length);
@@ -223,7 +223,7 @@ namespace Footballista.Players.IntegrationTests
 		[TestMethod]
 		public async Task BuildAsync()
 		{
-			var builder = new YoungPlayerBuilder(
+			var builder = new YoungPlayerGenerator(
 				nameGenerator: _personNameGenerator,
 				genderGenerator: _genderGenerator,
 				dobGenerator: _dobGenerator,
@@ -238,14 +238,14 @@ namespace Footballista.Players.IntegrationTests
 				game: _game
 			);
 
-			Player player = await builder.BuildAsync(Persons.Gender.Male);
+			Player player = await builder.GenerateAsync(Persons.Gender.Male);
 
 			Assert.IsNotNull(player);
 		}
 		[TestMethod]
 		public async Task BuildManyAsync_Pass10_ShouldReturn10GeneratedPlayers()
 		{
-			var builder = new YoungPlayerBuilder(
+			var builder = new YoungPlayerGenerator(
 				nameGenerator: _personNameGenerator,
 				genderGenerator: _genderGenerator,
 				dobGenerator: _dobGenerator,
@@ -260,7 +260,7 @@ namespace Footballista.Players.IntegrationTests
 				game: _game
 			);
 
-			Player[] players = await builder.BuildManyAsync(10);
+			Player[] players = await builder.GenerateManyAsync(10);
 
 			Assert.IsNotNull(players);
 			Assert.AreEqual(10, players.Length);

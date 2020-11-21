@@ -9,11 +9,11 @@ namespace Footballista.Wasm.Server.Services
 {
 	public class PlayersService : IPlayersService
 	{
-		private readonly IPlayerBuilder _builder;
+		private readonly IPlayerGenerator _builder;
 		private readonly IMapper<Players.Player, Player> _mapper;
 
 		public PlayersService(
-			IPlayerBuilder builder,
+			IPlayerGenerator builder,
 			IMapper<Players.Player, Player> mapper
 		)
 		{
@@ -23,12 +23,12 @@ namespace Footballista.Wasm.Server.Services
 
 		public async Task<Player> GetPlayerAsync()
 		{
-			Players.Player player = await _builder.BuildAsync();
+			Players.Player player = await _builder.GenerateAsync();
 			return _mapper.Map(player);
 		}
 		public async Task<Player[]> GetPlayersAsync(int maxPlayers = 50)
 		{
-			var players = await _builder.BuildManyAsync(maxPlayers);
+			var players = await _builder.GenerateManyAsync(maxPlayers);
 			return _mapper.Map(players)?.ToArray();
 		}
 	}

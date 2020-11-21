@@ -2,6 +2,7 @@
 using Footballista.Wasm.Client.Domain.ClientServices;
 using Footballista.Wasm.Shared.Data;
 using Footballista.Wasm.Shared.Data.Careers;
+using Footballista.Wasm.Shared.Data.Clubs;
 using Footballista.Wasm.Shared.Data.Competitions;
 using Microsoft.AspNetCore.Components;
 using System;
@@ -24,6 +25,7 @@ namespace Footballista.Wasm.Client.NewCareer
 		};
 		
 		internal string CareerName { get; set; }
+		internal string Club { get; set; }
 		internal string ManagerFirstname { get; set; }
 		internal string ManagerLastname { get; set; }
 		internal DateTime? ManagerDateOfBirth { get; set; }
@@ -44,13 +46,13 @@ namespace Footballista.Wasm.Client.NewCareer
 
 		public void StartNewCareerClick()
 		{
-			var dob = new SimpleDate
+			SimpleDate dob = new SimpleDate
 			(
 				ManagerDateOfBirth.Value.Year,
 				ManagerDateOfBirth.Value.Month,
 				ManagerDateOfBirth.Value.Day
 			);
-			var manager = Manager.CreateManager
+			Manager manager = Manager.CreateManager
 			(
 				Gender.Male,
 				ManagerFirstname,
@@ -58,7 +60,8 @@ namespace Footballista.Wasm.Client.NewCareer
 				dob,
 				ManagerCountry
 			);
-			GameService.StartNewCareer(CareerName, SelectedCompetition, manager);
+			Club club = new Club(Guid.Empty, "Montpellier", "MHSC", new City("Montpellier", "France"));
+			GameService.StartNewCareer(CareerName, club, SelectedCompetition, manager);
 
 			NavigateToHome();
 		}

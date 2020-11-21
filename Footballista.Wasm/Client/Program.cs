@@ -25,7 +25,7 @@ namespace Footballista.Wasm.Client
 				.AddBlazorise(o => { o.ChangeTextOnKeyPress = true; })
 				.AddBootstrapProviders()
 				.AddFontAwesomeIcons()
-				.AddSingleton(new HttpClient
+				.AddScoped(sp => new HttpClient
 				{
 					BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
 				})
@@ -49,7 +49,11 @@ namespace Footballista.Wasm.Client
 			});
 			builder.Services.AddSingleton(configuration.CreateMapper());
 
-			builder.RootComponents.Add<App>("app");
+			// .net core 3.1
+			//builder.RootComponents.Add<App>("app");
+
+			// .net 5.0
+			builder.RootComponents.Add<App>("#app");
 
 			WebAssemblyHost host = builder.Build();
 

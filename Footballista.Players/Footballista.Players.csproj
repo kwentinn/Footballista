@@ -14,10 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MathNet.Numerics" Version="4.9.1" />
+    <PackageReference Include="MathNet.Numerics" Version="4.12.0" />
     <PackageReference Include="RandomGen" Version="1.1.4" />
     <PackageReference Include="TimePeriodLibrary.NET" Version="2.1.1" />
-    <PackageReference Include="UnitsNet" Version="4.60.0" />
+    <PackageReference Include="UnitsNet" Version="4.74.0" />
   </ItemGroup>
 
   <ItemGroup>

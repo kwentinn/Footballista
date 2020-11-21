@@ -27,10 +27,10 @@ namespace Footballista.Wasm.Server.Services.Mappers
 				BirthInfo = new Shared.Data.Players.BirthInfo
 				{
 					City = new City
-					{
-						Name = player.BirthInfo.BirthLocation.City.Name,
-						Country = player.BirthInfo.BirthLocation.Country.RegionInfo.EnglishName
-					},
+					(
+						player.BirthInfo.BirthLocation.City.Name,
+						player.BirthInfo.BirthLocation.Country.RegionInfo.EnglishName
+					),
 					DateOfBirth = player.BirthInfo.DateOfBirth
 				},
 				Foot = player.FavouriteFoot.ToString(),
@@ -42,12 +42,12 @@ namespace Footballista.Wasm.Server.Services.Mappers
 				Gender = player.Gender.ToString(),
 				Percentile = player.Percentile.Value,
 				Position = player.PlayerPosition.Name,
-				GeneralRating = Convert.ToInt32(player.GeneralRating.Value * 100),
+				GeneralRating = player.GeneralRating.ToRoundedPercent(),
 				Ratings = player.PhysicalFeatureSet.PhysicalFeatures
 					.Select(feat => new Shared.Data.Players.Rating
 					{
 						Feature = feat.FeatureType.ToString(),
-						Value = Convert.ToInt32(feat.Rating.Value * 100)
+						Value = feat.Rating.ToRoundedPercent()
 					})
 					.ToList()
 			};

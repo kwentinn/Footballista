@@ -45,5 +45,8 @@ namespace Footballista.Players.Features
 		public static bool operator <(Rating left, Rating right) => left.CompareTo(right) < 0;
 		public static bool operator >=(Rating left, Rating right) => left.CompareTo(right) >= 0;
 		public static bool operator <=(Rating left, Rating right) => left.CompareTo(right) <= 0;
+
+		public double ToPercent() => this.Value * 100d;
+		public int ToRoundedPercent() => Convert.ToInt32(ToPercent());
 	}
 }

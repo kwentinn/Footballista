@@ -1,4 +1,5 @@
-﻿using Footballista.Wasm.Server.Services;
+﻿using Footballista.Wasm.Client.Dto.Models.Careers;
+using Footballista.Wasm.Server.Services;
 using Footballista.Wasm.Shared.Data.Careers;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -31,6 +32,20 @@ namespace Footballista.Wasm.Server.Controllers
 		{
 			Career career = await _careerService.LoadCareerAsync(careerGuid);
 			return Ok(career);
+		}
+
+		[HttpPost]
+		[Route("create")]
+		public async Task<IActionResult> CreateCareer([FromBody]CareerDto career)
+		{
+			var r = await Task.FromResult(career);
+			return Ok(r);
+
+			//await _careerService.CreateCareerAsync
+			//(
+			//	career.Name,
+			//	career.CurrentCompetition.Id,
+			//);
 		}
 	}
 }
