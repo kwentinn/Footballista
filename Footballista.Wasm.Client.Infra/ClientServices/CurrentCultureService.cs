@@ -8,28 +8,24 @@ namespace Footballista.Wasm.Client.Infra.ClientServices
 {
 	public class CurrentCultureService : ICurrentCultureService
 	{
-		private static string STORAGE_KEY = LocalStorageKeys.CurrentCulture;
 		private readonly CultureInfo _defaultCulture = new CultureInfo("en-us");
+
 		private readonly ILocalStorageService _localStorageService;
 		private readonly ISyncLocalStorageService _syncLocalStorageService;
 
-		public CurrentCultureService
-		(
-			ILocalStorageService localStorageService,
-			ISyncLocalStorageService syncLocalStorageService
-		)
+		public CurrentCultureService(ILocalStorageService localStorageService, ISyncLocalStorageService syncLocalStorageService)
 		{
 			_localStorageService = localStorageService;
 			_syncLocalStorageService = syncLocalStorageService;
 		}
 
-		public async Task<string> GetCurrentCulture()
-			=> await _localStorageService.GetItemAsync<string>(STORAGE_KEY);
+		public async Task<string> GetCurrentCultureFromLocalStorage()
+			=> await _localStorageService.GetItemAsync<string>(LocalStorageKeys.CURRENT_CULTURE);
 		public async Task SetDefaultCurrentCultureAsync()
 		{
 			CultureInfo culture = _defaultCulture;
-			string result = await GetCurrentCulture();
-			if (result != null)
+			string result = await GetCurrentCultureFromLocalStorage();
+			if (!string.IsNullOrEmpty(result))
 			{
 				culture = new CultureInfo(result);
 			}
@@ -39,7 +35,7 @@ namespace Footballista.Wasm.Client.Infra.ClientServices
 		{
 			var culture = new CultureInfo(cultureCode);
 			SetCurrentCultureForApplication(culture);
-			await _localStorageService.SetItemAsync(STORAGE_KEY, cultureCode);
+			await _localStorageService.SetItemAsync(LocalStorageKeys.CURRENT_CULTURE, cultureCode);
 		}
 
 		private static void SetCurrentCultureForApplication(CultureInfo culture)
@@ -56,7 +52,7 @@ namespace Footballista.Wasm.Client.Infra.ClientServices
 		{
 			var culture = new CultureInfo(cultureCode);
 			SetCurrentCultureForApplication(culture);
-			_syncLocalStorageService.SetItem(STORAGE_KEY, cultureCode);
+			_syncLocalStorageService.SetItem(LocalStorageKeys.CURRENT_CULTURE, cultureCode);
 		}
 	}
 }

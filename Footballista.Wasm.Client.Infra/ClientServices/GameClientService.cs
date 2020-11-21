@@ -33,7 +33,8 @@ namespace Footballista.Wasm.Client.Infra.ClientServices
 
 		public void StartNewCareer(string careerName, Club club, Competition competition, Manager manager)
 		{
-			EnsureInputParametersAreOK(careerName, competition);
+			Ensure.IsNotNullOrEmpty(careerName, nameof(careerName));
+			Ensure.IsNotNull(competition, nameof(competition));
 
 			Career career = Career.StartNew(careerName, club, competition, manager: manager);
 
@@ -41,27 +42,21 @@ namespace Footballista.Wasm.Client.Infra.ClientServices
 			CurrentGame = career;
 		}
 
-		private static void EnsureInputParametersAreOK(string careerName, Competition competition)
-		{
-			Ensure.IsNotNullOrEmpty(careerName, nameof(careerName));
-			Ensure.IsNotNull(competition, nameof(competition));
-		}
-
 		private void SetCurrentCareerInLocalStorage(Career career)
 		{
 			CareerDto careerDto = _mapper.Map<CareerDto>(career);
-			_localStorageService.SetItem(LocalStorageKeys.CurrentCareer, careerDto);
+			_localStorageService.SetItem(LocalStorageKeys.CURRENT_CAREER, careerDto);
 		}
 
 
 		public Career GetCurrentCareer()
 		{
 			CareerDto currentGame = _localStorageService
-				.GetItem<CareerDto>(LocalStorageKeys.CurrentCareer);
+				.GetItem<CareerDto>(LocalStorageKeys.CURRENT_CAREER);
 			return _mapper.Map<Career>(currentGame);
 		}
 
 		public void ExitCareer()
-			=> _localStorageService.RemoveItem(LocalStorageKeys.CurrentCareer);
+			=> _localStorageService.RemoveItem(LocalStorageKeys.CURRENT_CAREER);
 	}
 }

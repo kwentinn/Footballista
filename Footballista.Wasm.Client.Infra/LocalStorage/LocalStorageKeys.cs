@@ -2,7 +2,7 @@
 {
 	public static class LocalStorageKeys
 	{
-		public const string CurrentCulture = "Footballista_CurrentCulture";
-		public const string CurrentCareer = "Footballista_CurrentCareer";
+		public const string CURRENT_CULTURE = "Footballista_CurrentCulture";
+		public const string CURRENT_CAREER = "Footballista_CurrentCareer";
 	}
 }

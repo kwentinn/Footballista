@@ -4,32 +4,34 @@
 
 @inject IGameService GameService
 
+	<div id="app">
+		
+		<Blazorise.ThemeProvider Theme="@theme">
 
-	<Blazorise.ThemeProvider Theme="@theme">
+			@if (!HasCurrentCareer)
+			{
+				<WelcomeLayout />
+			}
+			else
+			{
+				<Router AppAssembly="@typeof(Program).Assembly">
 
-		@if (!HasCurrentCareer)
-		{
-			<WelcomeLayout />
-		}
-		else
-		{
-			<Router AppAssembly="@typeof(Program).Assembly">
+					<Found Context="routeData">
 
-				<Found Context="routeData">
+						<RouteView RouteData="@routeData" DefaultLayout="@typeof(CareerLayout)" />
 
-					<RouteView RouteData="@routeData" DefaultLayout="@typeof(CareerLayout)" />
+					</Found>
 
-				</Found>
+					<NotFound>
+						<LayoutView Layout="@typeof(CareerLayout)">
+							<NotFound />
+						</LayoutView>
+					</NotFound>
 
-				<NotFound>
-					<LayoutView Layout="@typeof(CareerLayout)">
-						<NotFound />
-					</LayoutView>
-				</NotFound>
-
-			</Router>
-		}
-	</Blazorise.ThemeProvider>
+				</Router>
+			}
+		</Blazorise.ThemeProvider>
+	</div>
 
 	@code{
 
