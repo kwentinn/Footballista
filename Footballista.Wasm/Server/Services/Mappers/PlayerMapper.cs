@@ -21,17 +21,17 @@ namespace Footballista.Wasm.Server.Services.Mappers
 			return new Shared.Data.Players.Player
 			{
 				Id = player.Id.Value,
-				Firstname = player.Firstname.Value,
-				Lastname = player.Lastname.Value,
+				Firstname = player.Name.Firstname.Value,
+				Lastname = player.Name.Lastname.Value,
 				Nationalities = string.Join(", ", player.Nationalities.Select(n => n.CountryCode)),
 				BirthInfo = new Shared.Data.Players.BirthInfo
 				{
 					City = new City
 					(
-						player.BirthInfo.BirthLocation.City.Name,
-						player.BirthInfo.BirthLocation.Country.RegionInfo.EnglishName
+						player.BirthInfo.Location.City.Name,
+						player.BirthInfo.Location.Country.RegionInfo.EnglishName
 					),
-					DateOfBirth = player.BirthInfo.DateOfBirth
+					DateOfBirth = player.BirthInfo.Date
 				},
 				Foot = player.FavouriteFoot.ToString(),
 				Bmi = new Shared.Data.Players.Bmi

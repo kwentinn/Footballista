@@ -15,16 +15,15 @@ namespace Footballista.Players.Builders
 	{
 		private PersonName _name;
 		private Gender _gender;
-		private Date _birthdate;
-		private Location _birthLocation;
 		private Foot? _playerFoot;
 		private BodyMassIndex _bmi;
 		private Percentile _percentile;
 		private PhysicalFeatureSet _playerFeatureSet;
 		private PlayerPosition _position;
 		private IEnumerable<Country> _countries;
+        private BirthInfo _birthInfo;
 
-		public PlayerBuilder() { }
+        public PlayerBuilder() { }
 
 		public PlayerBuilder WithName(PersonName name)
 		{
@@ -36,16 +35,11 @@ namespace Footballista.Players.Builders
 			_gender = gender;
 			return this;
 		}
-		public PlayerBuilder WithBirthdate(Date birthdate)
-		{
-			_birthdate = birthdate;
+		public PlayerBuilder WithBirthInfo(BirthInfo birthInfo)
+        {
+			_birthInfo = birthInfo;
 			return this;
-		}
-		public PlayerBuilder WithBirthLocation(Location birthLocation)
-		{
-			_birthLocation = birthLocation;
-			return this;
-		}
+        }
 		public PlayerBuilder WithFoot(Foot foot)
 		{
 			_playerFoot = foot;
@@ -81,11 +75,9 @@ namespace Footballista.Players.Builders
 		{
 			return Player.CreatePlayer
 			(
-				_name.Firstname,
-				_name.Lastname,
+				_name,
 				_gender,
-				_birthdate,
-				_birthLocation,
+				_birthInfo,
 				_playerFoot.Value,
 				_bmi,
 				_percentile,

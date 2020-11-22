@@ -4,13 +4,13 @@ using System.Linq;
 
 namespace Footballista.Players.Persons.BusinessRules
 {
-	public class PersonCanHaveTwoNationalitiesRule : IBusinessRule
+	public class PersonMustHaveTwoNationalitiesMaximum : IBusinessRule
 	{
 		private readonly Country[] _countries;
 
 		public string Message => "A person cannot have more than two nationalities.";
 
-		public PersonCanHaveTwoNationalitiesRule(Country[] countries)
+		public PersonMustHaveTwoNationalitiesMaximum(Country[] countries)
 		{
 			_countries = countries;
 		}

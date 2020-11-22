@@ -8,5 +8,9 @@
 	  <ProjectReference Include="..\Footballista.BuildingBlocks.Domain\Footballista.BuildingBlocks.Domain.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Careers\NewFolder\" />
+	</ItemGroup>
+
 
 </Project>

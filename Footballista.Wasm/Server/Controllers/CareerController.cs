@@ -1,4 +1,4 @@
-﻿using Footballista.Cqrs.Commands;
+﻿using Footballista.Cqrs.Commands.CreateCareer;
 using Footballista.Wasm.Client.Dto.Models.Careers;
 using Footballista.Wasm.Server.Services;
 using Footballista.Wasm.Shared.Data.Careers;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Footballista.Wasm.Server.Controllers
 {
-	[ApiController]
+    [ApiController]
 	[Route("[controller]")]
 	public class CareerController : ControllerBase
 	{

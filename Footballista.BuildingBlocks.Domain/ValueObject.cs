@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Footballista.BuildingBlocks.Domain
 {
-	public abstract class ValueObject : IEquatable<ValueObject>
+    public abstract class ValueObject : IEquatable<ValueObject>
 	{
 		private List<PropertyInfo> _properties;
 		private List<FieldInfo> _fields;

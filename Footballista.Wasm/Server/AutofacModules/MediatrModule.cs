@@ -1,11 +1,12 @@
 ﻿using Autofac;
+using Footballista.Cqrs.Commands.CreateCareer;
 using MediatR;
 using System.Reflection;
 using Module = Autofac.Module;
 
 namespace Footballista.Wasm.Server.AutofacModules
 {
-	internal class MediatRModule : Module
+    internal class MediatRModule : Module
 	{
 		protected override void Load(ContainerBuilder builder)
 		{
@@ -27,7 +28,7 @@ namespace Footballista.Wasm.Server.AutofacModules
 			var assemblies = new Assembly[]
 			{
 				typeof(Startup).Assembly,
-				typeof(Cqrs.Commands.CreateCareerCommand).Assembly
+				typeof(CreateCareerCommand).Assembly
 			};
 
 			// finally register our custom code (individually, or via assembly scanning)

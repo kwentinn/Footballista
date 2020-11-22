@@ -6,13 +6,12 @@ using Footballista.Players.Persons;
 using Footballista.Players.Physique;
 using Footballista.Players.PlayerNames;
 using Footballista.Players.Positions;
-using Itenso.TimePeriod;
 using System.Diagnostics;
 
 namespace Footballista.Players
 {
-	[DebuggerDisplay("{Firstname} {Lastname} {PlayerPosition}")]
-	public class Player : Person
+	[DebuggerDisplay("{Name} {PlayerPosition}")]
+	public sealed class Player : Person
 	{
 		public PhysicalFeatureSet PhysicalFeatureSet { get; }
 		public PlayerPosition PlayerPosition { get; }
@@ -24,21 +23,19 @@ namespace Footballista.Players
 
 		public Rating GeneralRating => _globalRatingCalculator.Calculate(PlayerPosition, PhysicalFeatureSet);
 
-		internal Player
+		private Player
 		(
 			PersonId id,
-			Firstname firstname,
-			Lastname lastname,
+			PersonName name,
 			Gender gender,
-			Date dob,
-			Location birthLocation,
+			BirthInfo birthInfo,
 			Foot favouriteFoot,
 			BodyMassIndex bmi,
 			Percentile percentile,
 			PhysicalFeatureSet physicalFeatureSet,
 			PlayerPosition playerPosition,
 			params Country[] nationalities
-		) : base(id, firstname, lastname, gender, dob, birthLocation, nationalities)
+		) : base(id, name, gender, birthInfo, nationalities)
 		{
 			FavouriteFoot = favouriteFoot;
 			Bmi = bmi;
@@ -49,11 +46,9 @@ namespace Footballista.Players
 
 		public static Player CreatePlayer
 		(
-			Firstname firstname,
-			Lastname lastname,
+			PersonName name,
 			Gender gender,
-			Date dob,
-			Location birthLocation,
+			BirthInfo birthInfo,
 			Foot favouriteFoot,
 			BodyMassIndex bmi,
 			Percentile percentile,
@@ -63,11 +58,9 @@ namespace Footballista.Players
 		) => new Player
 		(
 			PersonId.CreateNew(),
-			firstname,
-			lastname,
+			name,
 			gender,
-			dob,
-			birthLocation,
+			birthInfo,
 			favouriteFoot,
 			bmi,
 			percentile,

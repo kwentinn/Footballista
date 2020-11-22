@@ -16,11 +16,9 @@ namespace Footballista.PlayersUnitTests.Domain
 		{
 			Person someone = Person.CreateNew
 			(
-				firstname: new Firstname("Michael"),
-				lastname: new Lastname("Monroe"),
+				name: new PersonName(new Firstname("Michael"), new Lastname("Monroe")),
 				gender: Gender.Male,
-				dob: new Date(1990, 5, 11),
-				birthLocation: new Location(new City("Montpellier"), Country.France),
+				birthInfo: new BirthInfo(new Date(1990, 5, 11), new Location(new City("Montpellier"), Country.France)),
 				nationalities: Country.France
 			);
 
@@ -35,11 +33,9 @@ namespace Footballista.PlayersUnitTests.Domain
 			{
 				Person someone = Person.CreateNew
 				(
-					new Firstname("Michael"),
-					new Lastname("Monroe"),
+					new PersonName(new Firstname("Michael"), new Lastname("Monroe")),
 					Gender.Male,
-					new Date(1990, 5, 11),
-					new Location(new City("Montpellier"), Country.France),
+					new BirthInfo(1990, 5, 11, "Montpellier", Country.France),
 					Country.France, Country.Germany, Country.Italy
 				);
 			});
