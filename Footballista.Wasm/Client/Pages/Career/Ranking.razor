@@ -1,0 +1,37 @@
+﻿@page "/ranking"
+@using Footballista.Wasm.Client.Components.TableBased
+@using Footballista.Wasm.Shared.Data.Competitions
+@using Footballista.Wasm.Shared.Data 
+
+@inject IRankingsClientService _rankingsClientService
+@inject IGameService GameService;
+
+<h3>Current Rankings</h3>
+<h4>Season @currentSeason</h4>
+@if (rankings == null)
+{
+	<Loader></Loader>
+}
+else if (!rankings.Any())
+{
+	<p><em>There are no players to display...</em></p>
+}
+else
+{
+	<CompetitionRankingComponent Rankings="@rankings"></CompetitionRankingComponent>
+}
+
+
+@code {
+
+	private Season currentSeason;
+
+	private List<CompetitionRanking> rankings;
+
+	protected override async Task OnInitializedAsync()
+	{
+		GameService.Load();
+		currentSeason = GameService.CurrentGame.CurrentSeason;
+		rankings = await _rankingsClientService.GetRankings();
+	}
+}

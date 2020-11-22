@@ -1,0 +1,30 @@
+﻿@using Footballista.Wasm.Shared.Data.Calendars;
+@using Microsoft.Extensions.Localization;
+
+@inject IStringLocalizer<EventsComponent> Loc
+
+@if (Events == null)
+{
+	<Loader />
+}
+else if (!Events.Any())
+{
+	<p>@Loc["NoEventsToCome"]</p>
+}
+else
+{
+
+	@foreach (var evt in Events)
+	{
+		<div class="event">
+			<div class="event-date">@evt.Date.ToString()</div>
+			<div class="event-title">@evt.Name</div>
+			<div class="event-description">@evt.Description</div>
+		</div>
+	}
+}
+
+@code {
+	[Parameter]
+	public List<Event> Events { get; set; }
+}

@@ -1,0 +1,23 @@
+﻿@import '../../Styles/Theme.scss';
+
+.loader {
+	border: 1px solid $text-color-disabled;
+	border-top: 1px solid $color-accent;
+	border-radius: 50%;
+	width: 80px;
+	height: 80px;
+	animation: spin 950ms linear infinite;
+	top: 40%;
+	left: 50%;
+	position: absolute;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg)
+	}
+
+	100% {
+		transform: rotate(360deg)
+	}
+}

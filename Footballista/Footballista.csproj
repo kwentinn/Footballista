@@ -6,7 +6,7 @@
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
     <!--<SpaRoot>ClientApp\</SpaRoot>-->
-    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+    <!--<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>-->
 
     <!-- Set this to true if you enable server-side prerendering -->
     <!--<BuildServerSideRenderer>false</BuildServerSideRenderer>-->
@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Footballista.Game.Domain\Footballista.Game.Domain.csproj" />
     <ProjectReference Include="..\Footballista.Players.Infrastracture\Footballista.Players.Infrastracture.csproj" />
     <ProjectReference Include="..\Footballista.Players\Footballista.Players.csproj" />
   </ItemGroup>

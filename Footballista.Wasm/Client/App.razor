@@ -1,0 +1,66 @@
+@using Footballista.Wasm.Shared.Data.Careers;
+@using Footballista.Wasm.Client.Layouts;
+@using Footballista.Wasm.Client.Domain.ClientServices;
+
+@inject IGameService GameService
+
+	<div id="app">
+		
+		<Blazorise.ThemeProvider Theme="@theme">
+
+			@if (!HasCurrentCareer)
+			{
+				<WelcomeLayout />
+			}
+			else
+			{
+				<Router AppAssembly="@typeof(Program).Assembly">
+
+					<Found Context="routeData">
+
+						<RouteView RouteData="@routeData" DefaultLayout="@typeof(CareerLayout)" />
+
+					</Found>
+
+					<NotFound>
+						<LayoutView Layout="@typeof(CareerLayout)">
+							<NotFound />
+						</LayoutView>
+					</NotFound>
+
+				</Router>
+			}
+		</Blazorise.ThemeProvider>
+	</div>
+
+	@code{
+
+		public Career CurrentCareer
+			=> GameService.GetCurrentCareer();
+
+		public bool HasCurrentCareer
+			=> CurrentCareer != null;
+
+
+		private Theme theme = new Theme
+		{
+			IsGradient = true,
+			IsRounded = false,
+			White = "",
+			Black = "",
+
+			// theme settings
+			ColorOptions = new ThemeColorOptions
+			{
+				Primary = "#0D47A1",
+				Secondary = "#F9A825",
+				Danger = "#B71C1C",
+				Dark = "#212121",
+				Light = "#FAFAFA",
+				Info = "#4DD0E1",
+				Success = "#16A800",
+				Warning = "#FF1F00"
+			}
+		};
+
+	}

@@ -1,0 +1,36 @@
+﻿@using Footballista.Wasm.Shared.Data.Players;
+
+
+@for (var i = 1; i <= NumberOfStars; i++)
+{
+	if (i <= Stars)
+	{
+		<span class="fa fa-star checked"></span>
+	}
+	else
+	{
+		<span class="fa fa-star"></span>
+	}
+}
+
+
+@code {
+	private int _stars;
+	public int Stars => _stars;
+
+	private int _rating;
+	[Parameter]
+	public int Rating
+	{
+		get => _rating;
+		set
+		{
+			_stars = GetStarsFromRating(value);
+			_rating = value;
+		}
+	}
+
+	public int NumberOfStars = 5;
+
+	public int GetStarsFromRating(int rating) => rating / 20;
+}

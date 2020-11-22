@@ -1,0 +1,28 @@
+﻿@using Footballista.Wasm.Shared.Data.Competitions
+
+
+<DataGrid TItem="CompetitionRanking" Data="@Rankings"
+		  @bind-SelectedRow="@SelectedRanking" PageSize="20">
+	<DataGridCommandColumn TItem="CompetitionRanking" />
+
+	<DataGridColumn TItem="CompetitionRanking" Field="@nameof(CompetitionRanking.Position)" Caption="Pos." Sortable="true" />
+	<DataGridColumn TItem="CompetitionRanking" Field="@nameof(CompetitionRanking.ClubName)" Caption="Club" Sortable="true" />
+	<DataGridColumn TItem="CompetitionRanking" Field="@nameof(CompetitionRanking.GamesPlayed)" Caption="Played" Sortable="true" />
+	<DataGridColumn TItem="CompetitionRanking" Field="@nameof(CompetitionRanking.Won)" Caption="Won" Sortable="true" />
+	<DataGridColumn TItem="CompetitionRanking" Field="@nameof(CompetitionRanking.Drawn)" Caption="Drawn" Sortable="true" />
+	<DataGridColumn TItem="CompetitionRanking" Field="@nameof(CompetitionRanking.Lost)" Caption="Lost" Sortable="true" />
+	<DataGridColumn TItem="CompetitionRanking" Field="@nameof(CompetitionRanking.GoalsFor)" Caption="GF" Sortable="true" />
+	<DataGridColumn TItem="CompetitionRanking" Field="@nameof(CompetitionRanking.GoalsAgainst)" Caption="GA" Sortable="true" />
+	<DataGridColumn TItem="CompetitionRanking" Field="@nameof(CompetitionRanking.GoalsDifference)" Caption="GD" Sortable="true" />
+	<DataGridColumn TItem="CompetitionRanking" Field="@nameof(CompetitionRanking.Points)" Caption="Pts." Sortable="true" />
+
+</DataGrid>
+
+
+@code {
+
+	[Parameter]
+	public List<CompetitionRanking> Rankings { get; set; }
+
+	public CompetitionRanking SelectedRanking { get; set; }
+}

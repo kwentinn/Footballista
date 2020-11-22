@@ -1,12 +1,7 @@
-﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects
-{
-	public class City : ValueObject
-	{
-		public string Value { get; }
+﻿using System.Diagnostics;
 
-		public City(string value)
-		{
-			Value = value;
-		}
-	}
+namespace Footballista.BuildingBlocks.Domain.ValueObjects
+{
+	[DebuggerDisplay("{Name}")]
+	public record City(string Name);
 }

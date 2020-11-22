@@ -1,0 +1,40 @@
+﻿@import '../../Styles/Theme.scss';
+
+.rating-highest {
+	background-color: $rating-highest;
+}
+.rating-higher {
+	background-color: $rating-higher;
+}
+
+.rating-high {
+	background-color: $rating-high;
+}
+
+.rating-mid-high {
+	background-color: $rating-mid-high;
+}
+
+.rating-mid {
+	background-color: $rating-mid;
+}
+
+.rating-mid-low {
+	background-color: $rating-mid-low;
+	color: $text-color-clear;
+}
+
+.rating-low {
+	background-color: $rating-low;
+	color: $text-color-clear;
+}
+
+.rating-lower {
+	background-color: $rating-lower;
+	color: $text-color-clear;
+}
+
+.rating-lowest {
+	background-color: $rating-lowest;
+	color: $text-color-clear;
+}

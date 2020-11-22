@@ -1,23 +1,74 @@
-﻿namespace Footballista.Players.Features
+﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.Players.Features.LinkedFeatures;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+
+namespace Footballista.Players.Features
 {
-	public class PhysicalFeature
+	[DebuggerDisplay("{FeatureType}={Rating} [{_id}]")]
+	public class PhysicalFeature : ValueObject
 	{
-		public FeatureName Name { get; }
-		public FeatureValue Value { get; protected set; }
+		[IgnoreMember]
+		private readonly Guid _id = Guid.NewGuid();
 
-		public PhysicalFeature(FeatureName name)
+		public FeatureType FeatureType { get; }
+		public Rating Rating { get; protected set; }
+
+		private readonly List<PhysicalFeature> _commonFeatures;
+
+		[IgnoreMember]
+		public ReadOnlyCollection<PhysicalFeature> OutfieldPlayerFeatures => _outfieldPlayerFeatures.AsReadOnly();
+		private readonly List<PhysicalFeature> _outfieldPlayerFeatures;
+
+		[IgnoreMember]
+		public ReadOnlyCollection<PhysicalFeature> GoalKeeperFeatures => _goalkeeperFeatures.AsReadOnly();
+		private readonly List<PhysicalFeature> _goalkeeperFeatures;
+
+		public PhysicalFeature()
 		{
-			Name = name;
-		}
-		public PhysicalFeature(FeatureName name, FeatureValue value)
-		{
-			Name = name;
-			Value = value;
+			_commonFeatures = new List<PhysicalFeature>
+			{
+				//new  PhysicalFeature(FeatureType.Morale),
+				new  PhysicalFeature(FeatureType.Focus),
+				new  PhysicalFeature(FeatureType.Stamina),
+				new  PhysicalFeature(FeatureType.FightingSpirit),
+				new  PhysicalFeature(FeatureType.Cross),
+				new  PhysicalFeature(FeatureType.FreeKick),
+				new  PhysicalFeature(FeatureType.PenaltyKick),
+				new  PhysicalFeature(FeatureType.ReactionSpeed),
+				new  PhysicalFeature(FeatureType.Composure),
+				new  PhysicalFeature(FeatureType.Agility)
+			};
+			_outfieldPlayerFeatures = new List<PhysicalFeature>(_commonFeatures)
+			{
+				new  PhysicalFeature(FeatureType.Acceleration),
+				new  TopSpeedFeature(),
+				new  PhysicalFeature(FeatureType.Finishing),
+				new  PhysicalFeature(FeatureType.Header),
+				new  PhysicalFeature(FeatureType.PassingSpeed),
+				new  PhysicalFeature(FeatureType.PassingAccuracy),
+				new  PhysicalFeature(FeatureType.Power),
+				new  PhysicalFeature(FeatureType.Vista),
+				new  PhysicalFeature(FeatureType.Interception),
+				new  PhysicalFeature(FeatureType.Tackling),
+			};
+			_goalkeeperFeatures = new List<PhysicalFeature>(_commonFeatures)
+			{
+				new  PhysicalFeature(FeatureType.Goalkeeping),
+			};
 		}
 
-		public void ChangeValue(FeatureValue value)
+		public PhysicalFeature(FeatureType type, Rating value = null)
 		{
-			Value = value;
+			FeatureType = type;
+			Rating = value;
+		}
+
+		public void ChangeRating(Rating newRating)
+		{
+			Rating = newRating;
 		}
 	}
 }

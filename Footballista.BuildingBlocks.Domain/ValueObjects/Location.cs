@@ -1,22 +1,7 @@
-﻿namespace Footballista.BuildingBlocks.Domain.ValueObjects
+﻿using System.Diagnostics;
+
+namespace Footballista.BuildingBlocks.Domain.ValueObjects
 {
-	public class Location
-	{
-		public City City { get; }
-		public ZipCode ZipCode { get; }
-		public Country Country { get; }
-
-
-		public Location(City city, string countryCode)
-		{
-			City = city;
-			Country = new Country(countryCode);
-		}
-		public Location(City city, ZipCode zipCode, string countryCode)
-		{
-			City = city;
-			ZipCode = zipCode;
-			Country = new Country(countryCode);
-		}
-	}
+	[DebuggerDisplay("{City}, {Country}")]
+	public record Location(City City, Country Country);
 }

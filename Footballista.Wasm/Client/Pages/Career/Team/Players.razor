@@ -1,0 +1,33 @@
+@page "/team/players"
+
+<h1>Team players</h1>
+
+<p>These are the players available in your team.</p>
+
+@if (players == null)
+{
+	<Loader />
+}
+else if (!players.Any())
+{
+	<p><em>There are no players to display...</em></p>
+}
+else
+{
+	<Row>
+		<Column ColumnSize="ColumnSize.Is7">
+			<PlayersTableComponent Players="players" OnSelectionChanged="OnPlayerSelect"></PlayersTableComponent>
+
+		</Column>
+		<Column ColumnSize="ColumnSize.Is5">
+			@if (_selectedPlayer is null)
+			{
+				<p>Select a player to view their details.</p>
+			}
+			else
+			{
+				<ViewPlayerComponent Player="_selectedPlayer" />
+			}
+		</Column>
+	</Row>
+}

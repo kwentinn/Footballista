@@ -1,0 +1,121 @@
+﻿@page "/home"
+@using Microsoft.Extensions.Localization;
+@using Footballista.Wasm.Shared.Data.Careers;
+ 
+@inject NavigationManager Nav
+@inject IStringLocalizer<Home> Loc
+@inject IGameService _gameService
+
+
+<h1>Career</h1>
+
+<!-- Row 1 -->
+<Row>
+	<!-- Column 1 -->
+	<Column ColumnSize="ColumnSize.Is4">
+		<Card>
+			<CardImage Source="/img/MUFC96-97.jpg" Alt="Placeholder image">
+			</CardImage>
+			<CardBody>
+				<CardTitle Size="2">@Loc["Team"]</CardTitle>
+				<CardText>
+					<p>@Loc["ManageTeamDescription"]</p>
+				</CardText>
+				<Button Color="Color.Primary" @onclick="() => NavigateToTeamManagement()">Go</Button>
+			</CardBody>
+		</Card>
+	</Column>
+
+	<!-- Column 2 -->
+	<Column ColumnSize="ColumnSize.Is4">
+		<Card Background="Background.Light">
+			<CardImage Source="/img/recruitment.jpg" Alt="Placeholder image">
+			</CardImage>
+			<CardBody>
+				<CardTitle Size="2">@Loc["Recruitment"]</CardTitle>
+				<CardText>
+					<p>@Loc["RecruitmentDescription"]</p>
+				</CardText>
+				<Button Color="Color.Primary">Button</Button>
+			</CardBody>
+		</Card>
+	</Column>
+
+	<!-- Column 3 -->
+	<Column ColumnSize="ColumnSize.Is4">
+		<Card Background="Background.Light">
+			<CardImage Source="/img/training.jpg" Alt="Placeholder image">
+			</CardImage>
+			<CardBody>
+				<CardTitle Size="2">@Loc["Training"]</CardTitle>
+				<CardText>
+					<p>@Loc["TrainingDescription"]</p>
+				</CardText>
+				<Button Color="Color.Primary" @onclick="() => NavigateToTrainingHome()">Button</Button>
+			</CardBody>
+		</Card>
+	</Column>
+</Row>
+
+<!-- Row 2 -->
+<Row>
+	<!-- Column 1 -->
+	<Column ColumnSize="ColumnSize.Is4">
+		<Card>
+			<CardImage Source="/img/club.png" Alt="Placeholder image">
+			</CardImage>
+			<CardBody>
+				<CardTitle Size="2">@Loc["Club"]</CardTitle>
+				<CardText>
+					<p>@Loc["ClubDescription"]</p>
+				</CardText>
+				<Button Color="Color.Primary">Button</Button>
+			</CardBody>
+		</Card>
+	</Column>
+	<!-- Column 2 -->
+	<Column ColumnSize="ColumnSize.Is4">
+		<Card Background="Background.Light">
+			<CardImage Source="/img/youngsters.png" Alt="Placeholder image">
+			</CardImage>
+			<CardBody>
+				<CardTitle Size="2">@Loc["Youngsters"]</CardTitle>
+				<CardText>
+					<p>@Loc["YoungstersDescription"]</p>
+				</CardText>
+				<Button Color="Color.Primary">Button</Button>
+			</CardBody>
+		</Card>
+	</Column>
+	<!-- Column 3 -->
+	<Column ColumnSize="ColumnSize.Is4">
+		<Card Background="Background.Light">
+			<CardImage Source="/img/transfers.png" Alt="Placeholder image">
+			</CardImage>
+			<CardBody>
+				<CardTitle Size="2">@Loc["Transfers"]</CardTitle>
+				<CardText>
+					<p>@Loc["TransfersDescription"]</p>
+				</CardText>
+				<Button Color="Color.Primary">Button</Button>
+			</CardBody>
+		</Card>
+	</Column>
+</Row>
+
+@code {
+	public void NavigateToTrainingHome() => Nav.NavigateTo("/training/home");
+	public void NavigateToTeamManagement() => Nav.NavigateTo("/team/main-team");
+
+	public Career CurrentGame { get; set; }
+
+	protected override void OnInitialized()
+	{
+		_gameService.Load();
+
+		CurrentGame = _gameService.CurrentGame;
+
+		Console.WriteLine(CurrentGame.Name);
+		Console.WriteLine(CurrentGame.CurrentDate);
+	}
+}

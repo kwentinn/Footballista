@@ -1,0 +1,16 @@
+﻿@using System.Reflection
+
+<Bar Breakpoint="Breakpoint.Desktop" Background="Background.Light" ThemeContrast="ThemeContrast.Light">
+	<BarToggler />
+	<BarBrand>Footballista - @GetVersion() </BarBrand>
+</Bar>
+
+
+@code {
+
+	string GetVersion()
+	{
+		var version = Assembly.GetExecutingAssembly().GetName().Version;
+		return $"v{version.Major}.{version.Minor}";
+	}
+}

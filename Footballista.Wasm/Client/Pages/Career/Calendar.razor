@@ -1,0 +1,41 @@
+﻿@page "/calendar"
+@using Footballista.Wasm.Client.Components.CalendarBased;
+@using Footballista.Wasm.Shared.Data.Calendars;
+@using Footballista.Wasm.Client.Components.EventsRelated;
+
+@inject CareerDateService careerDateService
+@inject IStringLocalizer<Calendar> Loc
+@inject IGameService _gameService
+@inject ICalendarService _calendarService
+
+<p>@Loc["CurrentDate"]&nbsp;@careerDateService.GetDisplayFullDate(CurrentDate)</p>
+
+<Layout>
+	<Row>
+		<Column ColumnSize="ColumnSize.Is8">
+			<CalendarComponent CalendarViewType="CalendarViewType.MonthlyView"
+							   DisplayDate="CurrentDate"
+							   Events="CalendarEvents">
+			</CalendarComponent>
+		</Column>
+		<Column ColumnSize="ColumnSize.Is4">
+			<h3>@Loc["WhatsUpNext"]</h3>
+			<EventsComponent Events="CalendarEvents" />
+		</Column>
+	</Row>
+</Layout>
+
+
+@code {
+	public Date CurrentDate { get; set; }
+	public List<Event> CalendarEvents { get; set; }
+
+	protected override void OnInitialized()
+	{
+		_gameService.Load();
+
+		CurrentDate = _gameService.CurrentGame.CurrentDate.ToDate();
+
+		CalendarEvents = _calendarService.GetEventsForDate(CurrentDate);
+	}
+}

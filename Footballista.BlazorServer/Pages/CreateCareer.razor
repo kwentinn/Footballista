@@ -1,0 +1,21 @@
+﻿@page "/career/create"
+
+@using Footballista.BlazorServer.Data
+@using Footballista.BlazorServer.Data.Players
+@inject PlayersService playerService
+
+<h1>Create a new career</h1>
+
+<MatTextField Label="Career name" HelperText="Name of the career" Value="careerName"></MatTextField>
+
+
+
+
+@code {
+	private string careerName = "";
+
+	//protected override async Task OnInitializedAsync()
+	//{
+	//}
+
+}

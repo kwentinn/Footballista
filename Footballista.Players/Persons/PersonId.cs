@@ -1,8 +1,10 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using System;
+using System.Diagnostics;
 
 namespace Footballista.Players.Persons
 {
+	[DebuggerDisplay("PersonId - [{Value}]")]
 	public class PersonId : TypedIdValueBase
 	{
 		public PersonId(Guid value) : base(value)

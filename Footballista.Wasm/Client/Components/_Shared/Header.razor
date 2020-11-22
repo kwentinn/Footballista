@@ -1,0 +1,33 @@
+﻿@using Footballista.Wasm.Client.Domain.ClientServices;
+@inject NavigationManager Nav
+@inject IGameService GameService
+
+<Bar Breakpoint="Breakpoint.Desktop" Background="Background.Light" ThemeContrast="ThemeContrast.Light">
+	<BarBrand>Footballista</BarBrand>
+	<BarToggler />
+	<BarMenu>
+		<BarStart>
+			<BarItem>
+				<BarLink To="#home">Home</BarLink>
+			</BarItem>
+			<BarItem>
+				<BarLink To="#docs">Documentation</BarLink>
+			</BarItem>
+		</BarStart>
+		<BarEnd>
+			<BarItem>
+				<Button Color="Color.Secondary" @onclick="() => ExitCareer()">Exit Career</Button>
+				<CultureSelector />
+			</BarItem>
+		</BarEnd>
+	</BarMenu>
+</Bar>
+
+@code {
+	public void ExitCareer()
+	{
+		GameService.ExitCareer();
+
+		Nav.NavigateTo("/", forceLoad: true);
+	}
+}

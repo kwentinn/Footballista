@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="r3xdfgjm.o5k~" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Footballista.BuildingBlocks.Domain\Footballista.BuildingBlocks.Domain.csproj" />
+		<ProjectReference Include="..\Footballista.Players\Footballista.Players.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="FluentValidation" Version="9.3.0" />
+	  <PackageReference Include="TimePeriodLibrary.NET" Version="2.1.1" />
+	</ItemGroup>
+
+</Project>

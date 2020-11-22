@@ -1,0 +1,15 @@
+﻿@using Footballista.Wasm.Shared.Data.Players
+
+<div class="ratings-vertical">
+	@foreach (Rating rating in Ratings)
+	{
+		<div class="rating-item">
+			<FeatureRatingComponent Rating="rating" />
+		</div>
+	}
+</div>
+
+@code {
+	[Parameter]
+	public List<Rating> Ratings { get; set; }
+}

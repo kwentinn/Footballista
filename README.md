@@ -3,6 +3,18 @@ A football manager-style game
 
 ## Description
 
+
+
+## Modularity
+
+- player generation module
+- team generation module
+- matchday module
+- 
+
+
+## Details
+
 ### Person
 A __person__ is someone who will be referenced in Footballista. It can be a player, a coach or a staff member of a team.
 
@@ -15,8 +27,14 @@ Young players, like normal human beings, have the ability to grow in weight and 
 
 #### a. Mass growth
 
-#### b. Height
+#### b. Height growth
 
 
 ### Units
 Based on the locale of the game, SI or in Imperial units will be used.
+
+
+# References
+
+* [WordCities database](https://simplemaps.com/data/world-cities) contains an awful lot of world cities, thanks!
+* [Name databases](https://github.com/smashew/NameDatabases) loads of last names for different languages, great!

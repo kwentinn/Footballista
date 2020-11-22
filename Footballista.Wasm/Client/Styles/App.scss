@@ -1,0 +1,30 @@
+﻿@import '../Components/_Shared/Loader.scss';
+@import '../Components/RatingRelated/FeatureRatingComponent.scss';
+@import '../Components/RatingRelated/FeatureCollectionComponent.scss';
+@import '../Components/CalendarBased/CalendarComponent.scss';
+@import '../Components/CalendarBased/Monthly/MonthlyCalendarComponent.scss';
+@import '../Components/CalendarBased/Weekly/WeeklyCalendarComponent.scss';
+@import '../Components/CalendarBased/Yearly/YearlyCalendarComponent.scss';
+@import '../Components/RatingRelated/RatingStarsComponent.scss';
+@import '../Components/EventsRelated/EventsComponent.scss';
+@import '../Components/Headers/CareerHeader.scss';
+@import 'Theme.scss';
+
+body {
+	font-family: $font-primary;
+	color: $text-color;
+}
+
+.main-content {
+	margin-top: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 15px;
+}
+
+.centered {
+	margin: auto;
+}
+.text-centered {
+	text-align: center;
+}

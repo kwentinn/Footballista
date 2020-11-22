@@ -1,16 +1,17 @@
-﻿using System.Diagnostics;
+﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
+using System.Diagnostics;
 
 namespace Footballista.Players.Growths
 {
 	[DebuggerDisplay("{Age} - {Stature}")]
 	public class StatureForAge
 	{
-		public Age Age { get; }
+		public PersonAge Age { get; }
 		public UnitsNet.Length Stature { get; }
 
 		public StatureForAge(int ageInYears, UnitsNet.Length stature)
 		{
-			Age = Age.FromYears(ageInYears);
+			Age = PersonAge.FromYears(ageInYears);
 			Stature = stature;
 		}
 	}

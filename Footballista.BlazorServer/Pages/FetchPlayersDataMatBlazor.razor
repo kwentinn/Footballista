@@ -1,0 +1,57 @@
+﻿@page "/fetchplayersdata-matblazor"
+
+@using Footballista.BlazorServer.Data
+@inject PlayersService playerService
+
+<h1>Generated players</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (players == null)
+{
+	<p><em>Loading...</em></p>
+}
+else
+{
+	@*<MatButton>Enregistrer joueurs</MatButton>
+	<MatButton>Charger joueurs</MatButton>*@
+
+	<MatTable Items="@players" class="mat-elevation-z5" ShowPaging="true" UseSortHeaderRow="true" PageSize="10">
+		<MatTableHeader>
+			<th>Firstname</th>
+			<th>Lastname</th>
+			<th>Nationalities</th>
+			<th>Gender</th>
+			<th>Foot</th>
+			<th>Dob</th>
+			<th>Place of birth</th>
+			<th>Height (cm)</th>
+			<th>Weight (kg)</th>
+			<th>Rating</th>
+		</MatTableHeader>
+		<MatTableRow>
+			<td>@context.Firstname</td>
+			<td>@context.Lastname</td>
+			<td>@GetNationalities(@context.Nationalities)</td>
+			<td>@context.Gender</td>
+			<td>@context.Foot</td>
+			<td>@context.BirthInfo.DateOfBirth</td>
+			<td>@context.BirthInfo.City.Name, @context.BirthInfo.City.Country</td>
+			<td>@context.Bmi.HeightInCentimeters</td>
+			<td>@context.Bmi.WeightInKilograms</td>
+			<td>@context.GeneralRating</td>
+		</MatTableRow>
+	</MatTable>
+}
+
+@code {
+	private Data.Players.Player[] players;
+
+	protected override async Task OnInitializedAsync()
+	{
+		players = await playerService.GetPlayersAsync();
+	}
+
+	protected string GetNationalities(List<string> nationalities)
+		=> string.Join(", ", nationalities);
+}

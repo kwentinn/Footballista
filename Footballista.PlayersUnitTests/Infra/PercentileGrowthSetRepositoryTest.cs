@@ -1,4 +1,5 @@
-﻿using Footballista.Players.Infrastracture.Loaders.Growths;
+﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.Players.Infrastracture.Loaders.Growths;
 using Footballista.Players.Infrastracture.Loaders.Growths.Records;
 using Footballista.Players.Infrastracture.Repositories;
 using Footballista.Players.Persons;
@@ -17,7 +18,7 @@ namespace Footballista.PlayersUnitTests.Infra
 			var statureMock = new Mock<IStatureGrowthRecordLoader>();
 			statureMock
 				.Setup(m => m.GetRecords(It.IsAny<Gender>()))
-				.Returns(() => new List<GrowthRecord>
+				.Returns(() => Maybe.Some(new List<GrowthRecord>
 				{
 					new GrowthRecord
 					{
@@ -33,12 +34,12 @@ namespace Footballista.PlayersUnitTests.Infra
 						NinetySeventhPercentile = 140,
 						NinetyEigthPercentile = 150
 					}
-				});
+				}));
 
 			var weightMock = new Mock<IWeightGrowthRecordLoader>();
 			weightMock
 				.Setup(m => m.GetRecords(It.IsAny<Gender>()))
-				.Returns(() => new List<GrowthRecord>
+				.Returns(() => Maybe.Some(new List<GrowthRecord>
 				{
 					new GrowthRecord
 					{
@@ -54,11 +55,13 @@ namespace Footballista.PlayersUnitTests.Infra
 						NinetySeventhPercentile = 140,
 						NinetyEigthPercentile = 150
 					}
-				});
+				}));
 
 			var repo = new PercentileGrowthSetRepository(statureMock.Object, weightMock.Object);
 
 			var data = repo.GetMalePercentileGrowthSet();
+
+			Assert.IsNotNull(data);
 		}
 	}
 }

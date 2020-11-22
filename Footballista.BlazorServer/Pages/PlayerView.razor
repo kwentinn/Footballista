@@ -1,0 +1,66 @@
+﻿@page "/player"
+
+@using Footballista.BlazorServer.Data
+@using Footballista.BlazorServer.Data.Players
+@inject PlayersService playerService
+
+
+
+@if (player == null)
+{
+	<h1>Generated player</h1>
+	<p><em>Loading player...</em></p>
+}
+else
+{
+	<h1>@player.Firstname @player.Lastname</h1>
+	<h2>General rating: @player.GeneralRating</h2>
+
+	<div class="mat-layout-grid">
+		<div class="mat-layout-grid-inner">
+			<div class="mat-layout-grid-cell">
+				<p>@GetNationalities(player.Nationalities)</p>
+				<p>@DisplayBirthInfo(player.BirthInfo)</p>
+				<p>@player.Gender</p>
+				<p>@player.Foot</p>
+				<p>@player.Position</p>
+				<p>@DisplayBmi(player.Bmi)</p>
+					@foreach (var item in DisplayFeatures(player.Ratings))
+					{
+						<p>@item.Key: @item.Value</p>
+					}
+				@*<MatChipSet>
+						<MatChip Label="Label">something</MatChip>
+						<MatChip Label="LeadingIcon" LeadingIcon="fav"></MatChip>
+						<MatChip Label="TrailingIcon" TrailingIcon="favorite"></MatChip>
+					</MatChipSet>*@
+			</div>
+			<div class="mat-layout-grid-cell">centre</div>
+			<div class="mat-layout-grid-cell">right</div>
+		</div>
+	</div>
+}
+
+@code {
+	private Data.Players.Player player;
+
+	protected override async Task OnInitializedAsync()
+	{
+		player = await playerService.GetPlayerAsync();
+	}
+
+	protected string GetNationalities(List<string> nationalities)
+		=> string.Join(", ", nationalities);
+
+	protected string DisplayBirthInfo(BirthInfo birthInfo)
+		=> $"Born {birthInfo.DateOfBirth} at {DisplayCity(birthInfo.City)}";
+
+	protected string DisplayCity(City city)
+		=> $"{city.Name}, {city.Country}";
+
+	protected string DisplayBmi(Bmi bmi)
+		=> $"{bmi.HeightInCentimeters}cm, {bmi.WeightInKilograms}kg";
+
+	protected Dictionary<string, int> DisplayFeatures(List<Rating> ratings)
+		=> ratings.ToDictionary(r => r.Feature, r => r.Value);
+}

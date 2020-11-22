@@ -1,0 +1,38 @@
+﻿@using Blazorise.DataGrid
+@using Footballista.Wasm.Shared.Data.Players
+@using Footballista.Wasm.Client.Components.RatingRelated
+
+<DataGrid TItem="Player" Data="@Players" PageSize="50" @ref="@grid"
+		  SelectedRowChanged="OnSelectionChanged">
+	<DataGridCommandColumn TItem="Player" />
+
+	<DataGridColumn TItem="Player" Field="@nameof(Player.Firstname)" Caption="Firstname" Sortable="true" />
+	<DataGridColumn TItem="Player" Field="@nameof(Player.Lastname)" Caption="Lastname" Sortable="true" />
+	<DataGridColumn TItem="Player" Field="@nameof(Player.Gender)" Caption="Gender" Sortable="true" />
+	<DataGridNumericColumn TItem="Player" Field="@nameof(Player.Position)" Caption="Pos." Sortable="true" />
+	<DataGridColumn TItem="Player" Field="@nameof(Player.Foot)" Caption="Foot" Sortable="true" />
+	<DataGridColumn TItem="Player" Field="@nameof(Player.Nationalities)" Caption="Nationalities" Sortable="true" />
+	<DataGridNumericColumn TItem="Player" Field="@nameof(Player.GeneralRating)" Caption="Avg." Sortable="true" />
+	<DataGridColumn TItem="Player" Field="@nameof(Player.BirthInfo)" Caption="DoB" Sortable="true">
+		<DisplayTemplate>
+			@(context.BirthInfo.DateOfBirth.DateTime)
+		</DisplayTemplate>
+	</DataGridColumn>
+	<DataGridColumn TItem="Player" Field="@nameof(Player.Bmi)" Caption="Bmi" Sortable="true">
+		<DisplayTemplate>
+			@(context.Bmi.HeightInCentimeters)cm - @(context.Bmi.WeightInKilograms)kg
+		</DisplayTemplate>
+	</DataGridColumn>
+	
+</DataGrid>
+
+@code
+{
+	private DataGrid<Player> grid;
+
+	[Parameter]
+	public List<Player> Players { get; set; }
+
+	[Parameter]
+	public EventCallback<Player> OnSelectionChanged { get; set; }
+}
