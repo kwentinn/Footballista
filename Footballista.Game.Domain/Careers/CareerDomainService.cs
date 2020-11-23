@@ -12,6 +12,8 @@ namespace Footballista.Game.Domain.Careers
             //  
             // générer les joueurs
             // sauvegarder les joueurs générés
+
+
         }
     }
 }

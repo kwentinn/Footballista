@@ -84,7 +84,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Players.App", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CQRS", "CQRS", "{B044D8B3-F405-4F6E-AA0F-1599B79C1B04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.Game.App", "Footballista.Game.App\Footballista.Game.App.csproj", "{F5A67ADA-00F9-401E-8BF7-A4BE5D8A556D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Game.App", "Footballista.Game.App\Footballista.Game.App.csproj", "{F5A67ADA-00F9-401E-8BF7-A4BE5D8A556D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.Cqrs.Commands", "Footballista.Cqrs.Commands\Footballista.Cqrs.Commands.csproj", "{AE03F07F-F2DA-40A8-A002-EA6AF1A4D683}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -168,6 +170,10 @@ Global
 		{F5A67ADA-00F9-401E-8BF7-A4BE5D8A556D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5A67ADA-00F9-401E-8BF7-A4BE5D8A556D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5A67ADA-00F9-401E-8BF7-A4BE5D8A556D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE03F07F-F2DA-40A8-A002-EA6AF1A4D683}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE03F07F-F2DA-40A8-A002-EA6AF1A4D683}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE03F07F-F2DA-40A8-A002-EA6AF1A4D683}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE03F07F-F2DA-40A8-A002-EA6AF1A4D683}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -203,6 +209,7 @@ Global
 		{7558C370-C4B2-42F0-B109-B5FBC8F6CE16} = {B044D8B3-F405-4F6E-AA0F-1599B79C1B04}
 		{56D3E32D-E8A1-4AF1-ABC0-DA4AEECFB4A8} = {C8FD54AF-2A45-464F-9927-B1D2DC5E71B6}
 		{F5A67ADA-00F9-401E-8BF7-A4BE5D8A556D} = {A297BDEE-55B6-4C38-9437-B65923CA1035}
+		{AE03F07F-F2DA-40A8-A002-EA6AF1A4D683} = {B044D8B3-F405-4F6E-AA0F-1599B79C1B04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8CA48F83-3D6D-4B67-8110-608DD680C317}
