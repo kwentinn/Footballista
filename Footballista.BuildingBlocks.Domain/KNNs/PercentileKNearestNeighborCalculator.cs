@@ -8,9 +8,9 @@ namespace Footballista.BuildingBlocks.Domain.KNNs
 {
 	public class PercentileKNearestNeighborCalculator
 	{
-		private Percentile _x; // le point pour lequel on doit chercher les plus proches voisins
-		private Percentile[] _data; // le tableau contenant les données
-		private int _k; // le nombre de voisins à chercher/renvoyer
+		private readonly Percentile _x; // le point pour lequel on doit chercher les plus proches voisins
+		private readonly Percentile[] _data; // le tableau contenant les données
+		private readonly int _k; // le nombre de voisins à chercher/renvoyer
 
 		public PercentileKNearestNeighborCalculator(Percentile x, Percentile[] data, int k = 1)
 		{
@@ -38,8 +38,7 @@ namespace Footballista.BuildingBlocks.Domain.KNNs
 				.ToList());
 		}
 
-		private Distance GetDistance(Percentile a, Percentile b)
-			=> new Distance(Math.Abs((a - b).Value));
+		private Distance GetDistance(Percentile a, Percentile b) => new Distance(Math.Abs(a.Value - b.Value));
 	}
 	public class PercentileKNearestNeighborCalculator<T>
 	{
