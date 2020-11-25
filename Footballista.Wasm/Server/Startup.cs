@@ -1,6 +1,6 @@
 using Autofac;
-using Footballista.Wasm.Server.AutofacModules;
 using Footballista.Wasm.Server.Configuration;
+using Footballista.Wasm.Server.Configuration.AutofacModules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -55,6 +55,10 @@ namespace Footballista.Wasm.Server
 				});
 		}
 
+		/// <summary>
+		/// Called automatically by AutoFac
+		/// </summary>
+		/// <param name="builder"></param>
 		public void ConfigureContainer(ContainerBuilder builder)
 		{
 			builder.RegisterModule(new PlayersModule());
@@ -62,6 +66,5 @@ namespace Footballista.Wasm.Server
 			builder.RegisterModule(new MappersModule());
 			builder.RegisterModule(new MediatRModule());
 		}
-
 	}
 }

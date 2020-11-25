@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Footballista.Wasm.Server.Services.Mappers;
 
-namespace Footballista.Wasm.Server.AutofacModules
+namespace Footballista.Wasm.Server.Configuration.AutofacModules
 {
 	internal class MappersModule : Module
 	{

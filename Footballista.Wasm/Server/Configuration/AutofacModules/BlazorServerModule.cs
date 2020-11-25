@@ -2,7 +2,7 @@
 using System.Reflection;
 using Module = Autofac.Module;
 
-namespace Footballista.Wasm.Server.AutofacModules
+namespace Footballista.Wasm.Server.Configuration.AutofacModules
 {
 	internal class BlazorWasmServerModule : Module
 	{

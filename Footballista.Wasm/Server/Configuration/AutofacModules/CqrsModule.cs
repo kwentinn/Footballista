@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-namespace Footballista.Wasm.Server.AutofacModules
+namespace Footballista.Wasm.Server.Configuration.AutofacModules
 {
 	public class CqrsModule : Module
 	{

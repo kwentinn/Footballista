@@ -16,7 +16,7 @@ using Footballista.Players.Infrastracture.Repositories;
 using Footballista.Players.Infrastracture.Repositories.Decorators;
 using System;
 
-namespace Footballista.Wasm.Server.AutofacModules
+namespace Footballista.Wasm.Server.Configuration.AutofacModules
 {
 	internal class PlayersModule : Module
 	{
