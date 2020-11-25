@@ -1,6 +1,6 @@
-﻿using Footballista.Cqrs.Queries.GetCompetitionRankings;
+﻿using Footballista.Cqrs;
+using Footballista.Cqrs.Queries.GetCompetitionRankings;
 using Footballista.Wasm.Shared.Data.Competitions;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,9 +11,9 @@ namespace Footballista.Wasm.Server.Controllers
 	[Route("[controller]")]
 	public class RankingController : ControllerBase
 	{
-		private readonly IMediator _mediator;
+		private readonly IMediatorWrapper _mediator;
 
-		public RankingController(IMediator mediator)
+		public RankingController(IMediatorWrapper mediator)
 		{
 			_mediator = mediator;
 		}
@@ -21,7 +21,7 @@ namespace Footballista.Wasm.Server.Controllers
 		[HttpGet]
 		public async Task<List<CompetitionRanking>> Get()
 		{
-			return await _mediator.Send(new GetCompetitionRanking());
+			return await _mediator.GetResultAsync(new GetCompetitionRanking());
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using Footballista.Cqrs.Base.Commands;
+using System.Threading.Tasks;
 
 namespace Footballista.Cqrs.Commands.CreateCareer
 {

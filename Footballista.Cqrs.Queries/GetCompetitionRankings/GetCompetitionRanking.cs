@@ -1,4 +1,5 @@
-﻿using Footballista.Wasm.Shared.Data.Competitions;
+﻿using Footballista.Cqrs.Base.Queries;
+using Footballista.Wasm.Shared.Data.Competitions;
 using System.Collections.Generic;
 
 namespace Footballista.Cqrs.Queries.GetCompetitionRankings

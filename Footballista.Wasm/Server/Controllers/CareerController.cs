@@ -1,8 +1,8 @@
-﻿using Footballista.Cqrs.Commands.CreateCareer;
+﻿using Footballista.Cqrs;
+using Footballista.Cqrs.Commands.CreateCareer;
 using Footballista.Wasm.Client.Dto.Models.Careers;
 using Footballista.Wasm.Server.Services;
 using Footballista.Wasm.Shared.Data.Careers;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,9 +15,9 @@ namespace Footballista.Wasm.Server.Controllers
 	public class CareerController : ControllerBase
 	{
 		private readonly ICareerService _careerService;
-		private readonly IMediator _mediator;
+		private readonly IMediatorWrapper _mediator;
 
-		public CareerController(ICareerService careerService, IMediator mediator)
+		public CareerController(ICareerService careerService, IMediatorWrapper mediator)
 		{
 			_careerService = careerService;
 			_mediator = mediator;
@@ -42,7 +42,7 @@ namespace Footballista.Wasm.Server.Controllers
 		[Route("create")]
 		public async Task<IActionResult> CreateCareer([FromBody]CareerDto career)
 		{
-			await _mediator.Send(new CreateCareerCommand());
+			await _mediator.DispatchAsync(new CreateCareerCommand());
 
 			//var r = await Task.FromResult(career);
 			return Ok();
