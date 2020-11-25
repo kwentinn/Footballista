@@ -23,7 +23,7 @@
 	
 	<ItemGroup>
 		<ProjectReference Include="..\..\Footballista.Cqrs.Commands\Footballista.Cqrs.Commands.csproj" />
-		<ProjectReference Include="..\..\Footballista.Cqrs\Footballista.Cqrs.csproj" />
+		<ProjectReference Include="..\..\Footballista.Cqrs.Queries\Footballista.Cqrs.Queries.csproj" />
 		<ProjectReference Include="..\..\Footballista.Game.Domain\Footballista.Game.Domain.csproj" />
 		<ProjectReference Include="..\..\Footballista.Players.Infrastracture\Footballista.Players.Infrastracture.csproj" />
 		<ProjectReference Include="..\..\Footballista.Players\Footballista.Players.csproj" />

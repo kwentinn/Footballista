@@ -3,12 +3,5 @@
 namespace Footballista.BuildingBlocks.Domain.KNNs.Models
 {
 	[DebuggerDisplay("{IndexValue}")]
-	public struct Position
-	{
-		public int IndexValue { get; }
-		public Position(int indexValue)
-		{
-			IndexValue = indexValue;
-		}
-	}
+	public record Position(int IndexValue);
 }

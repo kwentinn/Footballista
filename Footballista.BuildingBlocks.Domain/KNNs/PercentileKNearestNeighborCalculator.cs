@@ -30,7 +30,7 @@ namespace Footballista.BuildingBlocks.Domain.KNNs
 				(
 					new Position(index),
 					item,
-					getDistance(_x, item)
+					GetDistance(_x, item)
 				))
 				.OrderBy(d => d.Distance.Value)
 				.ThenBy(d => d.Position.IndexValue)
@@ -38,14 +38,14 @@ namespace Footballista.BuildingBlocks.Domain.KNNs
 				.ToList());
 		}
 
-		private Distance getDistance(Percentile a, Percentile b)
-			=> new Distance(Math.Abs(a.Value - b.Value));
+		private Distance GetDistance(Percentile a, Percentile b)
+			=> new Distance(Math.Abs((a - b).Value));
 	}
 	public class PercentileKNearestNeighborCalculator<T>
 	{
-		private Percentile _x; // le point pour lequel on doit chercher les plus proches voisins
-		private PercentileData<T>[] _data; // le tableau contenant les données
-		private int _k; // le nombre de voisins à chercher/renvoyer
+		private readonly Percentile _x; // le point pour lequel on doit chercher les plus proches voisins
+		private readonly PercentileData<T>[] _data; // le tableau contenant les données
+		private readonly int _k; // le nombre de voisins à chercher/renvoyer
 
 		public PercentileKNearestNeighborCalculator(Percentile x, PercentileData<T>[] data, int k = 1)
 		{
@@ -72,28 +72,15 @@ namespace Footballista.BuildingBlocks.Domain.KNNs
 				.Take(_k)
 				.ToList());;
 		}
-
-		private Distance getDistance(Percentile a, Percentile b)
-			=> new Distance(Math.Abs(a.Value - b.Value));
-	}
-	public class PercentileNearestNeighbourCalculator<T> : PercentileKNearestNeighborCalculator<T>
+    }
+    public class PercentileNearestNeighbourCalculator<T> : PercentileKNearestNeighborCalculator<T>
 	{
-		public PercentileNearestNeighbourCalculator
-		(
-			Percentile x,
-			PercentileData<T>[] data
-		) : base(x, data, 1)
+		public PercentileNearestNeighbourCalculator(Percentile x, PercentileData<T>[] data) : base(x, data, 1)
 		{
 		}
 
-		KnnResult<PercentileData<T>> GetNearestNeighbour() 
-			=> GetNearestNeighbours()
-				.Value
-				.FirstOrDefault();
+		KnnResult<PercentileData<T>> GetNearestNeighbour() => GetNearestNeighbours().Value.FirstOrDefault();
 
-		public T GetNearestNeighbourUnderlyingType() 
-			=> GetNearestNeighbour()
-				.Value
-				.Object;
+		public T GetNearestNeighbourUnderlyingType() => GetNearestNeighbour().Value.Object;
 	}
 }

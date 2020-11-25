@@ -1,4 +1,4 @@
-﻿using Footballista.Cqrs.Queries;
+﻿using Footballista.Cqrs.Queries.GetCompetitionRankings;
 using Footballista.Wasm.Shared.Data.Competitions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Footballista.Wasm.Server.Controllers
 {
-	[ApiController]
+    [ApiController]
 	[Route("[controller]")]
 	public class RankingController : ControllerBase
 	{

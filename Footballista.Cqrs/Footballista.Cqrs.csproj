@@ -12,4 +12,8 @@
 	  <ProjectReference Include="..\Footballista.Wasm\Shared\Footballista.Wasm.Shared.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="BuildingBlocks\Queries\" />
+	</ItemGroup>
+
 </Project>

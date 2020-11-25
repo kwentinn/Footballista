@@ -6,7 +6,7 @@ using System.Diagnostics;
 namespace Footballista.BuildingBlocks.Domain.Percentiles
 {
 	[DebuggerDisplay("{Value}")]
-	public struct Percentile : IEquatable<Percentile>, IComparable<Percentile>, IDistanceMeasurable<Percentile>
+	public record Percentile : IComparable<Percentile>, IDistanceMeasurable<Percentile>
 	{
 		public int Value { get; }
 
@@ -19,18 +19,6 @@ namespace Footballista.BuildingBlocks.Domain.Percentiles
 				throw new ArgumentException("Int value must be between 0 and 100.", nameof(value));
 
 			Value = value;
-		}
-
-		public bool Equals(Percentile other)
-		{
-			return Value == other.Value;
-		}
-		public override bool Equals(object obj)
-		{
-			if (obj is null) return false;
-			if (!(obj is Percentile p)) return false;
-
-			return Equals(p);
 		}
 
 		public override int GetHashCode()
@@ -48,14 +36,6 @@ namespace Footballista.BuildingBlocks.Domain.Percentiles
 			return new Distance(Math.Abs(Value - other.Value));
 		}
 
-		public static bool operator ==(Percentile left, Percentile right)
-		{
-			return left.Equals(right);
-		}
-		public static bool operator !=(Percentile left, Percentile right)
-		{
-			return !(left == right);
-		}
 		public static bool operator <(Percentile left, Percentile right)
 		{
 			return left.CompareTo(right) < 0;

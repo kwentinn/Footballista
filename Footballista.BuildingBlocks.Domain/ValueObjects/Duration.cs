@@ -5,7 +5,7 @@ using System.Diagnostics;
 namespace Footballista.BuildingBlocks.Domain.ValueObjects
 {
 	[DebuggerDisplay("{System.Math.Round(Years, 2)} yrs.")]
-	public class Duration : ValueObject, IComparable<Duration>
+	public record Duration : ValueObjectRecord, IComparable<Duration>
 	{
 		public double Years { get; }
 

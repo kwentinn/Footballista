@@ -5,7 +5,7 @@ using Date = Itenso.TimePeriod.Date;
 namespace Footballista.BuildingBlocks.Domain.ValueObjects
 {
 	[DebuggerDisplay("{System.Math.Round(Years, 1)} yrs.")]
-	public class PersonAge : ValueObject, IComparable<PersonAge>
+	public record PersonAge : ValueObjectRecord, IComparable<PersonAge>
 	{
 		public static PersonAge Min => new PersonAge(0);
 		public static PersonAge Max => new PersonAge(100);
@@ -16,13 +16,10 @@ namespace Footballista.BuildingBlocks.Domain.ValueObjects
 
 		public double Years { get; }
 
-		[IgnoreMember]
 		public double Months => Years * _monthsInYear;
 
-		[IgnoreMember]
 		public double Weeks => Years * _weeksInYear;
 
-		[IgnoreMember]
 		public double Days => Years * _daysInYear;
 
 		private PersonAge(int years)
@@ -33,6 +30,15 @@ namespace Footballista.BuildingBlocks.Domain.ValueObjects
 		{
 			Years = years;
 		}
+
+		public static implicit operator double(PersonAge personAge)
+        {
+			return personAge.Years;
+        }
+		public static implicit operator PersonAge(double age)
+        {
+			return FromYears(age);
+        }
 
 		public static PersonAge FromYears(int years) => new PersonAge(years);
 		public static PersonAge FromYears(double years) => new PersonAge(years);
@@ -68,5 +74,7 @@ namespace Footballista.BuildingBlocks.Domain.ValueObjects
 		/// </summary>
 		/// <returns></returns>
 		public PersonAge AsRoundedYears() => new PersonAge(Math.Round(Years, 0));
+
+
 	}
 }

@@ -8,7 +8,7 @@ using System.Linq;
 namespace Footballista.BuildingBlocks.Domain.ValueObjects
 {
 	[DebuggerDisplay("{EnglishName}")]
-	public class Country : ValueObject
+	public record Country : ValueObjectRecord
 	{
 		public string CountryCode { get; }
 		public string EnglishName { get; }

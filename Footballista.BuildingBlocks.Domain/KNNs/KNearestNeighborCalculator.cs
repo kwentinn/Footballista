@@ -29,13 +29,13 @@ namespace Footballista.BuildingBlocks.Domain.KNNs
 				(
 					new Position(index), 
 					item, 
-					getDistance(_x, item)
+					GetDistance(_x, item)
 				))
 				.OrderBy(d => d.Distance.Value)
 				.Take(_k)
 				.ToList();
 		}
 
-		private Distance getDistance(int a, int b) => new Distance(Math.Abs(a - b));
+		private Distance GetDistance(int a, int b) => new Distance(Math.Abs(a - b));
 	}
 }

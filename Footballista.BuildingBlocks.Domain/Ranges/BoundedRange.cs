@@ -9,8 +9,7 @@ namespace Footballista.BuildingBlocks.Domain
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	[DebuggerDisplay("{Lower} - {Upper}")]
-	public class BoundedRange<T> : ValueObject
-		where T : IComparable<T>
+    public record BoundedRange<T> : ValueObjectRecord where T :  IComparable<T>
 	{
 		/// <summary>
 		/// Lower bound

@@ -1,17 +1,18 @@
 ﻿using Autofac;
 using Footballista.Cqrs;
 using Footballista.Cqrs.Commands;
+using Footballista.Cqrs.Queries;
 using MediatR;
 using System.Reflection;
 using Module = Autofac.Module;
 
 namespace Footballista.Wasm.Server.Configuration.AutofacModules
 {
-	internal class MediatRModule : Module
+    internal class MediatRModule : Module
 	{
 		private readonly Assembly[] _assemblies = new Assembly[]
 		{
-			// typeof(Startup).Assembly,
+			FootballistaCqrsQueries.Assembly,
 			FootballistaCqrsCommands.Assembly,
 			FootballistaCqrs.Assembly
 		};

@@ -6,8 +6,7 @@ namespace Footballista.Clubs.Domain.Teams.Rules
 	{
 		private readonly int _number;
 
-		private static BoundedRange<int> _allowedNumbers
-			= BoundedRange<int>.CreateIncluded(1, 99);
+		private static readonly BoundedRange<int> _allowedNumbers = BoundedRange<int>.CreateIncluded(1, 99);
 
 		public string Message => "Number must be between 1 and 99.";
 

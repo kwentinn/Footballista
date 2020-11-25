@@ -4,7 +4,7 @@ using System.Diagnostics;
 namespace Footballista.BuildingBlocks.Domain
 {
 	[DebuggerDisplay("[{BoundType} {BoundValue}]")]
-	public class Bound<T> where T : IComparable<T>
+	public record Bound<T> where T : IComparable<T>
 	{
 		public T BoundValue { get; }
 		public BoundType BoundType { get; }
