@@ -2,6 +2,7 @@
 using Footballista.BuildingBlocks.Domain.Percentiles;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Builders.Generators;
+using Footballista.Players.Builders.Generators.FeatureGeneration.RatingRanges;
 using Footballista.Players.Builders.Randomisers;
 using Footballista.Players.Features;
 using Footballista.Players.Persons;
@@ -16,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Footballista.Players.Builders
 {
-	public class YoungPlayerGenerator : IPlayerGenerator
+    public class YoungPlayerGenerator : IPlayerGenerator
 	{
 		private readonly IPersonNameGenerator _nameGenerator;
 		private readonly IGenderGenerator _genderGenerator;
@@ -86,6 +87,7 @@ namespace Footballista.Players.Builders
 				.ForBmi(bmi)
 				.ForCountry(countries.FirstOrDefault())
 				.ForPersonAge(playerAge)
+				.ForPlayerStatus(PlayerStatus.Superstar)
 				.Generate();
 
 			// first name & last name => according to the player's country

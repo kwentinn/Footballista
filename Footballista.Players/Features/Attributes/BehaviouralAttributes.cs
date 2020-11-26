@@ -1,7 +1,5 @@
 ﻿using Footballista.Players.Features.Attributes.Base;
 using Footballista.Players.Positions;
-using System;
-using System.Collections.Generic;
 
 namespace Footballista.Players.Features.Attributes
 {

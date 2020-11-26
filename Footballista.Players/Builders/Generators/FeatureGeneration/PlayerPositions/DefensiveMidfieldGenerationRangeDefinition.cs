@@ -1,9 +1,10 @@
-﻿using Footballista.Players.Features;
+﻿using Footballista.Players.Builders.Generators.FeatureGeneration.PlayerPositions.Base;
+using Footballista.Players.Features;
 using Footballista.Players.Positions;
 
 namespace Footballista.Players.Builders.Generators.FeatureGeneration.PlayerPositions
 {
-	internal class DefensiveMidfieldGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
+    internal class DefensiveMidfieldGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
 	{
 		public DefensiveMidfieldGenerationRangeDefinition(PlayerPosition position) : base(position)
 		{

@@ -1,9 +1,10 @@
-﻿using Footballista.Players.Features;
+﻿using Footballista.Players.Builders.Generators.FeatureGeneration.PlayerPositions.Base;
+using Footballista.Players.Features;
 using Footballista.Players.Positions;
 
 namespace Footballista.Players.Builders.Generators.FeatureGeneration.PlayerPositions
 {
-	internal class GoalKeeperGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
+    internal class GoalKeeperGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
 	{
 		public GoalKeeperGenerationRangeDefinition(PlayerPosition position) : base(position)
 		{

@@ -1,10 +1,11 @@
 ﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.Players.Builders.Generators.FeatureGeneration.PlayerPositions.Base;
 using Footballista.Players.Features;
 using Footballista.Players.Positions;
 
 namespace Footballista.Players.Builders.Generators.FeatureGeneration.PlayerPositions
 {
-	public class WingerGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
+    public class WingerGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
 	{
 		internal WingerGenerationRangeDefinition(PlayerPosition position) : base(position)
 		{
