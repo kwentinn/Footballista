@@ -14,6 +14,7 @@ namespace Footballista.Cqrs.Commands.CreateCareer
             // Career careerToCreate = new CareerBuilder(command.Name)
             //    .WithPlayerClub(command.Club)
             // domainService.createCareer()
+            await Task.Delay(0);
         }
     }
 }

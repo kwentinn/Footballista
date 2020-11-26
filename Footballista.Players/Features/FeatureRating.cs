@@ -6,7 +6,7 @@ using System.Diagnostics;
 namespace Footballista.Players.Features
 {
 	[DebuggerDisplay("{Value * 100}")]
-	public class Rating : ValueObject, IComparable<Rating>
+	public record Rating : ValueObjectRecord, IComparable<Rating>
 	{
 		public static Rating Min => new Rating(0.01);
 		public static Rating Max => new Rating(0.99);
@@ -26,6 +26,8 @@ namespace Footballista.Players.Features
 
 		public override string ToString() => $"{Value:N0}";
 		public override int GetHashCode() => Value.GetHashCode();
+
+		public static implicit operator Rating(double d) => new Rating(d);
 
 		public static Rating operator *(Rating rating1, Rating rating2)
 		{

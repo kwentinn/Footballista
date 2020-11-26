@@ -43,7 +43,6 @@ namespace Footballista.Players.IntegrationTests
 		private readonly BirthLocationGenerator _birthLocationGenerator;
 		private readonly PercentileGenerator _percentileGenerator;
 		private readonly FavouriteFootGenerator _favouriteFootGenerator;
-		private readonly PhysicalFeatureSetGenerator _physicalFeatureSetGenerator;
 		private readonly StatureGrowthRecordLoader _statureGrLoader;
 		private readonly WeightGrowthRecordLoader _weightGrLoader;
 		private readonly PercentileGrowthSetRepository _percentileGrRepository;
@@ -51,7 +50,8 @@ namespace Footballista.Players.IntegrationTests
 		private readonly CountriesGenerator _countriesGenerator;
 		private readonly GrowthSetGenerator _growthSetGenerator;
 		private readonly PlayerPositionGenerator _playerPositionGenerator;
-		private readonly Mock<IHostEnvironment> _mockHostingEnv;
+        private readonly FeatureRatingRandomiser _ratingRandomiser;
+        private readonly Mock<IHostEnvironment> _mockHostingEnv;
 
 		public YoungPlayerBuilderTest()
 		{
@@ -84,7 +84,6 @@ namespace Footballista.Players.IntegrationTests
 			_birthLocationGenerator = new BirthLocationGenerator(_worldCitiesLoader, _listRandomiser);
 			_percentileGenerator = new PercentileGenerator(_intRandomiser);
 			_favouriteFootGenerator = new FavouriteFootGenerator(_percentileGenerator);
-			_physicalFeatureSetGenerator = new PhysicalFeatureSetGenerator(_featureRatingRandomiser);
 			_statureGrLoader = new StatureGrowthRecordLoader(_dataPathHelper);
 			_weightGrLoader = new WeightGrowthRecordLoader(_dataPathHelper);
 			_percentileGrRepository = new PercentileGrowthSetRepository(_statureGrLoader, _weightGrLoader);
@@ -92,51 +91,46 @@ namespace Footballista.Players.IntegrationTests
 			_countriesGenerator = new CountriesGenerator(_listRandomiser, _intRandomiser, _multipleIntValuesRandomiser);
 			_growthSetGenerator = new GrowthSetGenerator(_percentileGrRepository, _listRandomiser);
 			_playerPositionGenerator = new PlayerPositionGenerator(_percentileGenerator);
+			_ratingRandomiser = new FeatureRatingRandomiser(_intRandomiser);
 		}
 
 		[TestMethod]
 		public void Build()
 		{
-			var generator = new YoungPlayerGenerator(
-				nameGenerator: _personNameGenerator,
-				genderGenerator: _genderGenerator,
-				dobGenerator: _dobGenerator,
-				birthLocationGenerator: _birthLocationGenerator,
-				favouriteFootGenerator: _favouriteFootGenerator,
-				physicalFeatureSetGenerator: _physicalFeatureSetGenerator,
-				bmiGenerator: _bmiGenerator,
-				countriesGenerator: _countriesGenerator,
-				growthSetGenerator: _growthSetGenerator,
-				percentileGenerator: _percentileGenerator,
-				playerPositionGenerator: _playerPositionGenerator,
-				game: _game
-			);
+			YoungPlayerGenerator generator = CreateNewYoungPlayerGenerator();
 
-			var player = generator.Generate();
+
+			Player player = generator.Generate();
 
 			var t = player.GeneralRating;
 
 			Assert.IsNotNull(player);
 		}
-		[TestMethod]
-		public void BuildMany_Pass10_ShouldReturn10Players()
-		{
-			var builder = new YoungPlayerGenerator(
+
+		private YoungPlayerGenerator CreateNewYoungPlayerGenerator()
+        {
+			return new YoungPlayerGenerator(
 				nameGenerator: _personNameGenerator,
 				genderGenerator: _genderGenerator,
 				dobGenerator: _dobGenerator,
 				birthLocationGenerator: _birthLocationGenerator,
 				favouriteFootGenerator: _favouriteFootGenerator,
-				physicalFeatureSetGenerator: _physicalFeatureSetGenerator,
 				bmiGenerator: _bmiGenerator,
 				countriesGenerator: _countriesGenerator,
 				growthSetGenerator: _growthSetGenerator,
 				percentileGenerator: _percentileGenerator,
 				playerPositionGenerator: _playerPositionGenerator,
-				game: _game
+				game: _game,
+				_ratingRandomiser
 			);
+		}
 
-			Player[] players = builder.GenerateMany(10);
+		[TestMethod]
+		public void BuildMany_Pass10_ShouldReturn10Players()
+		{
+            YoungPlayerGenerator generator = CreateNewYoungPlayerGenerator();
+
+			Player[] players = generator.GenerateMany(10);
 
 			Assert.IsNotNull(players);
 			Assert.AreEqual(10, players.Length);
@@ -146,22 +140,9 @@ namespace Footballista.Players.IntegrationTests
 		[TestMethod]
 		public void BuildMany_Pass100_ShouldReturn100Players()
 		{
-			var builder = new YoungPlayerGenerator(
-				nameGenerator: _personNameGenerator,
-				genderGenerator: _genderGenerator,
-				dobGenerator: _dobGenerator,
-				birthLocationGenerator: _birthLocationGenerator,
-				favouriteFootGenerator: _favouriteFootGenerator,
-				physicalFeatureSetGenerator: _physicalFeatureSetGenerator,
-				bmiGenerator: _bmiGenerator,
-				countriesGenerator: _countriesGenerator,
-				growthSetGenerator: _growthSetGenerator,
-				percentileGenerator: _percentileGenerator,
-				playerPositionGenerator: _playerPositionGenerator,
-				game: _game
-			);
+            YoungPlayerGenerator generator = CreateNewYoungPlayerGenerator();
 
-			Player[] players = builder.GenerateMany(100);
+			Player[] players = generator.GenerateMany(100);
 
 			Assert.IsNotNull(players);
 			Assert.AreEqual(100, players.Length);
@@ -171,22 +152,9 @@ namespace Footballista.Players.IntegrationTests
 		[TestMethod]
 		public void BuildMany_Parallel_Pass10_ShouldReturn100Players()
 		{
-			var builder = new YoungPlayerGenerator(
-				nameGenerator: _personNameGenerator,
-				genderGenerator: _genderGenerator,
-				dobGenerator: _dobGenerator,
-				birthLocationGenerator: _birthLocationGenerator,
-				favouriteFootGenerator: _favouriteFootGenerator,
-				physicalFeatureSetGenerator: _physicalFeatureSetGenerator,
-				bmiGenerator: _bmiGenerator,
-				countriesGenerator: _countriesGenerator,
-				growthSetGenerator: _growthSetGenerator,
-				percentileGenerator: _percentileGenerator,
-				playerPositionGenerator: _playerPositionGenerator,
-				game: _game
-			);
+			var generator = CreateNewYoungPlayerGenerator();
 
-			Player[] players = builder.GenerateManyParallel(10);
+			Player[] players = generator.GenerateManyParallel(10);
 
 			Assert.IsNotNull(players);
 			Assert.AreEqual(10, players.Length);
@@ -197,20 +165,7 @@ namespace Footballista.Players.IntegrationTests
 		[TestMethod]
 		public void BuildMany_Parallel_Pass100_ShouldReturn100Players()
 		{
-			var builder = new YoungPlayerGenerator(
-				nameGenerator: _personNameGenerator,
-				genderGenerator: _genderGenerator,
-				dobGenerator: _dobGenerator,
-				birthLocationGenerator: _birthLocationGenerator,
-				favouriteFootGenerator: _favouriteFootGenerator,
-				physicalFeatureSetGenerator: _physicalFeatureSetGenerator,
-				bmiGenerator: _bmiGenerator,
-				countriesGenerator: _countriesGenerator,
-				growthSetGenerator: _growthSetGenerator,
-				percentileGenerator: _percentileGenerator,
-				playerPositionGenerator: _playerPositionGenerator,
-				game: _game
-			);
+			var builder = CreateNewYoungPlayerGenerator();
 
 			Player[] players = builder.GenerateManyParallel(100);
 
@@ -223,20 +178,7 @@ namespace Footballista.Players.IntegrationTests
 		[TestMethod]
 		public async Task BuildAsync()
 		{
-			var builder = new YoungPlayerGenerator(
-				nameGenerator: _personNameGenerator,
-				genderGenerator: _genderGenerator,
-				dobGenerator: _dobGenerator,
-				birthLocationGenerator: _birthLocationGenerator,
-				favouriteFootGenerator: _favouriteFootGenerator,
-				physicalFeatureSetGenerator: _physicalFeatureSetGenerator,
-				bmiGenerator: _bmiGenerator,
-				countriesGenerator: _countriesGenerator,
-				growthSetGenerator: _growthSetGenerator,
-				percentileGenerator: _percentileGenerator,
-				playerPositionGenerator: _playerPositionGenerator,
-				game: _game
-			);
+			var builder = CreateNewYoungPlayerGenerator();
 
 			Player player = await builder.GenerateAsync(Persons.Gender.Male);
 
@@ -245,20 +187,7 @@ namespace Footballista.Players.IntegrationTests
 		[TestMethod]
 		public async Task BuildManyAsync_Pass10_ShouldReturn10GeneratedPlayers()
 		{
-			var builder = new YoungPlayerGenerator(
-				nameGenerator: _personNameGenerator,
-				genderGenerator: _genderGenerator,
-				dobGenerator: _dobGenerator,
-				birthLocationGenerator: _birthLocationGenerator,
-				favouriteFootGenerator: _favouriteFootGenerator,
-				physicalFeatureSetGenerator: _physicalFeatureSetGenerator,
-				bmiGenerator: _bmiGenerator,
-				countriesGenerator: _countriesGenerator,
-				growthSetGenerator: _growthSetGenerator,
-				percentileGenerator: _percentileGenerator,
-				playerPositionGenerator: _playerPositionGenerator,
-				game: _game
-			);
+			var builder = CreateNewYoungPlayerGenerator();
 
 			Player[] players = await builder.GenerateManyAsync(10);
 

@@ -13,6 +13,7 @@ namespace Footballista.Players.Features
 		private readonly Guid _id = Guid.NewGuid();
 
 		public PositionCategory PositionCategory { get; }
+
 		public ReadOnlyCollection<PhysicalFeature> PhysicalFeatures => _physicalFeatures.AsReadOnly();
 		private readonly List<PhysicalFeature> _physicalFeatures = new List<PhysicalFeature>();
 
@@ -50,7 +51,5 @@ namespace Footballista.Players.Features
 			PositionCategory = positionCategory ?? throw new System.ArgumentNullException(nameof(positionCategory));
 			_physicalFeatures = physicalFeatures ?? throw new System.ArgumentNullException(nameof(physicalFeatures));
 		}
-
-
 	}
 }

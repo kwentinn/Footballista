@@ -12,31 +12,46 @@ using System.Threading.Tasks;
 
 namespace Footballista.Players.Builders.Generators
 {
-	public interface IPhysicalFeatureSetGenerator
-	{
-		PhysicalFeatureSet Generate(PlayerPosition position, BodyMassIndex bmi, Country country, PersonAge playerAge);
-	}
+	public class PlayerFeatureGenerator
+    {
+		private static Range<Rating> YoungPlayerFeatureRatingRange => new Range<Rating>(.3, .65);
 
-	public class PhysicalFeatureSetGenerator : IPhysicalFeatureSetGenerator
-	{
-		private readonly IRandomiser<Rating> _randomiser;
+		private PlayerPosition position;
+        private BodyMassIndex bmi;
+        private Country country;
+		private PersonAge playerAge;
+		private readonly IRandomiser<Rating> randomiser;
 
-		private static Range<Rating> _youngPlayerFeatureRatingRange
-			=> new Range<Rating>(new Rating(.2), new Rating(.55));
+        public PlayerFeatureGenerator(IRandomiser<Rating> randomiser)
+        {
+            this.randomiser = randomiser;
+        }
 
-		private static Range<Rating> _standardPlayerFeatureRatingRange
-			=> new Range<Rating>(new Rating(.35), new Rating(.85));
-		private static Range<Rating> _specialPlayerFeatureRatingRange
-			=> new Range<Rating>(new Rating(.5), new Rating(.99));
+		public PlayerFeatureGenerator ForPosition(PlayerPosition position)
+        {
+			this.position = position;
+			return this;
+        }
+        public PlayerFeatureGenerator ForBmi(BodyMassIndex bmi)
+        {
+			this.bmi = bmi;
+			return this;
+        }
+        public PlayerFeatureGenerator ForCountry(Country country)
+        {
+			this.country = country;
+			return this;
+        }
+        public PlayerFeatureGenerator ForPersonAge(PersonAge playerAge)
+        {
+			this.playerAge = playerAge;
+			return this;
+        }
 
-		public PhysicalFeatureSetGenerator(IRandomiser<Rating> randomiser)
-		{
-			_randomiser = randomiser;
-		}
-
-		public PhysicalFeatureSet Generate(PlayerPosition position, BodyMassIndex bmi, Country country, PersonAge playerAge)
-		{
-			PlayerPositionGenerationRangeDefinition playerPositionGenRange = PlayerPositionGenerationRangeDefinition.GetFromPosition(position);
+		public PhysicalFeatureSet Generate()
+        {
+			PlayerPositionGenerationRangeDefinition playerPositionGenRange = 
+				PlayerPositionGenerationRangeDefinition.GetFromPosition(position);
 
 			ReadOnlyCollection<GenRange> positionGenRanges = playerPositionGenRange.GetGenerationRangeDefinitions();
 			ReadOnlyCollection<GenRange> bmiGenRanges = BodyMassIndexGenerationRangeDefinition.Generate(bmi, playerAge);
@@ -44,15 +59,13 @@ namespace Footballista.Players.Builders.Generators
 			// plages de génération différentes en fonction de 
 			// - la position du joueur
 			// - du BMI
-			// - du pays (à voir plus tard)
+			// - [TODO] du pays (à voir plus tard)
 			// - [TODO] de l'âge du joueur
 
 			PhysicalFeatureSet set = PhysicalFeatureSet.CreateFeatureSet(position.PositionCategory);
 
 			Parallel.ForEach(set.PhysicalFeatures, feature =>
 			{
-				//	foreach (PhysicalFeature feature in set.PhysicalFeatures)
-				//{
 				Rating rating;
 
 				GenRange genRangeFromPosition = positionGenRanges.FirstOrDefault(c => c.FeatureType == feature.FeatureType);
@@ -65,13 +78,13 @@ namespace Footballista.Players.Builders.Generators
 						genRangeFromBmi.RatingRange,
 						genRangeFromPosition.RatingRange
 					});
-					rating = _randomiser.Randomise(range);
+					rating = this.randomiser.Randomise(range);
 				}
 				else
 				{
 					if (genRangeFromPosition != null)
 					{
-						rating = _randomiser.Randomise(genRangeFromPosition.RatingRange);
+						rating = this.randomiser.Randomise(genRangeFromPosition.RatingRange);
 					}
 					else
 					{
@@ -81,12 +94,11 @@ namespace Footballista.Players.Builders.Generators
 						//}
 						//else
 						//{
-						rating = _randomiser.Randomise(_youngPlayerFeatureRatingRange);
+						rating = this.randomiser.Randomise(YoungPlayerFeatureRatingRange);
 						//}
 					}
 				}
 				feature.ChangeRating(rating);
-				//}
 			});
 			return set;
 		}

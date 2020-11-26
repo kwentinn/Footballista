@@ -16,6 +16,8 @@ namespace Footballista.Players.Positions
 			Name = name;
 			PositionCategory = positionCategory;
 		}
+		private PlayerPosition(string name) : this(name, PositionCategory.None) { }
+
 
 		// goalie
 		public static PlayerPosition GoalKeeper => new PlayerPosition(nameof(GoalKeeper), PositionCategory.GoalKeeper);
@@ -37,8 +39,10 @@ namespace Footballista.Players.Positions
 		public static PlayerPosition SecondStriker => new PlayerPosition(nameof(SecondStriker), PositionCategory.Forward);
 		public static PlayerPosition Winger => new PlayerPosition(nameof(Winger), PositionCategory.Forward);
 
+		public static PlayerPosition Any => new PlayerPosition(nameof(Any));
+
 		// all positions
-		private static List<PlayerPosition> _allPositions = new List<PlayerPosition>
+		private readonly static List<PlayerPosition> _allPositions = new List<PlayerPosition>
 		{
 			PlayerPosition.GoalKeeper,
 

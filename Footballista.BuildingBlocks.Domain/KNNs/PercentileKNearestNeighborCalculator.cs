@@ -38,7 +38,7 @@ namespace Footballista.BuildingBlocks.Domain.KNNs
 				.ToList());
 		}
 
-		private Distance GetDistance(Percentile a, Percentile b) => new Distance(Math.Abs(a.Value - b.Value));
+		private static Distance GetDistance(Percentile a, Percentile b) => new Distance(Math.Abs(a.Value - b.Value));
 	}
 	public class PercentileKNearestNeighborCalculator<T>
 	{

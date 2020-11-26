@@ -2,13 +2,13 @@
 using Footballista.BuildingBlocks.Domain.Percentiles;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Builders.Generators;
+using Footballista.Players.Builders.Randomisers;
 using Footballista.Players.Features;
 using Footballista.Players.Persons;
 using Footballista.Players.Physique;
 using Footballista.Players.PlayerNames;
 using Footballista.Players.Positions;
 using Itenso.TimePeriod;
-using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,28 +23,28 @@ namespace Footballista.Players.Builders
 		private readonly IDateOfBirthGenerator _dobGenerator;
 		private readonly IBirthLocationGenerator _birthLocationGenerator;
 		private readonly IFavouriteFootGenerator _favouriteFootGenerator;
-		private readonly IPhysicalFeatureSetGenerator _physicalFeatureSetGenerator;
 		private readonly IBodyMassIndexGenerator _bmiGenerator;
 		private readonly ICountriesGenerator _countriesGenerator;
 		private readonly IGrowthSetGenerator _growthSetGenerator;
 		private readonly IPercentileGenerator _percentileGenerator;
 		private readonly IPlayerPositionGenerator _playerPositionGenerator;
 		private readonly IGame _game;
+        private readonly IRandomiser<Rating> randomiser;
 
-		public YoungPlayerGenerator
+        public YoungPlayerGenerator
 		(
 			IPersonNameGenerator nameGenerator,
 			IGenderGenerator genderGenerator,
 			IDateOfBirthGenerator dobGenerator,
 			IBirthLocationGenerator birthLocationGenerator,
 			IFavouriteFootGenerator favouriteFootGenerator,
-			IPhysicalFeatureSetGenerator physicalFeatureSetGenerator,
 			IBodyMassIndexGenerator bmiGenerator,
 			ICountriesGenerator countriesGenerator,
 			IGrowthSetGenerator growthSetGenerator,
 			IPercentileGenerator percentileGenerator,
 			IPlayerPositionGenerator playerPositionGenerator,
-			IGame game
+			IGame game,
+			IRandomiser<Rating> randomiser
 		)
 		{
 			_nameGenerator = nameGenerator;
@@ -52,14 +52,14 @@ namespace Footballista.Players.Builders
 			_dobGenerator = dobGenerator;
 			_birthLocationGenerator = birthLocationGenerator;
 			_favouriteFootGenerator = favouriteFootGenerator;
-			_physicalFeatureSetGenerator = physicalFeatureSetGenerator;
 			_bmiGenerator = bmiGenerator;
 			_countriesGenerator = countriesGenerator;
 			_growthSetGenerator = growthSetGenerator;
 			_percentileGenerator = percentileGenerator;
 			_playerPositionGenerator = playerPositionGenerator;
 			_game = game;
-		}
+            this.randomiser = randomiser;
+        }
 
 		public Player Generate(Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
 		{
@@ -80,7 +80,13 @@ namespace Footballista.Players.Builders
 			Percentile percentile = _percentileGenerator.Generate();
 			BodyMassIndex bmi = _bmiGenerator.Generate(countries.FirstOrDefault(), playerGender.Value, percentile, dob);
 			PlayerPosition position = _playerPositionGenerator.Generate();
-			PhysicalFeatureSet playerFeatureSet = _physicalFeatureSetGenerator.Generate(position, bmi, countries.FirstOrDefault(), playerAge);
+			
+			PhysicalFeatureSet playerFeatureSet = new PlayerFeatureGenerator(randomiser)
+				.ForPosition(position)
+				.ForBmi(bmi)
+				.ForCountry(countries.FirstOrDefault())
+				.ForPersonAge(playerAge)
+				.Generate();
 
 			// first name & last name => according to the player's country
 			return new PlayerBuilder()
@@ -147,7 +153,13 @@ namespace Footballista.Players.Builders
 			Percentile percentile = _percentileGenerator.Generate();
 			BodyMassIndex bmi = _bmiGenerator.Generate(countries.FirstOrDefault(), playerGender.Value, percentile, dob);
 			PlayerPosition position = _playerPositionGenerator.Generate();
-			PhysicalFeatureSet playerFeatureSet = _physicalFeatureSetGenerator.Generate(position, bmi, countries.FirstOrDefault(), playerAge);
+			
+			PhysicalFeatureSet playerFeatureSet = new PlayerFeatureGenerator(randomiser)
+				.ForPosition(position)
+				.ForBmi(bmi)
+				.ForCountry(countries.FirstOrDefault())
+				.ForPersonAge(playerAge)
+				.Generate();
 
 			// first name & last name => according to the player's country
 			return new PlayerBuilder()
