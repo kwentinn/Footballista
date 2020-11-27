@@ -357,3 +357,5 @@ MigrationBackup/
 .ionide/
 
 Footballista.Players/obj/
+
+.sonarqube/
