@@ -1,7 +1,7 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using Footballista.Players.Persons;
+using Footballista.Players.Domain.Persons;
 using System;
 
 namespace Footballista.Players.Infrastracture.Loaders.Firstnames.ClassMaps.Converters

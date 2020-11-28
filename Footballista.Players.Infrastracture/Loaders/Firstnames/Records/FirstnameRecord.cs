@@ -1,4 +1,4 @@
-﻿using Footballista.Players.Persons;
+﻿using Footballista.Players.Domain.Persons;
 using System.Diagnostics;
 
 namespace Footballista.Players.Infrastracture.Loaders.Firstnames.Records

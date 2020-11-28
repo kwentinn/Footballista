@@ -1,7 +1,7 @@
 ﻿using CsvHelper;
 using Footballista.BuildingBlocks.Domain;
+using Footballista.Players.Domain.Persons;
 using Footballista.Players.Infrastracture.Loaders.Growths.Records;
-using Footballista.Players.Persons;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;

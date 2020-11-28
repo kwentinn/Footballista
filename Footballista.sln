@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Players", "Footballista.Players\Footballista.Players.csproj", "{B3A2A0A7-5848-447D-A6B7-5746BC18BDCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Players.Domain", "Footballista.Players.Domain\Footballista.Players.Domain.csproj", "{B3A2A0A7-5848-447D-A6B7-5746BC18BDCF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.PlayersUnitTests", "Footballista.PlayersUnitTests\Footballista.PlayersUnitTests.csproj", "{767D360D-AA4C-47D3-A330-6148340AE91C}"
 EndProject
@@ -88,7 +88,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Game.App", "Fo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Cqrs.Commands", "Footballista.Cqrs.Commands\Footballista.Cqrs.Commands.csproj", "{AE03F07F-F2DA-40A8-A002-EA6AF1A4D683}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.Cqrs.Queries", "Footballista.Cqrs.Queries\Footballista.Cqrs.Queries.csproj", "{C250A25F-4AB2-4695-91AB-1EDEE250BCFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Cqrs.Queries", "Footballista.Cqrs.Queries\Footballista.Cqrs.Queries.csproj", "{C250A25F-4AB2-4695-91AB-1EDEE250BCFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

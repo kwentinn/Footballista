@@ -1,12 +1,12 @@
 ﻿using FluentAssertions;
+using Footballista.Players.Domain.Positions;
 using Footballista.Players.Features.Attributes;
-using Footballista.Players.Positions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Footballista.PlayersUnitTests.Domain
 {
 
-    [TestClass]
+	[TestClass]
     public class AttributesTest
     {
         [TestMethod]

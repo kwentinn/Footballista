@@ -30,7 +30,7 @@
 		<ProjectReference Include="..\..\Footballista.Cqrs.Queries\Footballista.Cqrs.Queries.csproj" />
 		<ProjectReference Include="..\..\Footballista.Game.Domain\Footballista.Game.Domain.csproj" />
 		<ProjectReference Include="..\..\Footballista.Players.Infrastracture\Footballista.Players.Infrastracture.csproj" />
-		<ProjectReference Include="..\..\Footballista.Players\Footballista.Players.csproj" />
+		<ProjectReference Include="..\..\Footballista.Players.Domain\Footballista.Players.Domain.csproj" />
 		<ProjectReference Include="..\Client\Footballista.Wasm.Client.csproj" />
 		<ProjectReference Include="..\Shared\Footballista.Wasm.Shared.csproj" />
 	</ItemGroup>
