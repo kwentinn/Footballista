@@ -10,7 +10,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Footballista.BuildingBlocks.Domain\Footballista.BuildingBlocks.Domain.csproj" />
-		<ProjectReference Include="..\Footballista.Players\Footballista.Players.Domain.csproj" />
+		<ProjectReference Include="..\Footballista.Players.Domain\Footballista.Players.Domain.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
