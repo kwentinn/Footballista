@@ -9,8 +9,6 @@ namespace Footballista.Players.IntegrationTests.PlayerGenerators.Builders
 {
 	internal class YoungPlayerGeneratorBuilder
 	{
-		private FirstnameGenerator _firstnameGenerator;
-		private LastnameGenerator _lastnameGenerator;
 		private PersonNameGenerator _personNameGenerator;
 		private GenderGenerator _genderGenerator;
 		private DateOfBirthGenerator _dobGenerator;

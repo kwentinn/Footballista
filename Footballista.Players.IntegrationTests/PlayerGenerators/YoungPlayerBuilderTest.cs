@@ -1,3 +1,4 @@
+using FluentAssertions;
 using Footballista.Players.Builders;
 using Footballista.Players.Builders.Generators;
 using Footballista.Players.Builders.Randomisers;
@@ -98,12 +99,10 @@ namespace Footballista.Players.IntegrationTests
 		{
 			YoungPlayerGenerator generator = CreateNewYoungPlayerGenerator();
 
-
 			Player player = generator.Generate();
 
-			var t = player.GeneralRating;
-
-			Assert.IsNotNull(player);
+			player.Should().NotBeNull();
+			player.GeneralRating.Should().NotBeNull();
 		}
 
 		private YoungPlayerGenerator CreateNewYoungPlayerGenerator()
