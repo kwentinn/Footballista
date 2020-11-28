@@ -1,4 +1,5 @@
-﻿using Footballista.Players.Features.GlobalRatingCalculators.RatingConfigs.Base;
+﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.Players.Features.GlobalRatingCalculators.RatingConfigs.Base;
 using Footballista.Players.Positions;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace Footballista.Players.Features.GlobalRatingCalculators
 {
 	public class GlobalRatingCalculator
 	{
-		public readonly List<PlayerRatingConfigBase> _playerRatingWeightings = new List<PlayerRatingConfigBase>()
+		private readonly List<PlayerRatingConfigBase> _playerRatingWeightings = new List<PlayerRatingConfigBase>()
 		{
 			new RatingConfigs.AttackingMidfielderRatingConfig(),
 			new RatingConfigs.CentreBackRatingConfig(),
@@ -26,8 +27,8 @@ namespace Footballista.Players.Features.GlobalRatingCalculators
 
 		public Rating Calculate(PlayerPosition position, PhysicalFeatureSet featureSet)
 		{
-			if (position is null) throw new ArgumentNullException(nameof(position));
-			if (featureSet is null) throw new ArgumentNullException(nameof(featureSet));
+			Ensure.IsNotNull(position, nameof(position));
+			Ensure.IsNotNull(featureSet, nameof(featureSet));
 
 			// récupération de la config de rating
 			PlayerRatingConfigBase config = _playerRatingWeightings

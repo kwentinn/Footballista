@@ -6,7 +6,7 @@ using System.Globalization;
 namespace Footballista.Players.PlayerNames
 {
 	[DebuggerDisplay("{Value}")]
-	public class Lastname : ValueObject
+	public record Lastname : ValueObjectRecord
 	{
 		public string Value { get; }
 

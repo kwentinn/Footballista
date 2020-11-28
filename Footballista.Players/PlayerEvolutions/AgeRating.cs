@@ -7,7 +7,7 @@ using System.Diagnostics;
 namespace Footballista.Players.PlayerEvolutions
 {
 	[DebuggerDisplay("{Age} {Rating}")]
-	public class AgeRating : ValueObject
+	public record AgeRating
 	{
 		public PersonAge Age { get; }
 		public Rating Rating { get; }

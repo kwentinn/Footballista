@@ -1,27 +1,28 @@
 ﻿using Footballista.Players.Features.Attributes.Base;
+using Footballista.Players.Features.Attributes.Calculator;
 using Footballista.Players.Positions;
 
 namespace Footballista.Players.Features.Attributes
 {
     public class BehaviouralAttributes : AbstractPlayerAttributes
     {
-        public RatingWeighting Stress { get; }
-        public RatingWeighting Composure { get; }
-        public RatingWeighting Frustration { get; }
+        private readonly RatingWithWeighting stress;
+        private readonly RatingWithWeighting composure;
+        private readonly RatingWithWeighting frustration;
 
         public BehaviouralAttributes(Rating stress, Rating composure, Rating frustration)
         {
-            this.Stress = new RatingWeighting(1, stress);
-            this.Composure = new RatingWeighting(3, composure);
-            this.Frustration = new RatingWeighting(1, frustration);
+            this.stress = new RatingWithWeighting(1, stress);
+            this.composure = new RatingWithWeighting(3, composure);
+            this.frustration = new RatingWithWeighting(1, frustration);
         }
 
         protected override Rating CalculateRating()
         {
-            return new RatingWeightingCalculator()
-                .WithRatingWeighting(Stress)
-                .WithRatingWeighting(Composure)
-                .WithRatingWeighting(Frustration)
+            return new RatingWithWeightingCalculator()
+                .WithRatingWeighting(stress)
+                .WithRatingWeighting(composure)
+                .WithRatingWeighting(frustration)
                 .Calculate();
         }
 

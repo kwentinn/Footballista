@@ -104,7 +104,6 @@ namespace Footballista.Players.PlayerEvolutions
 			// calculer y entre 0 et 1
 			double y = Math.Pow(x, EvolutionCurve.Value) * MaxFeatureImprovement.Value;
 
-
 			return new FeatureImprovementRatio(y);
 		}
 		public FeatureImprovementRatio GetImprovementFromAgeRange(Range<PersonAge> ageRange)
@@ -115,8 +114,8 @@ namespace Footballista.Players.PlayerEvolutions
 
 		public AgeRating ImproveRatingFromAge(AgeRating currentAgeRating, Duration evolutionDuration)
 		{
-			if (currentAgeRating is null) throw new ArgumentNullException(nameof(currentAgeRating));
-			if (evolutionDuration is null) throw new ArgumentNullException(nameof(evolutionDuration));
+			Ensure.IsNotNull(currentAgeRating, nameof(currentAgeRating));
+			Ensure.IsNotNull(evolutionDuration, nameof(evolutionDuration));
 
 			// on ajoute la durée à l'âge du joueur (PersonAge + Duration = PersonAge)
 			PersonAge futureAge = currentAgeRating.Age + evolutionDuration;

@@ -3,7 +3,7 @@ using System;
 
 namespace Footballista.Players.Physique
 {
-	public class BmiRange : ValueObject
+	public record BmiRange
 	{
 		public BmiType BmiType { get; }
 		public Range<double> Range { get; }

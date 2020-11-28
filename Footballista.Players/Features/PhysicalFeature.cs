@@ -1,18 +1,14 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using Footballista.Players.Features.LinkedFeatures;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace Footballista.Players.Features
 {
-	[DebuggerDisplay("{FeatureType}={Rating} [{_id}]")]
-	public class PhysicalFeature : ValueObject
+    [DebuggerDisplay("{FeatureType}={Rating} ")]
+	public record PhysicalFeature : ValueObjectRecord
 	{
-		[IgnoreMember]
-		private readonly Guid _id = Guid.NewGuid();
-
 		public FeatureType FeatureType { get; }
 		public Rating Rating { get; protected set; }
 

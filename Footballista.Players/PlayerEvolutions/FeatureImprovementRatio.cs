@@ -6,7 +6,7 @@ using System.Diagnostics;
 namespace Footballista.Players.PlayerEvolutions
 {
 	[DebuggerDisplay("{Value}")]
-	public class FeatureImprovementRatio : ValueObject, IComparable<FeatureImprovementRatio>
+	public class FeatureImprovementRatio : IComparable<FeatureImprovementRatio>
 	{
 		public double Value { get; }
 

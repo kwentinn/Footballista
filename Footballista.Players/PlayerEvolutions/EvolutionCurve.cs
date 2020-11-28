@@ -3,7 +3,7 @@ using Footballista.Players.PlayerEvolutions.Rules;
 
 namespace Footballista.Players.PlayerEvolutions
 {
-	public class EvolutionCurve : ValueObject
+	public record EvolutionCurve : ValueObjectRecord
 	{
 		public static EvolutionCurve Fastest => new EvolutionCurve(0.1);
 		public static EvolutionCurve Faster => new EvolutionCurve(0.5);

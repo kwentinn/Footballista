@@ -74,7 +74,5 @@ namespace Footballista.BuildingBlocks.Domain.ValueObjects
 		/// </summary>
 		/// <returns></returns>
 		public PersonAge AsRoundedYears() => new PersonAge(Math.Round(Years, 0));
-
-
 	}
 }

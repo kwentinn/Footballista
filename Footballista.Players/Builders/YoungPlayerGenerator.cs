@@ -2,6 +2,7 @@
 using Footballista.BuildingBlocks.Domain.Percentiles;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Builders.Generators;
+using Footballista.Players.Builders.Generators.FeatureGeneration;
 using Footballista.Players.Builders.Generators.FeatureGeneration.RatingRanges;
 using Footballista.Players.Builders.Randomisers;
 using Footballista.Players.Features;

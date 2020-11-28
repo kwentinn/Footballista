@@ -5,7 +5,7 @@ using System.Diagnostics;
 namespace Footballista.Players.PlayerNames
 {
 	[DebuggerDisplay("{Firstname} {Lastname}")]
-	public class PersonName : ValueObject
+	public record PersonName : ValueObjectRecord
 	{
 		public Firstname Firstname { get; }
 		public Lastname Lastname { get; }

@@ -6,18 +6,17 @@ using System.Diagnostics;
 namespace Footballista.Players.Positions
 {
 	[DebuggerDisplay("{Name}")]
-	public class PlayerPosition : ValueObject
+	public record PlayerPosition : ValueObjectRecord
 	{
 		public string Name { get; }
 		public PositionCategory PositionCategory { get; }
 
+		private PlayerPosition(string name) : this(name, PositionCategory.None) { }
 		private PlayerPosition(string name, PositionCategory positionCategory)
 		{
 			Name = name;
 			PositionCategory = positionCategory;
 		}
-		private PlayerPosition(string name) : this(name, PositionCategory.None) { }
-
 
 		// goalie
 		public static PlayerPosition GoalKeeper => new PlayerPosition(nameof(GoalKeeper), PositionCategory.GoalKeeper);
@@ -44,21 +43,18 @@ namespace Footballista.Players.Positions
 		// all positions
 		private readonly static List<PlayerPosition> _allPositions = new List<PlayerPosition>
 		{
-			PlayerPosition.GoalKeeper,
-
-			PlayerPosition.CentreBack,
-			PlayerPosition.Sweeper,
-			PlayerPosition.FullBack,
-			PlayerPosition.WingBack,
-
-			PlayerPosition.CentreMidfield,
-			PlayerPosition.DefensiveMidfield,
-			PlayerPosition.AttackingMidfield,
-			PlayerPosition.WideMidfield,
-
-			PlayerPosition.CentreForward,
-			PlayerPosition.SecondStriker,
-			PlayerPosition.Winger,
+			GoalKeeper,
+			CentreBack,
+			Sweeper,
+			FullBack,
+			WingBack,
+			CentreMidfield,
+			DefensiveMidfield,
+            AttackingMidfield,
+			WideMidfield,
+			CentreForward,
+			SecondStriker,
+			Winger,
 		};
 		public static ReadOnlyCollection<PlayerPosition> AllPositions => _allPositions.AsReadOnly();
 	}

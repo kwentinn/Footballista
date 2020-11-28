@@ -6,19 +6,9 @@ using System.Linq;
 
 namespace Footballista.Players.Features.LinkedFeatures
 {
-	public class TopSpeedFeature : PhysicalFeature
+	public sealed record TopSpeedFeature : PhysicalFeature
 	{
-		private class RatingForBmiRule
-		{
-			public Range<double> Range { get; }
-			public Rating MaxRating { get; }
-
-			public RatingForBmiRule(Range<double> range, Rating maxRating)
-			{
-				Range = range;
-				MaxRating = maxRating;
-			}
-		}
+		private record RatingForBmiRule(Range<double> Range, Rating MaxRating);
 
 		private BodyMassIndex _bmi;
 

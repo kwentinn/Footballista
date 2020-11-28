@@ -1,4 +1,5 @@
 ﻿using Footballista.Players.Features.Attributes.Base;
+using Footballista.Players.Features.Attributes.Calculator;
 using Footballista.Players.Positions;
 using System.Collections.Generic;
 
@@ -6,12 +7,12 @@ namespace Footballista.Players.Features.Attributes
 {
     public class AttackingAttributes : AbstractPlayerAttributes
     {
-        public Rating Accuracy { get; }
-        public Rating Positionning { get; }
-        public Rating Power { get; }
-        public Rating Agility { get; }
-        public Rating Header { get; }
-        public Rating Speed { get; }
+        public RatingWithWeighting Accuracy { get; }
+        public RatingWithWeighting Positionning { get; }
+        public RatingWithWeighting Power { get; }
+        public RatingWithWeighting Agility { get; }
+        public RatingWithWeighting Header { get; }
+        public RatingWithWeighting Speed { get; }
 
         public AttackingAttributes()
         {
@@ -24,9 +25,26 @@ namespace Footballista.Players.Features.Attributes
             };
         }
 
+        public AttackingAttributes(Rating accuracy, Rating positionning, Rating power, Rating agility, Rating header, Rating speed)
+        {
+            this.Accuracy = new RatingWithWeighting(1, accuracy);
+            this.Positionning = new RatingWithWeighting(1, positionning);
+            this.Power = new RatingWithWeighting(1, power);
+            this.Agility = new RatingWithWeighting(1, agility);
+            this.Header = new RatingWithWeighting(1, header);
+            this.Speed = new RatingWithWeighting(1, speed);
+        }
+
         protected override Rating CalculateRating()
         {
-            throw new System.NotImplementedException();
+            return new RatingWithWeightingCalculator()
+                .WithRatingWeighting(Accuracy)
+                .WithRatingWeighting(Positionning)
+                .WithRatingWeighting(Power)
+                .WithRatingWeighting(Agility)
+                .WithRatingWeighting(Header)
+                .WithRatingWeighting(Speed)
+                .Calculate();
         }
     }
 }
