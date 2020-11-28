@@ -1,4 +1,4 @@
-﻿namespace Footballista.Players.Physique
+﻿namespace Footballista.Players.Domain.Physique
 {
 	public enum BmiType
 	{

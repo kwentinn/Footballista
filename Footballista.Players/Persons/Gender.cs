@@ -1,4 +1,4 @@
-﻿namespace Footballista.Players.Persons
+﻿namespace Footballista.Players.Domain.Persons
 {
 	public enum Gender
 	{

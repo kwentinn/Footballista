@@ -1,5 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.Players.Physique;
+using Footballista.Players.Domain.Builders.Generators.FeatureGeneration;
+using Footballista.Players.Domain.Physique;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 

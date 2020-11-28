@@ -1,5 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.Players.Features;
+using Footballista.Players.Domain.Features;
+using Footballista.Players.Domain.PlayerEvolutions;
 using Footballista.Players.PlayerEvolutions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,7 +15,7 @@ namespace Footballista.PlayersUnitTests.Domain
 			FeatureImprovementRatio improvement = Phase1Evolution.Value.GetImprovementFromAge(PersonAge.FromYears(16));
 
 			Assert.IsNotNull(improvement);
-			Assert.AreEqual(0.01, improvement.Value);
+			Assert.AreEqual(0.01, improvement);
 		}
 		[TestMethod]
 		public void GetValue_Pass28_ShouldReturnValue()
@@ -22,7 +23,7 @@ namespace Footballista.PlayersUnitTests.Domain
 			FeatureImprovementRatio improvement = Phase1Evolution.Value.GetImprovementFromAge(PersonAge.FromYears(28));
 
 			Assert.IsNotNull(improvement);
-			Assert.AreEqual(0.5, improvement.Value);
+			Assert.AreEqual(0.5, improvement);
 		}
 		[TestMethod]
 		public void Phase1Evolution_ImproveRating()
@@ -33,7 +34,7 @@ namespace Footballista.PlayersUnitTests.Domain
 			var newRating = improvement.ImproveRating(rating);
 
 			Assert.IsNotNull(newRating);
-			Assert.AreEqual(0.2, newRating.Value);
+			Assert.AreEqual(0.2, newRating);
 
 		}
 		[TestMethod]
@@ -45,7 +46,7 @@ namespace Footballista.PlayersUnitTests.Domain
 			var newRating = improvement.ImproveRating(rating);
 
 			Assert.IsNotNull(newRating);
-			Assert.AreEqual(0.3, newRating.Value);
+			Assert.AreEqual(0.3, newRating);
 
 		}
 		[TestMethod]
@@ -57,7 +58,7 @@ namespace Footballista.PlayersUnitTests.Domain
 			var newRating = improvement.ImproveRating(rating);
 
 			Assert.IsNotNull(newRating);
-			Assert.AreEqual(0.68, newRating.Value);
+			Assert.AreEqual(0.68, newRating);
 		}
 		[TestMethod]
 		public void Phase1Evolution_ImproveRating4()
@@ -65,32 +66,32 @@ namespace Footballista.PlayersUnitTests.Domain
 			FeatureImprovementRatio improvement = Phase1Evolution.Value.GetImprovementFromAge(PersonAge.FromYears(28));
 
 			Rating rating = new Rating(0.7);
-			var newRating = improvement.ImproveRating(rating);
+			Rating newRating = improvement.ImproveRating(rating);
 
 			Assert.IsNotNull(newRating);
-			Assert.AreEqual(0.99, newRating.Value);
+			Assert.AreEqual(0.99, newRating);
 		}
 		[TestMethod]
 		public void ImproveRatingFromAge_()
 		{
 			Rating rating = new Rating(0.6);
-			var ageRating = new AgeRating(PersonAge.FromYears(27), rating);
-			var newRatingForAge = Phase1Evolution.Value.ImproveRatingFromAge(ageRating, Duration.FromYears(1));
+			AgeRating ageRating = new AgeRating(PersonAge.FromYears(27), rating);
+			AgeRating newRatingForAge = Phase1Evolution.Value.ImproveRatingFromAge(ageRating, Duration.FromYears(1));
 
 			Assert.IsNotNull(newRatingForAge);
 			Assert.AreEqual(28d, newRatingForAge.Age.Years);
-			Assert.AreEqual(0.64, newRatingForAge.Rating.Value);
+			Assert.AreEqual(0.64, newRatingForAge.Rating);
 		}
 		[TestMethod]
 		public void ImproveRatingFromAge_2()
 		{
 			Rating rating = new Rating(0.8);
-			var ageRating = new AgeRating(PersonAge.FromYears(27), rating);
-			var newRatingForAge = Phase1Evolution.Value.ImproveRatingFromAge(ageRating, Duration.FromMonths(1));
+			AgeRating ageRating = new AgeRating(PersonAge.FromYears(27), rating);
+			AgeRating newRatingForAge = Phase1Evolution.Value.ImproveRatingFromAge(ageRating, Duration.FromMonths(1));
 
 			Assert.IsNotNull(newRatingForAge);
 			Assert.AreEqual(Duration.FromMonths(27 * 12 + 1).Years, newRatingForAge.Age.Years);
-			Assert.AreEqual(0.81, newRatingForAge.Rating.Value);
+			Assert.AreEqual(0.81, newRatingForAge.Rating);
 		}
 	}
 }

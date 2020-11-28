@@ -1,32 +1,34 @@
 ﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.Players.Features;
+using Footballista.Players.Domain.Features;
 using System;
 using System.Diagnostics;
 
 namespace Footballista.Players.PlayerEvolutions
 {
-	[DebuggerDisplay("{Value}")]
+	[DebuggerDisplay("{_value}")]
 	public class FeatureImprovementRatio : IComparable<FeatureImprovementRatio>
 	{
-		public double Value { get; }
+		private readonly double _value;
 
 		public FeatureImprovementRatio(double value)
 		{
-			Value = Math.Round(value, 2);
+			_value = Math.Round(value, 2);
 		}
 
-		public int CompareTo(FeatureImprovementRatio other) => Value.CompareTo(other.Value);
+		public int CompareTo(FeatureImprovementRatio other) => _value.CompareTo(other._value);
 
 		public Rating ImproveRating(Rating featureRating)
 		{
-			double newValue = Math.Min(Math.Round(featureRating.Value * (1 + Value), 2), Rating.Max.Value);
+			double newValue = Math.Min(Math.Round(featureRating.Value * (1 + _value), 2), Rating.Max.Value);
 
 			return new Rating(newValue);
 		}
 
 		public static FeatureImprovementRatio operator -(FeatureImprovementRatio ratio1, FeatureImprovementRatio ratio2)
-			=> new FeatureImprovementRatio(ratio1.Value - ratio2.Value);
+			=> new FeatureImprovementRatio(ratio1._value - ratio2._value);
 		public static FeatureImprovementRatio operator +(FeatureImprovementRatio ratio1, FeatureImprovementRatio ratio2)
-			=> new FeatureImprovementRatio(ratio1.Value + ratio2.Value);
+			=> new FeatureImprovementRatio(ratio1._value + ratio2._value);
+
+		public static implicit operator double (FeatureImprovementRatio ratio) => ratio._value;
 	}
 }

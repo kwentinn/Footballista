@@ -2,7 +2,7 @@
 using UnitsNet;
 using UnitsNet.Units;
 
-namespace Footballista.Players.Physique.Rules
+namespace Footballista.Players.Domain.Physique.Rules
 {
 	public class HeightMustBeWithinRangeRule : IBusinessRule
 	{

@@ -1,8 +1,8 @@
 ﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.Players.Domain.Persons;
 using Footballista.Players.Infrastracture.Loaders.Growths;
 using Footballista.Players.Infrastracture.Loaders.Growths.Records;
 using Footballista.Players.Infrastracture.Repositories;
-using Footballista.Players.Persons;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;

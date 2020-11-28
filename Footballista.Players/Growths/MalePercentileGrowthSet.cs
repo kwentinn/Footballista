@@ -1,8 +1,8 @@
-﻿using Footballista.Players.Persons;
+﻿using Footballista.Players.Domain.Persons;
 using System;
 using System.Collections.Generic;
 
-namespace Footballista.Players.Growths
+namespace Footballista.Players.Domain.Growths
 {
 	public sealed class MalePercentileGrowthSet : AbstractPercentileGrowthSet
 	{

@@ -2,10 +2,10 @@
 using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Builders.Generators;
 using Footballista.Players.Builders.Randomisers;
+using Footballista.Players.Domain.Persons;
+using Footballista.Players.Domain.PlayerNames;
 using Footballista.Players.Infrastracture.Loaders.Firstnames;
 using Footballista.Players.Infrastracture.Loaders.Firstnames.Records;
-using Footballista.Players.Persons;
-using Footballista.Players.PlayerNames;
 using System;
 using System.Collections.Generic;
 using System.Linq;

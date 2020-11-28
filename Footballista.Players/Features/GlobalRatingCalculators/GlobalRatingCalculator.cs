@@ -1,6 +1,7 @@
 ﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.Players.Domain.Features;
+using Footballista.Players.Domain.Positions;
 using Footballista.Players.Features.GlobalRatingCalculators.RatingConfigs.Base;
-using Footballista.Players.Positions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

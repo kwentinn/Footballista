@@ -1,5 +1,5 @@
-﻿using Footballista.Players.Growths;
-using Footballista.Players.Persons;
+﻿using Footballista.Players.Domain.Growths;
+using Footballista.Players.Domain.Persons;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 

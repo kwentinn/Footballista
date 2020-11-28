@@ -1,7 +1,7 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
 using System.Diagnostics;
 
-namespace Footballista.Players.Growths
+namespace Footballista.Players.Domain.Growths
 {
 	[DebuggerDisplay("{Age} - {Stature}")]
 	public class StatureForAge

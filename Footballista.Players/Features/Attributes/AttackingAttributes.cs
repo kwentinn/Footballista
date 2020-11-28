@@ -1,11 +1,12 @@
-﻿using Footballista.Players.Features.Attributes.Base;
+﻿using Footballista.Players.Domain.Features;
+using Footballista.Players.Domain.Positions;
+using Footballista.Players.Features.Attributes.Base;
 using Footballista.Players.Features.Attributes.Calculator;
-using Footballista.Players.Positions;
 using System.Collections.Generic;
 
 namespace Footballista.Players.Features.Attributes
 {
-    public class AttackingAttributes : AbstractPlayerAttributes
+	public class AttackingAttributes : AbstractPlayerAttributes
     {
         public RatingWithWeighting Accuracy { get; }
         public RatingWithWeighting Positionning { get; }

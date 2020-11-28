@@ -2,7 +2,7 @@
 using Itenso.TimePeriod;
 using System;
 
-namespace Footballista.Players.Persons.BusinessRules
+namespace Footballista.Players.Domain.Persons.Rules
 {
 	public class BirthMustHaveADateRule : IBusinessRule
 	{

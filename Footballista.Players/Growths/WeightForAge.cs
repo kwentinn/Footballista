@@ -1,6 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
 
-namespace Footballista.Players.Growths
+namespace Footballista.Players.Domain.Growths
 {
 	public class WeightForAge
 	{

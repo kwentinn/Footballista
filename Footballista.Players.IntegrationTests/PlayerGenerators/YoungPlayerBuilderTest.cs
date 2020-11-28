@@ -1,7 +1,9 @@
 using Footballista.Players.Builders;
 using Footballista.Players.Builders.Generators;
 using Footballista.Players.Builders.Randomisers;
-using Footballista.Players.Features;
+using Footballista.Players.Domain;
+using Footballista.Players.Domain.Features;
+using Footballista.Players.Domain.Persons;
 using Footballista.Players.Infrastracture.Generators;
 using Footballista.Players.Infrastracture.Loaders;
 using Footballista.Players.Infrastracture.Loaders.Cities;
@@ -9,6 +11,7 @@ using Footballista.Players.Infrastracture.Loaders.Firstnames;
 using Footballista.Players.Infrastracture.Loaders.Growths;
 using Footballista.Players.Infrastracture.Loaders.Lastnames;
 using Footballista.Players.Infrastracture.Repositories;
+using Footballista.Players.IntegrationTests.PlayerGenerators.Builders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -29,7 +32,6 @@ namespace Footballista.Players.IntegrationTests
 		private readonly IntRandomiser _intRandomiser;
 		private readonly MultipleIntValuesRandomiser _multipleIntValuesRandomiser;
 		private readonly AgeRandomiser _ageRandomiser;
-		private readonly FeatureRatingRandomiser _featureRatingRandomiser;
 		private readonly DataPathHelper _dataPathHelper;
 		private readonly FirstnameRecordsLoader _firstnameRecordsLoader;
 		private readonly LastnameRecordsLoader _lastnameRecordsLoader;
@@ -48,7 +50,6 @@ namespace Footballista.Players.IntegrationTests
 		private readonly PercentileGrowthSetRepository _percentileGrRepository;
 		private readonly BodyMassIndexGenerator _bmiGenerator;
 		private readonly CountriesGenerator _countriesGenerator;
-		private readonly GrowthSetGenerator _growthSetGenerator;
 		private readonly PlayerPositionGenerator _playerPositionGenerator;
         private readonly FeatureRatingRandomiser _ratingRandomiser;
         private readonly Mock<IHostEnvironment> _mockHostingEnv;
@@ -70,7 +71,6 @@ namespace Footballista.Players.IntegrationTests
 			_intRandomiser = new IntRandomiser();
 			_multipleIntValuesRandomiser = new MultipleIntValuesRandomiser();
 			_ageRandomiser = new AgeRandomiser(_intRandomiser);
-			_featureRatingRandomiser = new FeatureRatingRandomiser(_intRandomiser);
 			_dataPathHelper = new DataPathHelper(_mockHostingEnv.Object);
 			_firstnameRecordsLoader = new FirstnameRecordsLoader(_dataPathHelper);
 			_lastnameRecordsLoader = new LastnameRecordsLoader(_dataPathHelper);
@@ -89,7 +89,6 @@ namespace Footballista.Players.IntegrationTests
 			_percentileGrRepository = new PercentileGrowthSetRepository(_statureGrLoader, _weightGrLoader);
 			_bmiGenerator = new BodyMassIndexGenerator(_game, _percentileGrRepository);
 			_countriesGenerator = new CountriesGenerator(_listRandomiser, _intRandomiser, _multipleIntValuesRandomiser);
-			_growthSetGenerator = new GrowthSetGenerator(_percentileGrRepository, _listRandomiser);
 			_playerPositionGenerator = new PlayerPositionGenerator(_percentileGenerator);
 			_ratingRandomiser = new FeatureRatingRandomiser(_intRandomiser);
 		}
@@ -109,20 +108,18 @@ namespace Footballista.Players.IntegrationTests
 
 		private YoungPlayerGenerator CreateNewYoungPlayerGenerator()
         {
-			return new YoungPlayerGenerator(
-				nameGenerator: _personNameGenerator,
-				genderGenerator: _genderGenerator,
-				dobGenerator: _dobGenerator,
-				birthLocationGenerator: _birthLocationGenerator,
-				favouriteFootGenerator: _favouriteFootGenerator,
-				bmiGenerator: _bmiGenerator,
-				countriesGenerator: _countriesGenerator,
-				growthSetGenerator: _growthSetGenerator,
-				percentileGenerator: _percentileGenerator,
-				playerPositionGenerator: _playerPositionGenerator,
-				game: _game,
-				_ratingRandomiser
-			);
+			return new YoungPlayerGeneratorBuilder(_game)
+				.WithNameGenerator(_personNameGenerator)
+				.WithGenderGenerator(_genderGenerator)
+				.WithDobGenerator(_dobGenerator)
+				.WithBirthLocationGenerator(_birthLocationGenerator)
+				.WithFavouriteFootGenerator(_favouriteFootGenerator)
+				.WithBmiGenerator(_bmiGenerator)
+				.WithCountriesGenerator(_countriesGenerator)
+				.WithPercentileGenerator(_percentileGenerator)
+				.WithPlayerPositionGenerator(_playerPositionGenerator)
+				.WithRatingRandomiser(_ratingRandomiser)
+				.Build();
 		}
 
 		[TestMethod]
@@ -180,7 +177,7 @@ namespace Footballista.Players.IntegrationTests
 		{
 			var builder = CreateNewYoungPlayerGenerator();
 
-			Player player = await builder.GenerateAsync(Persons.Gender.Male);
+			Player player = await builder.GenerateAsync(Gender.Male);
 
 			Assert.IsNotNull(player);
 		}

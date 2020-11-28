@@ -1,5 +1,5 @@
 ﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.Players.PlayerEvolutions.Rules;
+using Footballista.Players.Domain.PlayerEvolutions.Rules;
 
 namespace Footballista.Players.PlayerEvolutions
 {
@@ -12,13 +12,18 @@ namespace Footballista.Players.PlayerEvolutions
 		public static EvolutionCurve Slower => new EvolutionCurve(2);
 		public static EvolutionCurve Slowest => new EvolutionCurve(4);
 
-		public double Value { get; }
+		private readonly double _value;
 
 		private EvolutionCurve(double value)
 		{
 			CheckRule(new EvaluationCurveMustBeWithinRangeRule(value));
 
-			Value = value;
+			this._value = value;
 		}
+
+		public static double operator *(double left, EvolutionCurve right) => left * right._value;
+		public static double operator *(EvolutionCurve left, double right) => left._value * right;
+
+		public static implicit operator double(EvolutionCurve curve) => curve._value;
 	}
 }

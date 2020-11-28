@@ -1,11 +1,12 @@
-﻿using Footballista.Players.Features.Attributes.Base;
-using Footballista.Players.Positions;
+﻿using Footballista.Players.Domain.Features;
+using Footballista.Players.Domain.Positions;
+using Footballista.Players.Features.Attributes.Base;
 using System;
 using System.Collections.Generic;
 
 namespace Footballista.Players.Features.Attributes
 {
-    public class DefensiveAttributes : AbstractPlayerAttributes
+	public class DefensiveAttributes : AbstractPlayerAttributes
     {
         public Rating Positionning { get; }
         public Rating Denfence { get; }

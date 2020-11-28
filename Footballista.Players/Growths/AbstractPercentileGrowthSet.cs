@@ -7,12 +7,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace Footballista.Players.Growths
+namespace Footballista.Players.Domain.Growths
 {
 	public abstract class AbstractPercentileGrowthSet
 	{
 		public ReadOnlyCollection<PercentileGrowth> Growths => _growths.AsReadOnly();
-		private List<PercentileGrowth> _growths = new List<PercentileGrowth>();
+		private readonly List<PercentileGrowth> _growths = new List<PercentileGrowth>();
 
 		protected AbstractPercentileGrowthSet(List<PercentileGrowth> growths)
 		{

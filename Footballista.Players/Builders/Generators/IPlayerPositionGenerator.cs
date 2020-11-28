@@ -2,7 +2,7 @@
 using Footballista.BuildingBlocks.Domain.KNNs;
 using Footballista.BuildingBlocks.Domain.KNNs.Models;
 using Footballista.BuildingBlocks.Domain.Percentiles;
-using Footballista.Players.Positions;
+using Footballista.Players.Domain.Positions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

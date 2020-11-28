@@ -2,7 +2,7 @@
 using Footballista.BuildingBlocks.Domain.ValueObjects;
 using System.Linq;
 
-namespace Footballista.Players.Persons.BusinessRules
+namespace Footballista.Players.Domain.Persons.Rules
 {
 	public class PersonMustHaveTwoNationalitiesMaximum : IBusinessRule
 	{

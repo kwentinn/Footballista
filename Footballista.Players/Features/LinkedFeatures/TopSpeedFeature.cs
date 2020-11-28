@@ -1,5 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.Players.Physique;
+using Footballista.Players.Domain.Features;
+using Footballista.Players.Domain.Physique;
 using System;
 using System.Collections.Generic;
 using System.Linq;

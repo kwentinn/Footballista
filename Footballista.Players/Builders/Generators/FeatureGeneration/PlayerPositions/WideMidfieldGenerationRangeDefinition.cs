@@ -1,14 +1,14 @@
-﻿using Footballista.Players.Builders.Generators.FeatureGeneration.PlayerPositions.Base;
-using Footballista.Players.Features;
-using Footballista.Players.Positions;
+﻿using Footballista.Players.Domain.Builders.Generators.FeatureGeneration.PlayerPositions.Base;
+using Footballista.Players.Domain.Features;
+using Footballista.Players.Domain.Positions;
 
-namespace Footballista.Players.Builders.Generators.FeatureGeneration.PlayerPositions
+namespace Footballista.Players.Domain.Builders.Generators.FeatureGeneration.PlayerPositions
 {
-    internal class WideMidfieldGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
+	internal class WideMidfieldGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
 	{
 		public WideMidfieldGenerationRangeDefinition(PlayerPosition position) : base(position)
 		{
-			generationRanges.AddRange(new GenRange[]
+			GenerationRanges.AddRange(new GenRange[]
 			{
 				// bad skills
 				new GenRange(FeatureType.Acceleration, MinRange),

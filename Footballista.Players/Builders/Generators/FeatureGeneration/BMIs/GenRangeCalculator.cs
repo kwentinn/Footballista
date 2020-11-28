@@ -1,7 +1,8 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.Players.Features;
-using Footballista.Players.Physique;
+using Footballista.Players.Domain.Builders.Generators.FeatureGeneration;
+using Footballista.Players.Domain.Features;
+using Footballista.Players.Domain.Physique;
 
 namespace Footballista.Players.Builders.Generators.FeatureGeneration
 {

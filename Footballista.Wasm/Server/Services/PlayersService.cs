@@ -1,7 +1,5 @@
 ﻿using Footballista.Players.Builders;
 using Footballista.Wasm.Shared;
-using Footballista.Wasm.Shared.Data.Players;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,25 +8,25 @@ namespace Footballista.Wasm.Server.Services
 	public class PlayersService : IPlayersService
 	{
 		private readonly IPlayerGenerator _builder;
-		private readonly IMapper<Players.Player, Player> _mapper;
+		private readonly IMapper<Players.Domain.Player, Shared.Data.Players.Player> _mapper;
 
 		public PlayersService(
 			IPlayerGenerator builder,
-			IMapper<Players.Player, Player> mapper
+			IMapper<Players.Domain.Player, Shared.Data.Players.Player> mapper
 		)
 		{
 			_builder = builder;
 			_mapper = mapper;
 		}
 
-		public async Task<Player> GetPlayerAsync()
+		public async Task<Shared.Data.Players.Player> GetPlayerAsync()
 		{
-			Players.Player player = await _builder.GenerateAsync();
+			Players.Domain.Player player = await _builder.GenerateAsync();
 			return _mapper.Map(player);
 		}
-		public async Task<Player[]> GetPlayersAsync(int maxPlayers = 50)
+		public async Task<Shared.Data.Players.Player[]> GetPlayersAsync(int maxPlayers = 50)
 		{
-			var players = await _builder.GenerateManyAsync(maxPlayers);
+			Players.Domain.Player[] players = await _builder.GenerateManyAsync(maxPlayers);
 			return _mapper.Map(players)?.ToArray();
 		}
 	}

@@ -1,5 +1,5 @@
 ﻿using Footballista.Players.Builders.Randomisers;
-using Footballista.Players.Persons;
+using Footballista.Players.Domain.Persons;
 using System;
 
 namespace Footballista.Players.Builders.Generators

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Footballista.Players.Domain</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,10 +1,11 @@
 ﻿using Footballista.BuildingBlocks.Domain.Percentiles;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.Players.Features;
-using Footballista.Players.Persons;
-using Footballista.Players.Physique;
-using Footballista.Players.PlayerNames;
-using Footballista.Players.Positions;
+using Footballista.Players.Domain;
+using Footballista.Players.Domain.Features;
+using Footballista.Players.Domain.Persons;
+using Footballista.Players.Domain.Physique;
+using Footballista.Players.Domain.PlayerNames;
+using Footballista.Players.Domain.Positions;
 using Itenso.TimePeriod;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,9 +1,9 @@
 ﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.Players.PlayerNames.Rules;
+using Footballista.Players.Domain.PlayerNames.Rules;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace Footballista.Players.PlayerNames
+namespace Footballista.Players.Domain.PlayerNames
 {
 	[DebuggerDisplay("{Value}")]
 	public record Lastname : ValueObjectRecord

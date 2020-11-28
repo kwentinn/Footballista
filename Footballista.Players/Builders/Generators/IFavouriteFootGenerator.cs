@@ -1,5 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain.KNNs;
 using Footballista.BuildingBlocks.Domain.Percentiles;
+using Footballista.Players.Domain;
 using System;
 
 namespace Footballista.Players.Builders.Generators

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
-namespace Footballista.Players.Positions
+namespace Footballista.Players.Domain.Positions
 {
 	[DebuggerDisplay("{Name}")]
 	public record PlayerPosition : ValueObjectRecord
@@ -50,7 +50,7 @@ namespace Footballista.Players.Positions
 			WingBack,
 			CentreMidfield,
 			DefensiveMidfield,
-            AttackingMidfield,
+			AttackingMidfield,
 			WideMidfield,
 			CentreForward,
 			SecondStriker,

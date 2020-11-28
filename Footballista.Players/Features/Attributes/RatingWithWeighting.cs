@@ -1,8 +1,9 @@
-﻿using Footballista.Players.Features.Attributes.Weightings;
+﻿using Footballista.Players.Domain.Features;
+using Footballista.Players.Features.Attributes.Weightings;
 
 namespace Footballista.Players.Features.Attributes
 {
-    public sealed class RatingWithWeighting
+	public sealed class RatingWithWeighting
     {
         private readonly Rating rating;
         public Weighting Weighting { get; }

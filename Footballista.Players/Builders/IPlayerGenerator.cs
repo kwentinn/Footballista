@@ -1,6 +1,7 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.Players.Persons;
-using Footballista.Players.Positions;
+using Footballista.Players.Domain;
+using Footballista.Players.Domain.Persons;
+using Footballista.Players.Domain.Positions;
 using System.Threading.Tasks;
 
 namespace Footballista.Players.Builders

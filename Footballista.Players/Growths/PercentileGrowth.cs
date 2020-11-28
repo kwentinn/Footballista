@@ -1,13 +1,13 @@
 ﻿using Footballista.BuildingBlocks.Domain.Percentiles;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.Players.Persons;
+using Footballista.Players.Domain.Persons;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Footballista.Players.Growths
+namespace Footballista.Players.Domain.Growths
 {
 	[DebuggerDisplay("{Percentile} {Gender}")]
 	public class PercentileGrowth
@@ -16,10 +16,10 @@ namespace Footballista.Players.Growths
 		public Gender Gender { get; }
 
 		public ReadOnlyCollection<StatureForAge> StaturesForAges => _staturesForAges.AsReadOnly();
-		private List<StatureForAge> _staturesForAges = new List<StatureForAge>();
+		private readonly List<StatureForAge> _staturesForAges = new List<StatureForAge>();
 
 		public ReadOnlyCollection<WeightForAge> WeightForAges => _weightForAges.AsReadOnly();
-		private List<WeightForAge> _weightForAges = new List<WeightForAge>();
+		private readonly List<WeightForAge> _weightForAges = new List<WeightForAge>();
 
 		public PercentileGrowth(int percentile, Gender gender, List<WeightForAge> weightsForAges, List<StatureForAge> staturesForAges)
 		{
@@ -28,7 +28,6 @@ namespace Footballista.Players.Growths
 			_weightForAges.AddRange(weightsForAges);
 			_staturesForAges.AddRange(staturesForAges);
 		}
-
 
 		public StatureForAge GetStatureForAge(PersonAge age)
 			=> _staturesForAges.FirstOrDefault(sfa => sfa.Age.Equals(age));

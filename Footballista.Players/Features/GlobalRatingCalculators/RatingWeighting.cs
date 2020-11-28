@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Footballista.Players.Domain.Features;
+using System.Collections.Generic;
 
 namespace Footballista.Players.Features.GlobalRatingCalculators
 {

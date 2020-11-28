@@ -1,14 +1,14 @@
 using Footballista.BuildingBlocks.Domain.Percentiles;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.Players.Features;
+using Footballista.Players.Domain.Features;
+using Footballista.Players.Domain.Persons;
+using Footballista.Players.Domain.Physique;
+using Footballista.Players.Domain.PlayerNames;
+using Footballista.Players.Domain.Positions;
 using Footballista.Players.Features.GlobalRatingCalculators;
-using Footballista.Players.Persons;
-using Footballista.Players.Physique;
-using Footballista.Players.PlayerNames;
-using Footballista.Players.Positions;
 using System.Diagnostics;
 
-namespace Footballista.Players
+namespace Footballista.Players.Domain
 {
 	[DebuggerDisplay("{Name} {PlayerPosition}")]
 	public sealed class Player : Person
@@ -19,7 +19,7 @@ namespace Footballista.Players
 		public Foot FavouriteFoot { get; }
 		public BodyMassIndex Bmi { get; }
 
-		public readonly GlobalRatingCalculator _globalRatingCalculator = new GlobalRatingCalculator();
+		private readonly GlobalRatingCalculator _globalRatingCalculator = new GlobalRatingCalculator();
 
 		public Rating GeneralRating => _globalRatingCalculator.Calculate(PlayerPosition, PhysicalFeatureSet);
 

@@ -3,7 +3,7 @@ using Footballista.Players.Features.BusinessRules;
 using System;
 using System.Diagnostics;
 
-namespace Footballista.Players.Features
+namespace Footballista.Players.Domain.Features
 {
 	[DebuggerDisplay("{Value * 100}")]
 	public record Rating : ValueObjectRecord, IComparable<Rating>
@@ -27,7 +27,10 @@ namespace Footballista.Players.Features
 		public override string ToString() => $"{Value:N0}";
 		public override int GetHashCode() => Value.GetHashCode();
 
-		public static implicit operator Rating(double d) => new Rating(d);
+		public static implicit operator Rating(double d) 
+			=> new Rating(d);
+		public static implicit operator Rating(int i) 
+			=> new Rating(Convert.ToDouble(i) / 100d);
 
 		public static Rating operator *(Rating rating1, Rating rating2)
 		{
@@ -48,7 +51,7 @@ namespace Footballista.Players.Features
 		public static bool operator >=(Rating left, Rating right) => left.CompareTo(right) >= 0;
 		public static bool operator <=(Rating left, Rating right) => left.CompareTo(right) <= 0;
 
-		public double ToPercent() => this.Value * 100d;
+		public double ToPercent() => Value * 100d;
 		public int ToRoundedPercent() => Convert.ToInt32(ToPercent());
 	}
 }

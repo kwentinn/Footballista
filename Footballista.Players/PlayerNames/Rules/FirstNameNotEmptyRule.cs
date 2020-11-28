@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Footballista.Players.PlayerNames.Rules
+namespace Footballista.Players.Domain.PlayerNames.Rules
 {
 	public class FirstNameNotEmptyRule : IBusinessRule
 	{

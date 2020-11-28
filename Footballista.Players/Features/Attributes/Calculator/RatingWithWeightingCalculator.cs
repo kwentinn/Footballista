@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Footballista.Players.Domain.Features;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Footballista.Players.Features.Attributes.Calculator
 {
-    public sealed class RatingWithWeightingCalculator
+	public sealed class RatingWithWeightingCalculator
     {
         private readonly List<RatingWithWeighting> weightings = new List<RatingWithWeighting>();
 

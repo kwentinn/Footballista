@@ -1,11 +1,11 @@
-﻿using Footballista.Players.Positions;
+﻿using Footballista.Players.Domain.Positions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 
-namespace Footballista.Players.Features
+namespace Footballista.Players.Domain.Features
 {
 	[DebuggerDisplay("{_id} - {PositionCategory}")]
 	public class PhysicalFeatureSet
@@ -48,8 +48,8 @@ namespace Footballista.Players.Features
 
 		private PhysicalFeatureSet(PositionCategory positionCategory, List<PhysicalFeature> physicalFeatures)
 		{
-			PositionCategory = positionCategory ?? throw new System.ArgumentNullException(nameof(positionCategory));
-			_physicalFeatures = physicalFeatures ?? throw new System.ArgumentNullException(nameof(physicalFeatures));
+			PositionCategory = positionCategory ?? throw new ArgumentNullException(nameof(positionCategory));
+			_physicalFeatures = physicalFeatures ?? throw new ArgumentNullException(nameof(physicalFeatures));
 		}
 	}
 }

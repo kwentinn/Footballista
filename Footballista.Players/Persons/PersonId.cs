@@ -2,7 +2,7 @@
 using System;
 using System.Diagnostics;
 
-namespace Footballista.Players.Persons
+namespace Footballista.Players.Domain.Persons
 {
 	[DebuggerDisplay("PersonId - [{Value}]")]
 	public class PersonId : TypedIdValueBase

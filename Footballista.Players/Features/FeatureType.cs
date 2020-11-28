@@ -1,4 +1,4 @@
-﻿namespace Footballista.Players.Features
+﻿namespace Footballista.Players.Domain.Features
 {
 	public enum FeatureType
 	{
@@ -15,7 +15,7 @@
 		PassingSpeed,
 		PassingAccuracy,
 		Power,
-		Stamina, 
+		Stamina,
 		Agility,
 		Vista,
 		Interception,

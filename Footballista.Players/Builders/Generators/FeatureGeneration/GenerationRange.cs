@@ -1,7 +1,7 @@
 ﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.Players.Features;
+using Footballista.Players.Domain.Features;
 
-namespace Footballista.Players.Builders.Generators.FeatureGeneration
+namespace Footballista.Players.Domain.Builders.Generators.FeatureGeneration
 {
 	/// <summary>
 	/// Représente une plage de génération de note d'une caractéristique de joueur.

@@ -1,6 +1,7 @@
 ﻿using Footballista.BuildingBlocks.Domain;
+using Footballista.Players.Domain.PlayerNames;
 
-namespace Footballista.Players.PlayerNames.Rules
+namespace Footballista.Players.Domain.PlayerNames.Rules
 {
 	public class NameCannotBeEmptyRule : IBusinessRule
 	{

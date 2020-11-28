@@ -1,4 +1,4 @@
-﻿using Footballista.Players.Positions;
+﻿using Footballista.Players.Domain.Positions;
 using System.Collections.Generic;
 using System.Linq;
 

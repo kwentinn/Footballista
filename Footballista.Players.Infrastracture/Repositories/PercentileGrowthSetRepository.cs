@@ -1,7 +1,7 @@
-﻿using Footballista.Players.Growths;
+﻿using Footballista.Players.Domain.Growths;
+using Footballista.Players.Domain.Persons;
 using Footballista.Players.Infrastracture.Loaders.Growths;
 using Footballista.Players.Infrastracture.Loaders.Growths.Records;
-using Footballista.Players.Persons;
 using System;
 using System.Collections.Generic;
 using System.Linq;

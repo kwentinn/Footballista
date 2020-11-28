@@ -2,14 +2,15 @@
 using Footballista.BuildingBlocks.Domain.Percentiles;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Players.Builders.Generators;
-using Footballista.Players.Builders.Generators.FeatureGeneration;
-using Footballista.Players.Builders.Generators.FeatureGeneration.RatingRanges;
 using Footballista.Players.Builders.Randomisers;
-using Footballista.Players.Features;
-using Footballista.Players.Persons;
-using Footballista.Players.Physique;
-using Footballista.Players.PlayerNames;
-using Footballista.Players.Positions;
+using Footballista.Players.Domain;
+using Footballista.Players.Domain.Builders.Generators.FeatureGeneration;
+using Footballista.Players.Domain.Builders.Generators.FeatureGeneration.RatingRanges;
+using Footballista.Players.Domain.Features;
+using Footballista.Players.Domain.Persons;
+using Footballista.Players.Domain.Physique;
+using Footballista.Players.Domain.PlayerNames;
+using Footballista.Players.Domain.Positions;
 using Itenso.TimePeriod;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace Footballista.Players.Builders
 {
-    public class YoungPlayerGenerator : IPlayerGenerator
+	public class YoungPlayerGenerator : IPlayerGenerator
 	{
 		private readonly IPersonNameGenerator _nameGenerator;
 		private readonly IGenderGenerator _genderGenerator;
@@ -27,11 +28,10 @@ namespace Footballista.Players.Builders
 		private readonly IFavouriteFootGenerator _favouriteFootGenerator;
 		private readonly IBodyMassIndexGenerator _bmiGenerator;
 		private readonly ICountriesGenerator _countriesGenerator;
-		private readonly IGrowthSetGenerator _growthSetGenerator;
 		private readonly IPercentileGenerator _percentileGenerator;
 		private readonly IPlayerPositionGenerator _playerPositionGenerator;
 		private readonly IGame _game;
-        private readonly IRandomiser<Rating> randomiser;
+        private readonly IRandomiser<Rating> _randomiser;
 
         public YoungPlayerGenerator
 		(
@@ -42,7 +42,6 @@ namespace Footballista.Players.Builders
 			IFavouriteFootGenerator favouriteFootGenerator,
 			IBodyMassIndexGenerator bmiGenerator,
 			ICountriesGenerator countriesGenerator,
-			IGrowthSetGenerator growthSetGenerator,
 			IPercentileGenerator percentileGenerator,
 			IPlayerPositionGenerator playerPositionGenerator,
 			IGame game,
@@ -56,11 +55,10 @@ namespace Footballista.Players.Builders
 			_favouriteFootGenerator = favouriteFootGenerator;
 			_bmiGenerator = bmiGenerator;
 			_countriesGenerator = countriesGenerator;
-			_growthSetGenerator = growthSetGenerator;
 			_percentileGenerator = percentileGenerator;
 			_playerPositionGenerator = playerPositionGenerator;
 			_game = game;
-            this.randomiser = randomiser;
+            this._randomiser = randomiser;
         }
 
 		public Player Generate(Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
@@ -83,7 +81,7 @@ namespace Footballista.Players.Builders
 			BodyMassIndex bmi = _bmiGenerator.Generate(countries.FirstOrDefault(), playerGender.Value, percentile, dob);
 			PlayerPosition position = _playerPositionGenerator.Generate();
 			
-			PhysicalFeatureSet playerFeatureSet = new PlayerFeatureGenerator(randomiser)
+			PhysicalFeatureSet playerFeatureSet = new PlayerFeatureGenerator(_randomiser)
 				.ForPosition(position)
 				.ForBmi(bmi)
 				.ForCountry(countries.FirstOrDefault())
@@ -157,7 +155,7 @@ namespace Footballista.Players.Builders
 			BodyMassIndex bmi = _bmiGenerator.Generate(countries.FirstOrDefault(), playerGender.Value, percentile, dob);
 			PlayerPosition position = _playerPositionGenerator.Generate();
 			
-			PhysicalFeatureSet playerFeatureSet = new PlayerFeatureGenerator(randomiser)
+			PhysicalFeatureSet playerFeatureSet = new PlayerFeatureGenerator(_randomiser)
 				.ForPosition(position)
 				.ForBmi(bmi)
 				.ForCountry(countries.FirstOrDefault())

@@ -1,6 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 
-namespace Footballista.Players.Physique.Rules
+namespace Footballista.Players.Domain.Physique.Rules
 {
 	public class BmiMustBeWithinRangeRule : IBusinessRule
 	{
@@ -15,6 +15,6 @@ namespace Footballista.Players.Physique.Rules
 
 		public string Message => "Bmi must be within range 10-35";
 
-		public bool IsBroken() => !_validRange.IsValueInRange(this._bmi);
+		public bool IsBroken() => !_validRange.IsValueInRange(_bmi);
 	}
 }

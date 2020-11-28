@@ -1,6 +1,7 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.Players.PlayerEvolutions.Rules;
+using Footballista.Players.Domain.PlayerEvolutions;
+using Footballista.Players.Domain.PlayerEvolutions.Rules;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -102,14 +103,13 @@ namespace Footballista.Players.PlayerEvolutions
 			double x = (age.Years - AgeRange.Lower.Years) / Duration.FromAgeRange(AgeRange).Years;
 
 			// calculer y entre 0 et 1
-			double y = Math.Pow(x, EvolutionCurve.Value) * MaxFeatureImprovement.Value;
+			double y = Math.Pow(x, EvolutionCurve) * MaxFeatureImprovement;
 
 			return new FeatureImprovementRatio(y);
 		}
 		public FeatureImprovementRatio GetImprovementFromAgeRange(Range<PersonAge> ageRange)
 		{
-			var improvement = GetImprovementFromAge(ageRange.Upper).Value - GetImprovementFromAge(ageRange.Lower).Value;
-			return new FeatureImprovementRatio(improvement);
+			return GetImprovementFromAge(ageRange.Upper) - GetImprovementFromAge(ageRange.Lower);
 		}
 
 		public AgeRating ImproveRatingFromAge(AgeRating currentAgeRating, Duration evolutionDuration)

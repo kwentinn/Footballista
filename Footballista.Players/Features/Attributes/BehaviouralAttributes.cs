@@ -1,10 +1,11 @@
-﻿using Footballista.Players.Features.Attributes.Base;
+﻿using Footballista.Players.Domain.Features;
+using Footballista.Players.Domain.Positions;
+using Footballista.Players.Features.Attributes.Base;
 using Footballista.Players.Features.Attributes.Calculator;
-using Footballista.Players.Positions;
 
 namespace Footballista.Players.Features.Attributes
 {
-    public class BehaviouralAttributes : AbstractPlayerAttributes
+	public class BehaviouralAttributes : AbstractPlayerAttributes
     {
         private readonly RatingWithWeighting stress;
         private readonly RatingWithWeighting composure;

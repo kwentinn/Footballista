@@ -1,6 +1,6 @@
-﻿using Footballista.Players.Features;
+﻿using Footballista.Players.Domain.Features;
+using Footballista.Players.Domain.Positions;
 using Footballista.Players.Features.GlobalRatingCalculators;
-using Footballista.Players.Positions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 

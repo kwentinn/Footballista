@@ -1,10 +1,9 @@
-﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.Players.Features;
+﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
+using Footballista.Players.Domain.Features;
 using System;
 using System.Diagnostics;
 
-namespace Footballista.Players.PlayerEvolutions
+namespace Footballista.Players.Domain.PlayerEvolutions
 {
 	[DebuggerDisplay("{Age} {Rating}")]
 	public record AgeRating

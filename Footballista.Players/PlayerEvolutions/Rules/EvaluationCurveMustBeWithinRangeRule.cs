@@ -1,6 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 
-namespace Footballista.Players.PlayerEvolutions.Rules
+namespace Footballista.Players.Domain.PlayerEvolutions.Rules
 {
 	public class EvaluationCurveMustBeWithinRangeRule : IBusinessRule
 	{

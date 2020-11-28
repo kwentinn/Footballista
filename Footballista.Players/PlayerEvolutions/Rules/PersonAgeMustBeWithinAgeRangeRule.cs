@@ -1,7 +1,7 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
 
-namespace Footballista.Players.PlayerEvolutions.Rules
+namespace Footballista.Players.Domain.PlayerEvolutions.Rules
 {
 	public class PersonAgeMustBeWithinAgeRangeRule : IBusinessRule
 	{

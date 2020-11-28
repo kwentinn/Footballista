@@ -1,16 +1,15 @@
-﻿using Footballista.BuildingBlocks.Domain;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
-namespace Footballista.Players.Positions
+namespace Footballista.Players.Domain.Positions
 {
-	[DebuggerDisplay("{name}")]
-	public class PositionCategory : ValueObject
+	[DebuggerDisplay("{_name}")]
+	public record PositionCategory
 	{
-		public readonly string name;
+		private readonly string _name;
 
 		private PositionCategory(string name)
 		{
-			this.name = name;
+			_name = name;
 		}
 
 		public static PositionCategory GoalKeeper => new PositionCategory(nameof(GoalKeeper));
@@ -19,5 +18,5 @@ namespace Footballista.Players.Positions
 		public static PositionCategory Forward => new PositionCategory(nameof(Forward));
 
 		public static PositionCategory None => new PositionCategory(nameof(None));
-    }
+	}
 }

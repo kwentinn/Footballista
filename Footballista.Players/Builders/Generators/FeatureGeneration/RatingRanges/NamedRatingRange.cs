@@ -1,17 +1,17 @@
 ﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.Players.Features;
+using Footballista.Players.Domain.Features;
 
-namespace Footballista.Players.Builders.Generators.FeatureGeneration.RatingRanges
+namespace Footballista.Players.Domain.Builders.Generators.FeatureGeneration.RatingRanges
 {
-    public abstract record NamedRatingRange
-    {
-        protected readonly string name;
-        protected readonly Range<Rating> ratingRange;
+	public abstract record NamedRatingRange
+	{
+		protected readonly string Name;
+		protected readonly Range<Rating> RatingRange;
 
-        protected NamedRatingRange(string name, Range<Rating> ratingRange)
-        {
-            this.name = name;
-            this.ratingRange = ratingRange;
-        }
-    }
+		protected NamedRatingRange(string name, Range<Rating> ratingRange)
+		{
+			this.Name = name;
+			this.RatingRange = ratingRange;
+		}
+	}
 }

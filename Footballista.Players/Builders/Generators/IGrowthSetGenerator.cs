@@ -1,6 +1,6 @@
 ﻿using Footballista.Players.Builders.Randomisers;
-using Footballista.Players.Growths;
-using Footballista.Players.Persons;
+using Footballista.Players.Domain.Growths;
+using Footballista.Players.Domain.Persons;
 using System.Collections.Generic;
 using System.Linq;
 

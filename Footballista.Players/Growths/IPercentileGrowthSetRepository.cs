@@ -1,6 +1,6 @@
-﻿using Footballista.Players.Persons;
+﻿using Footballista.Players.Domain.Persons;
 
-namespace Footballista.Players.Growths
+namespace Footballista.Players.Domain.Growths
 {
 	public interface IPercentileGrowthSetRepository
 	{

@@ -1,4 +1,5 @@
-﻿using Footballista.Wasm.Shared;
+﻿using Footballista.Players.Domain;
+using Footballista.Wasm.Shared;
 using Footballista.Wasm.Shared.Data;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,9 @@ namespace Footballista.Wasm.Server.Services.Mappers
 	/// <summary>
 	/// Map domain to dto/client
 	/// </summary>
-	public class PlayerMapper : IMapper<Players.Player, Shared.Data.Players.Player>
+	public class PlayerMapper : IMapper<Player, Shared.Data.Players.Player>
 	{
-		public Shared.Data.Players.Player Map(Players.Player player)
+		public Shared.Data.Players.Player Map(Player player)
 		{
 			if (player is null)
 			{
@@ -52,7 +53,7 @@ namespace Footballista.Wasm.Server.Services.Mappers
 					.ToList()
 			};
 		}
-		public IEnumerable<Shared.Data.Players.Player> Map(IEnumerable<Players.Player> players)
+		public IEnumerable<Shared.Data.Players.Player> Map(IEnumerable<Player> players)
 		{
 			return players
 				.Select(player => Map(player));

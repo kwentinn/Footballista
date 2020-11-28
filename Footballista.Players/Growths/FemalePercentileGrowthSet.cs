@@ -1,8 +1,8 @@
-﻿using Footballista.Players.Persons;
+﻿using Footballista.Players.Domain.Persons;
 using System;
 using System.Collections.Generic;
 
-namespace Footballista.Players.Growths
+namespace Footballista.Players.Domain.Growths
 {
 	public sealed class FemalePercentileGrowthSet : AbstractPercentileGrowthSet
 	{
@@ -12,7 +12,7 @@ namespace Footballista.Players.Growths
 			{
 				if (g.Gender != Gender.Female)
 				{
-					throw new ApplicationException("Inccorect gender for MalePercentileGrowthSet");
+					throw new ApplicationException("Incorrect gender for MalePercentileGrowthSet");
 				}
 			}
 		}

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
-namespace Footballista.Players.Features
+namespace Footballista.Players.Domain.Features
 {
-    [DebuggerDisplay("{FeatureType}={Rating} ")]
+	[DebuggerDisplay("{FeatureType}={Rating} ")]
 	public record PhysicalFeature : ValueObjectRecord
 	{
 		public FeatureType FeatureType { get; }
@@ -14,11 +14,9 @@ namespace Footballista.Players.Features
 
 		private readonly List<PhysicalFeature> _commonFeatures;
 
-		[IgnoreMember]
 		public ReadOnlyCollection<PhysicalFeature> OutfieldPlayerFeatures => _outfieldPlayerFeatures.AsReadOnly();
 		private readonly List<PhysicalFeature> _outfieldPlayerFeatures;
 
-		[IgnoreMember]
 		public ReadOnlyCollection<PhysicalFeature> GoalKeeperFeatures => _goalkeeperFeatures.AsReadOnly();
 		private readonly List<PhysicalFeature> _goalkeeperFeatures;
 

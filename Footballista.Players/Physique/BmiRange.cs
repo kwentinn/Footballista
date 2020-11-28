@@ -1,7 +1,7 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using System;
 
-namespace Footballista.Players.Physique
+namespace Footballista.Players.Domain.Physique
 {
 	public record BmiRange
 	{
