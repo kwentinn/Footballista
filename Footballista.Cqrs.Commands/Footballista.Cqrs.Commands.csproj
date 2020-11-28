@@ -6,6 +6,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Footballista.Cqrs\Footballista.Cqrs.csproj" />
+		<ProjectReference Include="..\Footballista.Game.App\Footballista.Game.App.csproj" />
 	</ItemGroup>
 
 </Project>

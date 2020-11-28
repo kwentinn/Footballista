@@ -42,16 +42,17 @@ namespace Footballista.Wasm.Server.Controllers
 		[Route("create")]
 		public async Task<IActionResult> CreateCareer([FromBody]CareerDto career)
 		{
-			await _mediator.DispatchAsync(new CreateCareerCommand());
+            CreateCareerCommand cmd = new CreateCareerCommandBuilder(career.Name)
+				.WithClubId(new Game.Domain.Careers.ClubId(career.Club.Id))
+				.WithCompetitionId(new Game.Domain.Careers.CompetitionId(career.CurrentCompetition.Id))
+				.WithDate(career.CurrentDate.ToDate())
+				.WithSeasonId(new Game.Domain.Careers.SeasonId(career.CurrentSeason.Id))
+				.WithManager(new Game.Domain.Careers.Manager())
+				.Build();
 
-			//var r = await Task.FromResult(career);
+			await _mediator.DispatchAsync(cmd);
+
 			return Ok();
-
-			//await _careerService.CreateCareerAsync
-			//(
-			//	career.Name,
-			//	career.CurrentCompetition.Id,
-			//);
 		}
 	}
 }

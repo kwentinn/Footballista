@@ -5,7 +5,7 @@ namespace Footballista.Game.Domain.Careers
 {
     public class CareerBuilder
 	{
-		private Guid _id;
+		private CareerId _id;
 		private string _name;
 		private Club _club;
 		private Competition _competition;
@@ -32,7 +32,7 @@ namespace Footballista.Game.Domain.Careers
 			);
 		}
 
-		public CareerBuilder WithId(Guid id)
+		public CareerBuilder WithId(CareerId id)
 		{
 			_id = id;
 			return this;

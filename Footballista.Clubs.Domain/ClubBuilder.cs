@@ -35,6 +35,11 @@ namespace Footballista.Clubs.Domain
 			_teams = new List<Team> { team };
 			return this;
 		}
+		public ClubBuilder WithFirstTeam(FirstTeam team)
+		{
+			_teams = new List<Team> { team };
+			return this;
+		}
 
 		public Club Build()
 		{

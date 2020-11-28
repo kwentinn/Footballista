@@ -3,4 +3,5 @@
     public record Season
     {
     }
+    public record SeasonId(int Value);
 }
