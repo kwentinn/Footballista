@@ -1,28 +1,26 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+using System.Diagnostics;
 
 namespace Footballista.Clubs.Domain.Teams
 {
-	public class Team
+	[DebuggerDisplay("{TeamType} - {Coach}")]
+	public record Team
 	{
-		public string Name { get; }
+		public TeamType TeamType { get; }
 		public Coach Coach { get; }
-		public AgeCategory AgeCategory { get; }
 
-		public ReadOnlyCollection<TeamPlayer> Players => _players.AsReadOnly();
 		private readonly List<TeamPlayer> _players = new List<TeamPlayer>();
 
-		public Team(
-			string name, 
+		public Team
+		(
+			TeamType teamType,
 			Coach coach, 
-			AgeCategory ageCategory,
-			List<TeamPlayer> teamPlayers)
+			List<TeamPlayer> teamPlayers
+		)
 		{
-			Name = name;
+			TeamType = teamType;
 			Coach = coach;
-			AgeCategory = ageCategory;
-			_players = teamPlayers.ToList();
+			_players = teamPlayers;
 		}
 	}
 }

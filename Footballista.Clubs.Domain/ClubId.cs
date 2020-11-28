@@ -1,10 +1,21 @@
-﻿using Footballista.BuildingBlocks.Domain;
-using System;
+﻿using System;
 
 namespace Footballista.Clubs.Domain
 {
-	public class ClubId : TypedIdValueBase
+	public record ClubId
 	{
-		public ClubId(Guid value) : base(value) { }
+		private readonly int _value;
+
+		public ClubId(int value)
+		{
+			_value = value;
+		}
+
+		public static implicit operator int(ClubId clubId) => clubId._value;
+
+		internal static ClubId New()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

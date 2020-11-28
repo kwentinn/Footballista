@@ -38,23 +38,17 @@ namespace Footballista.Clubs.Domain.Teams
 			)
 		);
 
-		private static List<AgeCategory> _allAgeCategories
-			= new List<AgeCategory> { U15, U17, U19 };
+		private static List<AgeCategory> _allAgeCategories = new List<AgeCategory> 
+		{ 
+			U15, U17, U19 
+		};
 
-		public bool IsInCategory(TeamPlayer player)
-		{
-			Ensure.IsNotNull(player, nameof(player));
 
-			foreach (AgeCategory ageCategory in _allAgeCategories)
-			{
-				//if ()
-			}
-			return false;
-		}
 		private AgeCategory(string name, BoundedRange<PersonAge> ageRange)
 		{
 			Name = name;
 			AgeRange = ageRange;
 		}
+
 	}
 }

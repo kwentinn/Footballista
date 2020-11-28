@@ -5,10 +5,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="r3xdfgjm.o5k~" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\Footballista.BuildingBlocks.Domain\Footballista.BuildingBlocks.Domain.csproj" />
 		<ProjectReference Include="..\Footballista.Players.Domain\Footballista.Players.Domain.csproj" />
 	</ItemGroup>
