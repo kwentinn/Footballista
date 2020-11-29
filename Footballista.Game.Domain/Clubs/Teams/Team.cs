@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Footballista.Clubs.Domain.Teams
+namespace Footballista.Game.Domain.Clubs.Teams
 {
     [DebuggerDisplay("{TeamType} - {Coach}")]
     public record Team
     {
         public TeamType TeamType { get; }
-        public Coach Coach { get; }
+        public Manager Coach { get; }
 
         protected readonly List<TeamPlayer> Players = new List<TeamPlayer>();
 
         public Team
         (
             TeamType teamType,
-            Coach coach,
+            Manager coach,
             List<TeamPlayer> teamPlayers
         )
         {
@@ -26,7 +26,7 @@ namespace Footballista.Clubs.Domain.Teams
 
     public record FirstTeam : Team
     {
-        public FirstTeam(Coach coach, List<TeamPlayer> teamPlayers)
+        public FirstTeam(Manager coach, List<TeamPlayer> teamPlayers)
             : base(TeamType.FirstTeam, coach, teamPlayers)
         {
         }

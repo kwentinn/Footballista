@@ -12,8 +12,7 @@ namespace Footballista.Wasm.Client.Infra.MappingProfiles.Converters.DtoToDomain
 			(
 				id: source.Id,
 				name: source.Name,
-				abbreviation: source.Abbreviation,
-				city: new Shared.Data.City(source.City, source.Country)
+				abbreviation: source.Abbreviation
 			);
 		}
 	}

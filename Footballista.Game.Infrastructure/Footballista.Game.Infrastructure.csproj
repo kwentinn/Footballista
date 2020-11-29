@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Footballista.Clubs.Domain\Footballista.Clubs.Domain.csproj" />
+    <ProjectReference Include="..\Footballista.Game.Domain\Footballista.Game.Domain.csproj" />
   </ItemGroup>
 
 </Project>

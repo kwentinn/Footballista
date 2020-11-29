@@ -1,13 +1,5 @@
-﻿using System;
-
-namespace Footballista.Game.Domain.Careers
+﻿namespace Footballista.Game.Domain.Careers
 {
-    public record Competition
-    {
-        public CompetitionId Id { get; }
-        public string Name { get; }
-
-
-    }
+    public record Competition(CompetitionId Id, string Name);
     public record CompetitionId(int Value);
 }

@@ -1,6 +1,7 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using Footballista.Cqrs.Base.Commands;
 using Footballista.Game.Domain.Careers;
+using Footballista.Game.Domain.Clubs;
 using Itenso.TimePeriod;
 
 namespace Footballista.Cqrs.Commands.CreateCareer

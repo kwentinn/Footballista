@@ -1,4 +1,5 @@
-﻿using Itenso.TimePeriod;
+﻿using Footballista.Game.Domain.Clubs;
+using Itenso.TimePeriod;
 using System;
 
 namespace Footballista.Game.Domain.Careers

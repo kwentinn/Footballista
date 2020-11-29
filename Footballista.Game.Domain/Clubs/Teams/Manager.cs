@@ -1,4 +1,4 @@
-﻿namespace Footballista.Game.Domain.Careers
+﻿namespace Footballista.Game.Domain.Clubs.Teams
 {
     public record Manager(string Firstname, string Lastname);
 }

@@ -1,10 +1,13 @@
-﻿using Footballista.Clubs.Domain;
-using Footballista.Clubs.Domain.Teams;
+﻿using Footballista.Game.Domain.Careers;
+using Footballista.Game.Domain.Clubs;
+using Footballista.Game.Domain.Clubs.Teams;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Manager = Footballista.Game.Domain.Clubs.Teams.Manager;
 
-namespace Footballista.Clubs.Infrastructure
+namespace Footballista.Game.Infrastructure
 {
     public class ClubRepository : IClubRepository
     {
@@ -12,14 +15,14 @@ namespace Footballista.Clubs.Infrastructure
         {
             new ClubBuilder("ANGERS SCO")
                 .WithId(new ClubId(1))
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
                 .Build(),
 
             new ClubBuilder("AS MONACO")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -27,7 +30,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("AS SAINT-ÉTIENNE")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -35,7 +38,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("DIJON FCO")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -43,7 +46,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("FC GIRONDINS DE BORDEAUX")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -51,7 +54,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("FC LORIENT")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -59,7 +62,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("FC METZ")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -67,7 +70,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("FC NANTES")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -75,7 +78,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("LOSC LILLE")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -84,14 +87,14 @@ namespace Footballista.Clubs.Infrastructure
 
             new ClubBuilder("MONTPELLIER HÉRAULT SC")
                 .WithId(new ClubId(10))
-                .WithFirstTeam(new FirstTeam(new Coach("Michel", "Der Zakarian"), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("Michel", "Der Zakarian"), new List<TeamPlayer>()
                 {
 
                 }))
                 .Build(),
 
             new ClubBuilder("NÎMES OLYMPIQUE")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -99,7 +102,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("OGC NICE")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -107,7 +110,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("OLYMPIQUE DE MARSEILLE")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -115,7 +118,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("OLYMPIQUE LYONNAIS")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -123,7 +126,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("PARIS SAINT-GERMAIN")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -131,7 +134,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("RC LENS")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -139,7 +142,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("RC STRASBOURG ALSACE")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -147,7 +150,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("STADE BRESTOIS 29")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -155,7 +158,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("STADE DE REIMS")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -163,7 +166,7 @@ namespace Footballista.Clubs.Infrastructure
                 .Build(),
 
             new ClubBuilder("STADE RENNAIS FC")
-                .WithFirstTeam(new FirstTeam(new Coach("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
                 {
 
                 }))
@@ -179,6 +182,11 @@ namespace Footballista.Clubs.Infrastructure
         public async Task<IEnumerable<Club>> GetByIdsAsync(params ClubId[] ids)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<Club>> GetClubsInCompetition(CompetitionId competitionId)
+        {
+            return _clubs;
         }
     }
 }

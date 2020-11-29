@@ -1,29 +1,18 @@
-﻿using System;
-
-namespace Footballista.Wasm.Shared.Data.Clubs
+﻿namespace Footballista.Wasm.Shared.Data.Clubs
 {
-	public class Club
+    public class Club
 	{
-		public Guid Id { get; set; }
+		public int Id { get; set; }
 		public string Name { get; set; }
 		public string Abbreviation { get; set; }
-		public City City { get; set; }
 
-		public static Club DefaultClub 
-			=> new Club
-			(
-				Guid.Parse("2a3fb625-858c-438c-a40f-f8049401c350"),
-				"Montpellier Hérault Sport Club",
-				"MHSC",
-				new City("Montpellier", "France")
-			);
+		public static Club DefaultClub => new Club(1, "Montpellier Hérault Sport Club", "MHSC");
 
-		public Club(Guid id, string name, string abbreviation, City city)
+		public Club(int id, string name, string abbreviation)
 		{
 			Id = id;
 			Name = name;
 			Abbreviation = abbreviation;
-			City = city;
 		}
 
 		public string ToShortString() => this.Abbreviation;

@@ -60,7 +60,7 @@ namespace Footballista.Wasm.Client.NewCareer
 				TheManager.Country
 			);
 
-			Club club = new Club(Guid.Empty, "Montpellier", "MHSC", new City("Montpellier", "France"));
+			Club club = new Club(1, "Montpellier", "MHSC");
 
 			await GameService.StartNewCareerAsync(CareerName, club, SelectedCompetition, manager);
 
