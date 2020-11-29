@@ -1,5 +1,6 @@
 ﻿using Footballista.Game.Domain.Careers;
 using Footballista.Game.Domain.Clubs;
+using Footballista.Game.Domain.Clubs.Teams;
 using Footballista.Game.Domain.Competitions;
 using Footballista.Game.Domain.Competitions.Seasons;
 using Itenso.TimePeriod;

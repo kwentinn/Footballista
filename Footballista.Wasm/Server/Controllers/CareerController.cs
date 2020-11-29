@@ -47,7 +47,7 @@ namespace Footballista.Wasm.Server.Controllers
 				.WithCompetitionId(new Game.Domain.Competitions.CompetitionId(career.CurrentCompetition.Id))
 				.WithDate(career.CurrentDate.ToDate())
 				.WithSeasonId(new Game.Domain.Competitions.Seasons.SeasonId(career.CurrentSeason.Id))
-				.WithManager(new Game.Domain.Careers.Manager(career.Manager.Firstname, career.Manager.Lastname))
+				.WithManager(new Game.Domain.Clubs.Teams.Manager(career.Manager.Firstname, career.Manager.Lastname))
 				.Build();
 
 			await _mediator.DispatchAsync(cmd);
