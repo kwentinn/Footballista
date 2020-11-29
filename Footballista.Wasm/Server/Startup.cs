@@ -64,7 +64,8 @@ namespace Footballista.Wasm.Server
 			builder.RegisterModule(new PlayersModule());
 			builder.RegisterModule(new BlazorWasmServerModule());
 			builder.RegisterModule(new MappersModule());
-			builder.RegisterModule(new MediatRModule());
+			builder.RegisterModule(new CqrsModule());
+			builder.RegisterGameModule();
 		}
 	}
 }

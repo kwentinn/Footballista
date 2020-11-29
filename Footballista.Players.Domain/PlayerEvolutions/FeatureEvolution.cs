@@ -38,7 +38,7 @@ namespace Footballista.Players.PlayerEvolutions
 		}
 	}
 
-	internal sealed class Phase1Evolution : FeatureEvolution
+	internal sealed record Phase1Evolution : FeatureEvolution
 	{
 		private const int AGE_MIN_IN_YEARS = 14;
 		private const int AGE_MAX_IN_YEARS = 28;
@@ -57,7 +57,7 @@ namespace Footballista.Players.PlayerEvolutions
 		{ 
 		}
 	}
-	internal sealed class Phase2Evolution : FeatureEvolution
+	internal sealed record Phase2Evolution : FeatureEvolution
 	{
 		public static Phase2Evolution Value => new Phase2Evolution
 		(
@@ -69,7 +69,7 @@ namespace Footballista.Players.PlayerEvolutions
 		private Phase2Evolution(Range<PersonAge> ageRange, FeatureImprovementRatio maxImprovement, EvolutionCurve evolutionCurve)
 			: base(ageRange, maxImprovement, evolutionCurve) { }
 	}
-	internal sealed class Phase3Evolution : FeatureEvolution
+	internal sealed record Phase3Evolution : FeatureEvolution
 	{
 		public static Phase3Evolution Value => new Phase3Evolution
 		(
@@ -82,7 +82,7 @@ namespace Footballista.Players.PlayerEvolutions
 			: base(ageRange, maxImprovement, evolutionCurve) { }
 	}
 
-	internal class FeatureEvolution : ValueObject
+	internal record FeatureEvolution : ValueObjectRecord
 	{
 		public Range<PersonAge> AgeRange { get; }
 		public FeatureImprovementRatio MaxFeatureImprovement { get; }

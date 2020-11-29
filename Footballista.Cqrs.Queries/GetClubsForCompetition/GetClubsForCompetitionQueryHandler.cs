@@ -1,10 +1,9 @@
 ﻿using Footballista.Cqrs.Base.Queries;
-using System.Collections.Generic;
-using Footballista.Wasm.Shared.Data.Clubs;
-using System.Threading.Tasks;
 using Footballista.Game.Domain.Clubs;
-using Footballista.Game.Domain.Careers;
+using Footballista.Game.Domain.Competitions;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Footballista.Cqrs.Queries.GetClubListForCompetition
 {
@@ -18,7 +17,7 @@ namespace Footballista.Cqrs.Queries.GetClubListForCompetition
         }
         public async override Task<List<Wasm.Shared.Data.Clubs.Club>> Handle(GetClubsForCompetitionQuery query)
         {
-            IEnumerable<Game.Domain.Clubs.Club> domainClubs = await this.clubRepository
+            IEnumerable<Club> domainClubs = await this.clubRepository
                 .GetClubsInCompetition(new CompetitionId(query.competitionId));
 
             return domainClubs

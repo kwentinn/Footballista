@@ -1,4 +1,4 @@
-﻿using Footballista.Game.Domain.Careers;
+﻿using Footballista.Game.Domain.Competitions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -40,13 +40,13 @@ namespace Footballista.Wasm.Server.Controllers
 
 		[HttpPost]
 		[Route("create")]
-		public async Task<IActionResult> CreateCareer([FromBody]CareerDto career)
+        public async Task<IActionResult> CreateCareer([FromBody] CareerDto career)
 		{
             CreateCareerCommand cmd = new CreateCareerCommandBuilder(career.Name)
 				.WithClubId(new Game.Domain.Clubs.ClubId(career.Club.Id))
-				.WithCompetitionId(new Game.Domain.Careers.CompetitionId(career.CurrentCompetition.Id))
+				.WithCompetitionId(new Game.Domain.Competitions.CompetitionId(career.CurrentCompetition.Id))
 				.WithDate(career.CurrentDate.ToDate())
-				.WithSeasonId(new Game.Domain.Careers.SeasonId(career.CurrentSeason.Id))
+				.WithSeasonId(new Game.Domain.Competitions.Seasons.SeasonId(career.CurrentSeason.Id))
 				.WithManager(new Game.Domain.Careers.Manager(career.Manager.Firstname, career.Manager.Lastname))
 				.Build();
 

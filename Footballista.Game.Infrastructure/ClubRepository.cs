@@ -1,6 +1,6 @@
-﻿using Footballista.Game.Domain.Careers;
-using Footballista.Game.Domain.Clubs;
+﻿using Footballista.Game.Domain.Clubs;
 using Footballista.Game.Domain.Clubs.Teams;
+using Footballista.Game.Domain.Competitions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +9,14 @@ using Manager = Footballista.Game.Domain.Clubs.Teams.Manager;
 
 namespace Footballista.Game.Infrastructure
 {
+
     public class ClubRepository : IClubRepository
     {
         private static readonly List<Club> _clubs = new List<Club>
         {
             new ClubBuilder("ANGERS SCO")
                 .WithId(new ClubId(1))
-                .WithFirstTeam(new FirstTeam(new Manager("", ""), new List<TeamPlayer>()
+                .WithFirstTeam(new FirstTeam(new Manager("José", "Michel"), new List<TeamPlayer>()
                 {
 
                 }))
@@ -176,7 +177,7 @@ namespace Footballista.Game.Infrastructure
 
         public async Task<Club> GetByIdAsync(ClubId id)
         {
-            throw new NotImplementedException();
+            return _clubs.FirstOrDefault(c => c.Id == id);
         }
 
         public async Task<IEnumerable<Club>> GetByIdsAsync(params ClubId[] ids)

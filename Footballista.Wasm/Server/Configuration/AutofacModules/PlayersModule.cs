@@ -18,7 +18,7 @@ using System;
 
 namespace Footballista.Wasm.Server.Configuration.AutofacModules
 {
-	internal class PlayersModule : Module
+    internal class PlayersModule : Module
 	{
 		protected override void Load(ContainerBuilder builder)
 		{

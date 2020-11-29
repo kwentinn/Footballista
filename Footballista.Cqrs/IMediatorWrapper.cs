@@ -1,5 +1,6 @@
 ﻿using Footballista.Cqrs.Base.Commands;
 using Footballista.Cqrs.Base.Queries;
+using MediatR;
 using System.Threading.Tasks;
 
 namespace Footballista.Cqrs
