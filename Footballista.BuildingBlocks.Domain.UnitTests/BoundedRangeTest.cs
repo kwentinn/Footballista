@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Footballista.BuildingBlocks.Domain.UnitTests
 {
@@ -46,7 +47,7 @@ namespace Footballista.BuildingBlocks.Domain.UnitTests
 
 			bool inRange = range.IsValueInRange(5);
 
-			Assert.IsTrue(inRange);
+			inRange.Should().BeTrue();
 		}
 		[TestMethod]
 		public void IsInRange_PassLowerLimit_ShouldReturnFalse()

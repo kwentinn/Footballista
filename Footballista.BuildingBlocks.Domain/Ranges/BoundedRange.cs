@@ -54,11 +54,11 @@ namespace Footballista.BuildingBlocks.Domain
 		{
 			if (Upper is IncludingBound<T>)
 			{
-				IsBoundValueLessOrEqualsUpperBound(value);
+				return IsBoundValueLessOrEqualsUpperBound(value);
 			}
-			if (Lower is ExcludingBound<T>)
+			if (Upper is ExcludingBound<T>)
 			{
-				IsBoundValueStrictlyLessThanUpperBound(value);
+				return IsBoundValueStrictlyLessThanUpperBound(value);
 			}
 			throw new InvalidOperationException("Invalid Bound");
 		}

@@ -1,6 +1,8 @@
-﻿using Footballista.Game.Domain.Clubs;
+﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
+using Footballista.Game.Domain.Clubs;
 using Footballista.Game.Domain.Clubs.Teams;
 using Footballista.Game.Domain.Competitions;
+using Itenso.TimePeriod;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +20,7 @@ namespace Footballista.Game.Infrastructure
                 .WithId(new ClubId(1))
                 .WithFirstTeam(new FirstTeam(new Manager("José", "Michel"), new List<TeamPlayer>()
                 {
-
+                    new TeamPlayer("", "", new Date(1990,1,1), Country.France)
                 }))
                 .Build(),
 
