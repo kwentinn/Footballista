@@ -2,7 +2,7 @@
 using Footballista.Players.Builders;
 using Footballista.Players.Builders.Generators;
 using Footballista.Players.Builders.Randomisers;
-using Footballista.Players.Domain.Features;
+using Footballista.Game.Domain.Players.Features;
 using Footballista.Players.Infrastracture.Generators;
 
 namespace Footballista.Players.IntegrationTests.PlayerGenerators.Builders

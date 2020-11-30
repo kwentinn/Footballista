@@ -1,5 +1,5 @@
-﻿using Footballista.Players.Domain.Features;
-using Footballista.Players.Domain.Positions;
+﻿using Footballista.Game.Domain.Players.Features;
+using Footballista.Game.Domain.Players.Positions;
 using Footballista.Players.Features.GlobalRatingCalculators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;

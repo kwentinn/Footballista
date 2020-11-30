@@ -7,11 +7,8 @@
 
   <ItemGroup>
     <Compile Remove="Commands\**" />
-    <Compile Remove="Features\OutfieldPlayers\**" />
     <EmbeddedResource Remove="Commands\**" />
-    <EmbeddedResource Remove="Features\OutfieldPlayers\**" />
     <None Remove="Commands\**" />
-    <None Remove="Features\OutfieldPlayers\**" />
   </ItemGroup>
 
   <ItemGroup>

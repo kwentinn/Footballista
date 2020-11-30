@@ -1,4 +1,4 @@
-﻿using Footballista.Players.Domain;
+﻿using Footballista.Game.Domain.Players;
 using Footballista.Wasm.Shared;
 using Footballista.Wasm.Shared.Data;
 using System;

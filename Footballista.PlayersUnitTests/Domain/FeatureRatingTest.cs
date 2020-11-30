@@ -1,5 +1,5 @@
 ﻿using Footballista.BuildingBlocks.Domain;
-using Footballista.Players.Domain.Features;
+using Footballista.Game.Domain.Players.Features;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Footballista.PlayersUnitTests.Domain
