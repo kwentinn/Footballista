@@ -32,32 +32,36 @@ namespace Footballista.BuildingBlocks.Domain
 			Upper = upper;
 		}
 
-		public BoundedRange(T lower, BoundType lowerBoundType, T upper, BoundType upperBoundType)
-			: this(new Bound<T>(lower, lowerBoundType), new Bound<T>(upper, upperBoundType))
-		{
-		}
-
 		public static BoundedRange<T> CreateIncluded(T lower, T upper)
-			=> new BoundedRange<T>
-			(
-				lower, BoundType.Include,
-				upper, BoundType.Include
-			);
+			=> new BoundedRange<T>(new IncludingBound<T>(lower), new IncludingBound<T>(upper));
 
 		public bool IsValueInRange(T value) => IsLowerBoundInRange(value) && IsUpperBoundInRange(value);
 
-		private bool IsLowerBoundInRange(T value) => Lower.BoundType switch
+		private bool IsLowerBoundInRange(T value)
 		{
-			BoundType.Include => IsLowerBoundLessOrEqualsBoundValue(value),
-			BoundType.Exclude => IsLowerBoundStrictlyLessThanBoundValue(value),
-			_ => throw new InvalidOperationException("Incorrect BoundType value"),
-		};
-		private bool IsUpperBoundInRange(T value) => Upper.BoundType switch
+			if (Lower is IncludingBound<T>)
+			{
+				return IsLowerBoundLessOrEqualsBoundValue(value);
+			}
+			if (Lower is ExcludingBound<T>)
+            {
+				return IsLowerBoundStrictlyLessThanBoundValue(value);
+			}
+			throw new InvalidOperationException("Invalid Bound");
+		}
+
+		private bool IsUpperBoundInRange(T value)
 		{
-			BoundType.Include => IsBoundValueLessOrEqualsUpperBound(value),
-			BoundType.Exclude => IsBoundValueStrictlyLessThanUpperBound(value),
-			_ => throw new InvalidOperationException("Incorrect BoundType value"),
-		};
+			if (Upper is IncludingBound<T>)
+			{
+				IsBoundValueLessOrEqualsUpperBound(value);
+			}
+			if (Lower is ExcludingBound<T>)
+			{
+				IsBoundValueStrictlyLessThanUpperBound(value);
+			}
+			throw new InvalidOperationException("Invalid Bound");
+		}
 
 		private bool IsLowerBoundLessOrEqualsBoundValue(T value) => Lower.BoundValue.CompareTo(value) <= 0;
 		private bool IsLowerBoundStrictlyLessThanBoundValue(T value) => Lower.BoundValue.CompareTo(value) < 0;

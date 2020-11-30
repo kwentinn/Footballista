@@ -2,31 +2,16 @@
 
 namespace Footballista.BuildingBlocks.Domain
 {
+    /// <summary>
+    /// An abstract class representing an entity.
+    /// </summary>
     public abstract class Entity
     {
-        private List<IDomainEvent> _domainEvents;
-
         /// <summary>
-        /// Domain events occurred.
+        /// Enforces a rule or throws a <see cref="BusinessRuleValidationException"/> if the rule is violated.
         /// </summary>
-        public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents?.AsReadOnly();
-
-        /// <summary>
-        /// Add domain event.
-        /// </summary>
-        /// <param name="domainEvent"></param>
-        protected void AddDomainEvent(IDomainEvent domainEvent)
-        {
-            _domainEvents ??= new List<IDomainEvent>();
-            _domainEvents.Add(domainEvent);
-        }
-
-        public void ClearDomainEvents()
-        {
-            _domainEvents?.Clear();
-        }
-
-        protected void CheckRule(IBusinessRule rule)
+        /// <param name="rule">The business rule to enforce.</param>
+        protected static void CheckRule(IBusinessRule rule)
         {
             if (rule.IsBroken())
             {

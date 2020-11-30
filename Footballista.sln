@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Solution Items__", "__Solution Items__", "{59C215F7-051E-4AD0-8AAD-8863E7F2BDD6}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		Footballista.ruleset = Footballista.ruleset
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -86,7 +87,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Cqrs.Commands"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Cqrs.Queries", "Footballista.Cqrs.Queries\Footballista.Cqrs.Queries.csproj", "{C250A25F-4AB2-4695-91AB-1EDEE250BCFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Footballista.Game.Infrastructure", "Footballista.Game.Infrastructure\Footballista.Game.Infrastructure.csproj", "{D7116DA1-93AB-4DA6-A999-24088C7C642B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Game.Infrastructure", "Footballista.Game.Infrastructure\Footballista.Game.Infrastructure.csproj", "{D7116DA1-93AB-4DA6-A999-24088C7C642B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DAC0A7B9-E2DA-425C-9E3E-ABAD46F76C58}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

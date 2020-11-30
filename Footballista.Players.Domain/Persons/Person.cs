@@ -7,26 +7,26 @@ using System.Collections.ObjectModel;
 
 namespace Footballista.Players.Domain.Persons
 {
-	public class Person : Entity
+    public class Person : Entity
 	{
 		public PersonId Id { get; }
 		public PersonName Name { get; }
 		public Gender Gender { get; }
 		public BirthInfo BirthInfo { get; }
 
-		private readonly List<Country> _nationalities = new List<Country>();
-		public ReadOnlyCollection<Country> Nationalities => _nationalities.AsReadOnly();
+        private readonly List<Country> _nationalities = new List<Country>();
+		public ReadOnlyCollection<Country> Nationalities => this._nationalities.AsReadOnly();
 
 		protected Person(PersonId id, PersonName name, Gender gender, BirthInfo birthInfo, params Country[] nationalities)
 		{
-			CheckRule(new PersonMustHaveTwoNationalitiesMaximum(nationalities));
+            CheckRule(new PersonMustHaveTwoNationalitiesMaximum(nationalities));
 
-			Id = id;
-			Name = name;
-			Gender = gender;
-			BirthInfo = birthInfo;
+            this.Id = id;
+            this.Name = name;
+            this.Gender = gender;
+            this.BirthInfo = birthInfo;
 
-			_nationalities.AddRange(nationalities);
+            this._nationalities.AddRange(nationalities);
 		}
 
 		public static Person CreateNew(PersonName name, Gender gender, BirthInfo birthInfo, params Country[] nationalities)

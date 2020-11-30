@@ -15,8 +15,8 @@ namespace Footballista.Game.Domain.Clubs.Teams
             nameof(U15),
             new BoundedRange<PersonAge>
             (
-                PersonAge.FromYears(12), BoundType.Include,
-                PersonAge.FromYears(15), BoundType.Exclude
+                new IncludingBound<PersonAge>(PersonAge.FromYears(12)),
+                new ExcludingBound<PersonAge>(PersonAge.FromYears(15))
             )
         );
         public static AgeCategory U17 => new AgeCategory
@@ -24,8 +24,8 @@ namespace Footballista.Game.Domain.Clubs.Teams
             nameof(U17),
             new BoundedRange<PersonAge>
             (
-                PersonAge.FromYears(15), BoundType.Include,
-                PersonAge.FromYears(17), BoundType.Exclude
+                new IncludingBound<PersonAge>(PersonAge.FromYears(15)),
+                new ExcludingBound<PersonAge>(PersonAge.FromYears(17))
             )
         );
         public static AgeCategory U19 => new AgeCategory
@@ -33,8 +33,8 @@ namespace Footballista.Game.Domain.Clubs.Teams
             nameof(U19),
             new BoundedRange<PersonAge>
             (
-                PersonAge.FromYears(17), BoundType.Include,
-                PersonAge.FromYears(19), BoundType.Exclude
+                new IncludingBound<PersonAge>(PersonAge.FromYears(17)),
+                new ExcludingBound<PersonAge>(PersonAge.FromYears(19))
             )
         );
 
@@ -43,12 +43,10 @@ namespace Footballista.Game.Domain.Clubs.Teams
             U15, U17, U19
         };
 
-
         private AgeCategory(string name, BoundedRange<PersonAge> ageRange)
         {
             Name = name;
             AgeRange = ageRange;
         }
-
     }
 }

@@ -21,7 +21,7 @@ namespace Footballista.Wasm.Server.Services.Mappers
 
 			return new Shared.Data.Players.Player
 			{
-				Id = player.Id.Value,
+				Id = player.Id,
 				Firstname = player.Name.Firstname.Value,
 				Lastname = player.Name.Lastname.Value,
 				Nationalities = string.Join(", ", player.Nationalities.Select(n => n.CountryCode)),

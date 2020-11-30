@@ -10,7 +10,8 @@ namespace Footballista.BuildingBlocks.Domain.UnitTests
 		{
 			Assert.ThrowsException<BusinessRuleValidationException>(() =>
 			{
-				var range = new BoundedRange<int>(0, BoundType.Exclude, 0, BoundType.Include);
+				var range = new BoundedRange<int>(
+				 new ExcludingBound<int>(0), new IncludingBound<int>(0));
 			});
 		}
 		[TestMethod]
@@ -18,27 +19,30 @@ namespace Footballista.BuildingBlocks.Domain.UnitTests
 		{
 			Assert.ThrowsException<BusinessRuleValidationException>(() =>
 			{
-				var range = new BoundedRange<int>(0, BoundType.Exclude, -1, BoundType.Exclude);
+				var range = new BoundedRange<int>(
+					new ExcludingBound<int>(0), new IncludingBound<int>(-1));
 			});
 		}
 		[TestMethod]
 		public void New_Pass0AsLowerAnd10AsUpper_ShouldReturnNewInstance()
 		{
-			var range = new BoundedRange<int>(0, BoundType.Exclude, 10, BoundType.Include);
+			var range = new BoundedRange<int>(
+				new ExcludingBound<int>(0),
+				new IncludingBound<int>(10));
 
 			Assert.IsNotNull(range);
 		}
 		[TestMethod]
 		public void New_Pass0AsLowerAnd10AsUpper_ShouldReturnNewInstance2()
 		{
-			var range = new BoundedRange<int>(new Bound<int>(0, BoundType.Exclude), new Bound<int>(10, BoundType.Include));
+			var range = new BoundedRange<int>(new ExcludingBound<int>(0), new IncludingBound<int>(10));
 
 			Assert.IsNotNull(range);
 		}
 		[TestMethod]
 		public void IsInRange_()
 		{
-			var range = new BoundedRange<int>(0, BoundType.Exclude, 10, BoundType.Include);
+			var range = new BoundedRange<int>(new ExcludingBound<int>(0), new IncludingBound<int>(10));
 
 			bool inRange = range.IsValueInRange(5);
 
@@ -47,7 +51,7 @@ namespace Footballista.BuildingBlocks.Domain.UnitTests
 		[TestMethod]
 		public void IsInRange_PassLowerLimit_ShouldReturnFalse()
 		{
-			var range = new BoundedRange<int>(0, BoundType.Exclude, 10, BoundType.Include);
+			var range = new BoundedRange<int>(new ExcludingBound<int>(0), new IncludingBound<int>(10));
 
 			bool inRange = range.IsValueInRange(0);
 
@@ -56,7 +60,7 @@ namespace Footballista.BuildingBlocks.Domain.UnitTests
 		[TestMethod]
 		public void IsInRange_PassUpperLimit_ShouldReturnTrue()
 		{
-			var range = new BoundedRange<int>(0, BoundType.Exclude, 10, BoundType.Include);
+			var range = new BoundedRange<int>(new ExcludingBound<int>(0), new IncludingBound<int>(10));
 
 			bool inRange = range.IsValueInRange(10);
 
