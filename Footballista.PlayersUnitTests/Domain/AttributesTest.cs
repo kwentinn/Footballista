@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Footballista.Players.Domain.Positions;
+using Footballista.Game.Domain.Players.Positions;
 using Footballista.Players.Features.Attributes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

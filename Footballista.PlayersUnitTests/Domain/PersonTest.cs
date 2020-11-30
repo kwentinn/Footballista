@@ -1,7 +1,7 @@
 ﻿using Footballista.BuildingBlocks.Domain;
 using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.Players.Domain.Persons;
-using Footballista.Players.Domain.PlayerNames;
+using Footballista.Game.Domain.Players.Persons;
+using Footballista.Game.Domain.Players.PlayerNames;
 using Itenso.TimePeriod;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

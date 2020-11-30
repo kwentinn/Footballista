@@ -1,6 +1,6 @@
 ﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Footballista.Players.Domain.Features;
-using Footballista.Players.Domain.PlayerEvolutions;
+using Footballista.Game.Domain.Players.Features;
+using Footballista.Game.Domain.Players.PlayerEvolutions;
 using Footballista.Players.PlayerEvolutions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
