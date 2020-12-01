@@ -24,8 +24,8 @@ namespace Footballista.Game.Domain.Players.Persons
 		public BirthInfo(int year, int month, int day, string city = null, Country country = null)
 			: this(year, month, day)
 		{
-			Ensure.IsNotNullOrEmpty(city, nameof(city));
-			Ensure.IsNotNull(country, nameof(country));
+			Ensure.IsNotNullOrEmpty(city);
+			Ensure.IsNotNull(country);
 
 			Location = new Location(new City(city), country);
 		}

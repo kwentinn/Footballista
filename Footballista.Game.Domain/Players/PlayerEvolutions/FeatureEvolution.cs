@@ -114,8 +114,8 @@ namespace Footballista.Players.PlayerEvolutions
 
 		public AgeRating ImproveRatingFromAge(AgeRating currentAgeRating, Duration evolutionDuration)
 		{
-			Ensure.IsNotNull(currentAgeRating, nameof(currentAgeRating));
-			Ensure.IsNotNull(evolutionDuration, nameof(evolutionDuration));
+			Ensure.IsNotNull(currentAgeRating);
+			Ensure.IsNotNull(evolutionDuration);
 
 			// on ajoute la durée à l'âge du joueur (PersonAge + Duration = PersonAge)
 			PersonAge futureAge = currentAgeRating.Age + evolutionDuration;

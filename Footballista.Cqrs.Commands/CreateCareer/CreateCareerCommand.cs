@@ -20,11 +20,11 @@ namespace Footballista.Cqrs.Commands.CreateCareer
 
         internal CreateCareerCommand(string name, CompetitionId competitionId, SeasonId seasonId, Manager manager, ClubId clubId, Date date)
         {
-            Ensure.IsNotNullOrEmpty(name, nameof(name));
-            Ensure.IsNotNull(competitionId, nameof(competitionId));
-            Ensure.IsNotNull(seasonId, nameof(seasonId));
-            Ensure.IsNotNull(manager, nameof(manager));
-            Ensure.IsNotNull(clubId, nameof(clubId));
+            Ensure.IsNotNullOrEmpty(name);
+            Ensure.IsNotNull(competitionId);
+            Ensure.IsNotNull(seasonId);
+            Ensure.IsNotNull(manager);
+            Ensure.IsNotNull(clubId);
 
             this.Name = name;
             this.CompetitionId = competitionId;

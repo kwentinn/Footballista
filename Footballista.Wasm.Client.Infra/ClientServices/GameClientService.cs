@@ -42,8 +42,8 @@ namespace Footballista.Wasm.Client.Infra.ClientServices
 
 		public async Task StartNewCareerAsync(string careerName, Club club, Competition competition, Manager manager)
 		{
-			Ensure.IsNotNullOrEmpty(careerName, nameof(careerName));
-			Ensure.IsNotNull(competition, nameof(competition));
+			Ensure.IsNotNullOrEmpty(careerName);
+			Ensure.IsNotNull(competition);
 
 			Career career = Career.StartNew(careerName, club, competition, manager: manager);
 

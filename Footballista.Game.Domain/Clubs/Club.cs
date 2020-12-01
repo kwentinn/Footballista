@@ -24,8 +24,8 @@ namespace Footballista.Game.Domain.Clubs
 			int? yearOfCreation,
 			List<Team> teams)
 		{
-			Ensure.IsNotNull(id, nameof(id));
-			Ensure.IsNotNullOrEmpty(name, nameof(name));
+			Ensure.IsNotNull(id);
+			Ensure.IsNotNullOrEmpty(name);
 
 			Id = id;
 			Name = name;

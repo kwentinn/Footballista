@@ -28,8 +28,8 @@ namespace Footballista.Players.Features.GlobalRatingCalculators
 
 		public Rating Calculate(PlayerPosition position, PhysicalFeatureSet featureSet)
 		{
-			Ensure.IsNotNull(position, nameof(position));
-			Ensure.IsNotNull(featureSet, nameof(featureSet));
+			Ensure.IsNotNull(position);
+			Ensure.IsNotNull(featureSet);
 
 			// récupération de la config de rating
 			PlayerRatingConfigBase config = _playerRatingWeightings
