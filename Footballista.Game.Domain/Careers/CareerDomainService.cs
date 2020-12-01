@@ -37,13 +37,6 @@ namespace Footballista.Game.Domain.Careers
 
         public async Task CreateCareerAsync(string name, ClubId clubId, CompetitionId competitionId, SeasonId seasonId, Date date, Manager manager)
         {
-            // paramétrage de la carrière
-            //  - choix de la compétition
-            //  - équipe principale
-            //  
-            // générer les joueurs
-            // sauvegarder les joueurs générés
-
             IEnumerable<Player> players = await GeneratePlayers();
 
             // récupérer le club par son id 
@@ -54,7 +47,13 @@ namespace Footballista.Game.Domain.Careers
             Competition competition = competitionRepository.GetById(competitionId);
             Season season = seasonRepository.GetById(seasonId);
 
-            Career newCareer = new Career(name, club, competition, date, manager, season);
+            Career newCareer = new CareerBuilder(name)
+                .WithClub(club)
+                .WithCompetition(competition)
+                .WithCurrentDate(date)
+                .WithManager(manager)
+                .WithSeason(season)
+                .Build();
 
             await this.careerRepository.SaveAsync(newCareer);
         }

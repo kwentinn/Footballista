@@ -11,7 +11,6 @@ using Footballista.Players.Infrastracture.Loaders.Cities;
 using Footballista.Players.Infrastracture.Loaders.Firstnames;
 using Footballista.Players.Infrastracture.Loaders.Growths;
 using Footballista.Players.Infrastracture.Loaders.Lastnames;
-using Footballista.Players.Infrastracture.Repositories;
 using Footballista.Players.IntegrationTests.PlayerGenerators.Builders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -23,10 +22,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Footballista.Game.Infrastructure.Repositories.PercentileGrowthSets;
 
 namespace Footballista.Players.IntegrationTests
 {
-	[TestClass]
+    [TestClass]
 	public class YoungPlayerBuilderTest
 	{
 		private readonly Game.Domain.Game _game;

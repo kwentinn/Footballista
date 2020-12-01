@@ -12,9 +12,8 @@ using Footballista.Players.Infrastracture.Loaders.Cities;
 using Footballista.Players.Infrastracture.Loaders.Firstnames;
 using Footballista.Players.Infrastracture.Loaders.Growths;
 using Footballista.Players.Infrastracture.Loaders.Lastnames;
-using Footballista.Players.Infrastracture.Repositories;
-using Footballista.Players.Infrastracture.Repositories.Decorators;
 using System;
+using Footballista.Game.Infrastructure.Repositories.PercentileGrowthSets;
 
 namespace Footballista.Wasm.Server.Configuration.AutofacModules
 {
