@@ -11,7 +11,7 @@ using System.Diagnostics;
 namespace Footballista.Game.Domain.Players
 {
 	[DebuggerDisplay("{Name} {PlayerPosition}")]
-	public sealed class Player : Person
+	public class Player : Person
 	{
 		public PhysicalFeatureSet PhysicalFeatureSet { get; }
 		public PlayerPosition PlayerPosition { get; }
@@ -23,7 +23,7 @@ namespace Footballista.Game.Domain.Players
 
 		public Rating GeneralRating => _globalRatingCalculator.Calculate(PlayerPosition, PhysicalFeatureSet);
 
-		private Player
+		protected Player
 		(
 			PersonId id,
 			PersonName name,

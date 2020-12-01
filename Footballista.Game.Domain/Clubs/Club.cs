@@ -2,6 +2,7 @@
 using Footballista.Game.Domain.Clubs.Teams;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Footballista.Game.Domain.Clubs
 {
@@ -12,10 +13,9 @@ namespace Footballista.Game.Domain.Clubs
 		public int? YearOfCreation { get; }
         public string Abbreviation { get; set; }
 
-        //public ReadOnlyCollection<Team> Teams => _teams.AsReadOnly();
         private readonly List<Team> _teams = new List<Team>();
 
-		//private readonly List<ClubRegistration> _clubRegistrations = new List<ClubRegistration>();
+		public Team FirstTeam => _teams.FirstOrDefault(t => t is FirstTeam);
 
 		internal Club(
 			ClubId id,

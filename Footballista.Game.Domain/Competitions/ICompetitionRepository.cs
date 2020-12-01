@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Footballista.Game.Domain.Competitions
 {
@@ -14,7 +11,7 @@ namespace Footballista.Game.Domain.Competitions
     {
         private static readonly List<Competition> competitions = new List<Competition>
         {
-
+            Competition.Ligue1, Competition.Ligue2
         };
 
         public Competition GetById(CompetitionId id)

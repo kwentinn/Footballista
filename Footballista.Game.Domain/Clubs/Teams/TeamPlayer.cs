@@ -1,31 +1,16 @@
-﻿using Footballista.BuildingBlocks.Domain.ValueObjects;
-using Itenso.TimePeriod;
+﻿using Footballista.Game.Domain.Players;
 
 namespace Footballista.Game.Domain.Clubs.Teams
 {
     public class TeamPlayer
     {
-        public PlayerNumber Number { get; }
-        public string Firstname { get; }
-        public string Lastname { get; }
-        public string Nickname { get; }
-        public Date DateOfBirth { get; }
-        public Country Country { get; }
+        public PlayerNumber PlayerNumber { get; }
+        public Player Player { get; }
 
-        public TeamPlayer
-        (
-            string firstname,
-            string lastname,
-            Date dateOfBirth,
-            Country country,
-            string nickname = null
-        )
+        public TeamPlayer(PlayerNumber playerNumber, Player player)
         {
-            Firstname = firstname;
-            Lastname = lastname;
-            DateOfBirth = dateOfBirth;
-            Country = country;
-            Nickname = nickname;
+            this.PlayerNumber = playerNumber;
+            this.Player = player;
         }
     }
 }

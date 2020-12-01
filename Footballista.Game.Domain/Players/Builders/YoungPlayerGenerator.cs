@@ -153,7 +153,7 @@ namespace Footballista.Players.Builders
 			Foot playerFoot = _favouriteFootGenerator.Generate();
 			Percentile percentile = _percentileGenerator.Generate();
 			BodyMassIndex bmi = _bmiGenerator.Generate(countries.FirstOrDefault(), playerGender.Value, percentile, dob);
-			PlayerPosition position = _playerPositionGenerator.Generate();
+			PlayerPosition position = playerPosition ?? _playerPositionGenerator.Generate();
 			
 			PhysicalFeatureSet playerFeatureSet = new PlayerFeatureGenerator(_randomiser)
 				.ForPosition(position)
