@@ -3,28 +3,25 @@ using Footballista.Game.Domain.Players.Features;
 
 namespace Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration.PlayerPositions
 {
-	internal sealed class DefensiveMidfieldGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
-	{
-		public DefensiveMidfieldGenerationRangeDefinition()
-		{
-			_generationRanges.AddRange(new GenRange[]
-			{
-				// top skills
-				new GenRange(FeatureType.Interception, MaxRange),
-				new GenRange(FeatureType.Tackling, MaxRange),
-				new GenRange(FeatureType.PassingSpeed, MaxRange),
-				new GenRange(FeatureType.Stamina, MaxRange),
+    internal sealed class DefensiveMidfieldGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
+    {
+        public DefensiveMidfieldGenerationRangeDefinition()
+        {
+            AddBestSkills(
+                FeatureType.Interception,
+                FeatureType.Tackling,
+                FeatureType.PassingSpeed,
+                FeatureType.Stamina);
 
-				// medium skills
-				new GenRange(FeatureType.Acceleration, MediumRange),
-				new GenRange(FeatureType.Cross, MediumRange),
-				new GenRange(FeatureType.Header, MediumRange),
+            AddMediumSkills(
+                FeatureType.Acceleration,
+                FeatureType.Cross,
+                FeatureType.Header);
 
-				// bad skills
-				new GenRange(FeatureType.PenaltyKick, MinRange),
-				new GenRange(FeatureType.TopSpeed, MinRange),
-				new GenRange(FeatureType.Agility, MinRange),
-			});
-		}
-	}
+            AddBadSkills(
+                FeatureType.PenaltyKick,
+                FeatureType.TopSpeed,
+                FeatureType.Agility);
+        }
+    }
 }

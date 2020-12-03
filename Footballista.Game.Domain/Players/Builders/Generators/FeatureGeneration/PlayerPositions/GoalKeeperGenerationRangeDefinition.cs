@@ -7,12 +7,7 @@ namespace Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration
 	{
 		public GoalKeeperGenerationRangeDefinition()
 		{
-			_generationRanges.AddRange(new GenRange[]
-			{
-				// top skills
-				new GenRange(FeatureType.Goalkeeping, MaxRange),
-				new GenRange(FeatureType.ReactionSpeed, MaxRange),
-			});
+			AddBestSkills(FeatureType.Goalkeeping, FeatureType.ReactionSpeed);
 		}
 	}
 }

@@ -3,30 +3,27 @@ using Footballista.Game.Domain.Players.Features;
 
 namespace Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration.PlayerPositions
 {
-	internal sealed class FullBackGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
-	{
-		public FullBackGenerationRangeDefinition()
-		{
-			_generationRanges.AddRange(new GenRange[]
-			{
-				// top skills
-				new GenRange(FeatureType.Interception, MaxRange),
-				new GenRange(FeatureType.Tackling, MaxRange),
-				new GenRange(FeatureType.Stamina, MaxRange),
-				new GenRange(FeatureType.Power, MaxRange),
+    internal sealed class FullBackGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
+    {
+        public FullBackGenerationRangeDefinition()
+        {
+            AddBestSkills(
+                FeatureType.Interception,
+                FeatureType.Tackling,
+                FeatureType.Stamina,
+                FeatureType.Power);
 
-				// medium skills
-				new GenRange(FeatureType.Acceleration, MediumRange),
-				new GenRange(FeatureType.PassingSpeed, MediumRange),
-				new GenRange(FeatureType.Header, MediumRange),
+            AddMediumSkills(
+                FeatureType.Acceleration,
+                FeatureType.PassingSpeed,
+                FeatureType.Header);
 
-				// bad skills
-				new GenRange(FeatureType.FreeKick, MinRange),
-				new GenRange(FeatureType.PenaltyKick, MinRange),
-				new GenRange(FeatureType.Cross, MinRange),
-				new GenRange(FeatureType.TopSpeed, MinRange),
-				new GenRange(FeatureType.Agility, MinRange),
-			});
-		}
-	}
+            AddBadSkills(
+                FeatureType.FreeKick,
+                FeatureType.PenaltyKick,
+                FeatureType.Cross,
+                FeatureType.TopSpeed,
+                FeatureType.Agility);
+        }
+    }
 }

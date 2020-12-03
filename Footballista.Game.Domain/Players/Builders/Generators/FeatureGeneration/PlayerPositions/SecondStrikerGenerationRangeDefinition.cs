@@ -7,23 +7,19 @@ namespace Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration
 	{
 		public SecondStrikerGenerationRangeDefinition()
 		{
-			_generationRanges.AddRange(new GenRange[]
-			{
-				// bad skills
-				new GenRange(FeatureType.Acceleration, MinRange),
-				new GenRange(FeatureType.TopSpeed,MinRange),
-				new GenRange(FeatureType.Finishing, MinRange),
+			AddBadSkills(
+				FeatureType.Acceleration,
+				FeatureType.TopSpeed,
+				FeatureType.Finishing);
 
-				// medium skills
-				new GenRange(FeatureType.PassingAccuracy, MediumRange),
-				new GenRange(FeatureType.PassingSpeed, MediumRange),
-				new GenRange(FeatureType.Cross, MediumRange),
+			AddMediumSkills(
+				FeatureType.PassingAccuracy,
+				FeatureType.PassingSpeed,
+				FeatureType.Cross);
 
-				// top skills
-				new GenRange(FeatureType.Interception, MaxRange),
-				new GenRange(FeatureType.Tackling, MaxRange),
-			});
-
+			AddBestSkills(
+				FeatureType.Interception,
+				FeatureType.Tackling);
 		}
 	}
 }
