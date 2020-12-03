@@ -10,7 +10,7 @@ namespace Footballista.Game.Domain.Clubs.Teams
         public TeamType TeamType { get; }
         public Manager Manager { get; }
 
-        public IReadOnlyCollection<TeamPlayer> Players => this.players.AsReadOnly();
+        public IEnumerable<TeamPlayer> Players => this.players.AsReadOnly();
         protected readonly List<TeamPlayer> players = new List<TeamPlayer>();
 
         public Team(TeamType teamType, Manager manager, List<TeamPlayer> teamPlayers)

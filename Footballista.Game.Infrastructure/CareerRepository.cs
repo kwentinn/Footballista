@@ -1,6 +1,10 @@
 ﻿using Footballista.Game.Domain;
 using Footballista.Game.Domain.Careers;
+using Footballista.Game.Domain.Clubs;
+using Footballista.Game.Domain.Clubs.Teams;
+using Footballista.Game.Domain.Competitions;
 using Footballista.Game.Infrastructure.Entities;
+using Itenso.TimePeriod;
 using System;
 using System.IO;
 using System.Text.Json;
@@ -27,32 +31,11 @@ namespace Footballista.Game.Infrastructure
 
         public async Task SaveAsync(Career career)
         {
-            var careerDb = new CareerDb
-            {
-                Id = career.Id,
-                CurrentDate = new DateDb
-                {
-                    Year = career.CurrentDate.Year,
-                    Month = career.CurrentDate.Month,
-                    Day = career.CurrentDate.Day
-                },
-                Name = career.Name,
-                Club = new ClubDb()
-                {
-                    Id = career.Club.Id,
-                    Name = career.Club.Name,
-                }, 
-                Manager = new ManagerDb
-                {
-                    Id =  career.Manager.Id,
-                    Firstname =  career.Manager.Firstname,
-                    Lastname =  career.Manager.Lastname,
-                }
-            };
+            CareerDb careerDb = career.ToDb();
 
-            var path = "c:\\temp\\careers.json";
+            string path = "c:\\temp\\careers.json";
             using Stream stream = File.Create(path);
-            await JsonSerializer.SerializeAsync(stream, careerDb, options);
+            await JsonSerializer.SerializeAsync(stream, careerDb, this.options);
         }
     }
 }

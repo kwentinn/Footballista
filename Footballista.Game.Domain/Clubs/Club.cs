@@ -15,28 +15,33 @@ namespace Footballista.Game.Domain.Clubs
 
         private readonly List<Team> _teams = new List<Team>();
 
-		public Team FirstTeam => _teams.FirstOrDefault(t => t is FirstTeam);
+		public Team FirstTeam => this._teams.FirstOrDefault(t => t is FirstTeam);
 
-		internal Club(
+		internal Club
+		(
 			ClubId id,
 			string name,
 			string abbreviation,
 			int? yearOfCreation,
-			List<Team> teams)
+			List<Team> teams
+		)
 		{
 			Ensure.IsNotNull(id);
 			Ensure.IsNotNullOrEmpty(name);
 
-			Id = id;
-			Name = name;
+            this.Id = id;
+            this.Name = name;
             this.Abbreviation = abbreviation;
-            YearOfCreation = yearOfCreation;
-			_teams = teams ?? throw new ArgumentNullException(nameof(teams));
+            this.YearOfCreation = yearOfCreation;
+            this._teams = teams ?? throw new ArgumentNullException(nameof(teams));
 		}
 	}
 
 	public record ClubId(int Value)
     {
-		public static implicit operator int(ClubId clubId) => clubId.Value;
+        public static implicit operator int(ClubId clubId)
+        {
+            return clubId.Value;
+        }
     }
 }

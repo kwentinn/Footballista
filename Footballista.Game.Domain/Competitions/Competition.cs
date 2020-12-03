@@ -15,5 +15,19 @@
         public static Competition Ligue2 => new Competition(new CompetitionId(2), "Ligue 2");
 
     }
-    public record CompetitionId(int Value);
+
+    public record CompetitionId
+    {
+        private readonly int value;
+
+        public CompetitionId(int value)
+        {
+            this.value = value;
+        }
+
+        public static implicit operator int (CompetitionId competitionId)
+        {
+            return competitionId.value;
+        }
+    }
 }
