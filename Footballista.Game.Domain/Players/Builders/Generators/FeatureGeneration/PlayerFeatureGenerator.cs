@@ -70,10 +70,7 @@ namespace Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration
 
 		public PhysicalFeatureSet Generate()
 		{
-			PlayerPositionGenerationRangeDefinition playerPositionGenRange =
-				PlayerPositionGenerationRangeDefinition.GetFromPosition(_position);
-
-			ReadOnlyCollection<GenRange> positionGenRanges = playerPositionGenRange.GetGenerationRangeDefinitions();
+			ReadOnlyCollection<GenRange> positionGenRanges = PlayerPositionGenerationRangeDefinition.GetGenerationRanges(_position);
 			ReadOnlyCollection<GenRange> bmiGenRanges = BodyMassIndexGenerationRangeDefinition.Generate(_bmi, _playerAge);
 
 			// plages de génération différentes en fonction de 
@@ -84,44 +81,58 @@ namespace Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration
 
 			PhysicalFeatureSet set = PhysicalFeatureSet.CreateFeatureSet(_position.PositionCategory);
 
-			Parallel.ForEach(set.PhysicalFeatures, feature =>
-			{
-				Rating rating;
+			Parallel.ForEach(set.PhysicalFeatures, UpdateRating(positionGenRanges, bmiGenRanges));
+			return set;
+		}
 
+		private Action<PhysicalFeature> UpdateRating
+		(
+			ReadOnlyCollection<GenRange> positionGenRanges,
+			ReadOnlyCollection<GenRange> bmiGenRanges
+		)
+		{
+			return feature =>
+			{
 				GenRange genRangeFromPosition = positionGenRanges.FirstOrDefault(c => c.FeatureType == feature.FeatureType);
 				GenRange genRangeFromBmi = bmiGenRanges.FirstOrDefault(c => c.FeatureType == feature.FeatureType);
 
-				if (genRangeFromBmi != null && genRangeFromPosition != null)
+				bool hasGenRangeFromPosition = genRangeFromPosition != null;
+				bool hasGenRangeFromBmi = genRangeFromBmi != null;
+				bool hasGenerationRange = hasGenRangeFromBmi && hasGenRangeFromPosition;
+				Rating rating;
+
+				if (hasGenerationRange)
 				{
-					Range<Rating> range = Range<Rating>.MergeRanges(new Range<Rating>[]
-					{
-						genRangeFromBmi.RatingRange,
-						genRangeFromPosition.RatingRange
-					});
-					rating = _randomiser.Randomise(range);
+					rating = _randomiser.Randomise(genRangeFromBmi.RatingRange.Merge(genRangeFromPosition.RatingRange));
+					feature.ChangeRating(rating);
+					return;
 				}
-				else
+
+				if (hasGenRangeFromPosition)
 				{
-					if (genRangeFromPosition != null)
-					{
-						rating = _randomiser.Randomise(genRangeFromPosition.RatingRange);
-					}
-					else
-					{
-						//if (feature.FeatureType == FeatureType.Morale)
-						//{
-						//	rating = _randomiser.Randomise();
-						//}
-						//else
-						//{
-						Range<Rating> range = CalculateRatingRange();
-						rating = _randomiser.Randomise(range);
-						//}
-					}
+					rating = _randomiser.Randomise(genRangeFromPosition.RatingRange);
+					feature.ChangeRating(rating);
+					return;
 				}
+
+				if (hasGenRangeFromBmi)
+				{
+					rating = _randomiser.Randomise(genRangeFromBmi.RatingRange);
+					feature.ChangeRating(rating);
+					return;
+				}
+
+				//if (feature.FeatureType == FeatureType.Morale)
+				//{
+				//	rating = _randomiser.Randomise();
+				//}
+				//else
+				//{
+				Range<Rating> range = CalculateRatingRange();
+
+				rating = _randomiser.Randomise(range);
 				feature.ChangeRating(rating);
-			});
-			return set;
+			};
 		}
 	}
 }

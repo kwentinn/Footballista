@@ -1,20 +1,19 @@
 ﻿using Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration.PlayerPositions.Base;
 using Footballista.Game.Domain.Players.Features;
-using Footballista.Game.Domain.Players.Positions;
 
 namespace Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration.PlayerPositions
 {
-	internal class WideMidfieldGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
+	internal sealed class WideMidfieldGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
 	{
-		public WideMidfieldGenerationRangeDefinition(PlayerPosition position) : base(position)
+		public WideMidfieldGenerationRangeDefinition()
 		{
-			GenerationRanges.AddRange(new GenRange[]
+			_generationRanges.AddRange(new GenRange[]
 			{
 				// bad skills
 				new GenRange(FeatureType.Acceleration, MinRange),
 				new GenRange(FeatureType.TopSpeed,MinRange),
 				new GenRange(FeatureType.Finishing, MinRange),
-				
+
 				// medium skills
 				new GenRange(FeatureType.PassingAccuracy, MediumRange),
 				new GenRange(FeatureType.PassingSpeed, MediumRange),
@@ -24,7 +23,6 @@ namespace Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration
 				new GenRange(FeatureType.Interception, MaxRange),
 				new GenRange(FeatureType.Tackling, MaxRange),
 			});
-
 		}
 	}
 }

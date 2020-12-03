@@ -9,67 +9,82 @@ namespace Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration
 {
     public abstract class PlayerPositionGenerationRangeDefinition
 	{
-		protected readonly PlayerPosition Position;
-
-		protected List<GenRange> GenerationRanges = new List<GenRange>();
+		private List<GenRange> _generationRanges = new List<GenRange>();
 
 		protected static Range<Rating> MinRange => new Range<Rating>(10, 40);
 		protected static Range<Rating> MediumRange => new Range<Rating>(20, 50);
 		protected static Range<Rating> MaxRange => new Range<Rating>(30, 65);
 
-
-		public static PlayerPositionGenerationRangeDefinition GetFromPosition(PlayerPosition position)
+		public static ReadOnlyCollection<GenRange> GetGenerationRanges(PlayerPosition position)
+		{
+			PlayerPositionGenerationRangeDefinition specificGenRange = GetForPosition(position);
+			return specificGenRange._generationRanges.AsReadOnly();
+		}
+		private static PlayerPositionGenerationRangeDefinition GetForPosition(PlayerPosition position)
 		{
 			if (position == PlayerPosition.Winger)
-				return new WingerGenerationRangeDefinition(position);
+				return new WingerGenerationRangeDefinition();
 
 			if (position == PlayerPosition.WideMidfield)
-				return new WideMidfieldGenerationRangeDefinition(position);
+				return new WideMidfieldGenerationRangeDefinition();
 
 			if (position == PlayerPosition.WingBack)
-				return new WingBackGenerationRangeDefinition(position);
+				return new WingBackGenerationRangeDefinition();
 
 			if (position == PlayerPosition.Sweeper)
-				return new SweeperGenerationRangeDefinition(position);
+				return new SweeperGenerationRangeDefinition();
 
 			if (position == PlayerPosition.SecondStriker)
-				return new SecondStrikerGenerationRangeDefinition(position);
+				return new SecondStrikerGenerationRangeDefinition();
 
 			if (position == PlayerPosition.GoalKeeper)
-				return new GoalKeeperGenerationRangeDefinition(position);
+				return new GoalKeeperGenerationRangeDefinition();
 
 			if (position == PlayerPosition.FullBack)
-				return new FullBackGenerationRangeDefinition(position);
+				return new FullBackGenerationRangeDefinition();
 
 			if (position == PlayerPosition.DefensiveMidfield)
-				return new DefensiveMidfieldGenerationRangeDefinition(position);
+				return new DefensiveMidfieldGenerationRangeDefinition();
 
 			if (position == PlayerPosition.DefensiveMidfield)
-				return new DefensiveMidfieldGenerationRangeDefinition(position);
+				return new DefensiveMidfieldGenerationRangeDefinition();
 
 			if (position == PlayerPosition.CentreMidfield)
-				return new CentreMidfieldGenerationRangeDefinition(position);
+				return new CentreMidfieldGenerationRangeDefinition();
 
 			if (position == PlayerPosition.CentreForward)
-				return new CentreForwardGenerationRangeDefinition(position);
+				return new CentreForwardGenerationRangeDefinition();
 
 			if (position == PlayerPosition.CentreBack)
-				return new CentreBackGenerationRangeDefinition(position);
+				return new CentreBackGenerationRangeDefinition();
 
 			if (position == PlayerPosition.AttackingMidfield)
-				return new AttackingMidfieldGenerationRangeDefinition(position);
+				return new AttackingMidfieldGenerationRangeDefinition();
 
 			throw new InvalidOperationException("Position not found");
 		}
 
-		protected PlayerPositionGenerationRangeDefinition(PlayerPosition position)
+		protected void AddBadSkills(params FeatureType[] featureTypes)
 		{
-			Position = position;
+			AddSkills(featureTypes, MinRange);
+
+		}
+		protected void AddMediumSkills(params FeatureType[] featureTypes)
+		{
+			AddSkills(featureTypes, MediumRange);
+
+		}
+		protected void AddBestSkills(params FeatureType[] featureTypes)
+		{
+			AddSkills(featureTypes, MaxRange);
 		}
 
-		public ReadOnlyCollection<GenRange> GetGenerationRangeDefinitions()
+		private void AddSkills(FeatureType[] featureTypes, Range<Rating> range)
 		{
-			return GenerationRanges.AsReadOnly();
+			foreach (var featureType in featureTypes)
+			{
+				_generationRanges.Add(new GenRange(featureType, range));
+			}
 		}
 	}
 }

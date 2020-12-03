@@ -37,6 +37,12 @@ namespace Footballista.BuildingBlocks.Domain
 		private bool IsValueLessOrEqualsMax(T value) => value.CompareTo(Upper) <= 0;
 
 
+		public Range<T> Merge(Range<T> other)
+		{
+			var ranges = new List<Range<T>> { this, other };
+			return MergeRanges(ranges);
+		}
+
 		public static Range<T> MergeRanges(IEnumerable<Range<T>> ranges)
 		{
 			T lower = Range.GetLowestValue(ranges);

@@ -15,11 +15,11 @@ namespace Footballista.Game.Domain.Careers
 {
     public class CareerDomainService : ICareerDomainService
     {
-        private readonly ICareerRepository careerRepository;
-        private readonly IClubRepository clubRepository;
-        private readonly ICompetitionRepository competitionRepository;
-        private readonly ISeasonRepository seasonRepository;
-        private readonly IPlayerGenerator playerGenerator;
+        private readonly ICareerRepository _careerRepository;
+        private readonly IClubRepository _clubRepository;
+        private readonly ICompetitionRepository _competitionRepository;
+        private readonly ISeasonRepository _seasonRepository;
+        private readonly IPlayerGenerator _playerGenerator;
 
         public CareerDomainService(
             ICareerRepository careerRepository,
@@ -28,11 +28,11 @@ namespace Footballista.Game.Domain.Careers
             ISeasonRepository seasonRepository,
             IPlayerGenerator playerGenerator)
         {
-            this.careerRepository = careerRepository;
-            this.clubRepository = clubRepository;
-            this.competitionRepository = competitionRepository;
-            this.seasonRepository = seasonRepository;
-            this.playerGenerator = playerGenerator;
+            this._careerRepository = careerRepository;
+            this._clubRepository = clubRepository;
+            this._competitionRepository = competitionRepository;
+            this._seasonRepository = seasonRepository;
+            this._playerGenerator = playerGenerator;
         }
 
         public async Task CreateCareerAsync(string name, ClubId clubId, CompetitionId competitionId, SeasonId seasonId, Date date, Manager manager)
@@ -40,22 +40,23 @@ namespace Footballista.Game.Domain.Careers
             IEnumerable<Player> players = await GeneratePlayers();
 
             // récupérer le club par son id 
-            Club club = await clubRepository.GetByIdAsync(clubId);
+            Club club = await _clubRepository.GetByIdAsync(clubId);
 
             club.FirstTeam.AddPlayers(players);
 
-            Competition competition = competitionRepository.GetById(competitionId);
-            Season season = seasonRepository.GetById(seasonId);
+            Competition competition = _competitionRepository.GetById(competitionId);
+            Season season = _seasonRepository.GetById(seasonId);
 
-            Career newCareer = new CareerBuilder(name)
-                .WithClub(club)
-                .WithCompetition(competition)
-                .WithCurrentDate(date)
-                .WithManager(manager)
-                .WithSeason(season)
+            Career newCareer = new CareerBuilder()
+                .With(name)
+                .With(club)
+                .With(competition)
+                .With(date)
+                .With(manager)
+                .With(season)
                 .Build();
 
-            await this.careerRepository.SaveAsync(newCareer);
+            await this._careerRepository.SaveAsync(newCareer);
         }
 
         private async Task<IEnumerable<Player>> GeneratePlayers()
@@ -63,7 +64,7 @@ namespace Footballista.Game.Domain.Careers
             List<Player> players = new List<Player>();
             foreach (var position in PlayerPosition.AllPositions)
             {
-                players.AddRange(await this.playerGenerator.GenerateManyAsync(4, Gender.Male, new Country[] { Country.France }, playerPosition: position));
+                players.AddRange(await this._playerGenerator.GenerateManyAsync(4, Gender.Male, new Country[] { Country.France }, playerPosition: position));
             }
             return players;
         }

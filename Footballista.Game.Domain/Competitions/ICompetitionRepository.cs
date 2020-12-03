@@ -9,14 +9,14 @@ namespace Footballista.Game.Domain.Competitions
     }
     public class CompetitionRepository : ICompetitionRepository
     {
-        private static readonly List<Competition> competitions = new List<Competition>
+        private static readonly List<Competition> _competitions = new List<Competition>
         {
             Competition.Ligue1, Competition.Ligue2
         };
 
         public Competition GetById(CompetitionId id)
         {
-            return competitions.FirstOrDefault(c => c.Id == id);
+            return _competitions.FirstOrDefault(c => c.Id == id);
         }
     }
 }

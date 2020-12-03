@@ -6,10 +6,10 @@ namespace Footballista.Game.Domain.Players.Persons
     [DebuggerDisplay("[{value}]")]
     public record PersonId
     {
-        private readonly Guid value;
+        private readonly Guid _value;
         public PersonId(Guid value)
         {
-            this.value = value;
+            this._value = value;
         }
 
         /// <summary>
@@ -21,6 +21,6 @@ namespace Footballista.Game.Domain.Players.Persons
             return new PersonId(Guid.NewGuid());
         }
 
-        public static implicit operator Guid(PersonId id) => id.value;
+        public static implicit operator Guid(PersonId id) => id._value;
     }
 }

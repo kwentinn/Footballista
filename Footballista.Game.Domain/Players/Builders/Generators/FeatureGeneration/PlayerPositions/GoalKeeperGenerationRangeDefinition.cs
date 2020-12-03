@@ -1,14 +1,13 @@
 ﻿using Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration.PlayerPositions.Base;
 using Footballista.Game.Domain.Players.Features;
-using Footballista.Game.Domain.Players.Positions;
 
 namespace Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration.PlayerPositions
 {
-	internal class GoalKeeperGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
+	internal sealed class GoalKeeperGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
 	{
-		public GoalKeeperGenerationRangeDefinition(PlayerPosition position) : base(position)
+		public GoalKeeperGenerationRangeDefinition()
 		{
-			GenerationRanges.AddRange(new GenRange[]
+			_generationRanges.AddRange(new GenRange[]
 			{
 				// top skills
 				new GenRange(FeatureType.Goalkeeping, MaxRange),

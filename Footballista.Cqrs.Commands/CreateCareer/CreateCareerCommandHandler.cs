@@ -6,16 +6,16 @@ namespace Footballista.Cqrs.Commands.CreateCareer
 {
     public class CreateCareerCommandHandler : CommandHandler<CreateCareerCommand>
     {
-        private readonly ICareerDomainService careerDomainService;
+        private readonly ICareerDomainService _careerDomainService;
 
         public CreateCareerCommandHandler(ICareerDomainService careerDomainService)
         {
-            this.careerDomainService = careerDomainService;
+            this._careerDomainService = careerDomainService;
         }
 
         public async override Task HandleAsync(CreateCareerCommand command)
         {
-            await careerDomainService.CreateCareerAsync(command.Name, command.ClubId, command.CompetitionId, command.SeasonId, command.Date, command.Manager);
+            await _careerDomainService.CreateCareerAsync(command.Name, command.ClubId, command.CompetitionId, command.SeasonId, command.Date, command.Manager);
         }
     }
 }

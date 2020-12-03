@@ -1,19 +1,18 @@
 ﻿using Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration.PlayerPositions.Base;
 using Footballista.Game.Domain.Players.Features;
-using Footballista.Game.Domain.Players.Positions;
 
 namespace Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration.PlayerPositions
 {
-	public class CentreBackGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
+	public sealed class CentreBackGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
 	{
-		internal CentreBackGenerationRangeDefinition(PlayerPosition position) : base(position)
+		internal CentreBackGenerationRangeDefinition()
 		{
-			GenerationRanges.AddRange(new GenRange[]
+			_generationRanges.AddRange(new GenRange[]
 			{
 				// top skills
 				new GenRange(FeatureType.Interception, MaxRange),
 				new GenRange(FeatureType.Tackling, MaxRange),
-				
+
 				// medium skills
 				new GenRange(FeatureType.PassingAccuracy, MediumRange),
 				new GenRange(FeatureType.PassingSpeed, MediumRange),

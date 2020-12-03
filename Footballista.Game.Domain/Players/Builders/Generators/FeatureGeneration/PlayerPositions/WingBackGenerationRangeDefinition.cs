@@ -4,11 +4,11 @@ using Footballista.Game.Domain.Players.Positions;
 
 namespace Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration.PlayerPositions
 {
-	internal class WingBackGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
+	internal sealed class WingBackGenerationRangeDefinition : PlayerPositionGenerationRangeDefinition
 	{
-		public WingBackGenerationRangeDefinition(PlayerPosition position) : base(position)
+		public WingBackGenerationRangeDefinition()
 		{
-			GenerationRanges.AddRange(new GenRange[]
+			_generationRanges.AddRange(new GenRange[]
 			{
 				// bad skills
 				new GenRange(FeatureType.Acceleration, MinRange),

@@ -7,23 +7,23 @@ namespace Footballista.Players.Features.Attributes
 {
 	public class BehaviouralAttributes : AbstractPlayerAttributes
     {
-        private readonly RatingWithWeighting stress;
-        private readonly RatingWithWeighting composure;
-        private readonly RatingWithWeighting frustration;
+        private readonly RatingWithWeighting _stress;
+        private readonly RatingWithWeighting _composure;
+        private readonly RatingWithWeighting _frustration;
 
         public BehaviouralAttributes(Rating stress, Rating composure, Rating frustration)
         {
-            this.stress = new RatingWithWeighting(1, stress);
-            this.composure = new RatingWithWeighting(3, composure);
-            this.frustration = new RatingWithWeighting(1, frustration);
+            this._stress = new RatingWithWeighting(1, stress);
+            this._composure = new RatingWithWeighting(3, composure);
+            this._frustration = new RatingWithWeighting(1, frustration);
         }
 
         protected override Rating CalculateRating()
         {
             return new RatingWithWeightingCalculator()
-                .WithRatingWeighting(stress)
-                .WithRatingWeighting(composure)
-                .WithRatingWeighting(frustration)
+                .WithRatingWeighting(_stress)
+                .WithRatingWeighting(_composure)
+                .WithRatingWeighting(_frustration)
                 .Calculate();
         }
 

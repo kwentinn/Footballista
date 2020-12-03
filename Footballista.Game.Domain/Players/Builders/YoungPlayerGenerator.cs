@@ -115,10 +115,7 @@ namespace Footballista.Players.Builders
 		public Player[] GenerateManyParallel(int nbOfPlayers, Gender? playerGender = null, Country[] countries = null, PlayerPosition playerPosition = null)
 		{
 			var items = new BlockingCollection<Player>();
-			Parallel.For(0, nbOfPlayers, (i) =>
-			{
-				items.Add(Generate(Gender.Male));
-			});
+			Parallel.For(0, nbOfPlayers, (_) => items.Add(Generate(Gender.Male)));
 			items.CompleteAdding();
 			return items.ToArray();
 		}

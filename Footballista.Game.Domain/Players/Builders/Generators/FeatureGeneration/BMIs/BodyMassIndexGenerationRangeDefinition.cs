@@ -6,18 +6,31 @@ using System.Collections.ObjectModel;
 
 namespace Footballista.Players.Builders.Generators.FeatureGeneration
 {
-	public class BodyMassIndexGenerationRangeDefinition
+	public static class BodyMassIndexGenerationRangeDefinition
 	{
 		public static ReadOnlyCollection<GenRange> Generate(BodyMassIndex bmi, PersonAge age)
 		{
-			var list = new List<GenRange>();
+			return new List<GenRange>
+			{
+				new BmiRangeForPowerCalculator()
+					.ForAge(age)
+					.ForBmi(bmi)
+					.Calculate(),
 
-			list.Add(new BmiRangeForPowerCalculator().Calculate(bmi, age));
-			list.Add(new BmiRangeForHeaderCalculator().Calculate(bmi, age));
-			list.Add(new BmiRangeForSpeedCalculator().Calculate(bmi, age));
-			list.Add(new BmiRangeForAccelerationCalculator().Calculate(bmi, age));
+				new BmiRangeForHeaderCalculator()
+					.ForBmi(bmi)
+					.Calculate(),
 
-			return list.AsReadOnly();
+				new BmiRangeForSpeedCalculator()
+					.ForAge(age)
+					.ForBmi(bmi)
+					.Calculate(),
+
+				new BmiRangeForAccelerationCalculator()
+					.ForAge(age)
+					.ForBmi(bmi)
+					.Calculate()
+			}.AsReadOnly();
 		}
 	}
 }

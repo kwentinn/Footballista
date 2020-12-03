@@ -8,14 +8,28 @@ namespace Footballista.Players.Builders.Generators.FeatureGeneration
 {
 	public class BmiRangeForAccelerationCalculator : GenRangeCalculator
 	{
-		public override GenRange Calculate(BodyMassIndex bmi, PersonAge age)
+		private BodyMassIndex _bmi;
+		private PersonAge _age;
+
+		public BmiRangeForAccelerationCalculator ForBmi(BodyMassIndex bmi)
+		{
+			_bmi = bmi;
+			return this;
+		}
+		public BmiRangeForAccelerationCalculator ForAge(PersonAge age)
+		{
+			_age = age;
+			return this;
+		}
+
+		public override GenRange Calculate()
 		{
 			Range<Rating> rangeForSpeed;
-			if (bmi.BMI > 22.8)
+			if (_bmi.BMI > 22.8)
 			{
 				rangeForSpeed = MinRange;
 			}
-			else if (bmi.BMI < 21.2)
+			else if (_bmi.BMI < 21.2)
 			{
 				rangeForSpeed = MaxRange;
 			}
@@ -25,11 +39,11 @@ namespace Footballista.Players.Builders.Generators.FeatureGeneration
 			}
 
 			// take player age into account
-			if (age > PersonAge.FromYears(30))
+			if (_age > PersonAge.FromYears(30))
 			{
 				rangeForSpeed = new Range<Rating>(rangeForSpeed.Lower * 0.82, rangeForSpeed.Upper * 0.88);
 			}
-			else if (age < PersonAge.FromYears(23))
+			else if (_age < PersonAge.FromYears(23))
 			{
 				rangeForSpeed = new Range<Rating>(rangeForSpeed.Lower * 1.052, rangeForSpeed.Upper * 1.055);
 			}

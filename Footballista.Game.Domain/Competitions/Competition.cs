@@ -18,16 +18,16 @@
 
     public record CompetitionId
     {
-        private readonly int value;
+        private readonly int _value;
 
         public CompetitionId(int value)
         {
-            this.value = value;
+            this._value = value;
         }
 
         public static implicit operator int (CompetitionId competitionId)
         {
-            return competitionId.value;
+            return competitionId._value;
         }
     }
 }

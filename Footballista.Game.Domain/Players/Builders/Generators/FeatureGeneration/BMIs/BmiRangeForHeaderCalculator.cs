@@ -10,26 +10,30 @@ namespace Footballista.Players.Builders.Generators.FeatureGeneration
 {
 	public class BmiRangeForHeaderCalculator : GenRangeCalculator
 	{
-
 		private readonly Length _minimuHeightForMaxRange = new Length(180, LengthUnit.Centimeter);
 		private readonly Length _minimuHeightForMinRange = new Length(165, LengthUnit.Centimeter);
 
-		public override GenRange Calculate(BodyMassIndex bmi, PersonAge age)
+		private BodyMassIndex _bmi;
+
+		public BmiRangeForHeaderCalculator ForBmi(BodyMassIndex bmi)
 		{
-			Range<Rating> rangeForHeader;
-			if (bmi.Height >= _minimuHeightForMaxRange)
+			_bmi = bmi;
+			return this;
+		}
+
+		public override GenRange Calculate()
+		{
+			if (_bmi.Height >= _minimuHeightForMaxRange)
 			{
-				rangeForHeader = MaxRange;
+				return new GenRange(FeatureType.Header, MaxRange);
 			}
-			else if (bmi.Height < _minimuHeightForMinRange)
+
+			if (_bmi.Height < _minimuHeightForMinRange)
 			{
-				rangeForHeader = MinRange;
+				return new GenRange(FeatureType.Header, MinRange);
 			}
-			else
-			{
-				rangeForHeader = MediumRange;
-			}
-			return new GenRange(FeatureType.Header, rangeForHeader);
+
+			return new GenRange(FeatureType.Header, MediumRange);
 		}
 	}
 }

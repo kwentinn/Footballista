@@ -10,14 +10,14 @@ namespace Footballista.Game.Domain.Clubs.Teams
         public TeamType TeamType { get; }
         public Manager Manager { get; }
 
-        public IEnumerable<TeamPlayer> Players => this.players.AsReadOnly();
-        protected readonly List<TeamPlayer> players = new List<TeamPlayer>();
+        public IEnumerable<TeamPlayer> Players => this.TeamPlayers.AsReadOnly();
+        protected readonly List<TeamPlayer> TeamPlayers = new List<TeamPlayer>();
 
         public Team(TeamType teamType, Manager manager, List<TeamPlayer> teamPlayers)
         {
             this.TeamType = teamType;
             this.Manager = manager;
-            this.players = teamPlayers;
+            this.TeamPlayers = teamPlayers;
         }
 
         internal void AddPlayers(Player[] players)
@@ -25,7 +25,7 @@ namespace Footballista.Game.Domain.Clubs.Teams
             short playerNumber = 1;
             foreach (Player player in players)
             {
-                this.players.Add(new TeamPlayer(new PlayerNumber(playerNumber), player));
+                this.TeamPlayers.Add(new TeamPlayer(new PlayerNumber(playerNumber), player));
                 playerNumber++;
             }
         }
@@ -34,13 +34,13 @@ namespace Footballista.Game.Domain.Clubs.Teams
             short playerNumber = 1;
             foreach (Player player in players)
             {
-                this.players.Add(new TeamPlayer(new PlayerNumber(playerNumber), player));
+                this.TeamPlayers.Add(new TeamPlayer(new PlayerNumber(playerNumber), player));
                 playerNumber++;
             }
         }
     }
 
-    public class FirstTeam : Team
+    public sealed class FirstTeam : Team
     {
         public FirstTeam(Manager manager, List<TeamPlayer> teamPlayers)
             : base(TeamType.FirstTeam, manager, teamPlayers)

@@ -5,15 +5,15 @@ namespace Footballista.Players.Features.Attributes
 {
 	public sealed class RatingWithWeighting
     {
-        private readonly Rating rating;
+        private readonly Rating _rating;
         public Weighting Weighting { get; }
 
-        public WeightingResult WeightingResult => this.Weighting * this.rating.Value;
+        public WeightingResult WeightingResult => this.Weighting * this._rating.Value;
 
         public RatingWithWeighting(double weighting, Rating rating)
         {
             this.Weighting = weighting;
-            this.rating = rating;
+            this._rating = rating;
         }
     }
 }

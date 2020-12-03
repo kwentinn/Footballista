@@ -8,18 +8,13 @@ namespace Footballista.Game.Domain.Careers
 {
     public class CareerBuilder
     {
+        private string _name;
         private CareerId _id;
-        private readonly string _name;
         private Club _club;
         private Competition _competition;
         private Date _currentDate;
         private Manager _manager;
         private Season _season;
-
-        public CareerBuilder(string name)
-        {
-            this._name = name;
-        }
 
         public Career Build()
         {
@@ -34,32 +29,37 @@ namespace Footballista.Game.Domain.Careers
             );
         }
 
-        public CareerBuilder WithId(CareerId id)
+        public CareerBuilder With(string name)
+		{
+            this._name = name;
+            return this;
+        }
+        public CareerBuilder With(CareerId id)
         {
             this._id = id;
             return this;
         }
-        public CareerBuilder WithClub(Club club)
+        public CareerBuilder With(Club club)
         {
             this._club = club;
             return this;
         }
-        public CareerBuilder WithCompetition(Competition competition)
+        public CareerBuilder With(Competition competition)
         {
             this._competition = competition;
             return this;
         }
-        public CareerBuilder WithCurrentDate(Date date)
+        public CareerBuilder With(Date date)
         {
             this._currentDate = date;
             return this;
         }
-        public CareerBuilder WithManager(Manager manager)
+        public CareerBuilder With(Manager manager)
         {
             this._manager = manager;
             return this;
         }
-        public CareerBuilder WithSeason(Season season)
+        public CareerBuilder With(Season season)
         {
             this._season = season;
             return this;
