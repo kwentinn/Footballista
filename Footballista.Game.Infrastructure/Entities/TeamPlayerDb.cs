@@ -2,7 +2,7 @@
 {
     public class TeamPlayerDb
     {
-        public int PlayerNumber { get; set; }
+        public short PlayerNumber { get; set; }
         public PlayerDb Player { get; set; }
     }
 }

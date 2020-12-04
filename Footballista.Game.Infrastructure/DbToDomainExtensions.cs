@@ -15,6 +15,7 @@ using Itenso.TimePeriod;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnitsNet;
 using UnitsNet.Units;
 
@@ -27,7 +28,7 @@ namespace Footballista.Game.Infrastructure
             return Career.RehydrateWithBuilder()
                 .With(new CareerId(career.Id))
                 .With(career.Club.ToDomain())
-                .With(career.CurrentDate.ToDomain())
+                .With(career.CurrentDate.ToDate())
                 //.With(career.Manager.ToDomain())
                 //.With(career.Season.ToDomain())
                 //.With(career.Competition.ToDomain())
@@ -36,31 +37,41 @@ namespace Footballista.Game.Infrastructure
         }
         public static Club ToDomain(this ClubDb club)
         {
-            return new ClubBuilder(club.Name)
+            return new ClubRehydrator()
                 .WithId(new ClubId(club.Id))
-                //.WithFirstTeam(club.FirstTeam.ToDomain())
-                .Build();
+                .WithClubName(new ClubName(club.Name, club.Abbreviation))
+                .WithFirstTeam(club.FirstTeam.ToDomain())
+                .Rehydrate();
         }
-        public static Date ToDomain(this DateDb date) => new Date(date.Year, date.Month, date.Day);
-        //public static FirstTeam ToDomain(this TeamDb team)
-        //{
-        //    return new FirstTeam(team.)
-        //}
-
+        public static Date ToDate(this DateDb date) => new Date(date.Year, date.Month, date.Day);
+        public static FirstTeam ToDomain(this TeamDb team)
+        {
+            return new FirstTeam(team.Manager.ToDomain(), team.TeamPlayers
+                .Select(tp => new TeamPlayer(new PlayerNumber(tp.PlayerNumber), tp.Player.ToDomain()))
+                .ToList());
+        }
+        public static Manager ToDomain(this ManagerDb manager)
+        {
+            return new Manager(manager.Id, manager.Firstname, manager.Lastname);
+        }
         public static Player ToDomain(this PlayerDb player)
         {
             PlayerPosition position = PlayerPosition.FromString(player.Position);
-            return new PlayerBuilder()
+
+            return new PlayerRehydrator()
                 .WithId(new PersonId(player.Id))
-                .WithName(new PersonName(new Firstname(player.Firstname), new Lastname(player.Lastname)))
+                .WithFirstname(new Firstname(player.Firstname))
+                .WithLastname(new Lastname(player.Lastname))
                 .WithPercentile(new Percentile(player.Percentile))
-                .WithBodyMassIndex(new BodyMassIndex(new Length(player.HeightInCentimeters, LengthUnit.Centimeter), new Mass(player.WeightInKilograms, MassUnit.Kilogram)))
+                .WithHeight(new Length(player.HeightInCentimeters, LengthUnit.Centimeter))
+                .WithMass(new Mass(player.WeightInKilograms, MassUnit.Kilogram))
                 .WithFoot(Enum.Parse<Foot>(player.Foot))
-                .WithBirthInfo(new BirthInfo(player.Birthdate.ToDomain(), new Location(new City(player.CityOfBirth), Country.GetFromName(player.CountryOfBirth))))
+                .WithBirthdate(player.Birthdate.ToDate())
+                .WithBirthLocation(new Location(new City(player.CityOfBirth), Country.GetFromName(player.CountryOfBirth)))
                 .WithCountries(GetCountriesFromString(player.Nationalities))
                 .WithPlayerPosition(position)
-                //.WithFeatureSet(PhysicalFeatureSet.Rehydrate(position.PositionCategory )
-                .BuildRehydrate();
+                .WithFeatureSet(PhysicalFeatureSet.Rehydrate(position.PositionCategory, GetPhysicalFeaturesFromRatings(player.Ratings)))
+                .Rehydrate();
         }
         public static IEnumerable<Country> GetCountriesFromString(string coutriesSeparatedByCommas)
         {
@@ -68,6 +79,14 @@ namespace Footballista.Game.Infrastructure
             foreach (string country in countriesArray)
             {
                 yield return Country.GetFromName(country);
+            }
+        }
+
+        public static IEnumerable<PhysicalFeature> GetPhysicalFeaturesFromRatings(Dictionary<string, int> ratings)
+        {
+            foreach (KeyValuePair<string, int> rating in ratings)
+            {
+                yield return new PhysicalFeature(Enum.Parse<FeatureType>(rating.Key), Rating.FromInt(rating.Value));
             }
         }
     }

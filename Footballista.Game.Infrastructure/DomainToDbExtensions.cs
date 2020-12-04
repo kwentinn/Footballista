@@ -29,7 +29,8 @@ namespace Footballista.Game.Infrastructure
             return new ClubDb()
             {
                 Id = club.Id,
-                Name = club.Name,
+                Name = club.ClubName.Name,
+                Abbreviation = club.ClubName.Abbreviation,
                 FirstTeam = club.FirstTeam.ToDb()
             };
         }

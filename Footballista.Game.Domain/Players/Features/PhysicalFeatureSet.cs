@@ -14,8 +14,8 @@ namespace Footballista.Game.Domain.Players.Features
 
 		public PositionCategory PositionCategory { get; }
 
-		public ReadOnlyCollection<PhysicalFeature> PhysicalFeatures => _physicalFeatures.AsReadOnly();
-		private readonly List<PhysicalFeature> _physicalFeatures = new List<PhysicalFeature>();
+		public ReadOnlyCollection<PhysicalFeature> PhysicalFeatures => (this._physicalFeatures as List<PhysicalFeature>)?.AsReadOnly();
+		private readonly IEnumerable<PhysicalFeature> _physicalFeatures = new List<PhysicalFeature>();
 
 		public static PhysicalFeatureSet ForwardFeatureSet => new PhysicalFeatureSet(
 			PositionCategory.Forward, new PhysicalFeature().OutfieldPlayerFeatures.ToList());
@@ -26,7 +26,7 @@ namespace Footballista.Game.Domain.Players.Features
 		public static PhysicalFeatureSet GoalKeeperFeatureSet => new PhysicalFeatureSet(
 			PositionCategory.GoalKeeper, new PhysicalFeature().GoalKeeperFeatures.ToList());
 
-		private readonly static List<PhysicalFeatureSet> _featureSets = new List<PhysicalFeatureSet>
+		private readonly static IEnumerable<PhysicalFeatureSet> _featureSets = new List<PhysicalFeatureSet>
 		{
 			ForwardFeatureSet,
 			MidfielderFeatureSet,
@@ -45,14 +45,14 @@ namespace Footballista.Game.Domain.Players.Features
 			return new PhysicalFeatureSet(positionCategory, list);
 		}
 
-		private PhysicalFeatureSet(PositionCategory positionCategory, List<PhysicalFeature> physicalFeatures)
+		private PhysicalFeatureSet(PositionCategory positionCategory, IEnumerable<PhysicalFeature> physicalFeatures)
 		{
 			PositionCategory = positionCategory ?? throw new ArgumentNullException(nameof(positionCategory));
 			_physicalFeatures = physicalFeatures ?? throw new ArgumentNullException(nameof(physicalFeatures));
 		}
-		public static PhysicalFeatureSet Rehydrate(PositionCategory positionCategory, List<PhysicalFeature> physicalFeatures)
+		public static PhysicalFeatureSet Rehydrate(PositionCategory positionCategory, IEnumerable<PhysicalFeature> physicalFeatures)
         {
-			return new PhysicalFeatureSet(positionCategory, physicalFeatures);
+			return new PhysicalFeatureSet(positionCategory, physicalFeatures.ToList());
 		}
 	}
 }

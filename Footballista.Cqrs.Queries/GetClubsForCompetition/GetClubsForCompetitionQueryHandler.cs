@@ -21,7 +21,7 @@ namespace Footballista.Cqrs.Queries.GetClubListForCompetition
                 .GetClubsInCompetition(new CompetitionId(query.competitionId));
 
             return domainClubs
-                .Select(dc => new Wasm.Shared.Data.Clubs.Club(dc.Id.Value, dc.Name, dc.Abbreviation))
+                .Select(dc => new Wasm.Shared.Data.Clubs.Club(dc.Id.Value, dc.ClubName.Name, dc.ClubName.Abbreviation))
                 .ToList();
         }
     }

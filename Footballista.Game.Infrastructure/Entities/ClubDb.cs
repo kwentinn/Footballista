@@ -6,6 +6,6 @@
         public string Name { get; set; }
 
         public TeamDb FirstTeam { get; set; }
-
+        public string Abbreviation { get; set; }
     }
 }
