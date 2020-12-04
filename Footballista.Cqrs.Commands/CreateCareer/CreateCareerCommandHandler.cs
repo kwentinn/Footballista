@@ -1,10 +1,11 @@
 ﻿using Footballista.Cqrs.Base.Commands;
 using Footballista.Game.Domain.Careers;
+using System;
 using System.Threading.Tasks;
 
 namespace Footballista.Cqrs.Commands.CreateCareer
 {
-    public class CreateCareerCommandHandler : CommandHandler<CreateCareerCommand>
+    public class CreateCareerCommandHandler : CommandHandler<CreateCareerCommand, Guid>
     {
         private readonly ICareerDomainService _careerDomainService;
 
@@ -13,9 +14,9 @@ namespace Footballista.Cqrs.Commands.CreateCareer
             this._careerDomainService = careerDomainService;
         }
 
-        public async override Task HandleAsync(CreateCareerCommand command)
+        public async override Task<Guid> HandleAsync(CreateCareerCommand command)
         {
-            await _careerDomainService.CreateCareerAsync(command.Name, command.ClubId, command.CompetitionId, command.SeasonId, command.Date, command.Manager);
+            return await _careerDomainService.CreateCareerAsync(command.Name, command.ClubId, command.CompetitionId, command.SeasonId, command.Date, command.Manager);
         }
     }
 }

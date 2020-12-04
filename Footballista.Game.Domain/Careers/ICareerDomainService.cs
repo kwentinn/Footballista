@@ -9,7 +9,6 @@ namespace Footballista.Game.Domain.Careers
 {
     public interface ICareerDomainService
     {
-        Task CreateCareerAsync(string name, ClubId clubId, CompetitionId competitionId, SeasonId seasonId, Date date, Manager manager);
+        Task<CareerId> CreateCareerAsync(string name, ClubId clubId, CompetitionId competitionId, SeasonId seasonId, Date date, Manager manager);
     }
-
 }

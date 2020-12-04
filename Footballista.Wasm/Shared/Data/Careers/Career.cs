@@ -6,7 +6,7 @@ namespace Footballista.Wasm.Shared.Data.Careers
 {
 	public class Career
 	{
-		public Guid Id { get; }
+		public Guid Id { get; private set; }
 		public string Name { get; }
 		public SimpleDate CurrentDate { get; }
 		public Manager Manager { get; }
@@ -49,7 +49,7 @@ namespace Footballista.Wasm.Shared.Data.Careers
 			Manager manager = null,
 			Season season = null
 		)
-			=> new Career(Guid.NewGuid(), name, club, currentCompetition, currentDate, manager, season);
+			=> new Career(Guid.Empty, name, club, currentCompetition, currentDate, manager, season);
 
 		public static Career Instantiate
 		(
@@ -62,5 +62,10 @@ namespace Footballista.Wasm.Shared.Data.Careers
 			Season season = null
 		)
 			=> new Career(id, name, club, currentCompetition, currentDate, manager, season);
-	}
+
+        public void DefineId(Guid careerId)
+        {
+			this.Id = careerId;
+        }
+    }
 }

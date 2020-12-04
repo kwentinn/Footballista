@@ -6,10 +6,11 @@ using Footballista.Game.Domain.Clubs.Teams;
 using Footballista.Game.Domain.Competitions;
 using Footballista.Game.Domain.Competitions.Seasons;
 using Itenso.TimePeriod;
+using System;
 
 namespace Footballista.Cqrs.Commands.CreateCareer
 {
-    public class CreateCareerCommand : ICommand
+    public class CreateCareerCommand : ICommand<Guid>
     {
         public string Name { get; }
         public CompetitionId CompetitionId { get; }

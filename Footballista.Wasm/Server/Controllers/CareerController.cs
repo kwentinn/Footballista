@@ -50,9 +50,7 @@ namespace Footballista.Wasm.Server.Controllers
 				.WithManager(new Game.Domain.Clubs.Teams.Manager(career.Manager.Firstname, career.Manager.Lastname))
 				.Build();
 
-			await _mediator.DispatchAsync(cmd);
-
-			return Ok();
+            return Ok(await _mediator.DispatchAsync(cmd));
 		}
 	}
 }

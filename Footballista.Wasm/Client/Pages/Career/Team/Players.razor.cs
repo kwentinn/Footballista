@@ -1,12 +1,13 @@
 ﻿using Footballista.Wasm.Client.Domain.ClientServices;
 using Footballista.Wasm.Shared.Data.Players;
 using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Footballista.Wasm.Client.Pages.Career.Team
 {
-	public partial class Players
+    public partial class Players
 	{
 		private List<Player> players;
 		private Player _selectedPlayer;
@@ -14,10 +15,14 @@ namespace Footballista.Wasm.Client.Pages.Career.Team
 		[Inject]
 		public IPlayersClientService PlayersClientService { get; set; }
 
+		[Inject]
+		public IGameService GameService { get; set; }
+
 
 		protected override async Task OnInitializedAsync()
 		{
-			players = await PlayersClientService.GetGeneratedPlayersAsync(20);
+            Guid careerId = GameService.CurrentGame.Id;
+			players = await PlayersClientService.GetPlayersAsync(careerId);
 		}
 
 		private void OnPlayerSelect(Player selectedPlayer)
@@ -27,6 +32,5 @@ namespace Footballista.Wasm.Client.Pages.Career.Team
 				_selectedPlayer = selectedPlayer;
 			}
 		}
-
 	}
 }

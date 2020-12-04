@@ -1,5 +1,6 @@
 ﻿using Footballista.Wasm.Client.Domain.ClientServices;
 using Footballista.Wasm.Shared.Data.Players;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -15,9 +16,9 @@ namespace Footballista.Wasm.Client.ClientServices
 		{
 			_httpClient = httpClient;
 		}
-		public async Task<List<Player>> GetGeneratedPlayersAsync(int maxPlayers = 50)
+		public async Task<List<Player>> GetPlayersAsync(Guid careerId)
 		{
-			return await _httpClient.GetFromJsonAsync<List<Player>>($"generate/players/{maxPlayers}");
+			return await _httpClient.GetFromJsonAsync<List<Player>>($"generate/players/{careerId}");
 		}
 	}
 }

@@ -1,27 +1,29 @@
-﻿using Footballista.Wasm.Server.Services;
+﻿using Footballista.Cqrs;
+using Footballista.Cqrs.Queries.GetPlayersForTeam;
 using Footballista.Wasm.Shared.Data.Players;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Footballista.Wasm.Server.Controllers
 {
-	[ApiController]
+    [ApiController]
 	[Route("[controller]")]
 	public class GenerateController : ControllerBase
 	{
-		private readonly IPlayersService _playersService;
+		private readonly IMediatorWrapper mediator;
 
-		public GenerateController(IPlayersService playersService)
+		public GenerateController(IMediatorWrapper mediator)
 		{
-			_playersService = playersService;
+			this.mediator = mediator;
 		}
 
 		[HttpGet]
 		[Route("players/{maxPlayers}")]
-		public async Task<IEnumerable<Player>> GetGeneratedPlayersAsync(int maxPlayers)
+		public async Task<IEnumerable<Player>> GetPlayersAsync(Guid careerId)
 		{
-			return await _playersService.GetPlayersAsync(maxPlayers);
+			return await this.mediator.GetResultAsync(new GetPlayersForTeamQuery(careerId));
 		}
 	}
 }
