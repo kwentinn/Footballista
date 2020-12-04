@@ -7,6 +7,7 @@ using Footballista.Game.Domain.Players.Physique;
 using Footballista.Game.Domain.Players.PlayerNames;
 using Footballista.Game.Domain.Players.Positions;
 using Itenso.TimePeriod;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +15,7 @@ namespace Footballista.Players.Builders
 {
 	public class PlayerBuilder
 	{
+        private PersonId _personId;
 		private PersonName _name;
 		private Gender _gender;
 		private Foot? _playerFoot;
@@ -56,7 +58,14 @@ namespace Footballista.Players.Builders
 			_percentile = percentile;
 			return this;
 		}
-		public PlayerBuilder WithFeatureSet(PhysicalFeatureSet featureSet)
+
+        public PlayerBuilder WithId(PersonId personId)
+        {
+			_personId = personId;
+			return this;
+        }
+
+        public PlayerBuilder WithFeatureSet(PhysicalFeatureSet featureSet)
 		{
 			_playerFeatureSet = featureSet;
 			return this;
@@ -76,6 +85,22 @@ namespace Footballista.Players.Builders
 		{
 			return Player.CreatePlayer
 			(
+				_name,
+				_gender,
+				_birthInfo,
+				_playerFoot.Value,
+				_bmi,
+				_percentile,
+				_playerFeatureSet,
+				_position,
+				_countries.ToArray()
+			);
+		}
+		public Player BuildRehydrate()
+		{
+			return Player.Rehydrate
+			(
+				_personId,
 				_name,
 				_gender,
 				_birthInfo,

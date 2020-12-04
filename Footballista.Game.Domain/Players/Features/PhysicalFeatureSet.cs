@@ -8,7 +8,7 @@ using System.Linq;
 namespace Footballista.Game.Domain.Players.Features
 {
 	[DebuggerDisplay("{_id} - {PositionCategory}")]
-	public class PhysicalFeatureSet
+	public sealed class PhysicalFeatureSet
 	{
 		private readonly Guid _id = Guid.NewGuid();
 
@@ -25,7 +25,6 @@ namespace Footballista.Game.Domain.Players.Features
 			PositionCategory.Defender, new PhysicalFeature().OutfieldPlayerFeatures.ToList());
 		public static PhysicalFeatureSet GoalKeeperFeatureSet => new PhysicalFeatureSet(
 			PositionCategory.GoalKeeper, new PhysicalFeature().GoalKeeperFeatures.ToList());
-
 
 		private readonly static List<PhysicalFeatureSet> _featureSets = new List<PhysicalFeatureSet>
 		{
@@ -50,6 +49,10 @@ namespace Footballista.Game.Domain.Players.Features
 		{
 			PositionCategory = positionCategory ?? throw new ArgumentNullException(nameof(positionCategory));
 			_physicalFeatures = physicalFeatures ?? throw new ArgumentNullException(nameof(physicalFeatures));
+		}
+		public static PhysicalFeatureSet Rehydrate(PositionCategory positionCategory, List<PhysicalFeature> physicalFeatures)
+        {
+			return new PhysicalFeatureSet(positionCategory, physicalFeatures);
 		}
 	}
 }

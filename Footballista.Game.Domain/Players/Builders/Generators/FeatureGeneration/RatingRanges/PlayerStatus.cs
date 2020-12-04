@@ -24,7 +24,7 @@ namespace Footballista.Game.Domain.Players.Builders.Generators.FeatureGeneration
 
 		public static Range<Rating> GetRatingRangeForStatus(PlayerStatus status)
 		{
-			return _playerStatuses.FirstOrDefault(s => s == status).RatingRange;
+            return _playerStatuses.Find(s => s == status).RatingRange;
 		}
 	}
 }

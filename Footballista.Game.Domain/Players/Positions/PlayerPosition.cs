@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Footballista.Game.Domain.Players.Positions
 {
@@ -57,5 +58,7 @@ namespace Footballista.Game.Domain.Players.Positions
 			Winger,
 		};
 		public static ReadOnlyCollection<PlayerPosition> AllPositions => _allPositions.AsReadOnly();
+
+        public static PlayerPosition FromString(string position) => _allPositions.Find(p => p.Name == position);
 	}
 }

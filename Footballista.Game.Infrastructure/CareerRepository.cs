@@ -27,12 +27,7 @@ namespace Footballista.Game.Infrastructure
 
 			CareerDb careerDb = await JsonSerializer.DeserializeAsync<CareerDb>(filestream);
 
-			return Career.RehydrateWithBuilder()
-				.With(careerDb.Name)
-				.With(new CareerId(careerDb.Id))
-				//.With()
-				.Build();
-				
+			return careerDb.ToDomain();
 		}
 
 		public async Task SaveAsync(Career career)
