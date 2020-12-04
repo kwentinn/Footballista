@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.PlayersUnitTests", "Footballista.PlayersUnitTests\Footballista.PlayersUnitTests.csproj", "{767D360D-AA4C-47D3-A330-6148340AE91C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "__Solution Items__", "__Solution Items__", "{59C215F7-051E-4AD0-8AAD-8863E7F2BDD6}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
@@ -25,8 +23,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0EC2216D-39E8-4161-BAD9-726113543DDE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.BuildingBlocks.Domain.UnitTests", "Footballista.BuildingBlocks.Domain.UnitTests\Footballista.BuildingBlocks.Domain.UnitTests.csproj", "{9FC0076B-1859-4C19-BCF6-A4605242136A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Players.IntegrationTests", "Footballista.Players.IntegrationTests\Footballista.Players.IntegrationTests.csproj", "{D339491A-C387-4D8E-AC52-5C4DD55B995D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{3E9746CA-2A06-4997-81AF-9B573684918D}"
 	ProjectSection(SolutionItems) = preProject
@@ -87,10 +83,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{767D360D-AA4C-47D3-A330-6148340AE91C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{767D360D-AA4C-47D3-A330-6148340AE91C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{767D360D-AA4C-47D3-A330-6148340AE91C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{767D360D-AA4C-47D3-A330-6148340AE91C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FAF0BA18-4E53-4278-AA5B-35F38C7D43CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FAF0BA18-4E53-4278-AA5B-35F38C7D43CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAF0BA18-4E53-4278-AA5B-35F38C7D43CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -103,10 +95,6 @@ Global
 		{9FC0076B-1859-4C19-BCF6-A4605242136A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FC0076B-1859-4C19-BCF6-A4605242136A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FC0076B-1859-4C19-BCF6-A4605242136A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D339491A-C387-4D8E-AC52-5C4DD55B995D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D339491A-C387-4D8E-AC52-5C4DD55B995D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D339491A-C387-4D8E-AC52-5C4DD55B995D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D339491A-C387-4D8E-AC52-5C4DD55B995D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F1C67053-94FD-4ECA-B59B-6F7298B32CD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F1C67053-94FD-4ECA-B59B-6F7298B32CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1C67053-94FD-4ECA-B59B-6F7298B32CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -164,13 +152,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{767D360D-AA4C-47D3-A330-6148340AE91C} = {D53DB4AA-9538-4953-B4B9-AFE3B97D2623}
 		{FAF0BA18-4E53-4278-AA5B-35F38C7D43CA} = {EDB7D2DA-9158-4138-B67C-F591D28C69C4}
 		{D53DB4AA-9538-4953-B4B9-AFE3B97D2623} = {A297BDEE-55B6-4C38-9437-B65923CA1035}
 		{58DC82FB-2EE7-4948-B4F7-A42CB564738F} = {A297BDEE-55B6-4C38-9437-B65923CA1035}
 		{0EC2216D-39E8-4161-BAD9-726113543DDE} = {EDB7D2DA-9158-4138-B67C-F591D28C69C4}
 		{9FC0076B-1859-4C19-BCF6-A4605242136A} = {0EC2216D-39E8-4161-BAD9-726113543DDE}
-		{D339491A-C387-4D8E-AC52-5C4DD55B995D} = {D53DB4AA-9538-4953-B4B9-AFE3B97D2623}
 		{3E9746CA-2A06-4997-81AF-9B573684918D} = {59C215F7-051E-4AD0-8AAD-8863E7F2BDD6}
 		{F1C67053-94FD-4ECA-B59B-6F7298B32CD1} = {818E2105-A434-497D-A15A-5CFC28832D37}
 		{A5ACAC36-AC1C-41C7-AB92-63AE0944A6A8} = {DBA5799B-16A9-4F1B-96A0-16E23CE1F467}
