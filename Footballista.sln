@@ -77,6 +77,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Cqrs.Queries",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Footballista.Game.Infrastructure", "Footballista.Game.Infrastructure\Footballista.Game.Infrastructure.csproj", "{D7116DA1-93AB-4DA6-A999-24088C7C642B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sonar", "sonar", "{775CBDCF-6AF0-4E82-94A5-E38B0BEBA43F}"
+	ProjectSection(SolutionItems) = preProject
+		sonar-build.ps1 = sonar-build.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +184,7 @@ Global
 		{AE03F07F-F2DA-40A8-A002-EA6AF1A4D683} = {B044D8B3-F405-4F6E-AA0F-1599B79C1B04}
 		{C250A25F-4AB2-4695-91AB-1EDEE250BCFE} = {B044D8B3-F405-4F6E-AA0F-1599B79C1B04}
 		{D7116DA1-93AB-4DA6-A999-24088C7C642B} = {A297BDEE-55B6-4C38-9437-B65923CA1035}
+		{775CBDCF-6AF0-4E82-94A5-E38B0BEBA43F} = {59C215F7-051E-4AD0-8AAD-8863E7F2BDD6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8CA48F83-3D6D-4B67-8110-608DD680C317}
