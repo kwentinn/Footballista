@@ -3,6 +3,8 @@ using Footballista.BuildingBlocks.Domain.ValueObjects;
 using Footballista.Game.Domain.Careers;
 using Footballista.Game.Domain.Clubs;
 using Footballista.Game.Domain.Clubs.Teams;
+using Footballista.Game.Domain.Competitions;
+using Footballista.Game.Domain.Competitions.Seasons;
 using Footballista.Game.Domain.Players;
 using Footballista.Game.Domain.Players.Features;
 using Footballista.Game.Domain.Players.Persons;
@@ -29,11 +31,15 @@ namespace Footballista.Game.Infrastructure
                 .With(new CareerId(career.Id))
                 .With(career.Club.ToDomain())
                 .With(career.CurrentDate.ToDate())
-                //.With(career.Manager.ToDomain())
-                //.With(career.Season.ToDomain())
-                //.With(career.Competition.ToDomain())
-                //.With(career.Season.ToDomain())
+                .With(career.Manager.ToDomain())
+                .With(career.Season.ToDomain())
+                .With(career.Competition.ToDomain())
                 .Build();
+        }
+        public static Season ToDomain(this SeasonDb season)
+        {
+            if (season is null) { return null; }
+            return new Season(new SeasonId(season.Id), season.Start.ToDate());
         }
         public static Club ToDomain(this ClubDb club)
         {
@@ -52,11 +58,16 @@ namespace Footballista.Game.Infrastructure
         }
         public static Manager ToDomain(this ManagerDb manager)
         {
+            if (manager is null)
+            {
+                return null;
+            }
             return new Manager(manager.Id, manager.Firstname, manager.Lastname);
         }
         public static Player ToDomain(this PlayerDb player)
         {
             PlayerPosition position = PlayerPosition.FromString(player.Position);
+            IEnumerable<Country> nationalities = GetCountriesFromString(player.Nationalities);
 
             return new PlayerRehydrator()
                 .WithId(new PersonId(player.Id))
@@ -68,26 +79,37 @@ namespace Footballista.Game.Infrastructure
                 .WithFoot(Enum.Parse<Foot>(player.Foot))
                 .WithBirthdate(player.Birthdate.ToDate())
                 .WithBirthLocation(new Location(new City(player.CityOfBirth), Country.GetFromName(player.CountryOfBirth)))
-                .WithCountries(GetCountriesFromString(player.Nationalities))
+                .WithCountries(nationalities)
                 .WithPlayerPosition(position)
                 .WithFeatureSet(PhysicalFeatureSet.Rehydrate(position.PositionCategory, GetPhysicalFeaturesFromRatings(player.Ratings)))
                 .Rehydrate();
         }
-        public static IEnumerable<Country> GetCountriesFromString(string coutriesSeparatedByCommas)
+        public static IEnumerable<Country> GetCountriesFromString(string countriesSeparatedByCommas)
         {
-            string[] countriesArray = coutriesSeparatedByCommas.Split(",");
-            foreach (string country in countriesArray)
+            if (countriesSeparatedByCommas.Contains(","))
             {
-                yield return Country.GetFromName(country);
+                yield return Country.GetFromCode(countriesSeparatedByCommas);
+            }
+            else
+            {
+                string[] countriesArray = countriesSeparatedByCommas.Split(",");
+                foreach (string country in countriesArray)
+                {
+                    yield return Country.GetFromCode(country);
+                }
             }
         }
-
         public static IEnumerable<PhysicalFeature> GetPhysicalFeaturesFromRatings(Dictionary<string, int> ratings)
         {
             foreach (KeyValuePair<string, int> rating in ratings)
             {
                 yield return new PhysicalFeature(Enum.Parse<FeatureType>(rating.Key), Rating.FromInt(rating.Value));
             }
+        }
+        public static Competition ToDomain(this CompetitionDb competition)
+        {
+            if (competition is null) { return null; }
+            return new Competition(new CompetitionId(competition.Id), competition.Name);
         }
     }
 }

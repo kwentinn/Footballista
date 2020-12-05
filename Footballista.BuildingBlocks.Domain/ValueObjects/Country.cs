@@ -73,6 +73,7 @@ namespace Footballista.BuildingBlocks.Domain.ValueObjects
 		public static Country Germany => new Country("de", nameof(Germany), Language.German);
 
 		public static Country GetFromName(string name) => _countries.FirstOrDefault(c => c.EnglishName == name);
+		public static Country GetFromCode(string countryCode) => _countries.FirstOrDefault(c => c.CountryCode == countryCode);
 
 		private static readonly List<Country> _countries = new List<Country>
 		{

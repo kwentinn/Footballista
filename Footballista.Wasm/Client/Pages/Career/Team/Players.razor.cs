@@ -21,7 +21,8 @@ namespace Footballista.Wasm.Client.Pages.Career.Team
 
 		protected override async Task OnInitializedAsync()
 		{
-            Guid careerId = GameService.CurrentGame.Id;
+			GameService.Load();
+			Guid careerId = GameService.CurrentGame.Id;
 			players = await PlayersClientService.GetPlayersAsync(careerId);
 		}
 
