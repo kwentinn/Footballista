@@ -5,6 +5,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Include="..\.editorconfig" Link=".editorconfig" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <PackageReference Include="MediatR" Version="9.0.0" />
 	  <PackageReference Include="TimePeriodLibrary.NET" Version="2.1.1" />
 	</ItemGroup>

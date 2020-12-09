@@ -3,6 +3,7 @@ using Footballista.Game.Domain.Clubs;
 using Footballista.Game.Domain.Clubs.Teams;
 using Footballista.Game.Domain.Competitions;
 using Footballista.Game.Domain.Competitions.Seasons;
+using Footballista.Game.Domain.Fixtures;
 using Footballista.Game.Domain.Players;
 using Footballista.Game.Domain.Players.Persons;
 using Footballista.Game.Domain.Players.Positions;
@@ -39,13 +40,15 @@ namespace Footballista.Game.Domain.Careers
         {
             IEnumerable<Player> players = await this.GeneratePlayers().ConfigureAwait(false);
 
-            // récupérer le club par son id 
-            Club club = await _clubRepository.GetByIdAsync(clubId).ConfigureAwait(false);
+            Club club = await this._clubRepository.GetByIdAsync(clubId).ConfigureAwait(false);
 
             club.FirstTeam.AddPlayers(players);
 
             Competition competition = this._competitionRepository.GetById(competitionId);
             Season season = this._seasonRepository.GetById(seasonId);
+
+            //new FixturesGenerator()
+
 
             Career newCareer = new CareerBuilder()
                 .With(name)
@@ -64,9 +67,17 @@ namespace Footballista.Game.Domain.Careers
         private async Task<IEnumerable<Player>> GeneratePlayers()
         {
             List<Player> players = new List<Player>();
-            foreach (var position in PlayerPosition.AllPositions)
+            foreach (PlayerPosition position in PlayerPosition.AllPositions)
             {
-                players.AddRange(await this._playerGenerator.GenerateManyAsync(4, Gender.Male, new Country[] { Country.France }, playerPosition: position));
+                var generatedplayers = await this._playerGenerator.GenerateManyAsync
+                (
+                    nbOfPlayers: 4,
+                    playerGender: Gender.Male,
+                    countries: new Country[] { Country.France },
+                    playerPosition: position
+                ).ConfigureAwait(false);
+
+                players.AddRange(generatedplayers);
             }
             return players;
         }

@@ -2,8 +2,10 @@
 using Footballista.Game.Domain.Clubs.Teams;
 using Footballista.Game.Domain.Competitions;
 using Footballista.Game.Domain.Competitions.Seasons;
+using Footballista.Game.Domain.Fixtures;
 using Itenso.TimePeriod;
 using System;
+using System.Collections.Generic;
 
 namespace Footballista.Game.Domain.Careers
 {
@@ -29,6 +31,8 @@ namespace Footballista.Game.Domain.Careers
         public Date CurrentDate { get; }
         public Manager Manager { get; }
         public Season Season { get; }
+
+        private readonly List<Fixture> fixtures = new List<Fixture>();
 
         private Career(string name, Club club, Competition competition, Date currentDate, Manager manager, Season season)
         {
